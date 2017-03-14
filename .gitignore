@@ -1,0 +1,5 @@
+wp-config-env.php
+ansible/*.retry
+ansible/roles/wordpress/files/key
+**/.DS_Store
+.idea
