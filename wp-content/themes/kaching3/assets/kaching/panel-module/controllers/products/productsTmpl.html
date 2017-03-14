@@ -1,0 +1,92 @@
+<div class="wrap1 container1 products-page new-format-product-page">
+    <div class="content row">
+        <div class="header-block">
+            <div class="inner-header-block clearfix">
+                <div class="col-sm-6 pLeft_0">
+                    <h3>Product Management</h3>
+                </div>
+                <div class="col-md-6 pRight_0 clearfix">
+                    <div class="col-sm-8 text-right pRight_0">
+                        <form name="searchForm" ng-submit="search()" novalidate>
+                            <div>
+                                <input type="text" placeholder="Search" ng-model="view.searchInput" ng-disabled="view.busy">
+                            </div>
+                        </form>
+                    </div>
+                    <div class="col-sm-4 pRight_0 text-right">
+                        <button ng-click="showNewProductDialog()" type="button" class="btn-kaching-first percent_100">New Product</button>
+                    </div>
+                </div>
+            </div>
+            <div class="title-cropper-line"></div>
+        </div>
+
+        <div class="products-grid" ng-show="data.products.length > 0" infinite-scroll="nextPage()" infinite-scroll-disabled="view.busy" infinite-scroll-distance="0">
+
+            <table class="table table-striped">
+                <tbody>
+                    <tr ng-repeat="item in data.products" ng-click="toggleItem(item)">
+                        <td>
+                            <div class="box-product-item clearfix">
+                                <div class="photo-container">
+                                    <div class="image-container">
+                                        <div class="image-holder" ng-style="{ 'background-image' : 'url({{ item.image || item.image_url}})' }"></div>
+                                    </div>
+                                </div>
+                                <div class="item-info">
+                                    <div class="product-metadata">
+                                        <div class="title ellipsis">{{ item.title }}</div>
+                                        <div class="date">Added: <span>{{ item.date_added | date: 'yyyy-MM-dd'}}</span></div>
+                                    </div>
+                                    <span class="badge-active" ng-show="item.is_active">Active</span>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="setting-control">
+                            <div class="product-toolbar text-center">
+                                <a ng-click="showDeleteProductDialog( item, $index )" href="" class="btn btn-action"
+                                    data-animation="am-fade-and-scale"
+                                    data-placement="top"
+                                    data-trigger="hover"
+                                    data-type="success"
+                                    data-title="Delete Product"
+                                    bs-tooltip
+                                    >
+                                    <img src="/wp-content/themes/kaching3/assets/images/campaign/trash-kaching.svg">
+                                </a>
+                                <a ui-sref="kaching.products.edit({productId:item.id})" class="btn btn-action"
+                                    data-animation="am-fade-and-scale"
+                                    data-placement="top"
+                                    data-trigger="hover"
+                                    data-type="success"
+                                    data-title="Edit Product"
+                                    bs-tooltip
+                                    >
+                                    <img src="/wp-content/themes/kaching3/assets/images/campaign/setting-kaching.svg">
+                                </a>
+                                <a ui-sref="kaching.products.view({productId:item.id})" class="btn btn-action"
+                                    data-animation="am-fade-and-scale"
+                                    data-placement="top"
+                                    data-trigger="hover"
+                                    data-type="success"
+                                    data-title="Product details"
+                                    bs-tooltip
+                                    >
+                                    <img src="/wp-content/themes/kaching3/assets/images/campaign/ico-detail.svg">
+                                </a>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="scroll-spacer"></div>
+        </div>
+
+        <div loader ng-show="view.busy"></div>
+
+        <div ng-show="!view.busy && data.products.length == 0">
+            <h2 class="text-center" ng-show="view.searchPhrase.length == 0">You don't have any products.</h2>
+            <h2 class="text-center" ng-show="view.searchPhrase.length > 0">You don't have any products<br>matching this search criteria.</h2>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,118 @@
+<div class="campaign-edit campaign-edit-targeting">
+
+    <div loader ng-show="view.busy"></div>
+
+    <form
+        name="form1"
+        ng-show="!view.busy"
+        novalidate>
+
+        <div class="row">
+            <div class="col-md-6">
+
+                <h3>Categories</h3>
+
+                <div class="form-group">
+                    <label class="radio-inline">
+                        <input type="radio" name="all_categories" ng-model="data.allCategories" ng-value="true" ng-change="resetError('categories')">
+                        Display all
+                    </label>
+                    <label class="radio-inline">
+                        <input type="radio" name="all_categories" ng-model="data.allCategories" ng-value="false" ng-change="resetError('categories')">
+                        Display in selected categories
+                    </label>
+                </div>
+
+                <p class="small">Making a selection will include only traffic from sites within that category.</p>
+
+                <div class="panel-multiselect" ng-show="!data.allCategories">
+                    <div class="panel-heading">Primary categories</div>
+                    <div class="panel-body">
+                        <div class="checkbox" ng-repeat="category in data.categories">
+                            <label>
+                                <input type="checkbox" ng-model="category.selected" ng-change="resetError('categories')"> {{category.name}}
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-error" ng-show="view.showErrors && view.errors.categories">You must select at least one category.</div>
+
+                <h3>Demographic options</h3>
+
+                <div class="form-group">
+                    <p>Select gender</p>
+                    <label class="checkbox-inline">
+                        <input type="checkbox" ng-model="data.gender.male" ng-change="resetError('gender')">
+                        Male
+                    </label>
+                    <label class="checkbox-inline">
+                        <input type="checkbox" ng-model="data.gender.female" ng-change="resetError('gender')">
+                        Female
+                    </label>
+                </div>
+                <div class="form-error" ng-show="view.showErrors && view.errors.gender">You must select at least one gender.</div>
+
+                <div class="form-group">
+                    <p>Select age range</p>
+                    <select
+                        ng-model="data.ageRange"
+                        ng-options="range.label for range in view.ageRanges track by range.value"
+                        class="form-control"
+                        ></select>
+                </div>
+
+                <h3>Operating system</h3>
+
+                <div class="form-group">
+                    <label class="checkbox-inline">
+                        <input type="checkbox" ng-model="data.os.ios" ng-change="resetError('os')">
+                        iOS
+                    </label>
+                    <label class="checkbox-inline">
+                        <input type="checkbox" ng-model="data.os.android" ng-change="resetError('os')">
+                        Android
+                    </label>
+                </div>
+                <div class="form-error" ng-show="view.showErrors && view.errors.os">You must select at least one operating system.</div>
+
+            </div>
+            <div class="col-md-6">
+
+                <h3>Location</h3>
+
+                <div class="form-group">
+                    <label class="radio-inline">
+                        <input type="radio" name="all_locations" ng-model="data.allLocations" ng-value="true" ng-change="resetError('locations')">
+                        Global
+                    </label>
+                    <label class="radio-inline">
+                        <input type="radio" name="all_locations" ng-model="data.allLocations" ng-value="false" ng-change="resetError('locations')">
+                        Custom
+                    </label>
+                </div>
+
+                <div class="panel-multiselect" ng-show="!data.allLocations">
+                    <div class="panel-heading">Select countries</div>
+                    <div class="panel-body">
+                        <div class="checkbox" ng-repeat="location in data.locations">
+                            <label>
+                                <input type="checkbox" ng-model="location.selected" ng-change="resetError('locations')"> {{location.name}}
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-error" ng-show="view.showErrors && view.errors.locations">You must select at least one location.</div>
+
+            </div>
+        </div>
+
+        <div class="campaign-edit-btns-container">
+            <a href="" class="btn btn-default uppercase" ng-click="cancelEdit()">Cancel</a>
+            <a href="" class="btn btn-primary uppercase" ng-click="saveForm()">Save changes</a>
+        </div>
+
+    </form>
+
+</div>

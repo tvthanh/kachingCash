@@ -1,0 +1,334 @@
+.daterange-picker {
+    overflow: hidden;
+    .btn-group {
+        display: block;
+    }
+    .btn-date {
+        display: block;
+        width: calc( 100% - 24px );
+        background: $light;
+        border: 1px solid $colour_gray_light;
+        border-right: 0;
+        color: $colour_gray_dark;
+        &:focus {
+            outline: none;
+        }
+        &:active {
+            @include box-shadow( none );
+        }
+    }
+    .dropdown-toggle {
+        display: block;
+        width: 24px;
+    }
+}
+
+.invoices {
+    .page-header {
+        overflow: hidden;
+        h1 {
+            float: left;
+        }
+        .daterange-picker {
+            width: 250px;
+            float: right;
+        }
+    }
+}
+
+.modal-credit-card-add,
+.modal-credit-card-add.center,
+.modal-credit-card-edit,
+.modal-credit-card-edit.center,
+.modal-credit-card-remove,
+.modal-credit-card-remove.center {
+    .modal-dialog {
+        width: 384px;
+    }
+}
+
+.credit-cards {
+}
+
+.credit-cards-container {
+    overflow: hidden;
+    margin: 0 -15px;
+    .card-container {
+        width: 33.33%;
+        float: left;
+        padding: 15px;
+    }
+}
+
+.panel-credit-card {
+    @include box-shadow( none );
+    border-radius: 0;
+    border: 0;
+    .panel-heading {
+        overflow: hidden;
+        color: $light;
+        padding: 0 20px;
+        background: $colour_gray_dark;
+        border: 0;
+        @include border-top-radius( 10px );
+    }
+    .panel-body {
+        padding: 20px;
+        @include border-bottom-radius( 10px );
+        border: 1px solid $colour_gray_light;
+        border-top: 0;
+        background: $colour_off_white;
+    }
+    .card-name {
+        width: calc( 100% - 60px );
+        display: block;
+        float: left;
+        margin: 10px 0;
+        font-size: 22px;
+        line-height: 30px;
+        font-weight: 700;
+    }
+    .card-buttons {
+        float: right;
+        width: 60px;
+        .default,
+        .btn {
+            width: 30px;
+            height: 50px;
+            display: block;
+            float: left;
+            padding: 16px 0;
+            text-align: center;
+            border: 0;
+            color: $light;
+            background: transparent;
+            .icon {
+                width: auto;
+                height: auto;
+                font-size: 18px;
+                line-height: 18px;
+            }
+        }
+        .default {
+            color: $colour_brand_primary;
+        }
+    }
+    .card-number {
+        margin-bottom: 20px;
+    }
+    .card-expiry {
+        .month {
+            margin-right: 30px;
+        }
+    }
+    .card-number .heading,
+    .card-expiry .heading {
+        font-size: 13px;
+        line-height: 20px;
+        color: $colour_gray_medium;
+    }
+    .card-number .number,
+    .card-expiry .date {
+        font-size: 22px;
+        line-height: 30px;
+        color: $colour_gray_dark;
+    }
+
+}
+
+#braintree-form {
+    min-height: 127px;
+}
+
+.panel-new-card {
+    height: 211px;
+    padding: 20px;
+    @include box-shadow( none );
+    border-radius: 10px;
+    border: 2px dashed $colour_gray_dark;
+    .btn-new-card {
+        width: 120px;
+        height: 120px;
+        padding: 0;
+        background: transparent;
+        &:focus {
+            outline: none;
+        }
+        &:active {
+            @include box-shadow( none );
+        }
+        .icon {
+            width: 120px;
+            height: 120px;
+            font-size: 120px;
+            color: $colour_gray_dark;
+        }
+    }
+    .panel-label {
+        font-size: 24px;
+        color: $colour_gray_dark;
+    }
+}
+
+.css-table {
+    display: table;
+    width: 100%;
+    table-layout:fixed;
+    .col {
+        display: table-cell;
+        vertical-align:top;
+    }
+}
+
+.wrap.two-columns {
+    padding: 0;
+    .col-sidebar,
+    .col-main {
+        padding: 40px;
+    }
+    .col-sidebar {
+        width: 350px;
+        background: $colour_off_white;
+        border-right: 1px solid $colour_gray_light;
+    }
+    .col-main {
+        width: calc( 100% - 350px );
+    }
+    .sidebar-heading {
+        font-size: 32px;
+        line-height: 1.2;
+        margin: 0 0 20px 0;
+        font-weight: 500;
+        color: $colour_gray_dark;
+    }
+    .sidebar-subheading {
+        margin-bottom: 30px;
+        font-size: 16px;
+        line-height: 1.5;
+        font-weight: 400;
+        color: $colour_gray_medium;
+    }
+}
+
+.add-funds {
+    .main-card-error {
+        padding: 40px;
+        text-align: center;
+    }
+    .sidebar-subheading {
+        margin-bottom: 100px !important;
+    }
+    .card-details {
+        .heading {
+            font-size: 13px;
+            line-height: 20px;
+            color: $colour_gray_medium;
+        }
+        .number,
+        .date {
+            font-size: 22px;
+            line-height: 30px;
+            color: $colour_gray_dark;
+        }
+        .card-number {
+            margin-bottom: 20px;
+        }
+    }
+    .credit-amounts-list,
+    .checkout-credits {
+        margin: 0 -5px 20px -5px;
+        padding: 0;
+        overflow: hidden;
+        list-style: none;
+        li {
+            display: block;
+            width: 25%;
+            float: left;
+            padding: 0 5px;
+        }
+    }
+    .credit-amount-enter {
+        .amount-label {
+            font-size: 13px;
+            line-height: 42px;
+            text-decoration: underline;
+            color: $colour_gray_dark;
+        }
+    }
+    .btn-amount {
+        padding: 20px;
+        border-radius: 10px;
+        border: 2px solid $colour_gray_light;
+        background: transparent;
+        color: $colour_gray_dark;
+        @include transition( all .2s )
+        .amount {
+            font-size: 32px;
+            font-weight: 500;
+            margin-bottom: 5px;
+        }
+        .amount-label {
+            font-size: 22px;
+            font-weight: 500;
+        }
+        &:focus {
+            outline: 0;
+        }
+        &:hover {
+            background: $colour_brand_primary;
+            border-color: $colour_brand_primary;
+        }
+        &:active {
+            background:   lighten( $colour_brand_primary, 12% );
+            border-color: lighten( $colour_brand_primary, 12% );
+            @include box-shadow( none );
+        }
+    }
+
+    .checkout-credits-amount {
+        width: 100%;
+        padding: 20px;
+        text-align: center;
+        border-radius: 10px;
+        background: $colour_brand_primary;
+        color: $colour_gray_dark;
+        .amount {
+            font-size: 32px;
+            font-weight: 500;
+            margin-bottom: 5px;
+        }
+        .amount-label {
+            font-size: 22px;
+            font-weight: 500;
+        }
+    }
+
+    .checkout-credits {
+        .checkout-credits-value {
+            width: 75%;
+            font-size: 32px;
+            line-height: 95px;
+            color: $colour_gray_dark;
+            .icon {
+                display: inline-block;
+                padding: 0 40px;
+                font-size: 26px;
+                line-height: 26px;
+                width: 26px;
+                height: 26px;
+            }
+        }
+    }
+
+    .checkout-total {
+        .total-label {
+            font-size: 16px;
+            color: $colour_gray_medium;
+        }
+        .total-value {
+            font-size: 32px;
+            color: $colour_brand_primary;
+        }
+    }
+}
+

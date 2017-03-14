@@ -1,0 +1,36 @@
+<div class="wrap container page-edit-campaign">
+    <div class="content row">
+
+        <div class="page-header">
+            <h1>Edit campaign</h1>
+        </div>
+
+        <div class="panel-tabbed">
+            <ul class="tabs">
+                <li class="tab" ng-class="{ 'tab-active': view.currentTab === 'details' }">
+                    <a href="" ng-click="switchTab('details')" >Details</a>
+                </li>
+                <li class="tab" ng-class="{ 'tab-active': view.currentTab === 'targeting' }">
+                    <a href="" ng-click="switchTab('targeting')" >Targeting</a>
+                </li>
+                <li class="tab" ng-class="{ 'tab-active': view.currentTab === 'budgeting' }">
+                    <a href="" ng-click="switchTab('budgeting')" >Budgeting</a>
+                </li>
+                <li class="tab" ng-class="{ 'tab-active': view.currentTab === 'media' }">
+                    <a href="" ng-click="switchTab('media')" >Media</a>
+                </li>
+                <li class="tab" ng-class="{ 'tab-active': view.currentTab === 'products' }">
+                    <a href="" ng-click="switchTab('products')" >Products</a>
+                </li>
+            </ul>
+            <div class="panel-body">
+                <div ng-if="isCurrentTab('details')" campaign-edit-details></div>
+                <div ng-if="isCurrentTab('targeting')" campaign-edit-targeting></div>
+                <div ng-if="isCurrentTab('budgeting')" campaign-edit-budgeting></div>
+                <div ng-if="isCurrentTab('media')" campaign-edit-media></div>
+                <div ng-if="isCurrentTab('products')" campaign-edit-products></div>
+            </div>
+        </div>
+
+    </div>
+</div>

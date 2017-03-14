@@ -1,0 +1,120 @@
+.media-page {
+    .toolbar {
+        margin-bottom: 20px;
+    }
+    .media-grid {
+        overflow: hidden;
+        margin-left: -15px;
+        margin-right: -15px;
+        .scroll-spacer {
+            width: 100%;
+            height: 50px;
+            clear: both;
+        }
+    }
+    .media-container {
+        width: 33.33%;
+        float: left;
+        padding: 20px 15px;
+        position: relative;
+        .image-container {
+            background-color: $gray-blue-light;
+            margin-bottom: 5px;
+            position: relative;
+            padding-bottom: 93.75%;
+        }
+        .image {
+            display: block;
+            background-color: $gray-blue-light;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+        .icon-selected {
+            position: absolute;
+            bottom: 15px;
+            right: 15px;
+            font-size: 32px;
+            .glyphicon {
+                display: block;
+            }
+        }
+        .media-container-bottom {
+            overflow: hidden;
+        }
+        .media-metadata {
+            width: 65%;
+            float: left;
+        }
+        .media-toolbar {
+            width: 35%;
+            float: left;
+            text-align: right;
+        }
+        .title {
+            position: relative;
+            overflow: hidden;
+            font-weight: 600;
+            white-space: nowrap;
+            color: $gray-darkest;
+            &:after {
+                content: " ";
+                width: 30px;
+                height: 100%;
+                position: absolute;
+                top: 0;
+                right: 0;
+                @include gradient-horizontal( rgba(255,255,255,0),  #fff );
+            }
+        }
+        .date {
+            font-size: .8em;
+        }
+        .btn-action {
+            display: inline-block;
+            padding: 3px;
+            background: $gray-darkest;
+            color: #fff;
+            border-radius: 20px;
+            .icon {
+                display: block;
+            }
+            &:hover {
+                background: $brand-primary;
+            }
+        }
+    }
+}
+
+.media-view-page {
+    .header-bar {
+        margin-bottom: 30px;
+        .btn-back {
+            display: inline;
+            padding: 0;
+            font-size: 33px;
+            line-height: 40px;
+            vertical-align: middle;
+            padding-right: 10px;
+            color: $gray-darkest;
+            &:hover {
+                color: $brand-primary;
+            }
+            .icon {
+                position: relative;
+                top: -6px;
+                font-size: 33px;
+                vertical-align: middle;
+            }
+        }
+        h1 {
+            margin: 0;
+            padding: 0;
+            padding-left: 10px;
+            display: inline;
+            font-size: 24px;
+            line-height: 40px;
+            vertical-align: middle;
+        }
+    }
+}

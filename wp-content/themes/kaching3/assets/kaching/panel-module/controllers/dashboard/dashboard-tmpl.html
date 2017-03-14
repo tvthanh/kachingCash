@@ -1,0 +1,823 @@
+<div class="container">
+  <div class="margin-minus clearfix">
+    <div class="container-info-header clearfix">
+      <div class="info-main-kaching border-green-k pull-left">
+        <label class="medium-font">123</label>
+        <p class="margin-0 txt-grey font-13 capitalize">active campaigns</p>
+      </div>
+      <div class="info-main-kaching border-green-k border-green-k pull-left">
+        <label class="medium-font">123</label>
+        <p class="margin-0 txt-grey font-13 capitalize">online viewer</p>
+      </div>
+      <div class="info-main-kaching border-yellow-k pull-left">
+        <label class="medium-font">123</label>
+        <p class="margin-0 txt-grey font-13 capitalize">hours watched</p>
+      </div>
+      <div class="info-main-kaching border-yellow-k pull-left">
+        <label class="medium-font">123</label>
+        <p class="margin-0 txt-grey font-13 capitalize">click per campaign</p>
+      </div>
+      <div class="info-main-kaching border-yellow-k pull-left">
+        <label class="medium-font">123</label>
+        <p class="margin-0 txt-grey font-13 capitalize">lottery winners</p>
+      </div>
+      <div class="info-main-kaching border-green-k pull-left">
+        <label class="medium-font">123</label>
+        <p class="margin-0 txt-grey font-13 capitalize">total funds in EUR</p>
+      </div>
+      <select class="comb-filter-date pull-right">
+        <option>7 days</option>
+      </select>
+      <select class="comb-filter-campaign pull-right">
+        <option>All campaign</option>
+      </select>
+    </div>
+    <div class="container-globe-kaching">
+      <img ng-src="{{kachingAppConfig.wpTemplateUri + '/assets/images/dashboard/global-static.png'}}" width="100%">
+    </div>
+
+    <div class="row clearfix margin-b-30">
+      <div class="col-sm-3">
+        <div class="frame-kaching container-user-spend">
+          <p class="margin-0 clearfix">
+            <span class="font-22 medium-font pull-left">1,232</span>
+            <span class="increase-color-text number-percent-user font-13 pull-left">32</span>
+            <span class="ico-status status-ico ico-status-increase pull-left"></span>
+          </p>
+          <p class="margin-b-3 font-11 txt-grey capitalize">active campaign</p>
+          <highchart id="chart1" config="campaignUp" ></highchart>
+        </div>
+      </div>
+      <div class="col-sm-3">
+        <div class="frame-kaching container-user-spend">
+          <p class="margin-0 clearfix">
+            <span class="font-22 medium-font pull-left">1,232</span>
+            <span class="increase-color-text number-percent-user font-13 pull-left">32</span>
+            <span class="ico-status status-ico ico-status-increase pull-left"></span>
+          </p>
+          <p class="margin-b-3 font-11 txt-grey capitalize">online viewer</p>
+          <highchart id="chart2" config="campaignUp" ></highchart>
+        </div>
+      </div>
+      <div class="col-sm-3">
+        <div class="frame-kaching container-user-spend">
+          <p class="margin-0 clearfix">
+            <span class="font-22 medium-font pull-left">1,232</span>
+            <span class="decrease-color-text number-percent-user font-13 pull-left">32</span>
+            <span class="ico-status status-ico ico-status-decrease pull-left"></span>
+          </p>
+          <p class="margin-b-3 font-11 txt-grey capitalize">click per campaign</p>
+          <highchart id="chart2" config="campaignDown" ></highchart>
+        </div>
+      </div>
+      <div class="col-sm-3">
+        <div class="frame-kaching container-user-spend">
+          <p class="margin-0 clearfix">
+            <span class="font-22 medium-font pull-left">124,232</span>
+            <span class="increase-color-text number-percent-user font-13 pull-left">32</span>
+            <span class="ico-status status-ico ico-status-increase pull-left"></span>
+          </p>
+          <p class="margin-b-3 font-11 txt-grey capitalize">hours watched</p>
+          <highchart id="chart2" config="campaignUp" ></highchart>
+        </div>
+      </div>
+
+    </div>
+    <div class="container-net-income margin-b-30 frame-kaching">
+      <select class="comb-filter-date pull-right">
+        <option>Month</option>
+      </select>
+      <select class="comb-filter-campaign pull-right">
+        <option>Year</option>
+      </select>
+      <h4 class="title-chart-kaching">net income | Avg. $120k</h4>
+      <highchart id="chart2" config="chartNetIncome" ></highchart>
+    </div>
+    <div class="row margin-b-30 clearfix">
+      <div class="col-sm-6">
+        <div class="cotainer-click-per-view frame-kaching">
+          <h4 class="title-chart-kaching">campaigns click per views</h4>
+          <div class="row clearfix">
+            <div class="col-sm-6">
+             <p class="title-per-view uppercase txt-grey font-13">top</p>
+             <div class="process-perview">
+              <div class="frame-logo-brand">
+                <div class="logo-brand-view">
+                 <!-- <img ng-src="/wp-content/themes/kaching2/assets/images/logo-brand.png" width="40"> -->
+                 <img ng-src="{{kachingAppConfig.wpTemplateUri + '/assets/images/dashboard/logo-brand.png'}}" width="40">
+
+                </div>
+              </div>
+              <div class="percent-view-click">
+                <div class="live-percent-click top-click-one" style="width:90%;"></div>
+              </div>
+              <label class="number-percent-click">91%</label>
+             </div>
+             <div class="process-perview">
+              <div class="frame-logo-brand">
+                <div class="logo-brand-view">
+                 <!-- <img ng-src="/wp-content/themes/kaching2/assets/images/logo-brand.png" width="40"> -->
+                 <img ng-src="{{kachingAppConfig.wpTemplateUri + '/assets/images/dashboard/logo-brand.png'}}" width="40">
+
+                </div>
+              </div>
+              <div class="percent-view-click">
+                <div class="live-percent-click top-click-two" style="width:13%;"></div>
+              </div>
+              <label class="number-percent-click">13%</label>
+             </div>
+             <div class="process-perview">
+              <div class="frame-logo-brand">
+                <div class="logo-brand-view">
+                 <!-- <img ng-src="/wp-content/themes/kaching2/assets/images/logo-brand.png" width="40"> -->
+                 <img ng-src="{{kachingAppConfig.wpTemplateUri + '/assets/images/dashboard/logo-brand.png'}}" width="40">
+                </div>
+              </div>
+              <div class="percent-view-click">
+                <div class="live-percent-click top-click-three" style="width:90%;"></div>
+              </div>
+              <label class="number-percent-click">91%</label>
+             </div>
+             <div class="process-perview">
+              <div class="frame-logo-brand">
+                <div class="logo-brand-view">
+                 <!-- <img ng-src="/wp-content/themes/kaching2/assets/images/logo-brand.png" width="40"> -->
+                 <img ng-src="{{kachingAppConfig.wpTemplateUri + '/assets/images/dashboard/logo-brand.png'}}" width="40">
+                </div>
+              </div>
+              <div class="percent-view-click">
+                <div class="live-percent-click top-click-four" style="width:90%;"></div>
+              </div>
+              <label class="number-percent-click">91%</label>
+             </div>
+             <div class="process-perview">
+              <div class="frame-logo-brand">
+                <div class="logo-brand-view">
+                 <!-- <img ng-src="/wp-content/themes/kaching2/assets/images/logo-brand.png" width="40"> -->
+                 <img ng-src="{{kachingAppConfig.wpTemplateUri + '/assets/images/dashboard/logo-brand.png'}}" width="40">
+                </div>
+              </div>
+              <div class="percent-view-click">
+                <div class="live-percent-click top-click-five" style="width:90%;"></div>
+              </div>
+              <label class="number-percent-click">91%</label>
+             </div>
+            </div>
+            <div class="col-sm-6">
+            <p class="title-per-view uppercase txt-grey font-13">bottom</p>
+               <div class="process-perview">
+                <div class="frame-logo-brand">
+                  <div class="logo-brand-view">
+                   <!-- <img ng-src="/wp-content/themes/kaching2/assets/images/logo-brand.png" width="40"> -->
+                   <img ng-src="{{kachingAppConfig.wpTemplateUri + '/assets/images/dashboard/logo-brand.png'}}" width="40">
+                  </div>
+                </div>
+                <div class="percent-view-click">
+                  <div class="live-percent-click bottom-click-one" style="width:90%;"></div>
+                </div>
+                <label class="number-percent-click">91%</label>
+               </div>
+               <div class="process-perview">
+                <div class="frame-logo-brand">
+                  <div class="logo-brand-view">
+                   <!-- <img ng-src="/wp-content/themes/kaching2/assets/images/logo-brand.png" width="40"> -->
+                   <img ng-src="{{kachingAppConfig.wpTemplateUri + '/assets/images/dashboard/logo-brand.png'}}" width="40">
+                  </div>
+                </div>
+                <div class="percent-view-click">
+                  <div class="live-percent-click bottom-click-two" style="width:13%;"></div>
+                </div>
+                <label class="number-percent-click">13%</label>
+               </div>
+               <div class="process-perview">
+                <div class="frame-logo-brand">
+                  <div class="logo-brand-view">
+                   <!-- <img ng-src="/wp-content/themes/kaching2/assets/images/logo-brand.png" width="40"> -->
+                    <img ng-src="{{kachingAppConfig.wpTemplateUri + '/assets/images/dashboard/logo-brand.png'}}" width="40">
+                  </div>
+                </div>
+                <div class="percent-view-click">
+                  <div class="live-percent-click bottom-click-three" style="width:90%;"></div>
+                </div>
+                <label class="number-percent-click">91%</label>
+               </div>
+               <div class="process-perview">
+                <div class="frame-logo-brand">
+                  <div class="logo-brand-view">
+                   <!-- <img ng-src="/wp-content/themes/kaching2/assets/images/logo-brand.png" width="40"> -->
+                   <img ng-src="{{kachingAppConfig.wpTemplateUri + '/assets/images/dashboard/logo-brand.png'}}" width="40">
+                  </div>
+                </div>
+                <div class="percent-view-click">
+                  <div class="live-percent-click bottom-click-four" style="width:90%;"></div>
+                </div>
+                <label class="number-percent-click">91%</label>
+               </div>
+               <div class="process-perview">
+                <div class="frame-logo-brand">
+                  <div class="logo-brand-view">
+                   <!-- <img ng-src="/wp-content/themes/kaching2/assets/images/logo-brand.png" width="40"> -->
+                   <img ng-src="{{kachingAppConfig.wpTemplateUri + '/assets/images/dashboard/logo-brand.png'}}" width="40">
+                  </div>
+                </div>
+                <div class="percent-view-click">
+                  <div class="live-percent-click bottom-click-five" style="width:90%;"></div>
+                </div>
+                <label class="number-percent-click">91%</label>
+               </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <div class="frame-kaching">
+        <h4 class="title-chart-kaching">world wide winners</h4>
+        <div class="container-world-wide">
+          <!-- <img ng-src="/wp-content/themes/kaching2/assets/images/map-winner.png" width="100%"> -->
+          <img ng-src="{{kachingAppConfig.wpTemplateUri + '/assets/images/dashboard/map-winner.png'}}" width="100%">
+          <p class="margin-b-5 font-13 txt-grey">Top 6 Countries</p>
+          <div class="note-map-winner row clearfix">
+            <div class="col-sm-4">
+              <p class="column-info-winner margin-b-5 line-h-30 clearfix">
+                <span class="dot-country-winner bg-country-one pull-left"></span>
+                <span class="font-13 uppercase">usa</span>
+                <span class="font-13 pull-right">198</span>
+              </p>
+            </div>
+            <div class="col-sm-4">
+              <p class="column-info-winner margin-b-5 line-h-30 clearfix">
+                <span class="dot-country-winner bg-country-two pull-left"></span>
+                <span class="font-13 uppercase">france</span>
+                <span class="font-13 pull-right">23</span>
+              </p>
+            </div>
+            <div class="col-sm-4">
+              <p class="column-info-winner margin-b-5 line-h-30 clearfix">
+                <span class="dot-country-winner bg-country-three pull-left"></span>
+                <span class="font-13 uppercase">brazil</span>
+                <span class="font-13 pull-right">344</span>
+              </p>
+            </div>
+            <div class="col-sm-4">
+              <p class="column-info-winner margin-b-5 line-h-30 clearfix">
+                <span class="dot-country-winner bg-country-four pull-left"></span>
+                <span class="font-13 uppercase">australia</span>
+                <span class="font-13 pull-right">344</span>
+              </p>
+            </div>
+            <div class="col-sm-4">
+              <p class="column-info-winner margin-b-5 line-h-30 clearfix">
+                <span class="dot-country-winner bg-country-five pull-left"></span>
+                <span class="font-13 uppercase">china</span>
+                <span class="font-13 pull-right">344</span>
+              </p>
+            </div>
+            <div class="col-sm-4">
+              <p class="column-info-winner margin-b-5 line-h-30 clearfix">
+                <span class="dot-country-winner bg-country-six pull-left"></span>
+                <span class="font-13 uppercase">thailand</span>
+                <span class="font-13 pull-right">344</span>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      </div>
+    </div>
+    <div class="row clearfix margin-b-30">
+      <div class="col-sm-4">
+        <div class="frame-kaching">
+          <div class="head-daily-customer clearfix">
+            <h4 class="title-chart-kaching  pull-left">daily sale</h4>
+            <span class="pull-right line-h-40 increase-color-text">+23%</span>
+            <span class="pull-right line-h-40">22</span>
+          </div>
+          <highchart id="chartconfigDailySale" config="chartconfigDailySale" ></highchart>
+          <div class="row clearfix">
+            <div class="col-sm-6">
+              <div class="process-daily-sale">
+                <p class="margin-0 txt-grey font-11 clearfix">
+                  <span class="uppercase">last month best</span>
+                  <span class="pull-right">22</span>
+                </p>
+                <div class="percent-daily-sale">
+                  <div class="live-daily-sale top-click-one" style="width:79%;"></div>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <div class="process-daily-sale">
+                <p class="margin-0 txt-grey font-11 clearfix">
+                  <span class="uppercase">this month best</span>
+                  <span class="pull-right">22</span>
+                </p>
+                <div class="percent-daily-sale">
+                  <div class="live-daily-sale top-click-two" style="width:79%;"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-4">
+        <div class="frame-kaching">
+          <div class="head-daily-customer clearfix">
+            <h4 class="title-chart-kaching  pull-left">Customers</h4>
+            <span class="pull-right line-h-40 increase-color-text">+23%</span>
+            <span class="pull-right line-h-40">22</span>
+          </div>
+          <div class="row clearfix">
+            <div class="col-sm-7">
+              <div class="fix-hightchart-customer">
+                <highchart id="chartconfigCustomer" config="chartconfigCustomer" ></highchart>
+              </div>
+            </div>
+            <div class="col-sm-5">
+              <div class="info-chart-customer">
+                <label>45</label>
+                <p class="margin-b-5 font-12 uppercase">returning</p>
+                <div class="process-info-customer">
+                  <div class="percent-info-customer top-click-two" style="width:22%;"></div>
+                </div>
+              </div>
+              <div class="info-chart-customer">
+                <label>45</label>
+                <p class="margin-b-5 font-12 uppercase">referrals</p>
+                <div class="process-info-customer">
+                  <div class="percent-info-customer top-click-five" style="width:22%;"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="expand-customer row clearfix">
+            <div class="col-sm-4 pLeft_5 pRight_5">
+              <div class="note-chart-custome clearfix">
+                <span class="dot-chart-customer border-blue-custom pull-left"></span>
+                <label class="pull-left">new</label>
+              </div>
+            </div>
+            <div class="col-sm-4 pLeft_5 pRight_5">
+              <div class="note-chart-custome clearfix">
+                <span class="dot-chart-customer border-purple-custom pull-left"></span>
+                <label class="pull-left">returning</label>
+              </div>
+            </div>
+            <div class="col-sm-4 pLeft_5 pRight_5">
+              <div class="note-chart-custome clearfix">
+                <span class="dot-chart-customer border-yellow-custom pull-left"></span>
+                <label class="pull-left">referrals</label>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-4">
+        <div class="frame-kaching">
+          <div class="head-daily-customer clearfix">
+            <h4 class="title-chart-kaching  pull-left">Hours</h4>
+            <span class="pull-right line-h-40 increase-color-text">+23%</span>
+            <span class="pull-right line-h-40">22</span>
+          </div>
+          <highchart id="chartconfigHour" config="chartconfigHour" ></highchart>
+          <div class="container-info-chart-hours">
+            <div class="info-chart-hours clearfix">
+              <div class="brand-logo-hour pull-left">
+                <!-- <img ng-src="/wp-content/themes/kaching2/assets/images/logo-brand-small.png" width="100%;"> -->
+                <img ng-src="{{kachingAppConfig.wpTemplateUri + '/assets/images/dashboard/logo-brand-small.png'}}" width="100%">
+
+              </div>
+              <span class="uppercase pull-left">nike max</span>
+              <i class="ico-status ico-status-increase pull-right"></i>
+              <span class="increase-color-text percent-hours pull-right">23,4%</span>
+              <span class="pull-right">23,233</span>
+            </div>
+            <div class="info-chart-hours clearfix">
+              <div class="brand-logo-hour pull-left">
+                <!-- <img ng-src="/wp-content/themes/kaching2/assets/images/logo-brand-small.png" width="100%;"> -->
+                <img ng-src="{{kachingAppConfig.wpTemplateUri + '/assets/images/dashboard/logo-brand-small.png'}}" width="100%">
+
+              </div>
+              <span class="uppercase pull-left">nike max</span>
+              <i class="ico-status ico-status-increase pull-right"></i>
+              <span class="increase-color-text percent-hours pull-right">23,4%</span>
+              <span class="pull-right">23,233</span>
+            </div>
+            <div class="info-chart-hours clearfix">
+              <div class="brand-logo-hour pull-left">
+                <!-- <img ng-src="/wp-content/themes/kaching2/assets/images/logo-brand-small.png" width="100%;"> -->
+                <img ng-src="{{kachingAppConfig.wpTemplateUri + '/assets/images/dashboard/logo-brand-small.png'}}" width="100%">
+              </div>
+              <span class="uppercase pull-left">nike max</span>
+              <i class="ico-status ico-status-increase pull-right"></i>
+              <span class="increase-color-text percent-hours pull-right">23,4%</span>
+              <span class="pull-right">23,233</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row clearfix margin-b-30">
+      <div class="col-sm-6">
+        <div class="frame-kaching">
+          <h4 class="title-chart-kaching">product view rate</h4>
+          <div class="info-product-rate relative">
+            <div class="photo-product-rate photo-center" style="background-image:url(http://static.zara.net/wcsstore/ZaraStorefrontAssetStore/media/bg_selCountryPage.png);">
+            </div>
+            <p class="font-11 capitalize">UNDEFEATED Full Zip Jacket</p>
+            <div class="process-rate">
+              <div class="percent-product-rate top-click-two" style="width:22%;"><label>22</label></div>
+            </div>
+          </div>
+          <div class="info-product-rate relative">
+            <div class="photo-product-rate photo-center" style="background-image:url(http://static.zara.net/wcsstore/ZaraStorefrontAssetStore/media/bg_selCountryPage.png);">
+            </div>
+            <p class="font-11 capitalize">UNDEFEATED Full Zip Jacket</p>
+            <div class="process-rate">
+              <div class="percent-product-rate top-click-one" style="width:88%;"><label>22</label></div>
+            </div>
+          </div>
+          <div class="info-product-rate relative">
+            <div class="photo-product-rate photo-center" style="background-image:url(http://static.zara.net/wcsstore/ZaraStorefrontAssetStore/media/bg_selCountryPage.png);">
+            </div>
+            <p class="font-11 capitalize">UNDEFEATED Full Zip Jacket</p>
+            <div class="process-rate">
+              <div class="percent-product-rate top-click-three" style="width:92%;"><label>22</label></div>
+            </div>
+          </div>
+          <div class="info-product-rate relative">
+            <div class="photo-product-rate photo-center" style="background-image:url(http://static.zara.net/wcsstore/ZaraStorefrontAssetStore/media/bg_selCountryPage.png);">
+            </div>
+            <p class="font-11 capitalize">UNDEFEATED Full Zip Jacket</p>
+            <div class="process-rate">
+              <div class="percent-product-rate top-click-five" style="width:29%;"><label>22</label></div>
+            </div>
+          </div>
+          <div class="note-percent-product-rate clearfix">
+            <div class="column-note-rate">
+              <span>0</span>
+            </div>
+            <div class="column-note-rate">
+              <span>100</span>
+              <span class="pull-right fix-200">200</span>
+            </div>
+            <div class="column-note-rate">
+              <span class="pull-right">300</span>
+            </div>
+            <div class="column-note-rate">
+              <span class="pull-right">400</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <div class="frame-kaching">
+          <div class="clearfix">
+            <h4 class="title-chart-kaching  pull-left">product spending</h4>
+            <span class="pull-right medium-font line-h-40 increase-color-text">$3,435</span>
+          </div>
+          <div class="row clearfix">
+            <div class="col-sm-5">
+              <highchart id="chartconfigProductSpending" config="chartconfigProductSpending" ></highchart>
+            </div>
+            <div class="col-sm-7">
+              <div class="note-product-spending">
+                <div class="row-note-product-spending">
+                  <div class="row clearfix">
+                    <div class="col-sm-6">
+                      <div class="column-note-product-spending">
+                        <span class="dot-product-spending dot-product-spending-one"></span>
+                        <p class="margin-0 font-13 clearfix">
+                          <span class="uppercase">nike</span>
+                          <span class="pull-right">$1,334</span>
+                        </p>
+                        <p class="margin-0 font-13">24%</p>
+                      </div>
+                    </div>
+                    <div class="col-sm-6">
+                      <div class="column-note-product-spending">
+                        <span class="dot-product-spending dot-product-spending-two"></span>
+                        <p class="margin-0 font-13 clearfix">
+                          <span class="uppercase">nike</span>
+                          <span class="pull-right">$1,334</span>
+                        </p>
+                        <p class="margin-0 font-13">24%</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row-note-product-spending">
+                  <div class="row clearfix">
+                    <div class="col-sm-6">
+                      <div class="column-note-product-spending">
+                        <span class="dot-product-spending dot-product-spending-three"></span>
+                        <p class="margin-0 font-13 clearfix">
+                          <span class="uppercase">nike</span>
+                          <span class="pull-right">$1,334</span>
+                        </p>
+                        <p class="margin-0 font-13">24%</p>
+                      </div>
+                    </div>
+                    <div class="col-sm-6">
+                      <div class="column-note-product-spending">
+                        <span class="dot-product-spending dot-product-spending-four"></span>
+                        <p class="margin-0 font-13 clearfix">
+                          <span class="uppercase">nike</span>
+                          <span class="pull-right">$1,334</span>
+                        </p>
+                        <p class="margin-0 font-13">24%</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row-note-product-spending">
+                  <div class="row clearfix">
+                    <div class="col-sm-6">
+                      <div class="column-note-product-spending">
+                        <span class="dot-product-spending dot-product-spending-five"></span>
+                        <p class="margin-0 font-13 clearfix">
+                          <span class="uppercase">nike</span>
+                          <span class="pull-right">$1,334</span>
+                        </p>
+                        <p class="margin-0 font-13">24%</p>
+                      </div>
+                    </div>
+                    <div class="col-sm-6">
+                      <div class="column-note-product-spending">
+                        <span class="dot-product-spending dot-product-spending-six"></span>
+                        <p class="margin-0 font-13 clearfix">
+                          <span class="uppercase">nike</span>
+                          <span class="pull-right">$1,334</span>
+                        </p>
+                        <p class="margin-0 font-13">24%</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row clearfix margin-b-30">
+      <div class="col-sm-4">
+        <div class="frame-kaching">
+          <h4 class="title-chart-kaching">genre</h4>
+          <p class="clearfix font-13">
+            <span class="pull-left">Metrics:</span>
+            <span class="txt-grey pull-right uppercase">female</span>
+            <span class="dot-genre dot-genre-blue pull-right"></span>
+            <span class="txt-grey pull-right uppercase">male</span>
+            <span class="dot-genre dot-genre-deep-blue pull-right"></span>
+          </p>
+          <highchart id="chartconfigGenres" config="chartconfigGenres" ></highchart>
+        </div>
+      </div>
+      <div class="col-sm-4">
+        <div class="frame-kaching">
+          <h4 class="title-chart-kaching">age</h4>
+          <div class="clearfix">
+            <div class="column-note-age pull-left">
+              <div class="info-age-for-chart">
+                <span class="dot-age-kaching dot-age-one"></span>
+                <p class="margin-0">0-24</p>
+                <p class="margin-0">0%</p>
+              </div>
+              <div class="info-age-for-chart middle-column-age">
+                <span class="dot-age-kaching dot-age-two"></span>
+                <p class="margin-0">25-34</p>
+                <p class="margin-0">0%</p>
+              </div>
+              <div class="info-age-for-chart">
+                <span class="dot-age-kaching dot-age-three"></span>
+                <p class="margin-0">35-44</p>
+                <p class="margin-0">0%</p>
+              </div>
+            </div>
+            <div class="container-chart-age pull-left">
+             <highchart id="chartconfigAge" config="chartconfigAge" ></highchart>
+            </div>
+            <div class="column-note-age pull-left">
+              <div class="info-age-for-chart">
+                <span class="dot-age-kaching dot-age-four"></span>
+                <p class="margin-0">45-54</p>
+                <p class="margin-0">0%</p>
+              </div>
+              <div class="info-age-for-chart middle-column-age">
+                <span class="dot-age-kaching dot-age-five"></span>
+                <p class="margin-0">55-64</p>
+                <p class="margin-0">0%</p>
+              </div>
+              <div class="info-age-for-chart">
+                <span class="dot-age-kaching dot-age-six"></span>
+                <p class="margin-0">55+</p>
+                <p class="margin-0">0%</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-4">
+        <div class="frame-kaching">
+          <div class="container-chart-education">
+            <h4 class="title-chart-kaching">education</h4>
+            <div class="container-row-info-education row clearfix">
+              <div class="col-sm-6">
+                <div class="process-education">
+                  <div class="outside-circle-edu">
+                    <div class="circle-bg-edu top-click-two">
+                      <!-- <img ng-src="/wp-content/themes/kaching2/assets/images/ico-primary.svg" width="28"> -->
+                      <img ng-src="{{kachingAppConfig.wpTemplateUri + '/assets/images/dashboard/ico-primary.svg'}}" width="28">
+                    </div>
+                  </div>
+                  <div class="percent-education top-click-two" style="width:45%;"></div>
+                </div>
+              </div>
+              <div class="col-sm-6">
+                <p class="clearfix margin-0 font-13 line-h-44">
+                  <span class="uppercase">primary</span>
+                  <span class="pull-right">24%</span>
+                </p>
+              </div>
+            </div>
+            <div class="container-row-info-education row clearfix">
+              <div class="col-sm-6">
+                <div class="process-education">
+                  <div class="outside-circle-edu">
+                    <div class="circle-bg-edu top-click-one">
+                      <!-- <img ng-src="/wp-content/themes/kaching2/assets/images/ico-highschool.svg" width="28"> -->
+                      <img ng-src="{{kachingAppConfig.wpTemplateUri + '/assets/images/dashboard/ico-highschool.svg'}}" width="28">
+                    </div>
+                  </div>
+                  <div class="percent-education top-click-one" style="width:45%;"></div>
+                </div>
+              </div>
+              <div class="col-sm-6">
+                <p class="clearfix margin-0 font-13 line-h-44">
+                  <span class="uppercase">high school</span>
+                  <span class="pull-right">24%</span>
+                </p>
+              </div>
+            </div>
+            <div class="container-row-info-education row clearfix">
+              <div class="col-sm-6">
+                <div class="process-education">
+                  <div class="outside-circle-edu">
+                    <div class="circle-bg-edu top-click-three">
+                      <!-- <img ng-src="/wp-content/themes/kaching2/assets/images/ico-college.svg" width="28"> -->
+                      <img ng-src="{{kachingAppConfig.wpTemplateUri + '/assets/images/dashboard/ico-college.svg'}}" width="28">
+                    </div>
+                  </div>
+                  <div class="percent-education top-click-three" style="width:45%;"></div>
+                </div>
+              </div>
+              <div class="col-sm-6">
+                <p class="clearfix margin-0 font-13 line-h-44">
+                  <span class="uppercase">college</span>
+                  <span class="pull-right">24%</span>
+                </p>
+              </div>
+            </div>
+            <div class="container-row-info-education row clearfix">
+              <div class="col-sm-6">
+                <div class="process-education">
+                  <div class="outside-circle-edu">
+                    <div class="circle-bg-edu top-click-five">
+                      <!-- <img ng-src="/wp-content/themes/kaching2/assets/images/ico-university.svg" width="28"> -->
+                      <img ng-src="{{kachingAppConfig.wpTemplateUri + '/assets/images/dashboard/ico-university.svg'}}" width="28">
+                    </div>
+                  </div>
+                  <div class="percent-education top-click-five" style="width:45%;"></div>
+                </div>
+              </div>
+              <div class="col-sm-6">
+                <p class="clearfix margin-0 font-13 line-h-44">
+                  <span class="uppercase">university</span>
+                  <span class="pull-right">24%</span>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row clearfix margin-b-30">
+      <div class="col-sm-4">
+        <div class="frame-kaching">
+          <h4 class="title-chart-kaching">Household Income ($/Year)</h4>
+          <highchart id="chartconfigHouseholdIncome" config="chartconfigHouseholdIncome" ></highchart>
+        </div>
+      </div>
+      <div class="col-sm-4">
+        <div class="frame-kaching">
+          <h4 class="title-chart-kaching">Community Type</h4>
+          <div class="container-chart-comunity">
+            <div class="info-chart-comunity">
+              <p>
+                <label class="font-13 medium-font">urban</label>
+                <span class="font-13">50%</span>
+              </p>
+              <p>
+                <label class="font-13 medium-font">suburban</label>
+                <span class="font-13">35%</span>
+              </p>
+              <p>
+                <label class="font-13 medium-font">rural</label>
+                <span class="font-13">15%</span>
+              </p>
+            </div>
+            <highchart id="chartconfigCommunity" config="chartconfigCommunity" ></highchart>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-4">
+        <div class="frame-kaching">
+          <h4 class="title-chart-kaching">platform</h4>
+          <div class="container-chart-platform">
+            <highchart id="chartconfigPlatform" config="chartconfigPlatform" ></highchart>
+            <div class="note-mobile-ico">
+              <!-- <img ng-src="/wp-content/themes/kaching2/assets/images/ico-ios.svg"> -->
+              <img ng-src="{{kachingAppConfig.wpTemplateUri + '/assets/images/dashboard/ico-ios.svg'}}">
+
+              <p class="margin-0 text-center font-13 txt-blue uppercase">ios</p>
+              <p class="margin-0 text-center uppercase">22%</p>
+            </div>
+            <div class="note-mobile-ico note-android">
+              <!-- <img ng-src="/wp-content/themes/kaching2/assets/images/ico-android.svg"> -->
+              <img ng-src="{{kachingAppConfig.wpTemplateUri + '/assets/images/dashboard/ico-android.svg'}}">
+
+              <p class="margin-0 text-center font-13 txt-blue uppercase">android</p>
+              <p class="margin-0 text-center uppercase">22%</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row clearfix">
+      <div class="col-sm-6">
+        <div class="frame-kaching">
+          <h4 class="title-chart-kaching">Ages timeline</h4>
+          <div class="row clearfix">
+            <div class="col-sm-10">
+              <highchart id="chartGender" config="chartConfigAgeTimeline" ></highchart>
+            </div>
+            <div class="col-sm-2">
+              <div class="note-age-timeline">
+                <p class="clearfix">
+                  <span class="dot-age-timeline dot-age-timeline-one pull-left"></span>
+                  <span class="font-13 pull-left">0-24</span>
+                </p>
+                <p class="clearfix">
+                  <span class="dot-age-timeline dot-age-timeline-two pull-left"></span>
+                  <span class="font-13 pull-left">25-34</span>
+                </p>
+                <p class="clearfix">
+                  <span class="dot-age-timeline dot-age-timeline-three pull-left"></span>
+                  <span class="font-13 pull-left">35-44</span>
+                </p>
+                <p class="clearfix">
+                  <span class="dot-age-timeline dot-age-timeline-four pull-left"></span>
+                  <span class="font-13 pull-left">45-54</span>
+                </p>
+                <p class="clearfix">
+                  <span class="dot-age-timeline dot-age-timeline-five pull-left"></span>
+                  <span class="font-13 pull-left">55-64</span>
+                </p>
+                <p class="clearfix">
+                  <span class="dot-age-timeline dot-age-timeline-six pull-left"></span>
+                  <span class="font-13 pull-left">65+</span>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <div class="frame-kaching">
+          <h4 class="title-chart-kaching">gender timeline</h4>
+          <p class="clearfix text-right margin-0">
+            <span class="dot-gerder-timeline dot-gender-blue"></span>
+            <span class="font-13">Male</span>
+            <span class="dot-gerder-timeline dot-gender-yellow"></span>
+            <span class="font-13">Female</span>
+          </p>
+          <div class="row clearfix">
+            <div class="col-sm-9">
+              <highchart id="chartGender" config="chartConfigGender" ></highchart>
+            </div>
+            <div class="col-sm-3">
+              <div class="note-gender-timeline">
+                <label class="medium-font">45%</label>
+                <p class="margin-0 txt-grey text-right capitalize">most active</p>
+              </div>
+              <div class="note-gender-timeline">
+                <label class="medium-font">55%</label>
+                <p class="margin-0 txt-grey text-right capitalize">least active</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

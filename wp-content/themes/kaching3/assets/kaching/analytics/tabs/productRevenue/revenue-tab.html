@@ -1,0 +1,477 @@
+<div class="container-analytics" ng-controller="revenueCtrl">
+    <div class="container-globe-kaching">
+        <h2 class="title-top">Total Product Revenue</h2>
+        <img ng-src="{{kachingAppConfig.wpTemplateUri + '/assets/images/dashboard/global-static.png'}}" width="100%">
+    </div>
+
+    <div class="overall-data">
+        <div class="overall-data-element" ng-repeat="item in revenueData">
+            <h5>{{item.title}}</h5>
+            <br/>
+            <h1>{{item.value}}</h4>
+        </div>
+    </div>
+
+    <div class="container-overal-data">
+        <h3 class="revenue-header">
+            <strong>Revenue / view
+            </strong>
+            <span>by day
+            </span>
+            <span class="start-day">11/01/2015</span>
+            -
+            <span class="end-day">11/02/2015</span>
+        </h3>
+        <div id="revenueChart" class="revenue-chart"></div>
+    </div>
+
+    <div class="row nomargin-left nomargin-right revenue-block">
+        <div class="revenue-pie col-sm-4 nopadding" id="revenuePieProduct"></div>
+        <div class="revenue-pie col-sm-4 nopadding" id="revenuePieSource"></div>
+        <div class="revenue-pie col-sm-4 nopadding" id="revenuePieCountry"></div>
+    </div>
+
+    <div class="campaign-payout-details">
+        <div class="campaign-payout-header clearfix">
+            <div class="col-sm-6 no-gutter">
+                <h2 class="title">Product Revenue Details</h2>
+            </div>
+            <div class="col-sm-6 no-gutter text-right">
+                <div class="btn-group clearfix">
+                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        EXPORT
+                        <span class="caret pull-right"></span>
+                    </button>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="#">Action</a>
+                        <a class="dropdown-item" href="#">Another action</a>
+                        <a class="dropdown-item" href="#">Something else here</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#">Separated link</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="campaign-payout-table">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Brand / Product Name</th>
+                        <th>Price/Payment</th>
+                        <th>View On</th>
+                        <th>Date of Sale</th>
+                        <th>User</th>
+                        <th>Sex/Age</th>
+                        <th>City/Country</th>
+                        <th>Campaign</th>
+                        <th>User History</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="dataProductRevenueDetail in dataProductRevenueDetails">
+                        <td>
+                            <div class="campaign-name clearfix">
+                                <p class="audio-item pull-left"><img ng-src="{{dataProductRevenueDetail.srcImg}}" alt=""/></p>
+                                <div class="pull-left">
+                                    <p class="title">{{dataProductRevenueDetail.title}}</p>
+                                    <p class="sub-title">{{dataProductRevenueDetail.subTitle}}</p>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="campaign-price">
+                                <p class="price">{{dataProductRevenueDetail.price}}</p>
+                                <p class="payment">{{dataProductRevenueDetail.payment}}</p>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="campaign-view">
+                                <p class="hours">{{dataProductRevenueDetail.hoursOfView}}</p>
+                                <p class="date">{{dataProductRevenueDetail.dateOfView}}</p>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="campaign-view">
+                                <p class="hours">{{dataProductRevenueDetail.hoursOfSale}}</p>
+                                <p class="date">{{dataProductRevenueDetail.dateOfSale}}</p>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="campaign-user">
+                                <p class="name">{{dataProductRevenueDetail.userName}}</p>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="campaign-sex">
+                                <p class="sex">{{dataProductRevenueDetail.sex}}</p>
+                                <p class="age">{{dataProductRevenueDetail.age}}</p>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="campaign-country">
+                                <p class="country">{{dataProductRevenueDetail.country}}</p>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="campaign-company">
+                                <p class="name">{{dataProductRevenueDetail.companyName}}</p>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="campaign-history">
+                                <a href="{{dataProductRevenueDetail.hrefReview}}">Review</a>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- <div class="row product-view margin-b-30">
+        <div class="col-sm-6 product-view-rate">
+            <div class="col-sm-2">
+                <img class="col-sm-12 bar-image" ng-repeat="logo in productViewRate.logos" ng-src="{{logo}}"/>
+            </div>
+            <div class=" col-sm-10" id="productViewRate"></div>
+        </div>
+        <div class="product-spending col-sm-6" id="productSpending"></div>
+    </div> -->
+
+    <div class="row clearfix margin-b-30">
+      <div class="col-sm-6">
+        <div class="frame-kaching">
+          <h4 class="title-chart-kaching">product view rate</h4>
+          <div class="info-product-rate relative">
+            <div class="photo-product-rate photo-center" style="background-image:url(http://static.zara.net/wcsstore/ZaraStorefrontAssetStore/media/bg_selCountryPage.png);">
+            </div>
+            <p class="font-11 capitalize">UNDEFEATED Full Zip Jacket</p>
+            <div class="process-rate">
+              <div class="percent-product-rate top-click-two" style="width:22%;"><label>22</label></div>
+            </div>
+          </div>
+          <div class="info-product-rate relative">
+            <div class="photo-product-rate photo-center" style="background-image:url(http://static.zara.net/wcsstore/ZaraStorefrontAssetStore/media/bg_selCountryPage.png);">
+            </div>
+            <p class="font-11 capitalize">UNDEFEATED Full Zip Jacket</p>
+            <div class="process-rate">
+              <div class="percent-product-rate top-click-one" style="width:88%;"><label>22</label></div>
+            </div>
+          </div>
+          <div class="info-product-rate relative">
+            <div class="photo-product-rate photo-center" style="background-image:url(http://static.zara.net/wcsstore/ZaraStorefrontAssetStore/media/bg_selCountryPage.png);">
+            </div>
+            <p class="font-11 capitalize">UNDEFEATED Full Zip Jacket</p>
+            <div class="process-rate">
+              <div class="percent-product-rate top-click-three" style="width:92%;"><label>22</label></div>
+            </div>
+          </div>
+          <div class="info-product-rate relative">
+            <div class="photo-product-rate photo-center" style="background-image:url(http://static.zara.net/wcsstore/ZaraStorefrontAssetStore/media/bg_selCountryPage.png);">
+            </div>
+            <p class="font-11 capitalize">UNDEFEATED Full Zip Jacket</p>
+            <div class="process-rate">
+              <div class="percent-product-rate top-click-five" style="width:29%;"><label>22</label></div>
+            </div>
+          </div>
+          <div class="note-percent-product-rate clearfix">
+            <div class="column-note-rate">
+              <span>0</span>
+            </div>
+            <div class="column-note-rate">
+              <span>100</span>
+              <span class="pull-right fix-200">200</span>
+            </div>
+            <div class="column-note-rate">
+              <span class="pull-right">300</span>
+            </div>
+            <div class="column-note-rate">
+              <span class="pull-right">400</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <div class="frame-kaching">
+          <div class="clearfix">
+            <h4 class="title-chart-kaching  pull-left">product spending</h4>
+            <span class="pull-right medium-font line-h-40 increase-color-text">$3,435</span>
+          </div>
+          <div class="row clearfix">
+            <div class="col-sm-5">
+              <highchart id="chartconfigProductSpending" config="chartconfigProductSpending" ></highchart>
+            </div>
+            <div class="col-sm-7">
+              <div class="note-product-spending">
+                <div class="row-note-product-spending">
+                  <div class="row clearfix">
+                    <div class="col-sm-6">
+                      <div class="column-note-product-spending">
+                        <span class="dot-product-spending dot-product-spending-one"></span>
+                        <p class="margin-0 font-13 clearfix">
+                          <span class="uppercase">nike</span>
+                          <span class="pull-right">$1,334</span>
+                        </p>
+                        <p class="margin-0 font-13">24%</p>
+                      </div>
+                    </div>
+                    <div class="col-sm-6">
+                      <div class="column-note-product-spending">
+                        <span class="dot-product-spending dot-product-spending-two"></span>
+                        <p class="margin-0 font-13 clearfix">
+                          <span class="uppercase">nike</span>
+                          <span class="pull-right">$1,334</span>
+                        </p>
+                        <p class="margin-0 font-13">24%</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row-note-product-spending">
+                  <div class="row clearfix">
+                    <div class="col-sm-6">
+                      <div class="column-note-product-spending">
+                        <span class="dot-product-spending dot-product-spending-three"></span>
+                        <p class="margin-0 font-13 clearfix">
+                          <span class="uppercase">nike</span>
+                          <span class="pull-right">$1,334</span>
+                        </p>
+                        <p class="margin-0 font-13">24%</p>
+                      </div>
+                    </div>
+                    <div class="col-sm-6">
+                      <div class="column-note-product-spending">
+                        <span class="dot-product-spending dot-product-spending-four"></span>
+                        <p class="margin-0 font-13 clearfix">
+                          <span class="uppercase">nike</span>
+                          <span class="pull-right">$1,334</span>
+                        </p>
+                        <p class="margin-0 font-13">24%</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row-note-product-spending">
+                  <div class="row clearfix">
+                    <div class="col-sm-6">
+                      <div class="column-note-product-spending">
+                        <span class="dot-product-spending dot-product-spending-five"></span>
+                        <p class="margin-0 font-13 clearfix">
+                          <span class="uppercase">nike</span>
+                          <span class="pull-right">$1,334</span>
+                        </p>
+                        <p class="margin-0 font-13">24%</p>
+                      </div>
+                    </div>
+                    <div class="col-sm-6">
+                      <div class="column-note-product-spending">
+                        <span class="dot-product-spending dot-product-spending-six"></span>
+                        <p class="margin-0 font-13 clearfix">
+                          <span class="uppercase">nike</span>
+                          <span class="pull-right">$1,334</span>
+                        </p>
+                        <p class="margin-0 font-13">24%</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row clearfix">
+      <div class="col-sm-4">
+        <div class="frame-kaching">
+          <div class="head-daily-customer clearfix">
+            <h4 class="title-chart-kaching  pull-left">daily sale</h4>
+            <span class="pull-right line-h-40 increase-color-text">+23%</span>
+            <span class="pull-right line-h-40">22</span>
+          </div>
+          <highchart id="chartconfigDailySale" config="chartconfigDailySale" ></highchart>
+          <div class="row clearfix">
+            <div class="col-sm-6">
+              <div class="process-daily-sale">
+                <p class="margin-0 txt-grey font-11 clearfix">
+                  <span class="uppercase">last month best</span>
+                  <span class="pull-right">22</span>
+                </p>
+                <div class="percent-daily-sale">
+                  <div class="live-daily-sale top-click-one" style="width:79%;"></div>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <div class="process-daily-sale">
+                <p class="margin-0 txt-grey font-11 clearfix">
+                  <span class="uppercase">this month best</span>
+                  <span class="pull-right">22</span>
+                </p>
+                <div class="percent-daily-sale">
+                  <div class="live-daily-sale top-click-two" style="width:79%;"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-4">
+        <div class="frame-kaching">
+          <div class="head-daily-customer clearfix">
+            <h4 class="title-chart-kaching  pull-left">Customers</h4>
+            <span class="pull-right line-h-40 increase-color-text">+23%</span>
+            <span class="pull-right line-h-40">22</span>
+          </div>
+          <div class="row clearfix">
+            <div class="col-sm-7">
+              <div class="fix-hightchart-customer">
+                <highchart id="chartconfigCustomer" config="chartconfigCustomer" ></highchart>
+              </div>
+            </div>
+            <div class="col-sm-5">
+              <div class="info-chart-customer">
+                <label>45</label>
+                <p class="margin-b-5 font-12 uppercase">returning</p>
+                <div class="process-info-customer">
+                  <div class="percent-info-customer top-click-two" style="width:22%;"></div>
+                </div>
+              </div>
+              <div class="info-chart-customer">
+                <label>45</label>
+                <p class="margin-b-5 font-12 uppercase">referrals</p>
+                <div class="process-info-customer">
+                  <div class="percent-info-customer top-click-five" style="width:22%;"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="expand-customer row clearfix">
+            <div class="col-sm-4 pLeft_5 pRight_5">
+              <div class="note-chart-custome clearfix">
+                <span class="dot-chart-customer border-blue-custom pull-left"></span>
+                <label class="pull-left">new</label>
+              </div>
+            </div>
+            <div class="col-sm-4 pLeft_5 pRight_5">
+              <div class="note-chart-custome clearfix">
+                <span class="dot-chart-customer border-purple-custom pull-left"></span>
+                <label class="pull-left">returning</label>
+              </div>
+            </div>
+            <div class="col-sm-4 pLeft_5 pRight_5">
+              <div class="note-chart-custome clearfix">
+                <span class="dot-chart-customer border-yellow-custom pull-left"></span>
+                <label class="pull-left">referrals</label>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-4">
+        <div class="frame-kaching">
+          <div class="head-daily-customer clearfix">
+            <h4 class="title-chart-kaching  pull-left">Hours</h4>
+            <span class="pull-right line-h-40 increase-color-text">+23%</span>
+            <span class="pull-right line-h-40">22</span>
+          </div>
+          <highchart id="chartconfigHour" config="chartconfigHour" ></highchart>
+          <div class="container-info-chart-hours">
+            <div class="info-chart-hours clearfix">
+              <div class="brand-logo-hour pull-left">
+                <!-- <img ng-src="/wp-content/themes/kaching2/assets/images/logo-brand-small.png" width="100%;"> -->
+                <img ng-src="{{kachingAppConfig.wpTemplateUri + '/assets/images/dashboard/logo-brand-small.png'}}" width="100%">
+
+              </div>
+              <span class="uppercase pull-left">nike max</span>
+              <i class="ico-status ico-status-increase pull-right"></i>
+              <span class="increase-color-text percent-hours pull-right">23,4%</span>
+              <span class="pull-right">23,233</span>
+            </div>
+            <div class="info-chart-hours clearfix">
+              <div class="brand-logo-hour pull-left">
+                <!-- <img ng-src="/wp-content/themes/kaching2/assets/images/logo-brand-small.png" width="100%;"> -->
+                <img ng-src="{{kachingAppConfig.wpTemplateUri + '/assets/images/dashboard/logo-brand-small.png'}}" width="100%">
+
+              </div>
+              <span class="uppercase pull-left">nike max</span>
+              <i class="ico-status ico-status-increase pull-right"></i>
+              <span class="increase-color-text percent-hours pull-right">23,4%</span>
+              <span class="pull-right">23,233</span>
+            </div>
+            <div class="info-chart-hours clearfix">
+              <div class="brand-logo-hour pull-left">
+                <!-- <img ng-src="/wp-content/themes/kaching2/assets/images/logo-brand-small.png" width="100%;"> -->
+                <img ng-src="{{kachingAppConfig.wpTemplateUri + '/assets/images/dashboard/logo-brand-small.png'}}" width="100%">
+              </div>
+              <span class="uppercase pull-left">nike max</span>
+              <i class="ico-status ico-status-increase pull-right"></i>
+              <span class="increase-color-text percent-hours pull-right">23,4%</span>
+              <span class="pull-right">23,233</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- <div class="row" style="margin-top: 20px;">
+        <div class="col-sm-4">
+            <div class="row" style="margin: 0px;background-color: white;padding-top: 20px;">
+                <h1 class="col-md-6 text-left">{{dailySale.title}}</h1>
+                <h1 class="col-md-6 text-right">{{dailySale.maxValue}}<span ng-class="dailySale.increaseValue > 0 ? 'positive' : 'negative'">{{dailySale.increaseValue}}%</span></h1>
+            </div>
+            <div id="dailySale"></div>
+            <div class="row" id="dailySaleProgress" style="margin: 0px; background-color: white;">
+                <div class="col-sm-6">
+                    <label>LAST MONTH BEST</label>
+                    <label class="pull-right">23</label>
+                    <progress class="col-sm-12" value="23" max="100"></progress>
+                    <uib-progressbar id="lastMonthBest" value="23"></uib-progressbar>
+                </div>
+                <div class="col-sm-6">
+                    <label>THIS MONTH BEST</label>
+                    <label class="pull-right">77</label>
+                    <uib-progressbar id="thisMonthBest" value="77"></uib-progressbar>
+                </div>
+
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="row" style="margin: 0px;background: white;padding-top: 20px;">
+                <h1 class="col-md-6 text-left">{{customer.title.text}}</h1>
+                <h1 class="col-md-6 text-right">{{customer.maxValue}}<span ng-class="dailySale.increaseValue > 0 ? 'positive' : 'negative'">{{customer.increaseValue}}%</span></h1>
+            </div>
+            <div id="customerPie"></div>
+            <div style="top: 10vw;right: 3vw;position: absolute" >
+                <div ng-repeat="item in customer.series[0].data" ng-if="$index > 0">
+                    <h1 style="font-size: 2vw;">{{item[1]}}</h1>
+                    <h3 style="font-size: 1vw;">{{item[0]}}</h3>
+                    <uib-progressbar value="item[1]/customer.total()*100"></uib-progressbar>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="row" style="margin: 0px;padding-top: 20px;background-color: white;">
+                <h1 class="col-md-6 text-left">{{monthRevenue.name}}</h1>
+                <h1 class="col-md-6 text-right">{{monthRevenue.total()}}<span ng-class="dailySale.increaseValue > 0 ? 'positive' : 'negative'">{{monthRevenue.increaseValue}}%</span></h1>
+            </div>
+            <div id="monthRevenue"></div>
+            <div style="margin: 0px;padding: 25px;padding-top: 20px;background-color: white;">
+                <div ng-repeat="item in monthRevenue.data | limitTo:3">
+                    <div class="row month-revenue-legend">
+                        <div class="col-sm-7">
+                            {{item[0] | date:'MMMM'}}
+                        </div>
+                        <div class="col-sm-2">
+                            {{item[1]}}
+                        </div>
+                        <div class="col-sm-3 pull-right">
+                            <span ng-class="item[2] > 0 ? 'positive' : 'negative'">{{item[2]}}%<i ng-class="item[2] > 0 ? 'fa fa-arrow-up' : 'fa fa-arrow-down'"></i></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> -->
+</div>

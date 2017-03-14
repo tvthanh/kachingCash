@@ -1,0 +1,7 @@
+# Inventory file
+
+[webserver]
+cms-dev.kachingcash.com
+
+[develop:children]
+webserver

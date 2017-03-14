@@ -1,0 +1,121 @@
+<div class="order-history-container lottery-container-page advertiser-management-page">
+    <div class="header-block">
+        <div class="inner-header-block clearfix">
+            <div class="col-sm-10 pLeft_0">
+                <h3>User Detail</h3>
+            </div>
+        </div>
+        <div class="title-cropper-line"></div>
+    </div>
+
+    <div loader ng-show="view.busy" ng-init="view.busy=true"></div>
+
+    <div class="body-block" ng-show="!view.busy">
+        <form
+            class="edit-user-form"
+            name="form1"
+            novalidate
+            >
+            <div class="row clearfix">
+                <div class="col-md-2">
+                    <div class="form-group">
+                        <label class="medium-font">Profile picture</label>
+                        <div id="profileImage" class="file-upload-photo-kaching profile-avatar margin-auto">
+                            <input style="opacity:0;" type="file" nv-file-select uploader="profileImageUploader" ng-model="data.avatar" onchange="angular.element(this).scope().previewImage(event)">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-8 clearfix">
+                    <div class="row clearfix">
+                        <div class="col-md-6 pRight_0">
+                            <div class="form-group" ng-class="{ 'has-error' : view.submitted && fieldHasError( this, 'form1', 'first_name' ) }">
+                                <label class="medium-font">First name</label>
+                                <input id="firstName" name="first_name" type="text" class="form-control advertiser-name" placeholder="First name" ng-model="data.first_name" required>
+                                <span ng-show="view.submitted && fieldHasError( this, 'form1', 'first_name' )" class="help-block">Please enter first name.</span>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group" ng-class="{ 'has-error' : view.submitted && fieldHasError( this, 'form1', 'last_name' ) }">
+                                <label class="medium-font">Last name</label>
+                                <input id="lastName" name="last_name" type="text" class="form-control advertiser-name" placeholder="Last name" ng-model="data.last_name" required>
+                                <span ng-show="view.submitted && fieldHasError( this, 'form1', 'last_name' )" class="help-block">Please enter last name.</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group" ng-class="{ 'has-error' : view.submitted && fieldHasError( this, 'form1', 'email' ) }">
+                        <label class="medium-font">Email</label>
+                        <input
+                            type="email"
+                            name="email"
+                            class="form-control"
+                            placeholder="Email Adress"
+                            ng-model="data.email"
+                            ng-disabled="view.sending"
+                            required
+                            >
+                        <span ng-show="view.submitted && fieldHasError( this, 'form1', 'email' )" class="help-block">Please enter an email address.</span>
+                    </div>
+                    <div class="form-group" ng-class="{ 'has-error' : view.submitted && fieldHasError( this, 'form1', 'address' ) }">
+                        <label class="medium-font">Address</label>
+                        <input id="advertiserName" name="address" type="text" class="form-control advertiser-name" placeholder="Address" ng-model="data.address" required="true">
+                        <span ng-show="view.submitted && fieldHasError( this, 'form1', 'address' )" class="help-block">Please enter an address.</span>
+                    </div>
+                    <div class="row clearfix">
+                        <div class="col-md-6 pRight_0">
+                            <div class="form-group" ng-class="{ 'has-error' : view.submitted && fieldHasError( this, 'form1', 'country' ) }">
+                                <label class="medium-font">Country</label>
+                                <select
+                                    name="country"
+                                    class="form-control"
+                                    ng-model="data.country"
+                                    ng-options="location.short_name for location in locations track by location.alpha2_code"
+                                    required="true"
+                                    >
+                                </select>
+                                <span ng-show="view.submitted && fieldHasError( this, 'form1', 'country' )" class="help-block">Please select a country.</span>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group" ng-class="{ 'has-error' : view.submitted && fieldHasError( this, 'form1', 'city' ) }">
+                                <label class="medium-font">City</label>
+                                <input id="city" name="city" type="text" class="form-control advertiser-name" placeholder="City" ng-model="data.city" required="true">
+                                <span ng-show="view.submitted && fieldHasError( this, 'form1', 'country' )" class="help-block">Please enter a city.</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group" ng-class="{ 'has-error' : view.submitted && fieldHasError( this, 'form1', 'postal_code' ) }">
+                        <label class="medium-font">Postal code</label>
+                        <input id="postal_code" name="postal_code" type="text" class="form-control advertiser-name" placeholder="Postal code" ng-model="data.postal_code" required="true">
+                        <span ng-show="view.submitted && fieldHasError( this, 'form1', 'postal_code' )" class="help-block">Please enter a postal code.</span>
+                    </div>
+                    <div class="row clearfix">
+                        <div class="col-md-6 pRight_0">
+                            <div class="form-group">
+                                <label class="medium-font">Status</label>
+                                <select
+                                    ng-model="data.status"
+                                    ng-options="statusItem.label for statusItem in  statusUsers track by statusItem.value"
+                                    class="form-control">
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-6 pRight_0">
+                            <div class="form-group">
+                                <label class="medium-font">Join date</label>
+                                <input name="date" type="text" class="form-control advertiser-name" placeholder="City" ng-model="data.date_joined" disabled>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row margin-t-15 clearfix">
+                <div class="col-md-12 text-right">
+                    <div class="form-group">
+                        <button type="button" name="cancel" class="btn-kaching-second margin-r-10" ng-click="goToUserList()">Cancel</button>
+                        <button type="button" name="save" class="btn-kaching-first" ng-click="saveUserDetail()">Save</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

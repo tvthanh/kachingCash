@@ -1,0 +1,364 @@
+<div class="billboards-step3" ng-controller="instoreStep3Ctrl">
+    <form name="form1" novalidate>
+        <div loader ng-show="view.busy"></div>
+        <div ng-show="!view.busy">
+            <div class="detail-content-tab-stream">
+                <div class="container-step-3-stream">
+                    <p class="font-11 capitalize text-right">* require field</p>
+                    <div class="frame-bg-popup">
+                        <label class="popup-name">Ad-Dollars</label>
+                        <ul class="media-list">
+                            <li class="head">
+                                <span class="col-sm-5">
+                                    Name</span>
+                                <span class="col-sm-2">Type</span>
+                                <span class="col-sm-3"><span class="more-padding">Coin</span></span>
+                                <span class="col-sm-2">Total</span>
+                                <span class="clearfix"></span>
+                            </li>
+                        </ul>
+                        <div class="inner-addDollars-container">
+                            <div ng-repeat="store in storeList" class="block-media-addDollars">
+                                <div class="store-header-area">
+                                    <div class="media-preview-collapsed">
+                                        <div class="storefront-name clearfix">
+                                            <h3 class="col-sm-8 ellipsis">{{store.name}}</h3>
+                                            <div class="col-sm-4 text-right pull-right">
+                                                <a class="action-control clearfix" ng-click="toggleExpand($event);">
+                                                    <span class="action-label">Action Setting</span>
+                                                    <span class="glyphicon glyphicon-cog"></span>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="media-preview-expanded">
+                                        <ul class="media-list action-setting-details">
+                                            <li class="media-preview clearfix">
+                                                <div class="" ng-init="updateAmount(media)">
+                                                    <div class="video-thumb col-sm-1">
+                                                        <i class="fa fa-rss" aria-hidden="true"></i>
+                                                    </div>
+                                                    <span class="col-sm-6 name ellipsis">Follow the iBeacon</span>
+
+                                                    <div class="col-sm-3">
+                                                        <span>
+                                                            <i class="fa fa-plus-circle" ng-click="increaseSetting(store, 'follow_beacon', store.follow_beacon)"></i>
+                                                        </span>
+                                                        <input ng-model="store.follow_beacon" class="add-amount">
+                                                        <span>
+                                                            <i class="fa fa-minus-circle" ng-click="decreaseSetting(store, 'follow_beacon', store.follow_beacon)"></i>
+                                                        </span>
+                                                    </div>
+
+                                                    <div class="col-sm-2"></div>
+                                                </div>
+                                            </li>
+                                            <li class="media-preview clearfix">
+                                                <div class="" ng-init="updateAmount(media)">
+                                                    <div class="video-thumb col-sm-1">
+                                                        <i class="fa fa-barcode" aria-hidden="true"></i>
+                                                    </div>
+                                                    <span class="col-sm-6 name ellipsis">Scan a Receipt</span>
+
+                                                    <div class="col-sm-3">
+                                                        <span>
+                                                            <i class="fa fa-plus-circle" ng-click="increaseSetting(store, 'scan_receipt', store.scan_receipt)"></i>
+                                                        </span>
+                                                        <input ng-model="store.scan_receipt" class="add-amount">
+                                                        <span>
+                                                            <i class="fa fa-minus-circle" ng-click="decreaseSetting(store, 'scan_receipt', store.scan_receipt)"></i>
+                                                        </span>
+                                                    </div>
+
+                                                    <div class="col-sm-2"></div>
+                                                </div>
+                                            </li>
+                                            <li class="media-preview clearfix">
+                                                <div class="" ng-init="updateAmount(media)">
+                                                    <div class="video-thumb col-sm-1">
+                                                        <i class="fa fa-qrcode" aria-hidden="true"></i>
+                                                    </div>
+                                                    <span class="col-sm-6 name ellipsis">Issue a QR</span>
+
+                                                    <div class="col-sm-3">
+                                                        <span>
+                                                            <i class="fa fa-plus-circle" ng-click="increaseSetting(store, 'issue_qr', store.issue_qr)"></i>
+                                                        </span>
+                                                        <input ng-model="store.issue_qr" class="add-amount">
+                                                        <span>
+                                                            <i class="fa fa-minus-circle" ng-click="decreaseSetting(store, 'issue_qr', store.issue_qr)"></i>
+                                                        </span>
+                                                    </div>
+
+                                                    <div class="col-sm-2"></div>
+                                                </div>
+                                            </li>
+                                            <li class="media-preview clearfix">
+                                                <div class="" ng-init="updateAmount(media)">
+                                                    <div class="video-thumb col-sm-1">
+                                                        <i class="fa fa-info-circle" aria-hidden="true"></i>
+                                                    </div>
+                                                    <span class="col-sm-6 name ellipsis">Send Information</span>
+
+                                                    <div class="col-sm-3">
+                                                        <span>
+                                                            <i class="fa fa-plus-circle" ng-click="increaseSetting(store, 'send_information', store.send_information)"></i>
+                                                        </span>
+                                                        <input ng-model="store.send_information" class="add-amount">
+                                                        <span>
+                                                            <i class="fa fa-minus-circle" ng-click="decreaseSetting(store, 'send_information', store.send_information)"></i>
+                                                        </span>
+                                                    </div>
+
+                                                    <div class="col-sm-2"></div>
+                                                </div>
+                                            </li>
+                                            <li class="media-preview clearfix">
+                                                <div class="" ng-init="updateAmount(media)">
+                                                    <div class="video-thumb col-sm-1">
+                                                        <i class="fa fa-share-alt" aria-hidden="true"></i>
+                                                    </div>
+                                                    <span class="col-sm-6 name ellipsis">Share</span>
+
+                                                    <div class="col-sm-3">
+                                                        <span>
+                                                            <i class="fa fa-plus-circle" ng-click="increaseSetting(store, 'share', store.share)"></i>
+                                                        </span>
+                                                        <input ng-model="store.share" class="add-amount">
+                                                        <span>
+                                                            <i class="fa fa-minus-circle" ng-click="decreaseSetting(store, 'share', store.share)"></i>
+                                                        </span>
+                                                    </div>
+
+                                                    <div class="col-sm-2"></div>
+                                                </div>
+                                            </li>
+                                            <li class="media-preview clearfix">
+                                                <div class="" ng-init="updateAmount(media)">
+                                                    <div class="video-thumb col-sm-1">
+                                                        <i class="fa fa-archive" aria-hidden="true"></i>
+                                                    </div>
+                                                    <span class="col-sm-6 name ellipsis">Product</span>
+
+                                                    <div class="col-sm-3">
+                                                        <span>
+                                                            <i class="fa fa-plus-circle" ng-click="increaseSetting(store, 'product', store.product)"></i>
+                                                        </span>
+                                                        <input ng-model="store.product" class="add-amount">
+                                                        <span>
+                                                            <i class="fa fa-minus-circle" ng-click="decreaseSetting(store, 'product', store.product)"></i>
+                                                        </span>
+                                                    </div>
+
+                                                    <div class="col-sm-2"></div>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <ul class="media-list">
+                                    <li ng-repeat="media in store.media" class="media-preview">
+                                        <div class="" ng-init="updateAmount(media)">
+                                            <div class="video-thumb col-sm-1">
+                                                <img ng-src="{{media.target || media.ar_resource | mediaType}}" class="img"/>
+                                            </div>
+                                            <span class="col-sm-4 name ellipsis">{{media.target_name || media.ar_name}}</span>
+                                            <span class="col-sm-2">{{ media.target_format}}</span>
+
+                                            <div class="col-sm-3">
+                                                <span>
+                                                    <i class="fa fa-plus-circle" ng-click="increaseSetting(media, 'bets_per_view', media.bets_per_view)"></i>
+                                                </span>
+                                                <input ng-model="media.bets_per_view" class="add-amount" ng-change="updateAmount(media)">
+                                                <span>
+                                                    <i class="fa fa-minus-circle" ng-click="decreaseSetting(media, 'bets_per_view', media.bets_per_view)"></i>
+                                                </span>
+                                            </div>
+
+                                            <div class="col-sm-2">
+                                                <input ng-model="media.bets_per_view" class="add-amount">
+                                                <span>Dollars</span>
+                                            </div>
+
+                                            <div class="clearfix"></div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="inner-addDollars-container common-action-setting">
+                            <div class="block-media-addDollars">
+                                <div>
+                                    <div class="storefront-name clearfix">
+                                        <div class="col-sm-4 text-right pull-right">
+                                            <span class="action-control clearfix">
+                                                <span class="action-label">Common Action Setting</span>
+                                                <!-- <span class="glyphicon glyphicon-cog"></span> -->
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="media-preview-expanded" style="display:block;">
+                                    <ul class="media-list action-setting-details">
+                                        <li class="media-preview clearfix">
+                                            <div class="" ng-init="updateAmount(media)">
+                                                <div class="video-thumb col-sm-1">
+                                                    <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                                                </div>
+                                                <span class="col-sm-6 name ellipsis">Register</span>
+
+                                                <div class="col-sm-3">
+                                                    <span>
+                                                        <i class="fa fa-plus-circle" ng-click="increaseSetting(campaign, 'register', campaign.register)"></i>
+                                                    </span>
+                                                    <input ng-model="campaign.register" class="add-amount ng-pristine ng-untouched ng-valid ng-empty" style="">
+                                                    <span>
+                                                        <i class="fa fa-minus-circle" ng-click="decreaseSetting(campaign, 'register', campaign.register)"></i>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <ul class="media-list">
+                            <li class="media-preview clearfix summary no-border">
+                                <span>Grand total (per set)</span>
+                                <span>{{grandTotal}}
+                                    dollars</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="frame-bg-popup">
+                        <div class="row clearfix">
+                            <div class="col-sm-12">
+                                <label class="popup-name">Ad-Dollar Purchase</label>
+                                <a class="ad-dollar-price-list">Ad-Dollar Price List</a>
+                                <ul class="media-list">
+                                    <li class="head">
+                                        <span class="col-sm-3">Type</span>
+                                        <span class="col-sm-3">Total Ad-Dollars</span>
+                                        <span class="col-sm-4">Per Dollar Per Click (USD)</span>
+                                        <span class="col-sm-2">Total (USD)</span>
+                                        <!-- <span class="clearfix"></span> -->
+                                    </li>
+                                    <li ng-repeat="purchaseAd in purchaseAds" class="purchase-preview">
+                                        <label class="col-sm-3">{{purchaseAd.type}}</label>
+                                        <div class="col-sm-2">
+                                            <input type="text" ng-model="purchaseAd.totalAdDollars"></input>
+                                        </div>
+                                        <span class="col-sm-1 display-span without-border">X</span>
+                                        <span class="col-sm-3 display-span without-border">{{ purchaseAd.perDollarPerClick}}</span>
+                                        <span class="col-sm-1 display-span without-border">=</span>
+                                        <span class="col-sm-2 display-span">{{ purchaseAd.perDollarPerClick * purchaseAd.totalAdDollars | number }}</span>
+
+                                        <div class="clearfix"></div>
+                                    </li>
+                                    <!-- <li class="media-preview clearfix summary">
+									<span>Grand total (per set)</span>
+									<span>13 dollars</span>
+								</li> -->
+                                </ul>
+                            </div>
+                            <div class="col-sm-12">
+                                <a class="btn-submit pull-right">Submit & Update Account</a>
+                            </div>
+                            <!-- <div>
+							<a class="btn-submit pull-right" ng-click="saveMedia()">Submit</a>
+						</div> -->
+                        </div>
+                    </div>
+
+                    <div class="frame-bg-popup">
+                        <div class="row clearfix">
+                            <div class="col-sm-5 recommend-border-right">
+                                <label class="margin-b-10 capitalize font-13">* Add products</label>
+                                <!-- <div class="container-input-file-video">
+								<div class="widget-input-file-video text-center">
+									<i class="icon-ic-upload" style="font-size: 36px;padding: 10px;">
+									</i>
+									<p class="margin-0 text-center txt-grey font-13" style="padding:0 30px;">
+										Drag an image here or browse for an image to upload.
+									</p>
+									<input type="file" name="">
+								</div>
+							</div> -->
+                                <div class="file-uploader" style="height: 200px; margin-bottom: 10px;">
+                                    <div
+                                        nv-file-drop
+                                        ifm-uploader-preview-image="data.productImageFile"
+                                        uploader="uploader"
+                                        options="{ alias: 'productImage' }"
+                                        filters="imageFilter"
+                                        ifm-over-class="fileover"
+                                        class="uploader-dropzone"
+                                        ng-class="{ 'has-error' : showErrors() && imageHasError() }">
+                                        <div class="uploader-label-overlay">
+                                            <i class="icon-ic-upload"></i>
+                                            <br><br>
+                                            Simply drag and drop file<br>or
+                                            <span class="higlight">browse</span>
+                                            on your disk.
+                                            <!-- <span class="size-hint">1280x1200</span> -->
+                                        </div>
+                                        <div class="progress-container" ng-show="view.productImageUploadStarted">
+                                            <div class="progress" ng-class="{ 'complete': view.productImageUploadComplete }">
+                                                <div class="progress-bar" ng-style="{ 'width': view.productImageUploadProgress + '%' }"></div>
+                                            </div>
+                                        </div>
+                                        <input nv-file-select type="file" uploader="uploader" options="{ alias: 'productImage' }" filters="imageFilter" title=" " multiple>
+                                    </div>
+                                </div>
+                                <div class="row clearfix">
+                                    <div class="col-sm-4">
+                                        <select>
+                                            <option>Currency</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-sm-8">
+                                        <input type="text" name="" placeholder="Add a price" ng-model="data.price">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-7">
+                                <label class="margin-b-10 capitalize font-13">Product Information</label>
+                                <div ng-class="{ 'has-error' : showErrors() && fieldHasError( this, 'form1', 'productName' ) }">
+                                    <input type="text" name="productName" placeholder="product name here" class="form-input margin-b-10" ng-model="data.title">
+                                    <span ng-show="showErrors() && fieldHasError( this, 'form1', 'productName' )" class="help-block">Please enter product name.</span>
+                                </div>
+                                <input type="text" name="" placeholder="add a URL" class="margin-b-10" ng-model="data.url">
+                                <textarea class="desc-product-stream" placeholder="Add description here..." ng-model="data.description"></textarea>
+                            </div>
+                            <div class="col-sm-12">
+                                <a class="btn-submit pull-right" ng-click="submitProduct()">Submit & Update Account</a>
+                            </div>
+                        </div>
+                        <div class="panel panel-kaching panel-recommended-products billing-kaching">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">Recommended products</h3>
+                            </div>
+                            <div class="panel-body">
+
+                                <div owl-carousel class="owl-carousel recommended-products" data-options="carouselOptions">
+                                    <div owl-carousel-item ng-repeat="product in recommendedProducts" class="product" ng-click="selectRecommendedProduct( product )">
+                                        <div class="image-container">
+                                            <div class="image-holder" ng-style="{ 'background-image' : 'url({{ product.image || product.image_url }})' }"></div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="footer-popup-stream-video clearfix">
+                <a class="btn-next-step pull-right" ng-click="nextStep()">Continue to Step 4 - Confirmation</a>
+                <a class="btn-back-to-step pull-right" ng-click="goPrev()">Back to step 2</a>
+            </div>
+        </div>
+    </form>
+</div>

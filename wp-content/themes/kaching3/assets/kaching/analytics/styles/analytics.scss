@@ -1,0 +1,174 @@
+@mixin border-radius($radius) {
+    -webkit-border-radius: $radius;
+    -moz-border-radius: $radius;
+    -ms-border-radius: $radius;
+    border-radius: $radius;
+}
+
+.no-gutter {
+    margin: 0 auto !important;
+    padding: 0 !important;
+}
+
+.container-analytics {
+    background-color: #F0F3F6;
+    border: 1px solid #E6EAEE;
+    padding: 0 30px 60px;
+
+    .title-top {
+        color: #414b5c;
+        font-size: 28px;
+        padding-bottom: 10px;
+    }
+}
+
+.analytics-tab {
+    margin-top: 20px;
+
+    li {
+        width: 20% !important;
+    }
+}
+
+.revenue-chart {
+    width: 100%;
+    height: 400px;
+    margin: 15px 15px 15px 0;
+}
+
+.revenue-block {
+    border: 1px solid #c9c9c9;
+}
+
+.revenue-pie {
+    border-left: 1px solid #c9c9c9;
+    margin-bottom: 15px;
+    &:first-child {
+        border: none;
+    }
+}
+
+.overall-data {
+    display: flex;
+    text-align: center;
+    margin-bottom: 20px;
+
+    .overall-data-element {
+        width: 159px;
+        height: 150px;
+        border: 1px solid #b0b0b0;
+        padding: 30px;
+    }
+
+    h1,
+    h5 {
+        color: #000000;
+    }
+
+    .overall-data-element:hover {
+        background-color: #878787;
+    }
+}
+
+.select-wrapper {
+    position: relative;
+    padding-right: 100px;
+
+    .select-inner {
+        > div {
+            padding: 0 5px;
+        }
+    }
+
+    .anchor-fillter {
+        position: absolute;
+        right: 10px;
+        top: 20px;
+
+        a {
+            color: #3ba5de !important;
+            font-size: 16px;
+        }
+    }
+}
+
+.nopadding {
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+.nomargin-left {
+    margin-left: 0;
+}
+
+.nomargin-right {
+    margin-right: 0;
+}
+
+.bar-image {
+    height: 50px;
+    margin: 15px;
+    width: 80px;
+    top: 40px;
+}
+
+.positive {
+    color: #4CAF50;
+    font-size: large;
+}
+
+.negative {
+    color: #ff0000;
+    font-size: large;
+}
+
+#lastMonthBest {
+    .progress-bar {
+        background-color: #917CE4;
+        height: 10px;
+    }
+}
+
+#thisMonthBest {
+    .progress-bar {
+        background-color: #339AE8;
+        height: 10px;
+    }
+}
+
+.month-revenue-legend {
+    border-bottom: 1px solid;
+    font-size: large;
+}
+
+.product-view {
+    margin-left: 0;
+
+    .product-view-rate {
+        background-color: white;
+    }
+}
+
+.container-overal-data {
+    padding: 15px 15px 0;
+    margin: 30px 0;
+    background-color: #fff;
+    border: 1px solid #c9c9c9;
+    @include border-radius(10px);
+    .revenue-header {
+        padding: 0 25px;
+    }
+}
+
+.scans-analytics {
+    .highcharts-tooltip {
+        position: relative;
+        z-index: 50;
+    }
+}
+.sales-analytics {
+    .highcharts-tooltip {
+        position: relative;
+        z-index: 50;
+    }
+}

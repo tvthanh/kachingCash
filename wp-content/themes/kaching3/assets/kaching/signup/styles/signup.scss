@@ -1,0 +1,40 @@
+.modal-signup {
+    .modal-dialog {
+        width: 450px;
+        .modal-header {
+            padding: 0px;
+        }
+        .modal-body {
+            padding: 0px;
+            .detail-sign-up-kaching {
+                text-align: left;
+                .form-group {
+                    margin-bottom: 0px;
+                }
+            }
+        }
+    }
+}
+.tooltip {
+  .custom-tooltip-inner {
+    max-width: none;
+    width: 273px;
+    height: 137px;
+    background-color: #f5f5f5;
+    box-shadow: rgba(0, 0, 0, 0.3) 0 2px 10px;
+  }
+  .sign-up-tooltips {
+    font-size: 13px;
+    text-align: left;
+  }
+  .custom-tooltip-arrow {
+    border-color: transparent !important;
+    border-right-color: #f5f5f5 !important;
+  }
+}
+
+.container-sign-up-kaching {
+    .btn {
+        margin-top: 15px;
+    }
+}

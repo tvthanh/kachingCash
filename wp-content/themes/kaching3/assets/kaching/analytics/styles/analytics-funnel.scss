@@ -1,0 +1,19 @@
+/**
+ * CSS for Payout tab
+ */
+
+.container-net-income {
+    &.frame-kaching {
+        background-color: #fff;
+        padding: 15px 20px;
+        border-radius: 4px;
+        border: 1px solid #c9c9c9;
+    }
+    .title-chart-kaching {
+        margin: 0 0 10px;
+        line-height: 40px;
+        font-size: 17px;
+        font-family: gotham-medium;
+        text-transform: capitalize;
+    }
+}

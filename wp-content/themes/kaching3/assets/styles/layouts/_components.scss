@@ -1,0 +1,144 @@
+// if user logg
+// .nav>li.ifadmin, footer.footer .nav li.ifadmin{
+// 	display:none;
+// }
+
+
+// Tooltips
+.tooltip{
+	font-weight:600;
+	font-size:14px;
+	opacity:1 !important;
+	.tooltip-arrow{
+		width: 0;
+		height: 0;
+		border-style: solid;
+		border-width: 7px 8px 0 8px;
+		border-color: $gray-darkest transparent transparent transparent !important;
+	}
+	.tooltip-inner{
+		padding:13px 20px !important;
+		background: $gray-darkest;
+		opacity:1 !important;
+		color: $light;
+	}
+
+}
+// Buttons
+#generateKey{
+	@media screen and (max-width:411px) {
+		position:relative;
+		margin:0px auto;
+		display:block;
+	}
+}
+.input-group {
+	input.form-control {
+		padding: 20px 12px;
+	}
+}
+// Syntax Highlight
+ol.beyondEnlighterJS, ul.beyondEnlighterJS {
+    font-size: 11px;
+    color: #333;
+    background-color: #ffffff;
+    border-radius: 0px;
+    border: 2px solid #dae2e6;
+    padding: 10px 10px 5px 5px;
+    li{
+    	background: transparent;
+    	// font-family: "Open Sans","Helvetica Neue",Helvetica,Arial,sans-serif;
+    }
+}
+%errorstyles{
+	font-size: 12px;
+	line-height: 20px;
+	color: $brand-error!important;
+	float: right;
+	text-transform: uppercase;
+	font-weight: bold;
+	list-style-type: none;
+}
+ul.parsley-errors-list{
+	li{
+		@extend %errorstyles;
+	}
+}
+input.parsley-error{
+	border: 2px solid $brand-error;
+}
+// toastr styles
+toast{
+	width:100%;
+}
+.wpcf7-not-valid-tip{
+	@extend %errorstyles;
+}
+.toast, #toast-container{
+
+	position:relative !important;
+	width:100%;
+	box-shadow:none !important;
+	width:100% !important;
+	margin-left:0px !important;
+	margin-right:0px !important;
+	margin-bottom:30px;
+	text-align:center;
+	background-image:none!important;
+	z-index:1000!important;
+	opacity:1 !important;
+	.toast-message {
+	    padding-top: 4px;
+	    padding-bottom: 4px;
+	}
+	.toast-close-button{
+		color:#000;
+		opacity:0.3;
+		text-shadow:none;
+		top:0px;
+	}
+}
+#toast-container>.toast-success{
+	border-radius:25px;
+	padding-top:12px;
+	padding-bottom:12px;
+	background-image:none!important;
+	background-color:$brand-success;
+	font-size:14px;
+}
+#toast-container>.toast-error{
+	border-radius:25px;
+	padding-top:10px;
+	padding-bottom:10px;
+	background-image:none!important;
+	background-color:#f0b4b4;
+	border: 2px solid $brand-error;
+	font-size:14px;
+	color: $gray-darkest;
+	font-weight: 600;
+}
+// website animations
+.animated {
+    animation-duration: 1.5s;
+    animation-fill-mode: both;
+    animation-timing-function:  cubic-bezier(0.165, 0.840, 0.440, 1.000); /* easeOutQuart */
+}
+.toast-close-button{
+	right:0px;
+}
+
+@keyframes fadeInUp {
+    0% {
+        opacity: 0;
+        transform: translateY(40px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.fadeInUp {
+    -webkit-animation-name: fadeInUp;
+    animation-name: fadeInUp;
+}

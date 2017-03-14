@@ -1,0 +1,13 @@
+.progress{
+    background-color:$new-gray-light;
+    border-radius: 8px;
+    height:16px;
+    .progress-bar{
+    	border-radius:8px;
+    	color:$violet-dark;
+    	background-color: $brand-primary;
+    	font-size:11px;
+    	line-height:16px;
+        transition: 0.3s all;
+    }
+}

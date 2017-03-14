@@ -1,0 +1,95 @@
+<div class="billboards-step2" ng-controller="radioStep2Ctrl">
+    <div loader ng-show="view.busy"></div>
+    <div ng-show="!view.busy">
+        <media-upload>
+            <span class="required-text">* Required field</span>
+            <div class="block-content padd-bot-0">
+                <form name="form1" novalidate>
+                    <div class="row flex-row">
+                        <div class="col-sm-5 upload-container flex-column">
+                            <label>*Add Audio</label>
+                            <div class="medias">
+                                <div class="col-sm-9 file-uploader">
+                                    <div
+                                      id="imageFile"
+                                      name="imageFile"
+                                      ng-model="data.imageFile"
+                                      nv-file-drop
+                                      ifm-uploader-preview-image="data.imageFile"
+                                      uploader="uploader"
+                                      options="{ alias: 'display' }"
+                                      filters="*"
+                                      ifm-over-class="fileover"
+                                      class="uploader-dropzone"
+                                      required
+                                      >
+                                        <div class="uploader-label-overlay" ng-class="{ 'has-error-image': form1.imageFile.$invalid && (form1.$submitted || !form1.imageFile.$pristine) }">
+                                            <i class="icon-ic-upload"></i>
+                                            <br><br> Simply drag and drop file<br>or <span class="higlight">browse</span> on your disk.
+                                            <!-- <span class="size-hint">1280x1200</span> -->
+                                        </div>
+                                        <input nv-file-select type="file" uploader="uploader" options="{ alias: 'display' }" filters="*" title=" " multiple>
+                                    </div>
+                                </div>
+                                <ul class="col-sm-3 uploadeds row-eq-height">
+                                    <li ng-repeat="imgStyle in imageList track by $index">
+                                        <div class="image-review-list" style="{{imgStyle}}" ng-click="updateReviewIndex($index)"></div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-sm-7 product-info">
+                            <div class="row">
+                                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 no-padding-left form-group" ng-class="{ 'has-error' : form1.imageName.$invalid && (form1.$submitted || !form1.imageName.$pristine) }">
+                                    <label>*Audio/Image Name</label>
+                                    <input id="imageName" class="form-control" ng-model="data.imageName" name="imageName" required>
+                                    <span ng-show="form1.imageName.$invalid && (form1.$submitted || !form1.imageName.$pristine)" class="help-block">Please, enter audio/image name.</span>
+                                </div>
+                                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 no-padding-right">
+                                    <label>*Format</label>
+                                    <select ng-model="selectedFormat" ng-options="format for format in formats" ng-init="selectedFormat=formats[0]"></select>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 no-padding-left form-group" ng-class="{ 'has-error' : form1.url.$invalid && (form1.$submitted || !form1.url.$pristine) }">
+                                    <label>*URL</label>
+                                    <input id="url" class="form-control" ng-model="data.radioUrl" name="url" required>
+                                    <span ng-show="form1.url.$invalid && (form1.$submitted || !form1.url.$pristine)" class="help-block">Please enter an URL.</span>
+                                </div>
+                                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 no-padding-right" ng-class="{ 'has-error' : (form1.stationOther.$invalid && !form1.stationOther.$pristine) || (form1.$submitted && form1.stationOther.$invalid) }">
+                                    <label>*Radio Station</label>
+                                    <select ng-model="selectedStation" ng-options="station.name for station in stations" ng-init="selectedStation=stations[0]" ng-change="changeSelect()"></select>
+                                    <div class="magazine-other margin-t-5" ng-if="isOther">
+                                        <input id="stationOther" class="form-control" ng-model="$parent.stationOther" name="stationOther" placeholder="Please enter other Radio station" ng-required="needBasicValidateZone()">
+                                        <div ng-show=" (form1.stationOther.$invalid && !form1.stationOther.$pristine) || (form1.$submitted && form1.stationOther.$invalid) ">
+                                            <span ng-show="form1.stationOther.$error.required" class="help-block">Please enter other Radio station.</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row form-group" ng-class="{ 'has-error' : form1.description.$invalid && (form1.$submitted || !form1.description.$pristine) }">
+                                <label>*Description</label>
+                                <textarea id="description" class="form-control description" placeholder="Add description here..." ng-model="data.description" name="description" required></textarea>
+                                <!-- <span ng-show="showErrors() && fieldHasError( this, 'form1', 'description' )" class="help-block">Please enter description.</span> -->
+                            </div>
+                            <div class="row">
+                                <a class="btn-cancel pull-right" ng-click="cancelEdit()" ng-show="editMode">Cancel</a>
+                                <input type="submit" class="btn-submit pull-right" ng-click="saveMedia()" ng-show="!editMode" value="Submit"/>
+                                <input type="submit" class="btn-submit pull-right" ng-click="saveMedia()" ng-show="editMode" value="Update"/>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </form>
+            </div>
+            <div class="block-content col-sm-6">
+                <media-preview media-list="mediaList" item-edit="editMedia(mediaId)" item-delete="deleteMedia(mediaId)" show-edit="true" view-tab="true"></media-preview>
+            </div>
+        </media-upload>
+        <div class="footer-popup-stream-video clearfix">
+            <button class="btn-next-step pull-right" ng-click="nextStep();" >Save & Continue to Step 3 - Recommend Products</button>
+            <a class="btn-back-to-step pull-right" ng-click="goPrev()">Back to step 1</a>
+        </div>
+    </div>
+</div>

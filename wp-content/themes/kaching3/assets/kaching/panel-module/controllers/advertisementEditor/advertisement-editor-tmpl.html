@@ -1,0 +1,196 @@
+<div class="wrap container two-columns">
+    <div class="css-table">
+        <div class="col col-sidebar">
+
+            <h1 class="sidebar-heading">{{advertTitle}}</h1>
+            <h2 class="sidebar-subheading">Make your advertisement customized to your own needs.</h2>
+
+            <!-- step1-->
+
+            <form class="add-campaign-step1" name="form1" novalidate>
+                <!-- <div loader ng-show="view.busy"></div> -->
+                <!-- <div ng-if="!view.busy"> -->
+                <div>
+                    <div class="panel panel-kaching panel-tooltips-outside">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Advertisement information</h3></div>
+                        <div class="panel-body">
+                            <div class="form-group" ng-class="{ 'has-error' : fieldHasError( this, 'form1', 'advertisement_name' ) }">
+                                <input name="advertisement_name" type="text" class="form-control advertisement-name" placeholder="Advertisement name" ng-model="advertisement.name" required>
+                                <span ng-show="fieldHasError( this, 'form1', 'advertisement_name' )" class="help-block">Please enter advertisement name.</span>
+                            </div>
+                            <div class="form-group" ng-class="{ 'has-error' : fieldHasError( this, 'form1', 'daterange' ) }">
+                                <div class="input-group">
+                                    <!-- <div date-range-picker name="daterange" type="text" placeholder="Date range" class="form-control date-picker" min="daterange.min" options="{ opens: 'center', autoApply: true, locale: { format: 'YYYY-MM-DD', firstDay: 1 } }" ng-model="daterange.dates" ng-required="true">{{ daterange.display }}</div> -->
+                                    <div
+                                        date-range-picker
+                                        name="daterange"
+                                        type="text"
+                                        placeholder="Date range"
+                                        class="form-control date-picker"
+                                        min="daterange.min"
+                                        options="{ opens: 'center', autoApply: true, locale: { format: 'YYYY-MM-DD', firstDay: 1 } }"
+                                        ng-model="daterange.dates"
+                                        ng-required="true"
+                                        >{{ daterange.display }}</div>
+                                    <div class="input-group-addon">
+                                        <span class="icon ion-ios-calendar-outline"></span>
+                                    </div>
+                                </div>
+                                <span ng-show="fieldHasError( this, 'form1', 'daterange', 'required' )" class="help-block">Please select the advertisement start and end dates.</span>
+                                <span ng-show="fieldHasError( this, 'form1', 'daterange', 'min' )" class="help-block">Start date cannot be in the past.</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+
+            <!-- end of step 1-->
+
+            <!-- step2 -->
+            <form class="add-campaign-step2 campaign-targeting" name="form2" novalidate>
+                <!-- <div ng-if="!view.busy"> -->
+                <div>
+                    <div class="panel panel-kaching">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Categories</h3></div>
+                        <div class="panel-body">
+                            <div class="form-group">
+                                <label class="radio-inline">
+                                    <input type="radio" name="all_categories" ng-model="data.allCategories" ng-value="true" ng-change="resetError('categories')">
+                                    Display all
+                                </label>
+                                <label class="radio-inline">
+                                    <input type="radio" name="all_categories" ng-model="data.allCategories" ng-value="false" ng-change="resetError('categories')">
+                                    Display in selected categories
+                                </label>
+                            </div>
+                            <p class="small">Making a selection will include only traffic from sites within that category.</p>
+                            <div class="row form-row" ng-show="!data.allCategories">
+                                <div class="col-sm-12 flex-box">
+                                    <div class="item-card-v2 user-interest">
+                                        <div class="content">
+                                            <uib-accordion close-others="oneAtATime">
+                                                <uib-accordion-group is-open="true">
+                                                    <uib-accordion-heading>
+                                                        <i class="fa fa-plus-circle"></i>Primary categories <i class="fa" ng-class="{'fa-chevron-up': status.open, 'fa-chevron-down': !status.open}"></i>
+                                                    </uib-accordion-heading>
+                                                    <ul>
+                                                        <li ng-repeat="category in data.categories" ng-class="{'added' : category.selected}" class="custom-checkbox-wrapper">
+                                                            <a>
+                                                                <input type="checkbox" ng-model="category.selected" id="{{category.id}}">
+                                                                <label ng-click="updateDataModel($event, category)" for="{{category.id}}"><span class="fa" ng-class="{'fa-check-circle-o' : category.selected, 'fa-minus-circle' : !category.selected}"></span>{{category.name}}</label>
+                                                            </a>
+                                                        </li>
+                                                    </ul>
+                                                </uib-accordion-group>
+                                            </uib-accordion>
+                                        </div>
+                                    </div>
+                                    <div class="item-card-v2  user-interested">
+                                        <div class="content">
+                                            <div class="title-add">Added</div>
+                                            <ul class="added">
+                                                <li ng-repeat="category in data.categories" class="added" ng-if="category.selected">
+                                                    <a><i class="fa fa-minus-circle" ng-click="updateDataModel($event, category)"></i> {{category.name}}</a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-error" ng-show="view.errors.categories">You must select at least one category.</div>
+                        </div>
+                    </div>
+            </form>
+            <!-- end of step2 -->
+
+            <!-- step3 -->
+            <form class="add-campaign-step2" name="form3" novalidate>
+                <!-- <div ng-if="!view.busy"> -->
+                <div>
+                    <div class="panel panel-kaching panel-add-media">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Add media collection</h3>
+                            <div class="add-media-toolbar" ng-show="hasMedia()">
+                                <button class="btn btn-primary uppercase" ng-click="showNewMediaDialog()">Add media</button> or
+                                <button class="btn btn-primary uppercase" ng-click="showMediaLibrary()">Pick from library</button>
+                            </div>
+                        </div>
+                        <div class="panel-body">
+                            <!-- <div loader ng-show="view.busyMedia"></div> -->
+                            <div>
+                                <div ng-hide="hasMedia()" class="text-center">
+                                    <button class="btn btn-primary uppercase" ng-click="showNewMediaDialog()">Add new media</button> or
+                                    <button class="btn btn-primary uppercase" ng-click="showMediaLibrary()">Pick media from library</button>
+                                </div>
+                                <div ng-show="view.mediaLoaded">
+                                    <!-- <div class="form-group">
+                                        <input id="media_title" type="text" class="form-control" placeholder="Name of your media" ng-model="media.name" required>
+                                    </div> -->
+                                    <div class="media-preview-container">
+                                        <div class="video-container">
+                                            <div videogular vg-player-ready="onPlayerReady($API)" ng-show="externalLink === null">
+                                                <vg-media vg-src="videogular.sources" vg-native-controls="true"></vg-media>
+                                            </div>
+                                            <div class='outer-embed-ta' ng-show="externalLink !== null">
+                                                <iframe width='100%' height="100%" src="{{externalLink}}" allowfullscreen='true' webkitallowfullscreen='true' mozallowfullscreen='true' scrolling='no' class='embed-ta'>
+                                                </iframe>
+                                            </div>
+                                        </div>
+                                        <div class="image-container" style="background-image:url({{media.display}});"></div>
+                                    </div>
+
+                                </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="panel panel-kaching">
+                    <div class="panel-heading"><h3 class="panel-title">Data inside application</h3></div>
+                    <div class="panel-body">
+
+                        <div class="form-group" ng-class="{ 'has-error' : fieldHasError( this, 'form1', 'media_title' ) }">
+                            <input
+                                name="media_title"
+                                type="text"
+                                class="form-control"
+                                placeholder="Title inside application"
+                                ng-model="media.media_title"
+                                required
+                                >
+                            <span ng-show="fieldHasError( this, 'form3', 'media_title' )" class="help-block">Please enter media title.</span>
+                        </div>
+
+                        <div class="form-group" ng-class="{ 'has-error' : fieldHasError( this, 'form1', 'media_description' ) }">
+                            <textarea
+                                name="media_description"
+                                type="text"
+                                class="form-control"
+                                placeholder="Description inside application"
+                                ng-model="media.media_description"
+                                required
+                                ></textarea>
+                            <span ng-show="fieldHasError( this, 'form3', 'media_description' )" class="help-block">Please enter media description.</span>
+                        </div>
+
+                    </div>
+                </div>
+
+
+            </form>
+            <!-- end of step3 -->
+
+            <!-- <a ui-sref="advertisements" class="btn btn-default btn-block uppercase btn-exit-editor">Exit from advertisement creator</a> -->
+
+            <div class="steps-footer">
+                <div class="pull-right">
+                    <a ui-sref="advertisements" class="btn btn-default uppercase">Cancel</a>
+                    <a href="" class="btn btn-primary uppercase" ng-click="finish()">Create</a>
+                </div>
+            </div>
+
+        </div>
+        <!-- <div class="col col-main" ui-view="campaignEditorMain"></div> -->
+    </div>
+</div>

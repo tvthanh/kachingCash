@@ -1,0 +1,153 @@
+<div class="modal kaching-modal new-product-modal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" ng-click="closeModal()" ng-disabled="view.uploading"><span class="ion-icon ion-close-round"></span></button>
+                <h4 class="modal-title">New product</h4>
+            </div>
+            <div class="modal-body">
+
+                <form
+                    class="new-product-form"
+                    name="form1"
+                    novalidate
+                    >
+
+                    <!-- <div class="input-group input-group-search">
+                        <input type="text" class="form-control" placeholder="Search from our library" ng-model="view.externalProductsSearchInput" ng-disabled="view.busy" ng-blur="resetExternalProducts()">
+                        <span class="input-group-btn">
+                          <button class="btn btn-primary" ng-disabled="view.busy" ng-click="searchExternalProducts()">
+                              <span class="glyphicon glyphicon-search"></span>
+                        </button>
+                        </span>
+                    </div> -->
+
+                    <div class="widget-list-products" ng-class="{'block':view.externalProducts.length > 0}">
+                        <ul>
+                            <li class="clearfix" ng-repeat="product in view.externalProducts">
+                                <div class="photo-product-amazon photo-center pull-left" ng-style="{ 'background-image' : 'url({{ product.medium_image }})' }"></div>
+                                <div class="name-product-amazon capitalize">
+                                    <p class="margin-0">{{product.name}}</p>
+                                    <p class="margin-0 medium-font font-13">{{product.price_min}} <span>{{product.currency}}</span></p>
+                                </div>
+                                <span class="btn-add-product-amazon" ng-click="addExternalProduct( product )">Add</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="form-group form-group-product-title" ng-class="{ 'has-error' : showErrors() && fieldHasError( this, 'form1', 'title' ) }">
+                        <input
+                            name="title"
+                            type="text"
+                            class="form-control product-title"
+                            placeholder="Name of your product"
+                            ng-model="data.title"
+                            required
+                            >
+                        <span ng-show="showErrors() && fieldHasError( this, 'form1', 'title' )" class="help-block">Please enter product title.</span>
+                    </div>
+
+                    <div class="form-group form-group-product-url" ng-class="{ 'has-error' : showErrors() && fieldHasError( this, 'form1', 'url' ) }">
+                        <input
+                            name="url"
+                            type="text"
+                            autocomplete="off"
+                            class="form-control product-url"
+                            placeholder="URL to your product"
+                            ng-model="data.url"
+                            url-input
+                            required
+                            >
+                        <span ng-show="showErrors() && fieldHasError( this, 'form1', 'url' )" class="help-block">Please enter a valid product url.</span>
+                    </div>
+
+                    <div class="form-group form-group-product-price" ng-class="{ 'has-error' : showErrors() && fieldHasError( this, 'form1', 'price' ) }">
+                        <div class="input-group">
+                            <div class="input-group-addon">$</div>
+                            <input
+                                name="price"
+                                type="text"
+                                class="form-control product-price"
+                                placeholder="Price of your product"
+                                ng-model="data.price"
+                                ifm-number
+                                required
+                                >
+                        </div>
+                        <span ng-show="showErrors() && fieldHasError( this, 'form1', 'price', 'required' )" class="help-block">Please enter product price.</span>
+                        <span ng-show="showErrors() && fieldHasError( this, 'form1', 'price', 'ifmNumber' )" class="help-block">Product price must be a number</span>
+                    </div>
+
+
+                    <div class="row-media">
+                        <div class="col-media">
+
+                            <div class="product-preview-container">
+                                <div
+                                    nv-file-drop
+                                    ifm-uploader-preview-image="data.imageFile"
+                                    uploader="uploader"
+                                    options="{ alias: 'image' }"
+                                    filters="imageFilter"
+                                    ifm-over-class="fileover"
+                                    class="uploader-dropzone image-holder"
+                                    ng-class="{ 'has-error' : showErrors() && imageHasError() }"
+                                    >
+                                    <div class="uploader-label-overlay">
+                                        <div class="box-label-uploader" ng-show="!data.imageFile">
+                                            <i class="icon-ic-upload"></i>
+                                            <br>
+                                            Simply drag and drop file<br>or <span class="higlight">browse</span> on your disk.
+                                        </div>
+                                        <span class="size-hint">Optimal size ratio is 360x360</span>
+                                    </div>
+                                    <div class="progress-container" ng-show="view.uploadStarted">
+                                        <div class="progress" ng-class="{ 'complete': view.uploadComplete }">
+                                          <div class="progress-bar" ng-style="{ 'width': view.uploadProgress + '%' }"></div>
+                                        </div>
+                                    </div>
+                                    <input
+                                        nv-file-select
+                                        type="file"
+                                        uploader="uploader"
+                                        options="{ alias: 'image' }"
+                                        filters="imageFilter"
+                                        title=" "
+                                        >
+                                </div>
+                                <div class="error-container-image" ng-class="{ 'has-error' : showErrors() && imageHasError() }">
+                                    <span ng-show="showErrors() && imageHasError()" class="help-block">Please add the image.</span>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="col-desc">
+                            <div class="form-group form-group-product-description" ng-class="{ 'has-error' : showErrors() && fieldHasError( this, 'form1', 'description' ) }">
+                                <textarea
+                                    rows="6"
+                                    name="description"
+                                    class="form-control form-control-desc"
+                                    ng-model="data.description"
+                                    placeholder="Description of your product"
+                                    required
+                                    ></textarea>
+                                <span ng-show="showErrors() && fieldHasError( this, 'form1', 'description' )" class="help-block">Please enter product description.</span>
+                            </div>
+                        </div>
+                    </div>
+
+                </form>
+
+                <div class="form-container text-right" ng-hide="view.productCreated">
+                    <button type="button" class="btn-kaching-second margin-r-10" ng-click="closeModal()" ng-disabled="view.uploading">Cancel</button>
+                    <button type="button" class="btn-kaching-first" ng-click="saveProduct()" ng-disabled="view.uploading">Save</button>
+                </div>
+                <div class="form-container text-right" ng-show="view.productCreated">
+                    <strong class="message-success">product created sucessfully</strong>
+                    <button type="button" class="btn modal-link btn-default" ng-click="closeModal()">Close</button>
+                    <button type="button" class="btn modal-link btn-primary" ng-click="viewProduct()">View product list</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

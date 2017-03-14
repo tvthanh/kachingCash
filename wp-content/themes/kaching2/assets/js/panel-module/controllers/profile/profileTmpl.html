@@ -1,0 +1,190 @@
+<div class="wrap container products-page profile-page">
+    <div class="content row">
+
+        <div loader ng-show="view.loading"></div>
+
+        <form
+            name="form1"
+            class="form-horizontal"
+            autocomplete="false"
+            ng-show="!view.loading"
+            ng-submit="saveProfile()"
+            novalidate
+            >
+
+            <div class="page-header">
+                <div class="col-xs-12">
+                    <h1>Account settings</h1>
+                </div>
+            </div>
+
+            <div class="col-md-8">
+
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">Full Name:</label>
+                    <div class="col-sm-4" ng-class="{ 'has-error' : showErrors() && fieldHasError( this, 'form1', 'first_name' ) }">
+                        <input
+                            type="text"
+                            name="first_name"
+                            class="form-control"
+                            placeholder="First Name"
+                            ng-model="data.user.firstName"
+                            ng-disabled="view.sending"
+                            required
+                            >
+                        <span ng-show="showErrors() && fieldHasError( this, 'form1', 'first_name' )" class="help-block">Please enter your first name.</span>
+                    </div>
+                    <div class="col-sm-5" ng-class="{ 'has-error' : showErrors() && fieldHasError( this, 'form1', 'last_name' ) }">
+                        <input
+                            type="text"
+                            name="last_name"
+                            class="form-control"
+                            placeholder="Last Name"
+                            ng-model="data.user.lastName"
+                            ng-disabled="view.sending"
+                            required
+                            >
+                        <span ng-show="showErrors() && fieldHasError( this, 'form1', 'last_name' )" class="help-block">Please enter your last name.</span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">Email:</label>
+                    <div class="col-sm-9" ng-class="{ 'has-error' : showErrors() && fieldHasError( this, 'form1', 'email' ) }">
+                        <input
+                            type="email"
+                            name="email"
+                            class="form-control"
+                            placeholder="E-mail Adress"
+                            ng-model="data.user.email"
+                            ng-disabled="view.sending"
+                            required
+                            >
+                        <span ng-show="showErrors() && fieldHasError( this, 'form1', 'email' )" class="help-block">Please enter your e-mail address.</span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="inputPassword" class="col-sm-3 control-label">Password:</label>
+                    <div class="col-sm-5">
+                        <input
+                            type="password"
+                            class="form-control"
+                            placeholder="Password"
+                            autocomplete="false"
+                            value="abcde"
+                            disabled
+                            >
+                    </div>
+                    <div class="col-sm-4">
+                        <span
+                            class="btn btn-block btn-primary uppercase"
+                            ng-disabled="view.sending"
+                            ng-click="showPasswordChangeDialog()"
+                            >Change Password</span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">Company:</label>
+                    <div class="col-sm-9" ng-class="{ 'has-error' : showErrors() && fieldHasError( this, 'form1', 'company' ) }">
+                        <input
+                            type="text"
+                            name="company"
+                            class="form-control"
+                            placeholder="Company Name"
+                            ng-model="data.user.company"
+                            ng-disabled="view.sending"
+                            required
+                            >
+                        <span ng-show="showErrors() && fieldHasError( this, 'form1', 'company' )" class="help-block">Please enter your company name.</span>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-3"></div>
+                    <div class="col-sm-9">
+                        <h3>Billing address</h3>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">Country:</label>
+                    <div class="col-sm-9" ng-class="{ 'has-error' : showErrors() && fieldHasError( this, 'form1', 'country' ) }">
+                        <select
+                            name="country"
+                            class="form-control"
+                            ng-model="data.user.country"
+                            ng-disabled="view.sending"
+                            >
+                            <option value="">--- Please select ---</option>
+                            <option ng-repeat="country in data.countries" value="{{ country.id }}">{{country.name}}</option>
+                        </select>
+                        <!-- <span ng-show="showErrors() && fieldHasError( this, 'form1', 'city' )" class="help-block">Please select your country.</span> -->
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">City:</label>
+                    <div class="col-sm-9" ng-class="{ 'has-error' : showErrors() && fieldHasError( this, 'form1', 'city' ) }">
+                        <input
+                            type="text"
+                            name="city"
+                            class="form-control"
+                            placeholder="City"
+                            ng-model="data.user.city"
+                            ng-disabled="view.sending"
+                            >
+                        <!-- <span ng-show="showErrors() && fieldHasError( this, 'form1', 'city' )" class="help-block">Please enter city name.</span> -->
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">Address:</label>
+                    <div class="col-sm-9" ng-class="{ 'has-error' : showErrors() && fieldHasError( this, 'form1', 'address' ) }">
+                        <input
+                            type="text"
+                            name="address"
+                            class="form-control"
+                            placeholder="Address"
+                            ng-model="data.user.address"
+                            ng-disabled="view.sending"
+                            >
+                        <!-- <span ng-show="showErrors() && fieldHasError( this, 'form1', 'address' )" class="help-block">Please enter your address.</span> -->
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">Postal Code:</label>
+                    <div class="col-sm-9" ng-class="{ 'has-error' : showErrors() && fieldHasError( this, 'form1', 'postal_code' ) }">
+                        <input
+                            type="text"
+                            name="postal_code"
+                            class="form-control"
+                            placeholder="Postal Code"
+                            ng-model="data.user.postalCode"
+                            ng-disabled="view.sending"
+                            >
+                        <!-- <span ng-show="showErrors() && fieldHasError( this, 'form1', 'postal_code' )" class="help-block">Please enter your postal code.</span> -->
+                    </div>
+                </div>
+
+                <hr>
+
+                <div class="form-group">
+                    <label class="col-sm-3 control-label"></label>
+                    <div class="col-sm-9">
+                        <button
+                            type="submit"
+                            class="btn btn-primary uppercase"
+                            ng-disabled="view.sending"
+                            >Save</button>
+                    </div>
+                </div>
+
+            </div>
+
+        </form>
+
+    </div>
+</div>

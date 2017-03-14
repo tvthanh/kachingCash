@@ -1,0 +1,156 @@
+<!-- <div class="wrap container invoices">
+    <div class="content row">
+
+        <div loader ng-hide="view.initialLoadComplete"></div>
+
+        <div ng-show="view.initialLoadComplete">
+
+            <div class="page-header">
+                <h1>Payment Requests</h1>
+
+                <div
+                    date-range-picker
+                    class="daterange-picker"
+                    options="{ opens: 'left', autoApply: true, locale: { format: 'YYYY-MM-DD', firstDay: 1 } }"
+                    ng-model="daterange.dates"
+                    >
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-date">{{ daterange.datepickerLabel }}</button>
+                        <button type="button" class="btn btn-primary dropdown-toggle">
+                            <span class="caret"></span>
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+
+            <br>
+
+            <table class="table table-hover table-no-bordered">
+                <tr>
+                    <th>ID</th>
+                    <th>Created date</th>
+                    <th>Acount name</th>
+                    <th>Amount</th>
+                    <th>Status</th>
+                    <th></th>
+                </tr>
+                <tr ng-repeat="payment in data.payments">
+                    <td>{{ payment.id }}</td>
+                    <td>{{ payment.withdraw_at | date:'yyyy-MM-dd' }}</td>
+                    <td>{{ payment.owner.name }}</td>
+                    <td>{{ payment.amount | currency:'$':2 }}</td>
+                    <td>{{ payment.status | transactionStatus }}</td>
+                    <td>
+                        <a
+                            class="action-campaign pull-left"
+                            data-animation="am-fade-and-scale"
+                            data-placement="top"
+                            data-trigger="hover"
+                            data-type="success"
+                            data-title="Edit Payment Request"
+                            bs-tooltip
+                            ng-click="showEditPaymentPopup(payment.id)"
+                            >
+                            <img src="/wp-content/themes/kaching3/assets/images/campaign/setting-kaching.svg">
+                        </a>
+                    </td>
+                </tr>
+            </table>
+
+            <div ng-if="data.transactions.length == 0">
+                <h2 class="text-center">No invoices found.</h2>
+            </div>
+
+            <div class="text-center" ng-hide="data.transactionsCount <= view.itemsPerPage">
+                <div
+                    uib-pagination
+                    ng-change="changePage()"
+                    ng-model="view.currentPage"
+                    max-size="view.maxSize"
+                    total-items="data.transactionsCount"
+                    items-per-page="view.itemsPerPage"
+                    force-ellipses="true"
+                    template-url="template/pagination/pagination.html"
+                    >
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</div> -->
+
+<div class="container">
+    <h1 class="billing-header-title">Payment Requests</h1>
+    <div ng-show="view.initialLoadComplete">
+        <div class="container-list-campaign-kaching billing-list">
+            <div ng-repeat="payment in data.payments">
+                <div class="row-campaign-kaching clearfix">
+                    <div class="column-campaign-kaching column-campaign-7">
+                        <div class="clearfix">
+                            <div class="info-brand-kaching">
+                                <label>{{ payment.id }}</label>
+                                <span class="font-12 medium-font">ID</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="column-campaign-kaching column-campaign-3">
+                        <div class="clearfix">
+                            <label class="">{{ payment.withdraw_at | date:'yyyy-MM-dd' }}</label>
+                            <label class="">Created date</label>
+                        </div>
+                    </div>
+
+                    <div class="column-campaign-kaching column-campaign-7">
+                        <label>{{ payment.owner.name }}</label>
+                        <span class="note-column-campaign">Acount name</span>
+                    </div>
+
+                    <div class="column-campaign-kaching column-campaign-5">
+                    <label>{{ payment.amount | currency:'$':2 }}</label>
+                        <span class="note-column-campaign">Amount</span>
+                    </div>
+
+                    <div class="column-campaign-kaching column-campaign-5">
+                    <label>{{ payment.status | transactionStatus }}</label>
+                        <span class="note-column-campaign">Status</span>
+                    </div>
+
+                    <div class="column-campaign-kaching">
+                        <a
+                            class="action-campaign pull-left"
+                            data-animation="am-fade-and-scale"
+                            data-placement="top"
+                            data-trigger="hover"
+                            data-type="success"
+                            data-title="Edit Payment Request"
+                            bs-tooltip
+                            ng-click="showEditPaymentPopup(payment.id)"
+                            >
+                            <img src="/wp-content/themes/kaching3/assets/images/campaign/setting-kaching.svg">
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div ng-if="data.transactions.length == 0">
+            <h2 class="text-center">No invoices found.</h2>
+        </div>
+
+        <div class="text-center kaching-pagination paging-wrapper" ng-hide="data.transactionsCount <= view.itemsPerPage">
+            <div
+                uib-pagination
+                ng-change="changePage()"
+                ng-model="view.currentPage"
+                max-size="view.maxSize"
+                total-items="data.transactionsCount"
+                items-per-page="view.itemsPerPage"
+                force-ellipses="true"
+                template-url="template/pagination/pagination.html"
+                >
+            </div>
+        </div>
+    </div>
+</div>

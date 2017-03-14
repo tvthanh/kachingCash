@@ -1,0 +1,54 @@
+<div class="frame-bg-popup">
+    <div class="loading-product" loader ng-show="view.busyProduct"></div>
+    <label class="medium-font">Available products - Click to select</label>
+    <div class="input-group input-group-search col-sm-4 clearfix">
+        <div class="new-product-wrapper">
+            <span class="input-group-btn">
+                <button class="btn btn-primary btn-new-product" ng-disabled="view.busy" ng-click="showNewProductDialog()">
+                <span class="fa fa-plus"></span>
+            </button>
+            </span>
+        </div>
+
+        <input type="text" class="form-control" placeholder="Search" enter-press="search()" ng-model="view.searchInput" ng-disabled="view.busy">
+        <span class="input-group-btn">
+            <button class="btn btn-primary" type="submit" ng-disabled="view.busy" ng-click="search()">
+            <span class="glyphicon glyphicon-search"></span>
+        </button>
+        </span>
+    </div>
+    <div class="products clearfix" ng-if="!view.busyProduct && view.products.length > 0">
+        <div
+            ng-repeat="item in view.products"
+            ng-click="toggleItem(item)"
+            ng-class="{ 'selected': item.selected }"
+            class="product-container"
+            >
+            <div class="image-container">
+                <div class="image-holder" ng-style="{ 'background-image' : 'url({{ item.image || item.image_url }})' }"></div>
+                <div class="icon-selected" ng-show="item.selected"><span class="glyphicon glyphicon-ok-circle"></span></div>
+            </div>
+            <div class="title">{{ item.title }}</div>
+            <div class="date">Added: <span>{{ item.date_added | date: 'yyyy-MM-dd'}}</span></div>
+        </div>
+    </div>
+
+    <div class="margin-t-30 margin-b-15" ng-if="!view.busy && view.products.length == 0">
+        <h2 class="text-center" ng-show="view.searchPhrase.length == 0">You don't have any products.</h2>
+        <h2 class="text-center" ng-show="view.searchPhrase.length > 0">You don't have any products<br>matching this search criteria.</h2>
+    </div>
+
+    <div class="modal-section text-center paging-wrapper" ng-hide="view.productsCount <= view.itemsPerPage">
+        <div
+            uib-pagination
+            ng-change="changePage()"
+            ng-model="view.currentPage"
+            max-size="view.maxSize"
+            total-items="view.productsCount"
+            items-per-page="view.itemsPerPage"
+            force-ellipses="true"
+            template-url="template/pagination/pagination.html"
+            >
+        </div>
+    </div>
+</div>

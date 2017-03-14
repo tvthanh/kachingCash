@@ -1,0 +1,282 @@
+<div class="billboards-step4" ng-controller="tvStep4Ctrl">
+    <div loader ng-show="view.busy"></div>
+    <div ng-show="!view.busy">
+        <div class="campaign-confirmation">
+            <div class="information block-content">
+                <div class="step-campaign-details">
+                    <div class="title">
+                        <span class="medium-font">Campaign Information Summary</span>
+                    </div>
+                    <div class="item-card-v1 basic-info">
+                        <div class="row form-row ">
+                            <div class="col-sm-6 ">
+                                <label class="medium-font">Campaign Fee</label>
+                                <span>{{campaign.fund}}</span>
+                            </div>
+                        </div>
+                        <div class="row form-row ">
+                            <div class="col-sm-3 ">
+                                <label class="medium-font">Customer Name</label>
+                                <span>{{campaign.client}}</span>
+                            </div>
+                            <div class="col-sm-3 ">
+                                <label class="medium-font">Campaign Name</label>
+                                <span>{{campaign.name}}</span>
+                            </div>
+                            <div class="col-sm-3 ">
+                                <label class="medium-font">Start Date</label>
+                                <span>{{campaign.start_date | date:'MM/dd/yyyy'}}</span>
+                            </div>
+                            <div class="col-sm-3 ">
+                                <label class="medium-font">End Date</label>
+                                <span>{{campaign.end_date | date:'MM/dd/yyyy'}}</span>
+                            </div>
+                        </div>
+                        <!-- <div class="row form-row">
+                            <div class="col-sm-12 ">
+                                <label class="medium-font">Subject of User Interest</label>
+                                <div class="row form-row">
+                                    <div class="col-sm-12 ">
+                                        <label class="bold">Arts & Entertainment</label>
+                                        <div class="row clearfix">
+                                            <div class="col-sm-4" ng-repeat="category in categories">
+                                                <span>{{category.name}}</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div> -->
+                        <div class="row form-row ">
+                            <div class="col-sm-3 ">
+                                <label class="medium-font">Gender</label>
+                                <span ng-if="targeting.gender.male && targeting.gender.female">All</span>
+                                <span ng-if="targeting.gender.male && !targeting.gender.female">Male</span>
+                                <span ng-if="targeting.gender.female && !targeting.gender.male">Female</span>
+                            </div>
+                            <div class="col-sm-3 ">
+                                <label class="medium-font">Age</label>
+                                <span>{{targeting.ageRange.label}}</span>
+                            </div>
+                            <div class="col-sm-3 ">
+                                <label class="medium-font">Platform</label>
+                                <!-- <span>{{targeting.platform}}</span> -->
+                                <span ng-if="targeting.os.ios && targeting.os.android">All</span>
+                                <span ng-if="targeting.os.ios && !targeting.os.android">IOS</span>
+                                <span ng-if="targeting.os.android && !targeting.os.ios">Android</span>
+                            </div>
+                            <!-- <div class="col-sm-3 ">
+                                <label class="medium-font">Education</label>
+                                <span>{{targeting.education}}</span>
+                            </div>
+                            <div class="col-sm-3 ">
+                                <label class="medium-font">Household Income</label>
+                                <span>{{targeting.household}}</span>
+                            </div> -->
+                        </div>
+                        <!-- <div class="row form-row ">
+                            <div class="col-sm-3 ">
+                                <label class="medium-font">Weekly distribution</label>
+                                <span>{{targeting.distribution}}</span>
+                            </div>
+                            <div class="col-sm-3 ">
+                                <label class="medium-font">Community Type</label>
+                                <span>{{targeting.communityType}}</span>
+                            </div>
+                            <div class="col-sm-3 ">
+                                <label class="medium-font">Platform</label>
+                                <span>{{targeting.platform}}</span>
+                                <span ng-if="targeting.os.ios && targeting.os.android">All</span>
+                                <span ng-if="targeting.os.ios && !targeting.os.android">IOS</span>
+                                <span ng-if="targeting.os.android && !targeting.os.ios">Android</span>
+                            </div>
+                        </div> -->
+                        <div class="row form-row">
+                            <div class="col-sm-12 ">
+                                <label class="medium-font">Location</label>
+                                <div class="row form-row">
+                                    <div class="col-sm-12 ">
+                                        <label class="bold">Asia</label>
+                                        <div class="row clearfix">
+                                            <div class="col-sm-3" ng-repeat="location in locations">
+                                                <span>{{location.name.short_name}}</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row form-row ">
+                            <div class="col-sm-3 ">
+                                <label class="medium-font">Currency</label>
+                                <span>{{budgeting.currency}}</span>
+                            </div>
+                            <div class="col-sm-3 ">
+                                <label class="medium-font">Payout and Budget</label>
+                                <span>{{budgeting.payout}}</span>
+                            </div>
+                            <div class="col-sm-3 ">
+                                <label class="medium-font">Frequency Capping</label>
+                                <span>{{budgeting.frequency}}</span>
+                            </div>
+                            <div class="col-sm-3 ">
+                                <label class="medium-font">Budget Type</label>
+                                <span>{{budgeting.budgetType}}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- End Campaign Info -->
+
+            <div class="container-media-library block-content">
+                <div class="title clearfix">
+                    <span class="medium-font">Media Library</span>
+                    <a style="color:#5d9be2;" class="medium-font pull-right">Edit</a>
+                </div>
+                <div class="table-media-library">
+                    <div class="header-media-library clearfix">
+                        <div class="col-sm-6">
+                            <label>Format/Location/File name/URL</label>
+                        </div>
+                        <div class="col-sm-2">
+                            <label>Type</label>
+                        </div>
+                        <div class="col-sm-2">
+                            <label>Date</label>
+                        </div>
+                        <div class="col-sm-1">
+                            <label>Size</label>
+                        </div>
+                        <div class="col-sm-1">
+                            <label>Action</label>
+                        </div>
+                    </div>
+                    <media-preview media-list="mediaList" item-edit="editMedia(mediaId)" item-delete="deleteMedia(mediaId)" show-edit="false" review="true"></media-preview>
+                </div>
+            </div>
+            <!-- End Media Library -->
+            <div class="container-ads-dollar block-content">
+                <!-- ad dollar -->
+                <div class="title clearfix">
+                    <span class="medium-font">Ad Dollar</span>
+                    <a style="color:#5d9be2;" class="medium-font pull-right">Edit</a>
+                </div>
+                <div class="table-ads-dollar">
+                    <div class="header-table-ads-dollar clearfix">
+                        <div class="col-dollar-1">
+                            <label>File name</label>
+                        </div>
+                        <div class="col-dollar-2">
+                            <label>Type</label>
+                        </div>
+                        <div class="col-dollar-3">
+                            <label>Total</label>
+                        </div>
+                    </div>
+                    <div class="content-ads-dollar">
+                        <div class="row-ads-dollar clearfix">
+                            <div class="col-dollar-1">
+                                <div class="widget-filename-dollar">
+                                    <div class="photo-ads-dollar" style="background-image:url(http://moonesl.vn/wp-content/uploads/2016/07/clothes.jpg);">
+                                    </div>
+                                    <p class="margin-0">Apple-music.jpg</p>
+                                </div>
+                            </div>
+                            <div class="col-dollar-2">
+                                <p class="margin-0 capitalize">Image</p>
+                            </div>
+                            <div class="col-dollar-3">
+                                <p class="margin-0 capitalize">3 Dollars</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="footer-ads-dollar clearfix">
+                        <div class="col-footer-ads-1">
+                            <span>Grand total (per set)</span>
+                        </div>
+                        <div class="col-footer-ads-2">
+                            <span>13 dollars</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- End ad dollar -->
+
+                <!-- ad dollar purchase -->
+                <div class="container-ad-purchase">
+                    <div class="title clearfix">
+                        <span class="medium-font">Ad-Dollar Purchase</span>
+                        <a style="color:#5d9be2;" class="medium-font pull-right">Edit</a>
+                    </div>
+                    <div class="table-ad-purchase">
+                        <div class="header-ad-purchase clearfix">
+                            <div class="col-purchase-1">
+                                <label>type</label>
+                            </div>
+                            <div class="col-purchase-2">
+                                <label>total ad-dollars</label>
+                            </div>
+                            <div class="col-purchase-3">
+                                <label>per dollar per click (USD)</label>
+                            </div>
+                            <div class="col-purchase-4">
+                                <label>total (USD)</label>
+                            </div>
+                        </div>
+                        <div class="row-ad-purchase clearfix">
+                            <div class="col-purchase-1">
+                                <span>Image</span>
+                            </div>
+                            <div class="col-purchase-2">
+                                <span>5000</span>
+                                <span class="pull-right">X</span>
+                            </div>
+                            <div class="col-purchase-3">
+                                <span>0.35</span>
+                            </div>
+                            <div class="col-purchase-4">
+                                <span>1750.00</span>
+                            </div>
+                        </div>
+                        <div class="footer-ad-purchase clearfix">
+                            <div class="footer-ad-1">
+                                <span class="pull-right">Grand total (USD)</span>
+                            </div>
+                            <div class="footer-ad-2">
+                                <span>925.00</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--End dollar purchase -->
+            </div>
+            <div class="panel panel-kaching panel-recommended-products billing-kaching">
+                <div class="panel-heading"><h3 class="panel-title">Recommended products</h3></div>
+                <div class="panel-body">
+
+                    <div
+                        owl-carousel
+                        class="owl-carousel recommended-products"
+                        data-options="carouselOptions"
+                        >
+                        <div
+                            owl-carousel-item
+                            ng-repeat="product in recommendedProducts"
+                            class="product"
+                            ng-click="selectRecommendedProduct( product )"
+                            >
+                            <div class="image-container">
+                                <div class="image-holder" ng-style="{ 'background-image' : 'url({{ product.image || product.image_url }})' }"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="footer-popup-stream-video clearfix" ng-show="!viewDetail">
+            <a class="btn-next-step pull-right" ng-click="$hide()">Submit</a>
+            <a class="btn-back-to-step pull-right" ng-click="goPrev()">Back to step 3</a>
+        </div>
+    </div>
+</div>

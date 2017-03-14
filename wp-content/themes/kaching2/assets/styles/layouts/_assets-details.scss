@@ -1,0 +1,181 @@
+.media-detail, .product-detail, .media-edit, .product-edit{
+	h3{
+		font-size:14px;
+		font-weight: 600;
+		color: $gray-darkest;
+		margin-bottom:35px;
+		width:200px;
+		border-bottom:2px solid #dae2e5;
+	}
+	span{
+		font-size:14px;
+		font-weight: 600;
+		color: $gray-darkest;
+		width:200px;
+	}
+	p{
+		font-size:16px;
+		color: $new-gray-dark;
+		font-weight: 600;
+		line-height: 1.5;
+		margin-bottom:16px;
+	}
+	video{
+		width:100%;
+		height:auto;
+		position:relative;
+	}
+	.back{
+		cursor: pointer;
+	}
+	.images-container{
+		position:relative;
+		width:100%;
+		margin:0px -10px;
+		img{
+			float:left;
+			display:block;
+			border-radius:4px;
+			position:relative;
+			bottom:0px;
+		}
+		.image-container-1, .image-container-2, .image-container-3{
+			position:relative;
+			display: inline-block;
+			margin:0px 10px;
+			border-radius:4px;
+			position:relative;
+			vertical-align: bottom;
+			bottom:0px;
+		}
+		.image-container-1{
+			width:282px;
+		}
+		.image-container-2{
+			width:230px;
+		}
+		.image-container-3{
+			width:88px;
+		}
+		.img1{
+			width:282px;
+			height: 264px;
+		}
+		.img2{
+			width:230px;
+			height: 150px;
+		}
+		.img3{
+			width:88px;
+			height: 140px;
+		}
+
+	}
+	.product-image{
+		max-height: 100px;
+		margin:25px 0;
+		border-radius: 3px;
+	}
+	.file-edit{
+		width:110px;
+		height:110px;
+		background-size: cover;
+		margin-bottom:25px;
+		clear:both;
+	}
+}
+.media-edit{
+	.images-container{
+		position:relative;
+		width:100%;
+		margin:0px -10px;
+		padding-bottom:40px;
+		.image-container-1, .image-container-2, .image-container-3{
+			position:relative;
+			display: inline-block;
+			margin:0px 10px;
+			border-radius:4px;
+			position:relative;
+			vertical-align: bottom;
+			bottom:0px;
+			// span{
+			// 	position:absolute;
+			// 	bottom:-20px;
+			// 	left:0;
+			// }
+		}
+		.image-container-1{
+			width:282px;
+			height:262px;
+		}
+		.image-container-2{
+			width:230px;
+			height:150px;
+		}
+		.image-container-3{
+			width:88px;
+			height:140px;
+		}
+	}
+    .size{
+        bottom:-40px!important;
+    }
+	.file-1, .file-2, .file-3, .video-1, .file-edit{
+		cursor: pointer;
+		position:relative;
+		display: block-inline;
+		margin: percentage(2.5/500);
+		vertical-align: bottom;
+		background-size: cover;
+		input{
+			height:100%;
+			width:100%;
+		}
+	}
+	.file-3{
+		&:after{
+		  left:30%;
+		}
+	}
+	.video-1{
+		height:372px;
+		width:100%;
+	    span{
+	        top:40%;
+	    }
+	    i{
+	        font-size: 46px;
+	        color: #a5a5a5;
+	    }
+	    &.uploaded{
+	        background-image: url("data:image/svg+xml;base64,PHN2ZyBmaWxsPSIjYTVhNWE1IiBoZWlnaHQ9IjI0IiB2aWV3Qm94PSIwIDAgMjQgMjQiIHdpZHR
+	        oPSIyNCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICAgIDxwYXRoIGQ9Ik
+	        0xOCA0bDIgNGgtM2wtMi00aC0ybDIgNGgtM2wtMi00SDhsMiA0SDdMNSA0SDRjLTEuMSAwLTEuO
+	        TkuOS0xLjk5IDJMMiAxOGMwIDEuMS45IDIgMiAyaDE2YzEuMSAwIDItLjkgMi0yVjRoLTR6Ii8+
+	        CiAgICA8cGF0aCBkPSJNMCAwaDI0djI0SDB6IiBmaWxsPSJub25lIi8+Cjwvc3ZnPg==");
+	        background-size: 80px 80px;
+	        background-repeat: no-repeat;
+	        background-position: 48% 50%;
+	    }
+	}
+	.file-1{
+		width: 100%;
+		height:262px;
+
+	}
+	.file-2{
+		width: 100%;
+		height:150px;
+	}
+	.file-3{
+		width: 100%;
+		height:140px;
+	}
+	.resolution{
+		position:absolute;
+		bottom:-20px;
+	}
+	.video-group{
+		position:relative;
+	}
+}

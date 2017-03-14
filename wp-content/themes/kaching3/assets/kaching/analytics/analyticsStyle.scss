@@ -1,0 +1,44 @@
+.analytics-header {
+    font-family: sans-serif;
+    font-size: 50px;
+}
+// .nav-item {
+//     .header-link {
+//         color: #448aff;
+//     }
+//     .header-link:hover {
+//         background-color: transparent;
+//     }
+//     .header-link:focus {
+//         background-color: transparent;
+//     }
+//     .actived {
+//         background-color: transparent;
+//     }
+//     .actived:hover {
+//         background-color: transparent;
+//     }
+//     .step-actived {
+//         font-family: sans-serif;
+//         color: #000000;
+//         border-bottom: 5px solid #448aff;
+//         padding-bottom: 10px;
+//     }
+// }
+
+.navigation-analytics {
+    .nav-item {
+        display: inline-block;
+        .header-link {
+            display: block;
+            color: #343b45;
+            font-size: 14px;
+            padding: 5px 10px;
+            text-decoration: none;
+            font-family: 'gotham-medium';
+            &.activedTab {
+                color: #F7BE00;
+            }
+        }
+    }
+}

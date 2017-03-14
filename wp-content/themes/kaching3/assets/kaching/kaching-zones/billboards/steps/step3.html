@@ -1,0 +1,14 @@
+<div class="billboards-step3" ng-controller="step3Ctrl">
+	<form name="form1" novalidate>
+		<div loader ng-show="view.busy"></div>
+		<div ng-show="!view.busy">
+			<div class="container-step-3-stream">
+				<ad-dollars medias="medias" campaign="campaign" selected-media="selectedMedia" available-coin="availableCoin" grand-total="grandTotal" on-signup="isSignupCampaign"></ad-dollars>
+			</div>
+			<div class="footer-popup-stream-video clearfix">
+				<button type="button" class="btn-kaching-first pull-right" ng-click="nextStep()">Save & Continue to step 4</button>
+				<button type="button" class="btn-kaching-second margin-r-15 pull-right" ng-click="goPrev()">Back to step 2</button>
+			</div>
+		</div>
+	</form>
+</div>

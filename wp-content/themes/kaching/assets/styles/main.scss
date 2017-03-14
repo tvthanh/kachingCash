@@ -1,0 +1,37 @@
+@import "common/_variables";
+
+// Automatically injected Bower dependencies via wiredep (never manually edit this block)
+// bower:scss
+@import "../../bower_components/bootstrap-sass/assets/stylesheets/_bootstrap.scss";
+// endbower
+@import "common/_global";
+@import "bootstrap/_navbar";
+@import "bootstrap/tables";
+
+
+@import "components/_buttons";
+@import "components/_comments";
+@import "components/_forms";
+@import "components/_grid";
+@import "components/_swiper";
+@import "components/_wp-classes";
+@import "components/_messages-modals";
+@import "components/_modals";
+@import "components/_loader";
+@import "components/_progress-bars";
+@import "components/_dropzone";
+@import "components/_panels";
+@import "layouts/_home";
+@import "layouts/_header";
+@import "layouts/_sidebar";
+@import "layouts/_footer";
+@import "layouts/_pages";
+@import "layouts/_posts";
+@import "layouts/_sign-in";
+@import "layouts/_components";
+@import "layouts/_reports";
+@import "layouts/_assets";
+@import "layouts/_campaign";
+@import "layouts/_assets-details";
+@import "layouts/_products";
+@import "layouts/_add-campaign";

@@ -1,0 +1,121 @@
+<div class="container1 sales-analytics" ng-controller="sales">
+    <div class="row">
+        <div class="col-md-3">
+            <div class="panel panel-default margin-b-0">
+                <div class="panel-body banner-analytices">
+                    <div class="col-md-5 no-padding-left no-padding-right">
+                        <h1 class="number-label-top">{{totalRevenue.total}}</h1>
+                        <h6 class="fz_12">TOTAL REVENUE</h6>
+                    </div>
+                    <div class="col-md-7 no-padding-left no-padding-right">
+                        <highchart id="chartconfigTotalRevenue" config="chartconfigTotalRevenue"></highchart>
+                        <label ng-show="totalRevenue.percentage>0" class="pull-right increase">{{totalRevenue.percentage}}% <span><i class="fa fa-arrow-up" aria-hidden="true"></i></span></label></label>
+                        <label ng-show="totalRevenue.percentage<=0" class="pull-right decrease">{{totalRevenue.percentage}}% <span><i class="fa fa-arrow-down" aria-hidden="true"></i></span></label></label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="panel panel-default margin-b-0">
+                <div class="panel-body banner-analytices">
+                    <div class="col-md-5 no-padding-left no-padding-right">
+                        <h1 class="number-label-top">{{transaction.total}}</h1>
+                        <h6 class="fz_12">TRANSACTION</h6>
+                    </div>
+                    <div class="col-md-7 no-padding-left no-padding-right">
+                        <highchart id="chartconfigTransaction" config="chartconfigTransaction"></highchart>
+                        <label ng-show="transaction.percentage>0" class="pull-right increase">{{transaction.percentage}}% <span><i class="fa fa-arrow-up" aria-hidden="true"></i></span></label></label>
+                        <label ng-show="transaction.percentage<=0" class="pull-right decrease">{{transaction.percentage}}% <span><i class="fa fa-arrow-down" aria-hidden="true"></i></span></label></label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="panel panel-default margin-b-0">
+                <div class="panel-body banner-analytices">
+                    <div class="col-md-5 no-padding-left no-padding-right">
+                        <h1 class="number-label-top">{{avgRevenueSale.total}}</h1>
+                        <h6 class="fz_12">AVG REVENUE <br> /SALE</h6>
+                    </div>
+                    <div class="col-md-7 no-padding-left no-padding-right">
+                        <highchart id="chartconfigAvgRevenueSale" config="chartconfigAvgRevenueSale"></highchart>
+                        <label ng-show="avgRevenueSale.percentage>0" class="pull-right increase">{{avgRevenueSale.percentage}}% <span><i class="fa fa-arrow-up" aria-hidden="true"></i></span></label></label>
+                        <label ng-show="avgRevenueSale.percentage<=0" class="pull-right decrease">{{avgRevenueSale.percentage}}% <span><i class="fa fa-arrow-down" aria-hidden="true"></i></span></label></label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="panel panel-default margin-b-0">
+                <div class="panel-body banner-analytices">
+                    <div class="col-md-5 no-padding-left no-padding-right">
+                        <h1 class="number-label-top">12.16%</h1>
+                        <h6 class="fz_12">SALES vs SCANS</h6>
+                    </div>
+                    <div class="col-md-7 no-padding-left no-padding-right">
+                        <highchart id="chartconfigSalesVsScans" config="chartconfigSalesVsScans"></highchart>
+                        <label class="pull-right decrease">10% <span><i class="fa fa-arrow-down" aria-hidden="true"></i></span></label></label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="container-overal-data margin-b-0">
+                <h3 class="active-users">
+                    <strong>Total Revenue
+                    </strong>
+                </h3>
+                <div id="totalRevenueLineChar" class="revenue-chart"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="container-overal-data margin-b-0">
+                <h3 class="active-users">
+                    <strong>Conversion
+                    </strong>
+                </h3>
+                <div id="conversionLineChar" class="revenue-chart"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6">
+            <div class="container-overal-data">
+                <h3 class="active-users">
+                    <strong>Daytimes Sales
+                    </strong>
+                </h3>
+                <div id="daytimesSalesLineChar" class="revenue-chart"></div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="container-overal-data">
+                <h3 class="active-users">
+                    <strong>Daytimes Transactions
+                    </strong>
+                </h3>
+                <div id="daytimesTransactionsLineChar" class="revenue-chart"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="row nomargin-left nomargin-right pie-block">
+                <div class="col-sm-3 nopadding" id="agePie"></div>
+                <div class="col-sm-3 nopadding" id="genderPie"></div>
+                <div class="col-sm-3 nopadding" id="countryPie"></div>
+                <div class="col-sm-3 nopadding" id="devicePie"></div>
+            </div>
+        </div>
+    </div>
+
+</div>

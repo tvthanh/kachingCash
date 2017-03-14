@@ -1,0 +1,69 @@
+<div ng-controller="billboardsCtrl">
+    <div class="header-stream-video relative clearfix">
+        <div class="container-in-stream-video col-sm-6 no-gutter">
+            <h4 class="medium-font no-gutter" ng-show="!editId">New campaign</h4>
+            <h4 class="medium-font no-gutter" ng-show="editId"><span ng-show="!viewDetail">Edit</span><span ng-show="viewDetail">View</span> campaign - {{campaignType}}</h4>
+        </div>
+        <div class="col-sm-6 clearfix no-gutter" ng-show="!viewDetail">
+            <div class="info-stream-video pull-right not-border clearfix">
+                <div class="inside-info-stream">
+                    Available funds: <span ng-show="balance !== undefined">{{balance}} USD</span> <span ng-show="balance !== undefined"> ( = {{availableCoin}} coins for {{selectedCountry.alpha2_code !== 'GB' ? selectedCountry.short_name : 'The UK'}})</span>
+                </div>
+                <div class="link-detail-funds text-right">
+                    <a ng-mouseover="showMapFunds()">View coins - country map</a>
+                    <div class="table-map-funds" ng-show="isShowMapFunds" ng-mouseleave="hideMapFunds()">
+                        <div class="inner-map-funds">
+                            <!-- <span>This will display the mapping countries & coins <br> NOT AVAILABLE YET</span> -->
+                            <ul class="rate-exchange-list">
+                                <li ng-repeat="country in countryList" class="clearfix">
+                                    <div class="pull-left w_140 ellipsis">{{country.alpha2_code !== 'GB' && country.alpha2_code !== 'US' ? country.short_name : country.alpha2_code == 'GB' ? 'The UK' : 'The USA'}}</div>
+                                    <div class="pull-left text-right w_90"><b>1</b> coin = </div>
+                                    <div class="pull-right text-right w_70"><b>{{country.rate_exchange}}</b> $</div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-content-popup-stream no-gutter" ng-show="!viewDetail">
+        <div class="navigation-video-campaign billboards-tab">
+            <ul class="clearfix margin-0">
+                <li>
+                    <a ng-class="{ 'actived' : step === 1 }" ng-click="updateStep(1)"><span class="number-step"> 1 </span><span class="label-step" ng-class="{ 'step-actived' : step === 1 }">General information</span><span class="line-under"></span></a>
+                </li>
+                <li>
+                    <a ng-class="{ 'actived' : step === 2 }" ng-click="updateStep(2)"><span class="number-step"> 2 </span><span class="label-step" ng-class="{ 'step-actived' : step === 2, 'step-disabled' : campaignType === 'On Signup' }">media upload & location</span><span class="line-under"></span></a>
+                </li>
+                <li>
+                    <a ng-class="{ 'actived' : step === 3 }" ng-click="updateStep(3)"><span class="number-step"> 3 </span><span class="label-step" ng-class="{ 'step-actived' : step === 3 }">Earn coins</span><span class="line-under"></span></a>
+                </li>
+                <li>
+                    <a ng-class="{ 'actived' : step === 4 }" ng-click="updateStep(4)"><span class="number-step"> 4 </span><span class="label-step" ng-class="{ 'step-actived' : step === 4 }">Preview & confirm</span><span class="line-under"></span></a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="container-content-popup-stream no-gutter" style="margin-top:0 !important;">
+        <div class="detail-content-tab-stream"
+            ng-switch on="step">
+
+            <div ng-switch-when="1">
+                <ng-include src="billboardsStep.step1"></ng-include>
+            </div>
+
+            <div ng-switch-when="2">
+                <ng-include src="billboardsStep.step2"></ng-include>
+            </div>
+
+            <div ng-switch-when="3">
+                <ng-include src="billboardsStep.step3"></ng-include>
+            </div>
+
+            <div ng-switch-when="4">
+                <ng-include src="billboardsStep.step4"></ng-include>
+            </div>
+        </div>
+    </div>
+</div>

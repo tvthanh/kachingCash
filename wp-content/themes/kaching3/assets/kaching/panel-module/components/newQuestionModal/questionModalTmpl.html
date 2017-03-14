@@ -1,0 +1,89 @@
+<div class="modal kaching-modal new-product-modal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" ng-click="closeModal()" ng-disabled="view.uploading"><span class="ion-icon ion-close-round"></span></button>
+                <h4 class="modal-title">{{dialogTitle}}</h4>
+            </div>
+            <div class="modal-body">
+                <form
+                    class="new-product-form"
+                    name="form1"
+                    novalidate
+                    >
+                    <div class="row-media">
+                        <div class="form-group form-group-product-description" ng-class="{ 'has-error' : showErrors() && fieldHasError( this, 'form1', 'description' ) }">
+                            <span>Question:</span>
+                            <textarea
+                                rows="4"
+                                name="description"
+                                class="form-control"
+                                ng-model="question"
+                                placeholder="Enter your question"
+                                required
+                                ng-disabled="viewMode"
+                                ></textarea>
+                            <span ng-show="showErrors() && fieldHasError( this, 'form1', 'description' )" class="help-block">Please enter product description.</span>
+                        </div>
+                    </div>
+                    <div class="row-media">
+                        <div class="form-group form-group-product-description">
+                            <span>Answer type:</span>
+                            <div class="custom-radio-v1 clearfix">
+                                <div class="col-sm-3 no-gutter">
+                                    <div class="radio">
+                                        <input type="radio" name="one-choice" id="one-choice" ng-model="answerType" value="0" ng-disabled="viewMode"/>
+                                        <label for="one-choice" style="min-width: 110px">One Choice</label>
+                                    </div>
+                                </div>
+                                <div class="col-sm-3 no-gutter">
+                                    <div class="radio">
+                                        <input type="radio" name="multiple-choice" id="multiple-choice" ng-model="answerType" value="1" ng-disabled="viewMode"/>
+                                        <label for="multiple-choice" style="min-width: 200px">Multiple Choice</label>
+                                    </div>
+                                </div>
+                                <div class="col-sm-3 no-gutter">
+                                    <div class="radio">
+                                        <input type="radio" name="open-answer" id="open-answer" ng-model="answerType" value="2" ng-disabled="viewMode"/>
+                                        <label for="open-answer" style="min-width: 200px">Open Answer</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="answer-area" ng-show="answerType != 2">
+                        <div class="row-media">
+                            <div class="form-group form-group-product-description" ng-show="!viewMode" ng-class="{ 'has-error' : showErrors() && showNoAnswerError()}">
+                                <span>Answers:</span>
+                                <input
+                                    name="title"
+                                    type="text"
+                                    class="form-control product-title"
+                                    placeholder="Add new answer"
+                                    ng-model="answerItem"
+                                    enter-press="addAnswer()"
+                                    >
+                                <span ng-show="showErrors() && showNoAnswerError()" class="help-block">Please enter at least 2 answers.</span>
+                            </div>
+                        </div>
+                        <div class="row-media answer-list">
+                            <span ng-show="viewMode && answerList.length > 0">Answers:</span>
+                            <div class="answer-list-item form-control" ng-repeat="q in answerList">
+    							<!-- <input class="toggle" type="checkbox" ng-model="todo.completed" ng-change="toggleCompleted(todo)"> -->
+    							<label ng-dblclick="editTodo(todo)">{{q.content}}</label>
+    							<button class="destroy" ng-click="removeQuestion(q.id)" ng-show="!viewMode"></button>
+    						</div>
+                        </div>
+                    </div>
+                </form>
+                <div class="form-container text-right" ng-show="!viewMode">
+                    <button type="button" class="btn-kaching-second margin-r-10" ng-click="closeModal()" ng-disabled="view.uploading">Cancel</button>
+                    <button type="button" class="btn-kaching-first" ng-click="createQuestion()" ng-disabled="view.uploading">Save</button>
+                </div>
+                <div class="form-container text-right" ng-show="viewMode">
+                    <button type="button" class="btn-kaching-second margin-r-10" ng-click="closeModal()" ng-disabled="view.uploading">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

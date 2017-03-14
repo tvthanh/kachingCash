@@ -1,0 +1,58 @@
+<div class="user-nav-bar" ng-class="{ 'logedin' : loggedIn }">
+
+    <div class="user-nav" ng-if="loggedIn">
+
+        <ul class="account-view-switch">
+            <li>
+                <a href="" ng-click="switchUserType('advertiser')" ng-class="{ 'active' : isAdvertiser() }">Advertiser</a>
+            </li>
+            <li>
+                <a href="" ng-click="switchUserType('developer')" ng-class="{ 'active' : isDeveloper() }">Developer</a>
+            </li>
+        </ul>
+
+        <div class="account-balance" ng-show="balance !== null">
+            <div class="amount">{{ balance }}</div>
+            <div class="balance-label">Credits</div>
+        </div>
+
+        <a
+            href="#"
+            class="username"
+            data-animation="am-flip-x"
+            placement="bottom-right"
+            bs-dropdown
+            >
+            <span class="ion-icon ion-chevron-down"></span>
+        </a>
+        <ul class="dropdown-menu">
+            <li>
+                <a ng-if="isPanel" ui-sref="account">Profile</a>
+                <a ng-if="!isPanel" href="{{ urls.account }}">Profile</a>
+            </li>
+            <li ng-if="isAdvertiser()">
+                <a ng-if="isPanel" ui-sref="funds">Add funds</a>
+                <a ng-if="!isPanel" href="{{ urls.funds }}">Add funds</a>
+            </li>
+            <li ng-if="isAdvertiser()">
+                <a ng-if="isPanel" ui-sref="cards">Credit cards</a>
+                <a ng-if="!isPanel" href="{{ urls.cards }}">Credit cards</a>
+            </li>
+            <li>
+                <a href="" ng-click="logout()">Logout</a>
+            </li>
+        </ul>
+
+    </div>
+
+    <ul class="user-nav" ng-if="!loggedIn">
+        <li>
+            <a href="" class="signinbtn" ng-click="showLoginDialog()">Login</a>
+        </li>
+        <li>
+            <a href="" class="signup" ng-click="showSignupDialog()">Create an account</a>
+        </li>
+    </ul>
+
+</div>
+

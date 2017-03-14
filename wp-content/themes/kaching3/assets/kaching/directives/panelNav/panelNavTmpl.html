@@ -1,0 +1,112 @@
+<div class="panel-nav-wrapper">
+    <ul class="panel-nav" ng-if="loggedIn">
+        <!-- <li ng-if="isPanel && isAdvertiser()">
+            <a class="item-level-1" ui-sref="kaching.dashboard" ng-class="{active:$state.includes('kaching.dashboard')}">
+                <i class="fa fa-tachometer" aria-hidden="true"></i> Dashboard
+            </a>
+        </li> -->
+        <li ng-if="isPanel && isAdvertiser()">
+            <a class="item-level-1" ui-sref="kaching.campaigns" ng-class="{active:$state.includes('kaching.campaigns')}">
+                <i class="fa fa-bullhorn" aria-hidden="true"></i> Campaigns
+            </a>
+        </li>
+        <li ng-if="isPanel && isAdvertiser()">
+            <a class="item-level-1" ui-sref="kaching.products" ng-class="{active:$state.includes('kaching.products')}">
+                <i class="fa fa-cubes" aria-hidden="true"></i> Products
+            </a>
+        </li>
+        <li ng-if="isPanel && isAdvertiser()">
+            <a class="item-level-1" ui-sref="kaching.analytics" ng-class="{active:$state.includes('kaching.analytics')}">
+                <i class="fa fa-pie-chart" aria-hidden="true"></i> Analytics
+            </a>
+        </li>
+        <li ng-if="isPanel && isAdvertiser()">
+            <a class="item-level-1" ui-sref="kaching.orderHistory" ng-class="{active:$state.includes('kaching.orderHistory')}">
+                <i class="fa fa-history" aria-hidden="true"></i> Order History
+            </a>
+        </li>
+        <li ng-if="isPanel && isAdvertiser()">
+            <a class="item-level-1" ui-sref="kaching.questions" ng-class="{active:$state.includes('kaching.questions')}">
+                <i class="fa fa-question" aria-hidden="true"></i> Questions
+            </a>
+        </li>
+        <li ng-show="isStaff()" ng-if="isPanel && isAdvertiser()">
+            <a class="item-level-1" ui-sref="kaching.lottery" ng-class="{active:$state.includes('kaching.lottery')}">
+                <i class="fa fa-trophy" aria-hidden="true"></i> Lottery
+            </a>
+        </li>
+        <li ng-if="isPanel && isAdvertiser()">
+            <a class="item-level-1">
+                <i class="fa fa-diamond" aria-hidden="true"></i> Fund
+            </a>
+            <ul class="more-menu-items sub-navigation-kaching" ng-if="loggedIn">
+                <li ng-show="isStaff()">
+                    <a class="item-level-2" ui-sref="kaching.fundManagement" ng-class="{active:$state.includes('kaching.fundManagement')}">
+                        <i class="fa fa-cog" aria-hidden="true"></i> Fund summary
+                    </a>
+                </li>
+                <li>
+                    <a class="item-level-2" ui-sref="kaching.funds" ng-class="{active:$state.includes('kaching.funds')}">
+                        <i class="fa fa-plus-square-o" aria-hidden="true"></i> Add funds
+                    </a>
+                </li>
+                <li>
+                    <a class="item-level-2" ui-sref="kaching.cards" ng-class="{active:$state.includes('kaching.cards')}">
+                        <i class="fa fa-credit-card" aria-hidden="true"></i> Credit cards
+                    </a>
+                </li>
+                <li ng-show="isStaff()">
+                    <a class="item-level-2" ui-sref="kaching.coinMapping" ng-class="{active:$state.includes('kaching.coinMapping')}">
+                        <i class="fa fa-usd" aria-hidden="true"></i> Coin mapping
+                    </a>
+                </li>
+            </ul>
+        </li>
+        <li ng-if="isPanel && isAdvertiser()">
+            <a class="item-level-1">
+                <i class="fa fa-user" aria-hidden="true"></i> Profile
+            </a>
+            <ul class="more-menu-items sub-navigation-kaching" ng-if="loggedIn">
+                <li>
+                    <a class="item-level-2" ui-sref="kaching.account" ng-class="{active:$state.includes('kaching.account')}">
+                        <i class="fa fa-cog" aria-hidden="true"></i> Settings
+                    </a>
+                </li>
+                <li ng-show="isStaff()">
+                    <a class="item-level-2" ui-sref="kaching.advertiserOrganizationManagement" ng-class="{active:$state.includes('kaching.advertiserOrganizationManagement')}">
+                        <i class="fa fa-adn" aria-hidden="true"></i> Business Management
+                    </a>
+                </li>
+                <li ng-show="isStaff()">
+                    <a class="item-level-2" ui-sref="kaching.userManagement" ng-class="{active:$state.includes('kaching.userManagement')}">
+                        <i class="fa fa-users" aria-hidden="true"></i> User Management
+                    </a>
+                </li>
+                <li>
+                    <a ng-click="logout()">
+                        <i class="fa fa-sign-out" aria-hidden="true"></i> Logout
+                    </a>
+                </li>
+            </ul>
+        </li>
+
+        <!-- <li ng-if="isPanel && isAdvertiser()">
+            <a class="item-level-1">
+                <i class="fa fa-users" aria-hidden="true"></i> Management
+            </a>
+            <ul class="more-menu-items sub-navigation-kaching" ng-if="loggedIn">
+                <li>
+                    <a class="item-level-2" ui-sref="kaching.advertiserOrganizationManagement" ng-class="{active:$state.includes('kaching.advertiserOrganizationManagement')}">
+                        <i class="fa fa-cog" aria-hidden="true"></i> Advertiser Management
+                    </a>
+                </li>
+                <li>
+                    <a class="item-level-2" ui-sref="kaching.userManagement" ng-class="{active:$state.includes('kaching.userManagement')}">
+                        <i class="fa fa-cog" aria-hidden="true"></i> User Management
+                    </a>
+                </li>
+            </ul>
+        </li> -->
+    </ul>
+
+</div>

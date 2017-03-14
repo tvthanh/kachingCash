@@ -1,0 +1,29 @@
+<div class="modal kaching-modal modal-delete-app" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" ng-click="$hide()"><span class="ion-icon ion-close-round"></span></button>
+                <h4 class="modal-title">Delete this API key?</h4>
+            </div>
+            <div class="modal-body text-center">
+                <p>Are you sure you want to delete API key:<br><span class="id">{{ app.api_key }}</span>?</p>
+                <!-- <div class="row row-buttons">
+                    <div class="col-md-6 col-left">
+                        <button type="button" class="btn btn-block btn-default uppercase" ng-click="$hide()">Cancel</button>
+                    </div>
+                    <div class="col-md-6 col-right">
+                        <button type="button" class="btn btn-block btn-primary uppercase" ng-click="delete()">Delete</button>
+                    </div>
+                </div> -->
+                <div class="row row-buttons">
+                    <div class="col-md-6 col-left clearfix">
+                        <button type="button" class="btn-kaching-second pull-right" ng-click="$hide()">Cancel</button>
+                    </div>
+                    <div class="col-md-6 col-right clearfix">
+                        <button type="button" class="btn-kaching-first pull-left" ng-click="delete()">Delete</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

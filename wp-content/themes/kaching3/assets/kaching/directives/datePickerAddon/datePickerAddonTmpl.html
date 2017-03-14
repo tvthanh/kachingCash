@@ -1,0 +1,17 @@
+<div class="input-group wrapper-input-datepicker" ng-class="{'campaing-style' : campaingStyle}">
+    <div
+        date-range-picker
+        name="daterange"
+        type="text"
+        placeholder="Date range"
+        class="form-control date-picker format-input-datepicker"
+        options="{ opens: 'center',parentEl: '.calendar-input', autoApply: true, locale: { format: 'YYYY-MM-DD', firstDay: 1 } }"
+        ng-class="{'zindex-none' : hasDate}"
+        ng-model="dateRange"
+        ng-required="true">{{ displayDate }}
+    </div>
+    <div class="input-group-addon">
+        <span class="btn-clear-date-picker" ng-show="hasDate && !clearStatus" ng-click="clearCurrentDate($event)"><i class="fa fa-times fa-lg" aria-hidden="true"></i></span>
+        <span class="icon ion-ios-calendar-outline" ng-show="!hasDate || clearStatus"></span>
+    </div>
+</div>

@@ -1,0 +1,11 @@
+---
+  - name: Set up configuration file
+    template:
+      src: templates/wp-config.php.j2
+      dest: "{{ git_dest_dir }}/wp-config.php"
+      force: yes
+    become: yes
+    become_method: sudo
+    notify:
+      - Apache restart
+    when: setup|bool or deploy|bool

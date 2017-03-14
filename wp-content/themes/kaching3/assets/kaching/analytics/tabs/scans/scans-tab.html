@@ -1,0 +1,206 @@
+<div class="container1 scans-analytics" ng-controller="scans">
+    <div loader ng-show="view.busy" ng-init="view.busy=true"></div>
+
+    <div class="row">
+        <div class="col-md-4">
+            <div class="panel panel-default margin-b-0">
+                <div class="panel-body banner-analytices">
+                    <div class="col-md-5 no-padding-left no-padding-right">
+                        <h1 class="number-label-top">{{scanThisWeek.total}}</h1>
+                        <h6 class="fz_12" ng-show="analytic.filter === 'Last 7 days'">SCAN THIS WEEK</h6>
+                        <h6 class="fz_12" ng-show="analytic.filter === 'Last month'">SCAN THIS MONTH</h6>
+                    </div>
+                    <div class="col-md-7 no-padding-left no-padding-right">
+                        <highchart id="chartconfigScanThisWeek" config="chartconfigScanThisWeek"></highchart>
+                        <label ng-show="scanThisWeek.percentage>0" class="pull-right increase">{{scanThisWeek.percentage}}% <span><i class="fa fa-arrow-up" aria-hidden="true"></i></span></label></label>
+                        <label ng-show="scanThisWeek.percentage<=0" class="pull-right decrease">{{scanThisWeek.percentage}}% <span><i class="fa fa-arrow-down" aria-hidden="true"></i></span></label></label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="panel panel-default margin-b-0">
+                <div class="panel-body banner-analytices">
+                    <div class="col-md-5 no-padding-left no-padding-right">
+                        <h1 class="number-label-top">{{activeUser.total}}</h1>
+                        <h6 class="fz_12">ACTIVE USERS</h6>
+                    </div>
+                    <div class="col-md-7 no-padding-left no-padding-right">
+                        <highchart id="chartconfigActiveUser" config="chartconfigActiveUser"></highchart>
+                        <label ng-show="activeUser.percentage>0" class="pull-right increase">{{activeUser.percentage}}% <span><i class="fa fa-arrow-up" aria-hidden="true"></i></span></label></label>
+                        <label ng-show="activeUser.percentage<=0" class="pull-right decrease">{{activeUser.percentage}}% <span><i class="fa fa-arrow-down" aria-hidden="true"></i></span></label></label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="panel panel-default margin-b-0">
+                <div class="panel-body banner-analytices">
+                    <div class="col-md-5 no-padding-left no-padding-right">
+                        <h1 class="number-label-top">{{activeCampaignInPeriod.total}}</h1>
+                        <h6 class="fz_12">ACTIVE CAMPAIGNS</h6>
+                    </div>
+                    <div class="col-md-7 no-padding-left no-padding-right">
+                        <highchart id="chartconfigActiveCampaigns" config="chartconfigActiveCampaigns"></highchart>
+                        <label ng-show="activeCampaignInPeriod.percentage>0" class="pull-right increase">{{activeCampaignInPeriod.percentage}}% <span><i class="fa fa-arrow-up" aria-hidden="true"></i></span></label></label>
+                        <label ng-show="activeCampaignInPeriod.percentage<=0" class="pull-right decrease">{{activeCampaignInPeriod.percentage}}% <span><i class="fa fa-arrow-down" aria-hidden="true"></i></span></label></label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="container-overal-data">
+                <h3 class="active-users">
+                    <strong>Active Users
+                    </strong>
+                </h3>
+                <!-- <highchart id="activeUsersLineChart" config="activeUsersLineChart"></highchart> -->
+                <div id="activeUsersLineChart" class="revenue-chart"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="row nomargin-left nomargin-right pie-block">
+                <div class="col-sm-3 nopadding" id="agePie"></div>
+                <div class="col-sm-3 nopadding" id="genderPie"></div>
+                <div class="col-sm-3 nopadding" id="countryPie"></div>
+                <div class="col-sm-3 nopadding" id="devicePie"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-8">
+            <div class="box-dashboard-main container-overal-data">
+                <div class="clearfix">
+                    <h4 class="title-dash-board-main medium-font uppercase pull-left">campaigns</h4>
+                    <!-- <a href="#" class="medium-font txt-blue font-13 link-see-more">see more</a> -->
+                </div>
+                <div class="row clearfix">
+                    <div class="col-sm-6">
+                        <div class="container-campaign-process">
+                            <p class="medium-font txt-grey font-13 uppercase">top</p>
+                            <div class="bar-process-campaign" ng-repeat="campaign in topCampaigns | limitTo:5">
+                                <label class="font-13 capitalize medium-font">{{campaign.title}}</label>
+                                <div class="bar-percent-campaign">
+                                    <div class="percen-campaign-top percen-blue" style="width:{{campaign.percent}}%;">
+                                        <div class="relative">
+                                            <div class="popup-info-campaign">
+                                                <!-- <p class="txt-deep-grey font-11 medium-font popup-paragraph">
+                                                    <span>
+                                                        <span>{{campaign.start_date}}</span>
+                                                        <span class="line-center">-</span>
+                                                        <span>{{campaign.end_date}}</span>
+                                                    </span>
+                                                    <span>{{campaign.nowDateLive}}</span>
+                                                </p> -->
+                                                <p class="font-11 medium-font txt-grey over-text capitalize">
+                                                    {{campaign.title}}
+                                                </p>
+                                                <p class="margin-0 clearfix">
+                                                    <span class="txt-white">{{campaign.no_searches}}</span>
+                                                    <span class="pull-right increase">{{campaign.percent}}%</span>
+                                                </p>
+                                            </div>
+                                            <span class="arrow-popup"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="container-campaign-process">
+                            <p class="medium-font txt-grey font-13 uppercase">worst</p>
+                            <div class="bar-process-campaign" ng-repeat="campaign in topWorstCampaigns | limitTo:5">
+                                <label class="font-13 capitalize medium-font">{{campaign.title}}</label>
+                                <div class="bar-percent-campaign">
+                                    <div class="percen-campaign-top percen-orange" style="width:{{campaign.percent}}%;">
+                                        <div class="relative">
+                                            <div class="popup-info-campaign">
+                                                <!-- <p class="txt-deep-grey font-11 medium-font popup-paragraph">
+                                                    <span>
+                                                        <span>{{campaign.start_date}}</span>
+                                                        <span class="line-center">-</span>
+                                                        <span>{{campaign.end_date}}</span>
+                                                    </span>
+                                                    <span>{{campaign.nowDateLive}}</span>
+                                                </p> -->
+                                                <p class="font-11 medium-font txt-grey over-text capitalize">
+                                                    {{campaign.title}}
+                                                </p>
+                                                <p class="margin-0 clearfix">
+                                                    <span class="txt-white">{{campaign.no_searches}}</span>
+                                                    <span class="pull-right increase">{{campaign.percent}}%</span>
+                                                </p>
+                                            </div>
+                                            <span class="arrow-popup"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="table-campaign-total">
+                    <table width="100%" cellspacing="0" cellpadding="0" border="0">
+                        <thead>
+                            <th>trigger action</th>
+                            <th>total</th>
+                            <th>growth</th>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="item in triggerAction">
+                                <td>
+                                    <i class="{{item.icon}}" aria-hidden="true"></i> {{item.action === 'buy_product' ? 'Buy prouct' : item.action.replace('_', ' ')}}
+                                </td>
+                                <td>
+                                    {{item.total}}
+                                </td>
+                                <td>
+                                    <span class="increase growthPercent" ng-class="item.percentage >= 0 ? 'increase' : 'decrease'">
+                                    {{item.percentage}}%
+                                       <span ng-show="item.percentage >= 0" class="increase"><i class="fa fa-arrow-up" aria-hidden="true"></i></span>
+                                       <span ng-hide="item.percentage >= 0" class="decrease"><i class="fa fa-arrow-down" aria-hidden="true"></i></span>
+                                    </span>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="box-dashboard-main container-overal-data">
+                <div class="clearfix">
+                    <h4 class="title-dash-board-main medium-font uppercase pull-left">top triggers</h4>
+                </div>
+                <div class="list-top-trigger clearfix">
+                    <div class="widget-top-trigger" ng-repeat="trigger in topTriggers">
+                        <div class="box-top-trigger">
+                            <div class="frame-product-top-trigger" style="background-image:url({{trigger.image}})">
+                            </div>
+                            <p class="margin-0 clearfix">
+                                <span class="medium-font font-13">{{trigger.total}}</span>
+                                <span class="medium-font pull-right font-13" ng-class="trigger.percent >= 0 ? 'increase' : 'decrease'">{{trigger.percent}}%</span>
+                            </p>
+                            <div class="popup-info-top-trigger">
+                                <p class="txt-deep-grey margin-b-3 font-11 medium-font popup-paragraph">
+                                    <p class="font-11 medium-font txt-grey over-text capitalize popup-paragraph">
+                                        {{trigger.title}}
+                                    </p>
+                                    <span class="arrow-top-trigger" style="top:7px;"></span>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,90 @@
+<div class="wrap1 container1 products-page new-format-product-page">
+    <div class="content row">
+        <div class="header-block">
+            <div class="inner-header-block clearfix">
+                <div class="col-sm-6 pLeft_0">
+                    <h3>Questions Management</h3>
+                </div>
+                <div class="col-md-6 pRight_0 clearfix">
+                    <div class="col-sm-8 text-right pRight_0">
+                        <form name="searchForm" ng-submit="search()" novalidate>
+                            <div>
+                                <input type="text" placeholder="Search" ng-model="view.searchInput" ng-disabled="view.busy">
+                            </div>
+                        </form>
+                    </div>
+                    <div class="col-sm-4 pRight_0 text-right">
+                        <button ng-click="showNewQuestionDialog()" type="button" class="btn-kaching-first percent_100">New Question</button>
+                    </div>
+                </div>
+            </div>
+            <div class="title-cropper-line"></div>
+        </div>
+
+        <div class="products-grid" ng-show="data.questions.length > 0" infinite-scroll="nextPage()" infinite-scroll-disabled="view.busy" infinite-scroll-distance="0">
+
+            <table class="table table-striped">
+                <tbody>
+                    <tr ng-repeat="item in data.questions" ng-click="toggleItem(item)">
+                        <td>
+                            <div class="box-product-item clearfix">
+                                <div class="item-info">
+                                    <div class="product-metadata">
+                                        <div class="title ellipsis">{{ item.content }}</div>
+                                        <div class="date">Type: <span>{{item.type | answerType}}</span></div>
+                                        <div class="date">Answers: <span>{{item.answers.length}}</span></div>
+                                    </div>
+                                    <span class="badge-active" ng-show="item.is_active">Active</span>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="setting-control">
+                            <div class="product-toolbar question-toolbar text-center">
+                                <a ng-click="showDeleteQuestionDialog( item, $index )" href="" class="btn btn-action"
+                                    data-animation="am-fade-and-scale"
+                                    data-placement="top"
+                                    data-trigger="hover"
+                                    data-type="success"
+                                    data-title="Delete Question"
+                                    bs-tooltip
+                                    >
+                                    <img src="/wp-content/themes/kaching3/assets/images/campaign/trash-kaching.svg">
+                                </a>
+                                <a  class="btn btn-action"
+                                    data-animation="am-fade-and-scale"
+                                    data-placement="top"
+                                    data-trigger="hover"
+                                    data-type="success"
+                                    data-title="Edit Question"
+                                    bs-tooltip
+                                    ng-click="showEditQuestionDialog(item.id)"
+                                    >
+                                    <img src="/wp-content/themes/kaching3/assets/images/campaign/setting-kaching.svg">
+                                </a>
+                                <a  class="btn btn-action"
+                                    data-animation="am-fade-and-scale"
+                                    data-placement="top"
+                                    data-trigger="hover"
+                                    data-type="success"
+                                    data-title="Question details"
+                                    bs-tooltip
+                                    ng-click="showViewQuestionDialog(item.id)"
+                                    >
+                                    <img src="/wp-content/themes/kaching3/assets/images/campaign/ico-detail.svg">
+                                </a>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="scroll-spacer"></div>
+        </div>
+
+        <div loader ng-show="view.busy"></div>
+
+        <div ng-show="!view.busy && data.questions.length == 0">
+            <h2 class="text-center" ng-show="view.searchPhrase.length == 0">You don't have any questions.</h2>
+            <h2 class="text-center" ng-show="view.searchPhrase.length > 0">You don't have any questions<br>matching this search criteria.</h2>
+        </div>
+    </div>
+</div>

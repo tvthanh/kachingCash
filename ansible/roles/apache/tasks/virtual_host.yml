@@ -1,0 +1,23 @@
+---
+  - debug:
+      msg="Create a virtual host with properly settings"
+  - name: Create host file using template
+    template:
+      src: templates/virtual_host.j2
+      dest: "{{ webserver_host_conf_file }}"
+      owner: root
+      group: root
+    become: yes
+    become_method: sudo
+    notify:
+      - Apache restart
+    when: setup|bool
+  - name: Remove port from apache ports config file
+    lineinfile:
+      dest: /etc/apache2/ports.conf
+      regexp: "^Listen {{ webserver_server_port }}"
+      state: absent
+    become: yes
+    notify:
+      - Apache restart
+    when: setup|bool

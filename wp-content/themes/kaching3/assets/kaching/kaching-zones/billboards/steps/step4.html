@@ -1,0 +1,81 @@
+<div class="billboards-step4 new-format-step4" ng-controller="step4Ctrl">
+    <div loader ng-show="view.busy"></div>
+    <div ng-show="!view.busy">
+        <div class="campaign-confirmation">
+            <div class="information block-content">
+                <div class="step-campaign-details">
+                    <div class="title">
+                        <span class="medium-font">Your campaign is quite ready to publish here:</span>
+                    </div>
+                    <div class="item-card-v1 basic-info clearfix">
+                        <div class="col-sm-6 summary-detail-campaign no-gutter clearfix">
+                            <div class="row-summary clearfix">
+                                <div class="col-sm-6 pLeft_0">
+                                    <span class="flat-country">
+                                        <img ng-src="{{flagUrl}}" alt=""/>
+                                    </span>
+                                    <span>{{selectedCountry.short_name}}</span>
+                                </div>
+                                <div class="col-sm-6">
+                                    <span>{{campaign.name}}</span>
+                                    <span>Funds: {{campaign.fund}} coins</span>
+                                </div>
+                            </div>
+                            <div class="row-summary clearfix">
+                                <div class="col-sm-6 pLeft_0">
+                                    <span>Duration</span>
+                                </div>
+                                <div class="col-sm-6">
+                                    <span>{{campaign.start_date | date:'MM/dd/yyyy'}}</span>
+                                    <span>{{campaign.end_date | date:'MM/dd/yyyy'}}</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 pRight_0" ng-show="campaign.type === 'billboard' || campaign.type === 'in_store'">
+                            <div id="map-preview" class="map-preview">
+                                <ng-map center="{{mapCenter}}" style="height: 100%" zoom="12">
+                                    <div ng-repeat="p in points">
+                                        <marker icon="{{p.customIcon}}"  position="{{p.latitude}}, {{p.longitude}}" ></marker>
+                                    </div>
+                                </ng-map>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="container-media-library block-content end-block-content clearfix" ng-show="!isSignupCampaign">
+                <div class="col-sm-7 no-gutter">
+                    <div class="title clearfix">
+                        <span class="medium-font">Media list</span>
+                    </div>
+                    <div class="table-media-library clearfix">
+                        <div class="header-media-library clearfix">
+                            <div class="col-sm-7">
+                                <label>Media</label>
+                            </div>
+                            <div class="col-sm-3">
+                                <label></label>
+                            </div>
+                        </div>
+                        <div class="no-gutter" ng-show="campaign.type === 'in_store'">
+                            <instore-media-preview store-list="mediaList" item-edit="editMedia(mediaId)" item-delete="deleteMedia(media)" show-delete="false" show-edit="false" review="true" view-media="true" selected-media="selectedMedia"></instore-media-preview>
+                        </div>
+                        <div class="no-gutter" ng-show="campaign.type !== 'in_store'">
+                            <media-preview media-list="mediaList" item-edit="editMedia(mediaId)" item-delete="deleteMedia(media)" show-delete="false" show-edit="false" review="true" view-media="true" selected-media="selectedMedia"></media-preview>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-5 pRight_0">
+                    <div class="title clearfix">
+                        <span class="medium-font">Preview</span>
+                    </div>
+                    <ar-preview media="selectedMedia"></ar-preview>
+                </div>
+            </div>
+        </div>
+        <div class="footer-popup-stream-video clearfix" ng-show="!viewDetail">
+            <button type="button" class="btn-kaching-first pull-right" ng-click="showFinishPopup()" ng-disabled="noMedia" >Submit</button>
+            <button type="button" class="btn-kaching-second margin-r-15 pull-right" ng-click="goPrev()">Back to step 3</button>
+        </div>
+    </div>
+</div>

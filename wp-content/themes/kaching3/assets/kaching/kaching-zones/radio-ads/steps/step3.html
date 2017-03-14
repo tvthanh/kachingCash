@@ -1,0 +1,45 @@
+<div class="billboards-step3" ng-controller="radioStep3Ctrl">
+	<form name="form1" novalidate>
+	<div loader ng-show="view.busy"></div>
+	<div ng-show="!view.busy">
+		<div class="detail-content-tab-stream">
+			<div class="container-step-3-stream">
+				<p class="font-11 capitalize text-right">* require field</p>
+				<ad-dollars medias="medias" campaign="campaign"></ad-dollars>
+
+				<div class="frame-bg-popup">
+					<div class="row clearfix">
+						<div class="col-sm-12">
+							<label class="popup-name">Ad-Dollar Purchase</label>
+							<a class="ad-dollar-price-list">Ad-Dollar Price List</a>
+							<ul class="media-list">
+								<li class="head">
+									<span class="col-sm-3">Type</span>
+									<span class="col-sm-3">Total Ad-Dollars</span>
+									<span class="col-sm-4">Per Dollar Per Click (USD)</span>
+									<span class="col-sm-2">Total (USD)</span>
+									<!-- <span class="clearfix"></span> -->
+								</li>
+								<li ng-repeat="purchaseAd in purchaseAds" class="purchase-preview">
+										<label class="col-sm-3">{{purchaseAd.type}}</label>
+										<div class="col-sm-2"><input type="text" ng-model="purchaseAd.totalAdDollars"></input></div>
+										<span class="col-sm-1 display-span without-border">X</span>
+										<span class="col-sm-3 display-span without-border">{{ purchaseAd.perDollarPerClick}}</span>
+										<span class="col-sm-1 display-span without-border">=</span>
+										<span class="col-sm-2 display-span">{{ purchaseAd.perDollarPerClick * purchaseAd.totalAdDollars | number }}</span>
+
+									<div class="clearfix"></div>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="footer-popup-stream-video clearfix">
+			<a class="btn-next-step pull-right" ng-click="nextStep()">Continue to Step 4 - Confirmation</a>
+			<a class="btn-back-to-step pull-right" ng-click="goPrev()">Back to step 2</a>
+		</div>
+	</div>
+	</form>
+</div>

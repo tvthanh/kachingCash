@@ -1,0 +1,131 @@
+<div class="header-campaigns-list">
+    <div class="container">
+        <div class="row clearfix filter-campaign">
+            <div class="col-sm-2 filter-title">
+                <h4 class="medium-font txt-grey margin-0 capitalize">advert information</h4>
+            </div>
+            <!-- <div class="col-sm-2">
+                <input
+                type="text"
+                class="form-control"
+                ng-model="filters.name"
+                ng-change="updateFilters()"
+                ng-model-options="{debounce: 600}"
+                placeholder= "Advertisement name"
+                >
+            </div>
+            <div class="col-sm-2">
+                <input
+                type="text"
+                class="form-control"
+                ng-model="filters.media_title"
+                ng-change="updateFilters()"
+                ng-model-options="{debounce: 600}"
+                placeholder="Title inside application"
+                >
+            </div>
+            <div class="col-sm-2">
+                <input
+                date-range-picker
+                type="text"
+                class="form-control"
+                options="{ opens: 'center', autoApply: true, locale: { format: 'YYYY-MM-DD', firstDay: 1 } }"
+                ng-model="daterange.dates"
+                ng-change="updateFilters()"
+                placeholder="Date range"
+                >
+            </div> -->
+            <div class="col-sm-2">
+                <select
+                class="filter-sort-by"
+                zzz-ng-model="filters.status"
+                ng-model="view.statusFilterModel"
+                ng-options="status.name for status in view.advertTypes track by status.id"
+                ng-change="updateFilters()"
+                ></select>
+            </div>
+            <div class="start-campaign-btn pull-right">
+                <a ui-sref="campaigns.new" href="#/advertisements/new-advertisement">+ Create an advertisement</a>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="container-list-advertisements-kaching  container-list-campaign-kaching">
+        <div ng-repeat="campaign in data.advertList">
+        <div class="row-campaign-kaching clearfix">
+            <div class="column-campaign-kaching advert-column ">
+                <div class="clearfix">
+                    <div class="info-brand-kaching">
+                        <label>{{ campaign.name }}</label>
+                        <span class="font-12 medium-font">Advertisement name</span>
+                    </div>
+                </div>
+            </div>
+            <div class="column-campaign-kaching advert-column ">
+                <div class="clearfix">
+                    <label class="pull-left">{{ campaign.start_date | date:'yyyy-MM-dd' }}</label>
+                    <span class="pull-left" style="margin:0 3px;">-</span>
+                    <label class="pull-left">{{ campaign.end_date | date:'yyyy-MM-dd' }}</label>
+                </div>
+                <span class="note-column-campaign">Period: Start to End</span>
+            </div>
+            <div class="column-campaign-kaching advert-column-small ">
+                <div class="clearfix">
+                    <a
+                        href=""
+                        ng-click="showDeleteAdvertDialog( campaign )"
+                        class="action-campaign pull-left"
+                        data-animation="am-fade-and-scale"
+                        data-placement="top"
+                        data-trigger="hover"
+                        data-type="success"
+                        data-title="Delete Advertisement"
+                        bs-tooltip
+                        >
+                       <img src="/wp-content/themes/kaching3/assets/images/campaign/trash-kaching.svg">
+                    </a>
+                    <a
+                        ui-sref="advertisements.edit({ advertId: campaign.id })"
+                        class="action-campaign pull-left"
+                        data-animation="am-fade-and-scale"
+                        data-placement="top"
+                        data-trigger="hover"
+                        data-type="success"
+                        data-title="Edit Advertisement"
+                        bs-tooltip
+                        >
+                        <img src="/wp-content/themes/kaching3/assets/images/campaign/setting-kaching.svg">
+                    </a>
+                    <a
+                        href=""
+                        ng-click="showAdvertDetails( campaign.id )"
+                        class="action-campaign pull-left"
+                        data-animation="am-fade-and-scale"
+                        data-placement="top"
+                        data-trigger="hover"
+                        data-type="success"
+                        data-title="Advert details"
+                        bs-tooltip
+                        >
+                        <img src="/wp-content/themes/kaching3/assets/images/campaign/ico-detail.svg">
+                    </a>
+                </div>
+            </div>
+        </div>
+        </div>
+        <div class="text-center kaching-pagination paging-wrapper" ng-hide="data.campaignsCount <= view.itemsPerPage">
+            <div
+                uib-pagination
+                ng-change="changePage()"
+                ng-model="view.currentPage"
+                max-size="view.maxSize"
+                total-items="data.campaignsCount"
+                items-per-page="view.itemsPerPage"
+                force-ellipses="true"
+                template-url="template/pagination/pagination.html"
+                >
+            </div>
+        </div>
+    </div>
+</div>

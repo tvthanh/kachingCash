@@ -1,0 +1,104 @@
+<form
+    class="add-campaign-step2"
+    name="form1"
+    novalidate
+    >
+    <div ng-if="!view.busy">
+
+        <div class="panel panel-kaching panel-add-media">
+            <div class="panel-heading">
+                <h3 class="panel-title">Add media collection</h3>
+                <div class="add-media-toolbar" ng-show="hasMedia()">
+                    <button class="btn btn-primary uppercase" ng-click="showNewMediaDialog()">Add media</button> or
+                    <button class="btn btn-primary uppercase" ng-click="showMediaLibrary()">Pick from library</button>
+                </div>
+            </div>
+            <div class="panel-body">
+
+                <div loader ng-show="view.busyMedia"></div>
+
+                <div ng-hide="hasMedia()" class="text-center">
+                    <button class="btn btn-primary uppercase" ng-click="showNewMediaDialog()">Add new media</button> or
+                    <button class="btn btn-primary uppercase" ng-click="showMediaLibrary()">Pick media from library</button>
+                </div>
+
+                <div ng-show="view.mediaLoaded">
+
+                    <div class="form-group">
+                        <input
+                            id="media_title"
+                            type="text"
+                            class="form-control"
+                            placeholder="Name of your media"
+                            ng-model="media.name"
+                            required
+                            >
+                    </div>
+
+                    <div class="media-preview-container">
+                        <!-- <div class="video-container">
+                            <div videogular vg-player-ready="onPlayerReady($API)">
+                                <vg-media vg-src="videogular.sources" vg-native-controls="true"></vg-media>
+                            </div>
+                        </div> -->
+                        <div class="video-container">
+                            <div videogular vg-player-ready="onPlayerReady($API)" ng-show="externalLink === null">
+                                <vg-media vg-src="videogular.sources" vg-native-controls="true"></vg-media>
+                            </div>
+                            <div class='outer-embed-ta' ng-show="externalLink !== null">
+                                <iframe width='100%'  height="100%" src="{{externalLink}}"
+                                        allowfullscreen='true'
+                                        webkitallowfullscreen='true' mozallowfullscreen='true' scrolling='no' class='embed-ta'>
+                                </iframe>
+                            </div>
+                        </div>
+                        <div class="image-container" style="background-image:url({{media.display}});"></div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+
+        <div class="panel panel-kaching">
+            <div class="panel-heading"><h3 class="panel-title">Data inside application</h3></div>
+            <div class="panel-body">
+
+                <div class="form-group" ng-class="{ 'has-error' : showErrors() && fieldHasError( this, 'form1', 'media_title' ) }">
+                    <input
+                        name="media_title"
+                        type="text"
+                        class="form-control"
+                        placeholder="Title inside application"
+                        ng-model="media.media_title"
+                        required
+                        >
+                    <span ng-show="showErrors() && fieldHasError( this, 'form1', 'media_title' )" class="help-block">Please enter media title.</span>
+                </div>
+
+                <div class="form-group" ng-class="{ 'has-error' : showErrors() && fieldHasError( this, 'form1', 'media_description' ) }">
+                    <textarea
+                        name="media_description"
+                        type="text"
+                        class="form-control"
+                        placeholder="Description inside application"
+                        ng-model="media.media_description"
+                        required
+                        ></textarea>
+                    <span ng-show="showErrors() && fieldHasError( this, 'form1', 'media_description' )" class="help-block">Please enter media description.</span>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="steps-footer">
+            <div class="pull-right">
+                <a href="" class="btn btn-default uppercase" ng-click="previousStep()">Previous step</a>
+                <a href="" class="btn btn-primary uppercase" ng-click="nextStep()">Next step</a>
+            </div>
+        </div>
+
+    </div>
+</form>
+
+<!-- <div><button class="btn" ng-click="logControllerData()">LOG CONTROLLER DATA</button></div> -->

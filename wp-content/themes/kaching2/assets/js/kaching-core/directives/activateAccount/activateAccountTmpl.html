@@ -1,0 +1,53 @@
+<div class="wrap container expired-page" role="document">
+    <div class="text-center">
+
+        <div class="alert alert-danger text-center" ng-show="view.verificationError">
+            We are unable to verify your account.
+        </div>
+
+        <div loader ng-show="view.verificationProcessing"></div>
+
+        <div ng-show="view.verificationSuccess">
+
+            <div class="alert alert-success">
+               Your account has been activated
+            </div>
+            <h3 class="text-center">Sign into your account</h3>
+
+            <form class="form-login" ng-submit="signinFormSubmit()">
+                <div class="form-group">
+                    <input
+                        type="text"
+                        class="form-control"
+                        placeholder="E-mail"
+                        autofocus
+                        ng-model="loginFormData.email"
+                        ng-disabled="view.logginProcessing"
+                        >
+                </div>
+                <div class="form-group">
+                    <input
+                        type="password"
+                        class="form-control"
+                        placeholder="Password"
+                        ng-model="loginFormData.password"
+                        ng-disabled="view.logginProcessing"
+                        >
+                </div>
+                <div
+                   class="alert alert-danger"
+                   ng-show="view.formError && !view.logginProcessing"
+                   >Please enter valid e-mail address and password.</div>
+                <div class="form-group">
+                    <button
+                        class="btn btn-primary btn-block uppercase"
+                        type="submit"
+                        ng-disabled="view.logginProcessing"
+                        >Sign in</button>
+                </div>
+            </form>
+
+        </div>
+
+    </div>
+</div>

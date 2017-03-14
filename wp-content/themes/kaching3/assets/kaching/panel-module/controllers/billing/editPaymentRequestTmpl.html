@@ -1,0 +1,50 @@
+<div class="modal kaching-modal with-footer" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" ng-click="$hide()"><span class="ion-icon ion-close-round"></span></button>
+                <h4 class="modal-title">Edit Payment Request</h4>
+            </div>
+            <div class="modal-body">
+                <div class="campaign-edit campaign-edit-details">
+
+                    <form name="form1" novalidate>
+                        <div class="form-group">
+                            <label>Id</label>
+                            <input name="campaign_name" type="text" class="form-control campaign-name" ng-model="payment.id" ng-disabled="true">
+                        </div>
+                        <div class="form-group">
+                            <label>Created Date</label>
+                            <!--  "payment.withdraw_at | date : 'dd/MM/y' "-->
+                            <input name="campaign_name" type="text" class="form-control campaign-name" ng-model="payment.withdraw_at | date : 'dd/MM/y'" ng-disabled="true">
+                        </div>
+                        <div class="form-group">
+                            <label>Account Name</label>
+                            <input name="campaign_name" type="text" class="form-control campaign-name" ng-model="payment.owner.name" ng-disabled="true">
+                        </div>
+
+                        <div class="form-group">
+                            <label>Amount</label>
+                            <input name="campaign_name" type="text" class="form-control campaign-name" ng-model="payment.amount" ng-disabled="true">
+                        </div>
+
+                        <div class="form-group form-group-media-name">
+                            <label>Status</label>
+                            <select ng-model="statusProp.value" ng-options="s as (s | paymentRequestStatus) for s in statusProp.status">
+                            </select>
+
+                        </div>
+
+                        <div class="campaign-edit-btns-container">
+                            <a href="" class="btn btn-default uppercase" ng-click="$hide()">Cancel</a>
+                            <a href="" class="btn btn-primary uppercase" ng-click="saveForm()">Save changes</a>
+                        </div>
+
+                    </form>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

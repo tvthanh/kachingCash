@@ -1,0 +1,120 @@
+<div class="order-history-container lottery-container-page advertiser-management-page">
+    <div class="header-block">
+        <div class="inner-header-block clearfix">
+            <div class="col-sm-10 pLeft_0">
+                <h3>Business Management</h3>
+            </div>
+            <div class="col-sm-2 text-right pRight_0">
+                <button type="button" class="btn-kaching-first btn-medium" ng-click="createAdvertisement()">New Business</button>
+            </div>
+        </div>
+        <div class="title-cropper-line"></div>
+    </div>
+    <div class="body-block">
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th style="min-width: 91px;">
+                            <div class="inner-th">
+                                <span>Name</span>
+                                <div class="form-group">
+                                    <input type="text" class="form-control" name="name" value="" placeholder="Search name" ng-change="updateFilters()" ng-model="filters.name">
+                                </div>
+                            </div>
+                        </th>
+                        <th style="min-width: 289px;">
+                            <div class="inner-th">
+                                <span>Join Date</span>
+                            </div>
+                        </th>
+                        <th style="min-width: 173px;">
+                            <div class="inner-th">
+                                <span>Status</span>
+                                <select
+                                    ng-change="updateFilters()"
+                                    ng-model="statusAdvertiser"
+                                    ng-options="statusItem.label for statusItem in  statusAdvertisers track by statusItem.value"
+                                    class="form-control">
+                                </select>
+                            </div>
+                        </th>
+                        <th style="min-width: 85px;">
+                            <div class="inner-th">
+                                <span></span>
+                            </div>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="advertiserItem in data.advertiserOrganizationList">
+                        <!-- <td class="w_50">
+                            <div class="box-photo">
+                                <img ng-src="{{ advertiserItem.photo ? advertiserItem.photo : kachingAppConfig.wpTemplateUri + '/assets/images/ic_user.png' }}">
+                            </div>
+                        </td> -->
+                        <td>
+                            <div class="ellipsis w_250">
+                                <span>{{advertiserItem.name}}</span>
+                            </div>
+                        </td>
+                        <td>
+                            <span>{{advertiserItem.date}}</span>
+                        </td>
+                        <td>
+                            <span>{{advertiserItem.status}}</span>
+                        </td>
+                        <td>
+                            <div class="clearfix pull-right">
+                                <a
+                                    href=""
+                                    ng-click="showDeleteConfirm(advertiserItem)"
+                                    class="action-campaign pull-left"
+                                    data-animation="am-fade-and-scale"
+                                    data-placement="top"
+                                    data-trigger="hover"
+                                    data-type="success"
+                                    data-title="Delete Business"
+                                    bs-tooltip
+                                    >
+                                   <img src="/wp-content/themes/kaching3/assets/images/campaign/trash-kaching.svg">
+                                </a>
+                                <a
+                                    class="action-campaign pull-left"
+                                    data-animation="am-fade-and-scale"
+                                    data-placement="top"
+                                    data-trigger="hover"
+                                    data-type="success"
+                                    data-title="Edit Business"
+                                    bs-tooltip
+                                    ng-click="editAdvertisement(advertiserItem)"
+                                    >
+                                    <img src="/wp-content/themes/kaching3/assets/images/campaign/setting-kaching.svg">
+                                </a>
+                                <a
+                                    href=""
+                                    ng-click="goToUserList(advertiserItem.name)"
+                                    class="action-campaign ic-user-management pull-left"
+                                    data-animation="am-fade-and-scale"
+                                    data-placement="top"
+                                    data-trigger="hover"
+                                    data-type="success"
+                                    data-title="Link User Management"
+                                    bs-tooltip
+                                    >
+                                    <i class="fa fa-users" aria-hidden="true"></i>
+                                </a>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+
+            </table>
+        </div>
+        <div ng-hide="data.advertiserCount <= view.itemsPerPage" class="text-center kaching-pagination paging-wrapper">
+            <div uib-pagination ng-change="changePage()" ng-model="view.currentPage" max-size="view.maxSize" total-items="data.advertiserCount" items-per-page="view.itemsPerPage" force-ellipses="true" template-url="template/pagination/pagination.html">
+            </div>
+        </div>
+        <div loader ng-show="view.busy && !data.orderHistorys.length" ng-init="view.busy=true"></div>
+    </div>
+</div>

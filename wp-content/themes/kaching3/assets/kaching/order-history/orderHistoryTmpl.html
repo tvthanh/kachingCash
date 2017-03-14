@@ -1,0 +1,127 @@
+<div class="order-history-container">
+    <div class="header-block">
+        <div class="inner-header-block clearfix">
+            <div class="col-sm-8 pLeft_0">
+                <h3>Order History</h3>
+            </div>
+            <div class="col-sm-4 text-right pRight_0">
+                <button type="button" class="btn-kaching-first btn-medium" name="button" ng-csv="orderHistoryList" lazy-load="true" csv-header="['Order No', 'Date', 'Buyer name', 'Shipping address', 'Total amount', 'Total item', 'Status' ]" filename="orderHistory.csv">Export Data</button>
+            </div>
+        </div>
+        <div class="title-cropper-line"></div>
+    </div>
+    <div class="body-block">
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th style="min-width: 91px;">
+                            <div class="inner-th">
+                                <span>Order No</span>
+                                <div class="form-group w_70">
+                                    <input type="text" class="form-control" name="name" value="" placeholder="Search" ng-model="orderNo">
+                                </div>
+                            </div>
+                        </th>
+                        <th style="min-width: 289px;">
+                            <div class="inner-th">
+                                <span>Date</span>
+                                <div class="form-group">
+                                    <date-picker-addon
+                                        display-date="daterange.display"
+                                        date-range="daterange.dates"
+                                        clear-status="false"
+                                    ></date-picker-addon>
+                                </div>
+                            </div>
+                        </th>
+                        <th style="min-width: 180px;">
+                            <div class="inner-th">
+                                <span>Buyer name</span>
+                                <div class="form-group">
+                                    <input type="text" class="form-control" name="name" value="" placeholder="Search name" ng-model="buyerName">
+                                </div>
+                            </div>
+                        </th>
+                        <th style="min-width: 173px;">
+                            <div class="inner-th">
+                                <span>Shipping address</span>
+                            </div>
+                        </th>
+                        <th style="min-width: 110px;">
+                            <div class="inner-th">
+                                <span>Total amount</span>
+                            </div>
+                        </th>
+                        <th style="min-width: 85px;">
+                            <div class="inner-th">
+                                <span>Total item</span>
+                            </div>
+                        </th>
+                        <th style="min-width: 117px;">
+                            <div class="inner-th">
+                                <span>Status</span>
+                            </div>
+                        </th>
+                        <th style="min-width: 60px;">
+                            <div class="inner-th">
+                                <span>Action</span>
+                            </div>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="orderItem in data.orderHistorys | orderHistoryFilter:daterange.dates.startDate:daterange.dates.endDate:orderNo:buyerName | limitTo:view.itemsPerPage:view.itemsPerPage*(view.currentPage-1)">
+                        <td>
+                            <span>{{orderItem.orderNumber}}</span>
+                        </td>
+                        <td>
+                            <span>{{orderItem.date}}</span>
+                        </td>
+                        <td>
+                            <span>{{orderItem.buyer}}</span>
+                        </td>
+                        <td>
+                            <div class="ellipsis w_150">
+                                <span>{{orderItem.shippingAddress}}</span>
+                            </div>
+                        </td>
+                        <td>
+                            <span>{{orderItem.totalMount}}</span>
+                        </td>
+                        <td>
+                            <span>{{orderItem.totalItem}}</span>
+                        </td>
+                        <td>
+                            <span class="order-status {{orderItem.status}}">{{orderItem.status}}</span>
+                        </td>
+                        <td>
+                            <div ng-show="updatingId==orderItem.orderNumber" class="updating">
+                                <i class="fa fa-refresh" aria-hidden="true"></i>
+                            </div>
+                            <a
+                                ng-hide="updatingId==orderItem.orderNumber"
+                                class="arrow-edit-order text-right cursor-pointer"
+                                data-animation="am-fade-and-scale"
+                                data-placement="top"
+                                data-trigger="hover"
+                                data-type="success"
+                                data-title="Edit Order"
+                                bs-tooltip
+                                ng-click="editOrder(orderItem)"
+                                >
+                                <img src="/wp-content/themes/kaching3/assets/images/campaign/setting-kaching.svg">
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+
+            </table>
+        </div>
+        <div ng-hide="data.orderHistorys.length <= view.itemsPerPage" class="text-center kaching-pagination paging-wrapper">
+            <div uib-pagination ng-change="changePage()" ng-model="view.currentPage" max-size="view.maxSize" total-items="kaching.orderHistoryFilteredDataLength" items-per-page="view.itemsPerPage" force-ellipses="true" template-url="template/pagination/pagination.html">
+            </div>
+        </div>
+        <div loader ng-show="view.busy && !data.orderHistorys.length" ng-init="view.busy=true"></div>
+    </div>
+</div>

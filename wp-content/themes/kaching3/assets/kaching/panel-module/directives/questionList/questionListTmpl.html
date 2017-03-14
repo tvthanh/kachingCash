@@ -1,0 +1,45 @@
+<div class="frame-bg-popup">
+    <div class="loading-product" loader ng-show="view.busyQuestion"></div>
+    <label class="medium-font">Available questions - Click to select</label>
+    <div class="input-group input-group-search col-sm-4 clearfix">
+        <input type="text" class="form-control" placeholder="Search" enter-press="search()" ng-model="view.searchInput" ng-disabled="view.busy">
+        <span class="input-group-btn">
+            <button class="btn btn-primary" type="submit" ng-disabled="view.busy" ng-click="search()">
+            <span class="glyphicon glyphicon-search"></span>
+        </button>
+        </span>
+    </div>
+    <div class="products clearfix" ng-if="!view.busyQuestion && view.questions.length > 0">
+        <div
+            ng-repeat="item in view.questions"
+            ng-click="toggleItem(item)"
+            ng-class="{ 'selected': item.selected }"
+            class="product-container question-container"
+            >
+            <div class="image-container">
+                <div class="title">{{ item.content }}</div>
+                <div class="date">Total answers: <span>{{ item.answer.length}}</span></div>
+                <div class="icon-selected" ng-show="item.selected"><span class="glyphicon glyphicon-ok-circle"></span></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="margin-t-30 margin-b-15" ng-if="!view.busy && view.questions.length == 0">
+        <h2 class="text-center" ng-show="view.searchPhrase.length == 0">You don't have any questions.</h2>
+        <h2 class="text-center" ng-show="view.searchPhrase.length > 0">You don't have any questions<br>matching this search criteria.</h2>
+    </div>
+
+    <div class="modal-section text-center paging-wrapper" ng-hide="view.questionsCount <= view.itemsPerPage">
+        <div
+            uib-pagination
+            ng-change="changePage()"
+            ng-model="view.currentPage"
+            max-size="view.maxSize"
+            total-items="view.questionsCount"
+            items-per-page="view.itemsPerPage"
+            force-ellipses="true"
+            template-url="template/pagination/pagination.html"
+            >
+        </div>
+    </div>
+</div>

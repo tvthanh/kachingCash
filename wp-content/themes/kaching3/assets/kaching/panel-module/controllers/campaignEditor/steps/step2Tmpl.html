@@ -1,0 +1,198 @@
+<form
+    class="add-campaign-step2 campaign-targeting"
+    name="form1"
+    novalidate
+    >
+    <div ng-if="!view.busy">
+
+        <div class="panel panel-kaching">
+
+            <div class="panel-heading"><h3 class="panel-title">Categories</h3></div>
+            <div class="panel-body">
+
+                <div class="form-group">
+                    <label class="radio-inline">
+                        <input type="radio" name="all_categories" ng-model="data.allCategories" ng-value="true" ng-change="resetError('categories')">
+                        Display all
+                    </label>
+                    <label class="radio-inline">
+                        <input type="radio" name="all_categories" ng-model="data.allCategories" ng-value="false" ng-change="resetError('categories')">
+                        Display in selected categories
+                    </label>
+                </div>
+
+                <p class="small">Making a selection will include only traffic from sites within that category.</p>
+
+                <!-- <div class="panel-multiselect" ng-show="!data.allCategories">
+                    <div class="panel-heading">Primary categories</div>
+                    <div class="panel-body">
+                        <div class="checkbox" ng-repeat="category in data.categories">
+                            <label>
+                                <input type="checkbox" ng-model="category.selected" ng-change="resetError('categories')"> {{category.name}}
+                            </label>
+                        </div>
+                    </div>
+                </div> -->
+
+                <div class="row form-row" ng-show="!data.allCategories">
+                    <div class="col-sm-12 flex-box">
+                        <div class="item-card-v2 user-interest">
+                            <div class="content">
+                                <uib-accordion close-others="oneAtATime">
+                                    <uib-accordion-group is-open="true">
+                                        <uib-accordion-heading>
+                                            <i class="fa fa-plus-circle"></i>Primary categories <i class="fa" ng-class="{'fa-chevron-up': status.open, 'fa-chevron-down': !status.open}"></i>
+                                        </uib-accordion-heading>
+                                        <ul>
+                                            <li ng-repeat="category in data.categories" ng-class="{'added' : category.selected}" class="custom-checkbox-wrapper">
+                                                <a>
+                                                    <input type="checkbox" ng-model="category.selected" id="{{category.id}}">
+                                                    <label ng-click="updateDataModel($event, category)" for="{{category.id}}"><span class="fa" ng-class="{'fa-check-circle-o' : category.selected, 'fa-minus-circle' : !category.selected}"></span>{{category.name}}</label>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </uib-accordion-group>
+                                </uib-accordion>
+                            </div>
+                        </div>
+                        <div class="item-card-v2  user-interested">
+                            <div class="content">
+                                <div class="title-add">Added</div>
+                                <ul class="added">
+                                    <li ng-repeat="category in data.categories" class="added" ng-if="category.selected">
+                                        <a><i class="fa fa-minus-circle" ng-click="updateDataModel($event, category)"></i> {{category.name}}</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-error" ng-show="view.showErrors && view.errors.categories">You must select at least one category.</div>
+
+            </div>
+
+        </div>
+
+        <div class="panel panel-kaching">
+
+            <div class="panel-heading"><h3 class="panel-title">Location</h3></div>
+            <div class="panel-body">
+
+                <div class="form-group">
+                    <label class="radio-inline">
+                        <input type="radio" name="all_locations" ng-model="data.allLocations" ng-value="true" ng-change="resetError('locations')"> Global
+                    </label>
+                    <label class="radio-inline">
+                        <input type="radio" name="all_locations" ng-model="data.allLocations" ng-value="false" ng-change="resetError('locations')"> Custom
+                    </label>
+                </div>
+
+                <!-- <div class="panel-multiselect" ng-show="!data.allLocations">
+                    <div class="panel-heading">Select countries</div>
+                    <div class="panel-body">
+                        <div class="checkbox" ng-repeat="location in data.locations">
+                            <label>
+                                <input type="checkbox" ng-model="location.selected" ng-change="resetError('locations')"> {{location.name}}
+                            </label>
+                        </div>
+                    </div>
+                </div> -->
+
+                <div class="row form-row" ng-show="!data.allLocations">
+                    <div class="col-sm-12 flex-box">
+                        <div class="item-card-v2 user-interest">
+                            <div class="content">
+
+                                <uib-accordion close-others="oneAtATime">
+                                    <uib-accordion-group is-open="true">
+                                        <uib-accordion-heading>
+                                            <i class="fa fa-plus-circle"></i>Select countries<i class="fa" ng-class="{'fa-chevron-up': status.open, 'fa-chevron-down': !status.open}"></i>
+                                        </uib-accordion-heading>
+                                        <ul>
+                                            <li ng-repeat="location in data.locations" ng-class="{'added' : location.selected}" class="custom-checkbox-wrapper">
+                                                <a>
+                                                    <input type="checkbox" ng-model="location.selected" id="{{location.id}}">
+                                                    <label ng-click="updateDataModel($event, location)" for="{{location.id}}"><span class="fa" ng-class="{'fa-check-circle-o' : location.selected, 'fa-minus-circle' : !location.selected}"></span>{{location.name}}</label>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </uib-accordion-group>
+                                </uib-accordion>
+                            </div>
+                        </div>
+                        <div class="item-card-v2  user-interested">
+                            <div class="content">
+                                <div class="title-add">Added</div>
+                                <ul class="added">
+                                    <li ng-repeat="location in data.locations" class="added" ng-if="location.selected">
+                                        <a><i class="fa fa-minus-circle" ng-click="updateDataModel($event, location)"></i> {{location.name}}</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-error" ng-show="view.showErrors && view.errors.locations">You must select at least one location.</div>
+
+            </div>
+
+        </div>
+
+        <div class="panel panel-kaching">
+
+            <div class="panel-heading"><h3 class="panel-title">Demographic options</h3></div>
+            <div class="panel-body">
+
+                <div class="form-group">
+                    <p>Select gender</p>
+                    <label class="checkbox-inline">
+                        <input type="checkbox" ng-model="data.gender.male" ng-change="resetError('gender')"> Male
+                    </label>
+                    <label class="checkbox-inline">
+                        <input type="checkbox" ng-model="data.gender.female" ng-change="resetError('gender')"> Female
+                    </label>
+                </div>
+                <div class="form-error" ng-show="view.showErrors && view.errors.gender">You must select at least one gender.</div>
+
+                <div class="form-group">
+                    <p>Select age range</p>
+                    <select
+                        ng-model="data.ageRange"
+                        ng-options="range.label for range in view.ageRanges track by range.value"
+                        ></select>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="panel panel-kaching">
+
+            <div class="panel-heading"><h3 class="panel-title">Operating system</h3></div>
+            <div class="panel-body">
+
+                <div class="form-group">
+                    <label class="checkbox-inline">
+                        <input type="checkbox" ng-model="data.os.ios" ng-change="resetError('os')"> iOS
+                    </label>
+                    <label class="checkbox-inline">
+                        <input type="checkbox" ng-model="data.os.android" ng-change="resetError('os')"> Android
+                    </label>
+                </div>
+                <div class="form-error" ng-show="view.showErrors && view.errors.os">You must select at least one operating system.</div>
+
+            </div>
+
+        </div>
+
+        <div class="steps-footer">
+            <div class="pull-right">
+                <a href="" class="btn btn-default uppercase" ng-click="previousStep()">Previous step</a>
+                <a href="" class="btn btn-primary uppercase" ng-click="nextStep()">Next step</a>
+            </div>
+        </div>
+
+    </div>
+</form>

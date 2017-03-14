@@ -1,0 +1,20 @@
+
+<svg width="28px" height="18px" viewBox="311 32 28 18" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 3.8.3 (29802) - http://www.bohemiancoding.com/sketch -->
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <linearGradient x1="3.061617e-15%" y1="50%" x2="100%" y2="50%" id="linearGradient-1">
+            <stop stop-color="#345FB2" offset="0%"></stop>
+            <stop stop-color="#C4CAE3" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="3.061617e-15%" y1="50%" x2="100%" y2="50%" id="linearGradient-2">
+            <stop stop-color="#FEC948" offset="0%"></stop>
+            <stop stop-color="#F8EBCF" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="Visa-Icon" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" transform="translate(311.000000, 32.000000)">
+        <rect id="Part" fill="url(#linearGradient-1)" x="0" y="0" width="28" height="6" rx="2"></rect>
+        <rect id="Part" fill="url(#linearGradient-2)" x="0" y="12" width="28" height="6"></rect>
+        <rect id="Part" fill="#F3F3F3" x="0" y="6" width="28" height="6"></rect>
+    </g>
+</svg>

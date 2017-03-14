@@ -1,0 +1,33 @@
+<div class="user-nav-bar" ng-class="{ 'logedin' : loggedIn }">
+    <div class="user-nav" ng-if="loggedIn">
+        <div class="header-circle-icon">
+            <a href="#" class="user-nav-bar-icon">
+                <img alt="" class="img-circle" ng-src="{{ urls.searchIconUrl }}"/>
+            </a>
+        </div>
+        <div class="header-circle-icon user-icon">
+            <a href="#" class="profile-info dropdown-toggle user-nav-bar-item" dropdown-menu-hover data-toggle="dropdown" data-close-others="true">
+                <img alt="" class="img-circle" ng-src="{{ urls.userIconUrl }}"/>
+            </a>
+
+            <ul class="user-setting-menu dropdown-menu">
+              <li>
+                  <a ng-if="isPanel" ui-sref="account">Profile</a>
+                  <a ng-if="!isPanel" href="{{ urls.account }}">Profile</a>
+              </li>
+              <li>
+                  <a ng-click="showUserSettingsPopup()">User Settings</a>
+              </li>
+              <li ng-if="isAdvertiser()">
+                  <a ng-if="isPanel" ui-sref="funds">Add funds</a>
+                  <a ng-if="!isPanel" href="{{ urls.funds }}">Add funds</a>
+              </li>
+              <li ng-if="isAdvertiser()">
+                  <a ng-if="isPanel" ui-sref="cards">Credit cards</a>
+                  <a ng-if="!isPanel" href="{{ urls.cards }}">Credit cards</a>
+              </li>
+              <li><a ng-click="logout()">Log Out </a></li>
+            </ul>
+        </div>
+    </div>
+</div>

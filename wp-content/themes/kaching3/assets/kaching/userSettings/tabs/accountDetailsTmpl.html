@@ -1,0 +1,317 @@
+<div class="account-details-wrapper" ng-controller="accountDetailsCtrl">
+    <div class="tab-content account-details-container">
+
+        <div loader ng-show="view.loading"></div>
+
+        <form
+            name="form1"
+            class="form-horizontal"
+            autocomplete="false"
+            ng-show="!view.loading"
+            ng-submit="saveProfile()"
+            novalidate
+            >
+            <div class="clearfix">
+                <div class="col-md-2">
+                    <div class="personal-avatar">
+                        <div id="profileImage" class="file-upload-photo-kaching">
+                            <input type="file" nv-file-select uploader="profileImageUploader" ng-model="imageUpload" onchange="angular.element(this).scope().previewImage(event)">
+                        </div>
+
+                        <p class="label-avatar">
+                            Edit
+                        </p>
+                    </div>
+                </div>
+                <div class="personal-info col-md-6 clearfix">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <div class="inner-form-group">
+                                <label class="control-label">Email</label>
+                                <div ng-class="{ 'has-error' : showErrors() && fieldHasError( this, 'form1', 'email' ) }">
+                                    <input
+                                        type="email"
+                                        name="email"
+                                        class="form-control"
+                                        placeholder="Email Adress"
+                                        ng-model="data.user.email"
+                                        ng-disabled="view.sending"
+                                        required
+                                        >
+                                    <span ng-show="showErrors() && fieldHasError( this, 'form1', 'email' )" class="help-block">Please enter your email.</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="inner-form-group">
+                                <label class="control-label">First Name</label>
+                                <div ng-class="{ 'has-error' : showErrors() && fieldHasError( this, 'form1', 'first_name' ) }">
+                                    <input
+                                        type="text"
+                                        name="first_name"
+                                        class="form-control"
+                                        placeholder="First Name"
+                                        ng-model="data.user.firstName"
+                                        ng-disabled="view.sending"
+                                        required
+                                        >
+                                    <span ng-show="showErrors() && fieldHasError( this, 'form1', 'first_name' )" class="help-block">Please enter your first name.</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <div class="inner-form-group">
+                                <label for="inputPassword" class="control-label">Password</label>
+                                <input
+                                    type="password"
+                                    class="form-control"
+                                    placeholder="Password"
+                                    autocomplete="false"
+                                    value="abcde"
+                                    disabled
+                                    >
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="inner-form-group">
+                                <label class="control-label">Last Name</label>
+                                <div ng-class="{ 'has-error' : showErrors() && fieldHasError( this, 'form1', 'last_name' ) }">
+                                    <input
+                                        type="text"
+                                        name="last_name"
+                                        class="form-control"
+                                        placeholder="Last Name"
+                                        ng-model="data.user.lastName"
+                                        ng-disabled="view.sending"
+                                        required
+                                        >
+                                    <span ng-show="showErrors() && fieldHasError( this, 'form1', 'last_name' )" class="help-block">Please enter your last name.</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="company-info col-md-4">
+                    <div class="form-group">
+                        <div class="inner-form-group">
+                            <label class="control-label">Company</label>
+                            <div ng-class="{ 'has-error' : showErrors() && fieldHasError( this, 'form1', 'company' ) }">
+                                <input
+                                    type="text"
+                                    name="company"
+                                    class="form-control"
+                                    placeholder="Company Name"
+                                    ng-model="data.user.company"
+                                    ng-disabled="view.sending"
+                                    required
+                                    >
+                                <span ng-show="showErrors() && fieldHasError( this, 'form1', 'company' )" class="help-block">Please enter your company name.</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="inner-form-group">
+                            <label class="control-label">Website</label>
+                            <div ng-class="{ 'has-error' : showErrors() && fieldHasError( this, 'form1', 'website' ) }">
+                                <input
+                                    type="text"
+                                    name="website"
+                                    class="form-control"
+                                    placeholder="Website name"
+                                    ng-model="data.user.website"
+                                    ng-disabled="view.sending"
+                                    required
+                                    >
+                                <span ng-show="showErrors() && fieldHasError( this, 'form1', 'website' )" class="help-block">Please enter your website name.</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <div class="clearfix">
+        <div class="col-md-6 pLeft_0">
+            <div class="panel-credit-card clearfix" ng-show="isVisibleCardForm">
+                <div class="col-md-7 pLeft_0">
+                    <div class="manual-card">
+                        <p class="icon-card">
+                            <img src="{{kachingAppConfig.wpTemplateUri + '/assets/images/visa.png'}}" alt="" />
+                        </p>
+                        <p class="number-card">
+                            **** **** **** 3528
+                        </p>
+                        <p class="limit-date">
+                            Valid Thru 11/8
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-5 pRight_0">
+                    <div class="user-info-bank">
+                        <p class="title">
+                            Your Bank Account
+                        </p>
+                        <p class="user-number-bank">
+                            User number: <strong>351 123</strong>
+                        </p>
+                        <p class="user-id-bank">
+                            User ID: <strong>YHSK15JOBV09</strong>
+                        </p>
+                    </div>
+                </div>
+                <span class="btn-edit-bank" ng-click="toggleCardForm()">Edit</span>
+            </div>
+            <div class="panel-edit-card clearfix" ng-show="!isVisibleCardForm">
+                <h3 class="title-edit-card"><strong>Edit Credit Card</strong> <span class="btn-cancel-card" ng-click="toggleCardForm()" href="#">Cancel</span></h3>
+                <form class="form-edit-card" action="" method="post">
+                    <div class="form-group">
+                        <div class="inner-form-group">
+                            <label class="control-label">Card Name</label>
+                            <div ng-class="{ 'has-error' : showErrors() && fieldHasError( this, 'form1', 'card_name' ) }">
+                                <input
+                                    type="text"
+                                    name="card_name"
+                                    class="form-control"
+                                    placeholder="Card Name"
+                                    ng-model="data.user.cardName"
+                                    ng-disabled="view.sending"
+                                    required
+                                    >
+                                <span ng-show="showErrors() && fieldHasError( this, 'form1', 'card_name' )" class="help-block">Please enter your card name.</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="inner-form-group">
+                            <label class="control-label">Card Number</label>
+                            <div ng-class="{ 'has-error' : showErrors() && fieldHasError( this, 'form1', 'card_number' ) }">
+                                <input
+                                    type="text"
+                                    name="card_number"
+                                    class="form-control"
+                                    placeholder="1234 5678 9123 4567"
+                                    ng-model="data.user.cardNumber"
+                                    ng-disabled="view.sending"
+                                    required
+                                    >
+                                <span ng-show="showErrors() && fieldHasError( this, 'form1', 'card_number' )" class="help-block">Please enter your card number.</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="box-two-colpans clearfix">
+                        <div class="col-md-7 pLeft_0">
+                            <div class="form-group">
+                                <div class="inner-form-group">
+                                    <label class="control-label">Expire Date</label>
+                                    <div ng-class="{ 'has-error' : showErrors() && fieldHasError( this, 'form1', 'expire_date' ) }">
+                                        <input
+                                            type="text"
+                                            name="expire_date"
+                                            class="form-control"
+                                            placeholder="MM / YY"
+                                            ng-model="data.user.expireDate"
+                                            ng-disabled="view.sending"
+                                            required
+                                            >
+                                        <span ng-show="showErrors() && fieldHasError( this, 'form1', 'expire_date' )" class="help-block">Please enter your card number.</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-5 pRight_0">
+                            <div class="form-group">
+                                <div class="inner-form-group">
+                                    <label class="control-label">CVC</label>
+                                    <div ng-class="{ 'has-error' : showErrors() && fieldHasError( this, 'form1', 'cvc' ) }">
+                                        <input
+                                            type="text"
+                                            name="cvc"
+                                            class="form-control"
+                                            placeholder="***"
+                                            ng-model="data.user.CVC"
+                                            ng-disabled="view.sending"
+                                            required
+                                            >
+                                        <span ng-show="showErrors() && fieldHasError( this, 'form1', 'cvc' )" class="help-block">Please enter your card number.</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="footer-popup-stream-video box-btn-control clearfix">
+                        <a class="btn-next-step btn-update-card pull-right">Update Card</a>
+                    </div>
+                </form>
+            </div>
+            <div class="pannel-setting-status">
+                <ul class="list-setting-status">
+                    <li>
+                        <span class="title-setting">Email notifications</span>
+                        <div class="box-radio-status">
+                            <label class="switch pull-right">
+                                <input id="emailSetting" ng-model="notification.emailSetting" type="checkbox">
+                                <div class="slider round"></div>
+                            </label>
+                        </div>
+                    </li>
+                    <li>
+                        <span class="title-setting">Sufficient Funds notifications</span>
+                        <div class="box-radio-status">
+                            <label class="switch pull-right">
+                                <input id="fundSetting" ng-model="notification.fundSetting" type="checkbox">
+                                <div class="slider round"></div>
+                            </label>
+                        </div>
+                    </li>
+                    <li>
+                        <span class="title-setting">Maintenance notifications</span>
+                        <div class="box-radio-status">
+                            <label class="switch pull-right">
+                                <input id="maintenaceSetting" ng-model="notification.maintenaceSetting" type="checkbox">
+                                <div class="slider round"></div>
+                            </label>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="col-md-6 pRight_0">
+            <div class="pannel-faq-info">
+                <h3 class="title-faq"><strong>FAQ</strong> <a class="link-faq" href="#">View FAQ Page</a></h3>
+                <ul class="list-question-faq">
+                    <li>
+                        <span class="ic-chevron"><i class="fa fa-chevron-down" aria-hidden="true"></i></span>
+                        <a class="question-faq">How can I connect my bank account?</a>
+                    </li>
+                    <li>
+                        <span class="ic-chevron"><i class="fa fa-chevron-down" aria-hidden="true"></i></span>
+                        <a class="question-faq">Why Dashboard doesn't show any data?</a>
+                    </li>
+                    <li>
+                        <span class="ic-chevron"><i class="fa fa-chevron-down" aria-hidden="true"></i></span>
+                        <a class="question-faq">Can I change my credit card account?</a>
+                    </li>
+                    <li>
+                        <span class="ic-chevron"><i class="fa fa-chevron-down" aria-hidden="true"></i></span>
+                        <a class="question-faq">What payment methods does KaChing support?</a>
+                    </li>
+                    <li>
+                        <span class="ic-chevron"><i class="fa fa-chevron-down" aria-hidden="true"></i></span>
+                        <a class="question-faq">Can I resubmit my file for another review?</a>
+                    </li>
+                    <li>
+                        <span class="ic-chevron"><i class="fa fa-chevron-down" aria-hidden="true"></i></span>
+                        <a class="question-faq">What is the minimum payment threshold?</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="box-btn-control footer-popup-stream-video clearfix">
+        <a class="btn-next-step btn-save-setting pull-right">Save</a>
+    </div>
+</div>

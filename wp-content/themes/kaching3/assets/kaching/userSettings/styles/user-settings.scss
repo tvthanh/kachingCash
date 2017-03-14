@@ -1,0 +1,464 @@
+/**
+ * CSS FOR USER SETTINGS PAGE
+ */
+ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+
+    li {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+    margin: 0;
+    padding: 0;
+}
+@mixin border-radius($radius) {
+    -webkit-border-radius: $radius;
+    -moz-border-radius: $radius;
+    -ms-border-radius: $radius;
+    border-radius: $radius;
+}
+@mixin linearGradient($top, $bottom) {
+    background: $top;
+    /* Old browsers */
+    background: -moz-linear-gradient(top, $top 0%, $bottom 100%);
+    /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,$top), color-stop(100%,$bottom));
+    /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top, $top 0%,$bottom 100%);
+    /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top, $top 0%,$bottom 100%);
+    /* Opera 11.10+ */
+    background: -ms-linear-gradient(top, $top 0%,$bottom 100%);
+    /* IE10+ */
+    background: linear-gradient(to bottom, $top 0%,$bottom 100%);
+    /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr=  '$top', endColorstr='$bottom',GradientType=0 );
+    /* IE6-9 */
+}
+
+.pLeft_0 {
+    padding-left: 0;
+}
+
+.pRight_0 {
+    padding-right: 0;
+}
+
+.container-content-popup-stream {
+    .navigation-video-campaign {
+        ul {
+            &.tab-user-setting {
+                li {
+                    a {
+                        color: #878787;
+                        background: #f0f3f6;
+
+                        &:hover {
+                            text-decoration: none;
+                        }
+
+                        &.actived {
+                            color: #b9bcc3;
+                            background: #fff;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+.billboards-modal {
+    .modal-dialog {
+        &.modal-user-setting {
+            width: 1170px !important;
+            form {
+                display: block;
+                overflow: hidden;
+            }
+        }
+    }
+}
+
+.tab-content {
+    background-color: #fff;
+    border-bottom-left-radius: 6px;
+    border-bottom-right-radius: 6px;
+    border: 1px solid #e6eaee;
+
+    label {
+        color: #909eb0;
+        font-weight: bold;
+    }
+}
+
+.account-details-container {
+    padding: 20px 0;
+    margin-bottom: 20px;
+
+    .personal-avatar {
+        padding-top: 20px;
+
+        .file-upload-photo-kaching {
+            width: 100px;
+            height: 100px;
+            margin: 0 auto;
+            border: 1px solid #EFEFEF;
+            border-radius: 50%;
+            overflow: hidden;
+            line-height: 90px;
+            text-align: center;
+            position: relative;
+            background: url("../images/plus-file-upload.svg") no-repeat center center #f9f9f9;
+            background-size: 100% 100%;
+
+            input[type='file'] {
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                top: 0;
+                left: 0;
+                z-index: 55;
+                opacity: 0;
+                cursor: pointer;
+            }
+        }
+
+        .add-avatar {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto;
+            @include border-radius(100%);
+            border: 1px solid #e6eaee;
+            background-color: #f9f9f9;
+            position: relative;
+
+            i {
+                font-size: 16px;
+                position: absolute;
+                top: 50%;
+                left: 50%;
+            }
+        }
+
+        .label-avatar {
+            font-size: 14px;
+            font-weight: bold;
+            text-align: center;
+            padding-top: 5px;
+        }
+    }
+
+    .inner-form-group {
+        padding: 5px 5px 0;
+    }
+
+    .personal-info {
+        padding: 0 15px 0 0;
+        border-right: 1px solid #e6eaee;
+    }
+
+    .company-info {
+        .form-group {
+            margin-left: 0;
+            margin-right: 0;
+        }
+
+        .inner-form-group {
+            padding: 5px 5px 0;
+        }
+    }
+}
+
+.panel-credit-card {
+    padding: 20px;
+    // margin-top: 50px;
+    border: 1px solid #e6eaee;
+    position: relative;
+    @include border-radius(10px);
+
+    .manual-card {
+        padding: 20px;
+        margin-top: -70px;
+        border: 2px solid #1f96d9;
+        background-color: #fff;
+        @include border-radius(10px);
+
+        p {
+            padding-bottom: 10px;
+            line-height: 24px;
+        }
+
+        .icon-card {
+            img {
+                width: 80px;
+                height: auto;
+            }
+        }
+
+        .number-card {
+            color: #333;
+            font-size: 18px;
+            line-height: 24px;
+            padding-bottom: 5px;
+            letter-spacing: 0.15em;
+        }
+
+        .limit-date {
+            font-size: 12px;
+            padding-bottom: 0;
+        }
+    }
+
+    .user-info-bank {
+        .title {
+            color: #495263;
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .user-id-bank,
+        .user-number-bank {
+            font-size: 14px;
+            line-height: 20px;
+
+            strong {
+                color: #3e3e3e;
+            }
+        }
+    }
+
+    .btn-edit-bank {
+        width: 70px;
+        color: #afaeae;
+        font-weight: bold;
+        text-align: center;
+        font-size: 14px;
+        padding: 10px;
+        position: absolute;
+        top: -25px;
+        right: 15px;
+        background-color: #fff;
+        border: 1px solid #e6eaee;
+        @include border-radius(5px);
+        cursor: pointer;
+
+        &:hover {
+            opacity: 0.8;
+        }
+    }
+}
+
+.pannel-setting-status {
+    margin-top: 39px;
+    padding: 15px 25px;
+    border: 1px solid #e6eaee;
+    @include border-radius(10px);
+
+    .list-setting-status {
+        li {
+            position: relative;
+            padding: 9px 90px 8px 0;
+            border-bottom: 1px solid #e6eaee;
+
+            &:last-child {
+                border: none;
+            }
+
+            .title-setting {
+                color: #4a5465;
+                font-size: 14px;
+                font-weight: bold;
+                line-height: 24px;
+            }
+        }
+    }
+
+    .box-radio-status {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+
+        .checkbox-ios {
+            width: 50px;
+            height: 24px;
+            // background: #36af47;
+            margin-top: 5px;
+
+            &::before {
+                content: '';
+            }
+
+            input[type=checkbox]:checked + label {
+                left: 27px;
+            }
+
+            label {
+                width: 20px;
+                height: 20px;
+            }
+
+            .for-active {
+                // background: #c3ced9;
+                &::after {
+                    content: '';
+                }
+            }
+
+            .for-inactive {
+                // background: #ccc;
+                &::after {
+                    content: '';
+                }
+            }
+        }
+    }
+}
+
+.pannel-faq-info {
+    padding: 10px 25px;
+    border: 1px solid #e6eaee;
+    @include border-radius(10px);
+
+    .title-faq {
+        color: #495263;
+        font-size: 18px;
+        position: relative;
+        padding: 5px 5px 0;
+
+        .link-faq {
+            font-size: 12px;
+            font-weight: bold;
+            position: absolute;
+            top: 3px;
+            right: 0;
+            color: #39a0ee;
+        }
+    }
+
+    .list-question-faq {
+        margin-top: 15px;
+
+        li {
+            position: relative;
+            margin-bottom: 10px;
+            padding: 7px 30px 7px 10px;
+            border: 1px solid #e6eaee;
+            @include border-radius(3px);
+            @include linearGradient(#fefefe, #eef0f4);
+
+            &:hover {
+                @include linearGradient(#eef0f4, #fefefe);
+            }
+
+            .ic-chevron {
+                color: #b3b5c0;
+                position: absolute;
+                top: 8px;
+                right: 15px;
+            }
+
+            .question-faq {
+                color: #5c6574;
+                font-size: 14px;
+                font-weight: bold;
+                line-height: 24px;
+            }
+        }
+    }
+}
+
+.box-btn-control {
+    padding: 10px 0 30px;
+
+    .btn-save-setting {
+        width: 180px;
+        text-align: center;
+    }
+}
+
+.fund-details-container {
+    margin-bottom: 30px;
+
+    .campaign-payout-details {
+        border: none;
+    }
+
+    .campaign-payout-table {
+        &.fund-details-table {
+            td {
+                padding: 8px 5px;
+            }
+
+            .campaign-name {
+                padding-left: 10px;
+            }
+
+            .campaign-control {
+                text-align: right;
+
+                span {
+                    cursor: pointer;
+                    padding: 0 10px;
+                }
+            }
+        }
+    }
+}
+
+.panel-edit-card {
+    color: #fff;
+    padding: 20px;
+    position: relative;
+    background-color: #bebebe;
+    @include border-radius(10px);
+
+    .title-edit-card {
+        color: #fff;
+        font-size: 18px;
+        position: relative;
+        padding: 5px 5px 0;
+
+        .btn-cancel-card {
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: bold;
+            position: absolute;
+            top: 3px;
+            right: 0;
+            color: #fff;
+        }
+    }
+
+    .form-edit-card {
+        padding-top: 15px;
+    }
+
+    .footer-popup-stream-video {
+        margin-top: 10px;
+        &.box-btn-control {
+            padding-bottom: 0;
+            .btn-next-step {
+                &.btn-update-card {
+                    width: 180px;
+                    color: #fff;
+                    text-align: center;
+                    background: #888;
+                }
+            }
+        }
+    }
+}

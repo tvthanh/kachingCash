@@ -1,0 +1,24 @@
+<div class="cropping-page">
+    <div class="box-header-cropper">
+        <h4 class="modal-title">Cropping tool</h4>
+        <button type="button" class="close" id="cancel-button"><span class="ion-icon ion-close-round"></span></button>
+    </div>
+    <div class="box-body-cropper">
+        <div class="box-content-cropper clearfix">
+            <div class="col-sm-5 form-group no-gutter main-area-cropper croppedArea">
+                <img id="image" src="{{imageNeedCrop}}" alt="Picture">
+            </div>
+            <div class="col-sm-2 form-group no-gutter btn-area-cropper text-center">
+                <div class="btn-group-vertical">
+                    <div class="form-group">
+                        <button class="btn-kaching-second" type="button" id="crop-button">Crop</button>
+                    </div>
+                    <div class="form-group">
+                        <button class="btn-kaching-first" id="save-button">Save</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-5 form-group no-gutter result-area-cropper" id="result"></div>
+        </div>
+    </div>
+</div>

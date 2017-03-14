@@ -1,0 +1,70 @@
+<div class="order-history-container lottery-container-page mapping-coin-page">
+    <div class="header-block">
+        <div class="inner-header-block clearfix">
+            <div class="col-sm-8 pLeft_0">
+                <h3>Coin Mapping</h3>
+            </div>
+        </div>
+        <div class="title-cropper-line"></div>
+    </div>
+    <div class="body-block">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>
+                        <div class="inner-th">
+                            <span>Country</span>
+                            <div class="form-group">
+                                <input type="text" class="form-control w_250" name="name" value="" placeholder="Search country" ng-model="country">
+                            </div>
+                        </div>
+                    </th>
+                    <th>
+                        <div class="inner-th">
+                            <span>Rate</span>
+                        </div>
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="mappingItem in data.coinMappingList | coinMappingFilter:country | limitTo:view.itemsPerPage:view.itemsPerPage*(view.currentPage-1) ">
+                    <td>
+                        <div class="ellipsis w_250">
+                            <span>{{mappingItem.country}}</span>
+                        </div>
+                    </td>
+                    <td>
+                        <input
+                            valid-number
+                            class="w_50 txt-center"
+                            ng-model="mappingItem.rate"
+                            ng-change="changeRate(mappingItem)"
+                            ng-blur="checkRate(mappingItem)"></input>
+                        (1 coin = {{mappingItem.rate}} $)
+                    </td>
+                    <td>
+                        <button
+                            class="pull-right btn-kaching-first"
+                            ng-disabled="!mappingItem.hasChanged"
+                            ng-click="updateRate(mappingItem)">Update</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div ng-hide="data.coinMappingList.length <= view.itemsPerPage" class="text-center kaching-pagination paging-wrapper">
+            <div
+                uib-pagination
+                ng-change="changePage()"
+                ng-model="view.currentPage"
+                max-size="view.maxSize"
+                total-items="data.coinMappingListCount"
+                items-per-page="kaching.coinMappingFilteredDataLength"
+                force-ellipses="true"
+                template-url="template/pagination/pagination.html"
+                >
+            </div>
+        </div>
+        <div loader ng-show="view.busy && !data.coinMappingListCount" ng-init="view.busy=true"></div>
+    </div>
+</div>

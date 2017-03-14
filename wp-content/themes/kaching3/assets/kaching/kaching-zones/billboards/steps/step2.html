@@ -1,0 +1,502 @@
+<div class="billboards-step2" ng-controller="step2Ctrl">
+    <div loader ng-show="view.busy"></div>
+    <div ng-show="!view.busy">
+        <media-upload>
+            <div class="block-content col-sm-6">
+                <div class="no-gutter" ng-show="campaign.type === 'in_store' || campaign.type === 'store_front'">
+                    <instore-media-preview
+                        store-list="mediaList"
+                        item-edit="editMedia(mediaId)"
+                        item-delete="deleteMedia(media)"
+                        show-delete="true"
+                        show-edit="true"
+                        view-media="false"
+                        selected-media="undefined"
+                        connector="connector"
+                        has-ar="true">
+                    </instore-media-preview>
+                </div>
+                <div class="no-gutter" ng-show="campaign.type !== 'in_store' && campaign.type !== 'store_front'">
+                    <media-preview
+                        media-list="mediaList"
+                        item-edit="editMedia(mediaId)"
+                        item-delete="deleteMedia(media)"
+                        show-delete="true"
+                        show-edit="true"
+                        view-media="false"
+                        selected-media="undefined"
+                        connector="connector"
+                        has-ar="campaign.type === 'radio' || campaign.type === 'tv-ads' ? false : true">
+                    </media-preview>
+                </div>
+                <div class="footer-popup-stream-video clearfix">
+                    <button type="button" class="btn-kaching-first pull-left" ng-click="addMedia();" ng-disabled="displayMediaDetail">Add media</button>
+                    <button type="button" class="btn-kaching-first pull-right" ng-click="nextStep();" ng-disabled="displayMediaDetail">Save & Continue to step 3</button>
+                    <button type="button" class="btn-kaching-second margin-r-15 pull-right" ng-click="goPrev()" ng-disabled="displayMediaDetail">Back to step 1</button>
+                </div>
+            </div>
+            <div class="block-content padd-bot-0" ng-show="displayMediaDetail">
+                <form id="form1" name="form1" novalidate ng-show="campaign.type === 'magazine'">
+                    <div class="col-sm-12 margin-b-15 clearfix">
+                        <input type="button" class="btn-kaching-first pull-right" ng-click="submitMedia()" ng-show="!editMode" value="Save" />
+                        <input type="button" class="btn-kaching-first pull-right" ng-click="submitMedia()" ng-show="editMode" value="Update" />
+                        <span class="btn-kaching-second margin-r-15 pull-right" ng-click="cancelEdit()">Cancel</span>
+                    </div>
+                    <div class="row form-row clearfix">
+                        <div class="col-sm-6">
+                            <label class="medium-font margin-b-0">
+                                Select magazine name
+                            </label>
+                            <div class="custom-radio-v1 h_70">
+                                <div class="padding-t-20 clearfix" ng-class="{ 'has-error' : (form1.magazineOther.$invalid && !form1.magazineOther.$pristine) || (form1.$submitted && form1.magazineOther.$invalid) }">
+                                    <div class="col-sm-6 pLeft_0">
+                                        <select ng-model="selectedMagezine" ng-options="magezine for magezine in magezines" ng-init="selectedMagezine=selectedMagezine||magezines[0]" ng-change="changeSelect()"></select>
+                                    </div>
+                                    <div class="col-sm-6 pRight_0">
+                                        <div class="magazine-other" ng-if="isOther">
+                                            <input id="magazineOther" class="form-control" ng-model="$parent.magazineOther" name="magazineOther" placeholder="Please enter magezine" ng-required="needBasicValidateZone()">
+                                            <div ng-show=" (form1.magazineOther.$invalid && !form1.magazineOther.$pristine) || (form1.$submitted && form1.magazineOther.$invalid) ">
+                                                <span ng-show="form1.magazineOther.$error.required" class="help-block">Please enter other magazine.</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="file-uploader-wrapper">
+                                <cropper-image class="pull-right" image-need-crop="data.imageFile"></cropper-image>
+                                <btn-clear-upload-file image-name="'imageFile1'" current-file="data.imageFile"></btn-clear-upload-file>
+                                <div
+                                    id="imageFile1"
+                                    name="imageFile"
+                                    ng-model="data.imageFile"
+                                    nv-file-drop
+                                    ifm-uploader-preview-image="data.imageFile"
+                                    uploader="uploader"
+                                    options="{ alias: 'imageFile' }"
+                                    filters="imageFilter"
+                                    ifm-over-class="fileover"
+                                    class="uploader-dropzone"
+                                    ng-required="campaign.type === 'magazine'">
+                                    <div class="uploader-label-overlay" ng-class="{ 'has-error-image': form1.imageFile.$invalid && (form1.$submitted || !form1.imageFile.$pristine) }">
+                                        <div class="box-label-uploader" ng-show="!data.imageFile">
+                                            <i class="icon-ic-upload"></i>
+                                            <span class="label-uploader">Simply drag and drop file<br>or <span class="higlight">browse</span> on your disk.</span>
+                                            <span class="file-format-hint">Supported image: .jpg, .png, .jpeg</span>
+                                        </div>
+                                        <span class="size-hint">Optimal size ratio is 1:1</span>
+                                    </div>
+                                    <input nv-file-select type="file" uploader="uploader" options="{ alias: 'imageFile' }" filters="imageFilter" title=" " multiple>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <label class="medium-font" style="margin-bottom: {{isAnimationField ? 25 : 75}}px">
+                                The effect to display for the interaction </label>
+                                <div class="animation-box form-group" ng-show="isAnimationField">
+                                    <input type="text" class="form-input" ng-model="data.animation" name="animation" placeholder="Please enter animation.">
+                                </div>
+                            <div class="file-uploader-wrapper">
+                                <cropper-image class="pull-right" image-need-crop="data.arImageFile"></cropper-image>
+                                <btn-clear-upload-file image-name="'arImageFile1'" current-file="data.arImageFile"></btn-clear-upload-file>
+                                <div
+                                    id="arImageFile1"
+                                    ng-model="data.arImageFile"
+                                    name="arImageFile"
+                                    nv-file-drop
+                                    ifm-uploader-preview-image="data.arImageFile"
+                                    uploader="uploader"
+                                    options="{ alias: 'arDisplay' }"
+                                    ifm-over-class="fileover"
+                                    class="uploader-dropzone"
+                                    ng-class="{ 'image-error' : showErrors() && !!!data.arImageFile }"
+                                    ng-required="campaign.type === 'magazine'">
+                                    <div class="uploader-label-overlay" ng-class="{ 'has-error-image': form1.arImageFile.$invalid && (form1.$submitted || !form1.arImageFile.$pristine)}">
+                                        <div class="box-label-uploader" ng-show="!data.arImageFile">
+                                            <i class="icon-ic-upload"></i>
+                                            <span class="label-uploader">Simply drag and drop file<br>or <span class="higlight">browse</span> on your disk.</span>
+                                            <span class="file-format-hint">Supported animation, video and image: .wt3, .avi, .mp4, .mov ,.jpg, .png, .jpeg</span>
+                                        </div>
+                                        <span class="size-hint">Optimal size ratio is 1:1</span>
+                                    </div>
+                                    <input nv-file-select type="file" uploader="uploader" options="{ alias: 'arDisplay' }" filters="imageFilter, videoFilter" title=" " multiple>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 margin-b-15 clearfix">
+                        <input type="button" class="btn-kaching-first pull-right" ng-click="submitMedia()" ng-show="!editMode" value="Save" />
+                        <input type="button" class="btn-kaching-first pull-right" ng-click="submitMedia()" ng-show="editMode" value="Update" />
+                        <span class="btn-kaching-second margin-r-15 pull-right" ng-click="cancelEdit()">Cancel</span>
+                    </div>
+                </form>
+                <form id="form1" name="form1" novalidate ng-show="campaign.type === 'radio' || campaign.type === 'tv-ads'">
+                    <div class="col-sm-12 margin-b-15 clearfix">
+                        <input type="button" class="btn-kaching-first pull-right" ng-click="submitMedia()" ng-show="!editMode" value="Save" />
+                        <input type="button" class="btn-kaching-first pull-right" ng-click="submitMedia()" ng-show="editMode" value="Update" />
+                        <span class="btn-kaching-second margin-r-15 pull-right" ng-click="cancelEdit()">Cancel</span>
+                    </div>
+                    <div class="row form-row clearfix">
+                        <div class="col-sm-6">
+                            <div ng-show="campaign.type === 'radio'">
+                                <label class="medium-font margin-b-0">
+                                    Add audio
+                                </label>
+                            </div>
+                            <div ng-show="campaign.type === 'tv-ads'">
+                                <label class="medium-font margin-b-0">
+                                    Add video
+                                </label>
+                            </div>
+                            <div class="file-uploader-wrapper">
+                                <cropper-image class="pull-right" image-need-crop="data.imageFile"></cropper-image>
+                                <btn-clear-upload-file image-name="'imageFile2'" current-file="data.imageFile"></btn-clear-upload-file>
+                                <div
+                                    id="imageFile2"
+                                    name="imageFile"
+                                    ng-model="data.imageFile"
+                                    nv-file-drop
+                                    ifm-uploader-preview-image="data.imageFile"
+                                    uploader="uploader"
+                                    options="{ alias: campaign.type === 'radio' ? 'audio' : 'video' }"
+                                    filters="campaign.type === 'radio' ? audioFilter : videoFilter"
+                                    ifm-over-class="fileover"
+                                    class="uploader-dropzone"
+                                    ng-class="{ 'image-error' : showErrors() && !!!data.imageFile }"
+                                    ng-required="campaign.type === 'radio' || campaign.type === 'tv-ads'">
+                                    <div class="uploader-label-overlay" ng-class="{ 'has-error-image': form1.arImageFile.$invalid && (form1.$submitted || !form1.arImageFile.$pristine)}">
+                                        <div class="box-label-uploader" ng-show="!data.imageFile">
+                                            <i class="icon-ic-upload"></i>
+                                            <span class="label-uploader" ng-show="campaign.type === 'radio'">Simply drag and drop audio file<br>or <span class="higlight">browse</span> on your disk.</span>
+                                            <span class="file-format-hint" ng-show="campaign.type === 'radio'">Supported audio: .mp3</span>
+                                            <span class="label-uploader" ng-show="campaign.type === 'tv-ads'">Simply drag and drop video file<br>or <span class="higlight">browse</span> on your disk.</span>
+                                            <span class="file-format-hint" ng-show="campaign.type === 'tv-ads'">Supported video: .avi, .mp4, .mov</span>
+                                        </div>
+                                    </div>
+                                    <input nv-file-select type="file" uploader="uploader" options="{ alias: campaign.type === 'radio' ? 'audio' : 'video' }" filters="campaign.type === 'radio' ? audioFilter : videoFilter" title="" multiple>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div
+                                class="col-sm-12 no-padding-right no-padding-left row"
+                                ng-class="{ 'has-error' :  showUrlError }">
+                                <label>URL</label>
+                                <input
+                                    id="url"
+                                    url-input
+                                    class="form-control"
+                                    ng-model="data.url"
+                                    name="url"
+                                    ng-required="campaign.type === 'radio' || campaign.type === 'tv-ads'">
+                                <span class="help-block" ng-show="showUrlError" class="help-block">Please enter a valid url.</span>
+                            </div>
+                            <div class="col-sm-6 no-padding-right no-padding-left row" ng-class="{ 'has-error' : (form1.stationOther.$invalid && !form1.stationOther.$pristine) || (form1.$submitted && form1.stationOther.$invalid) }">
+                                <label ng-show="campaign.type === 'radio'">*Radio Station</label>
+                                <label ng-show="campaign.type === 'tv-ads'">*TV Station</label>
+                                <select ng-model="selectedStation" ng-options="station.name for station in stations" ng-init="selectedStation=stations[0]" ng-change="changeStation()"></select>
+                                <div class="magazine-other margin-t-5" ng-if="isOther">
+                                    <input id="stationOther" class="form-control" ng-model="$parent.stationOther" name="stationOther" placeholder="Please enter other Radio station" ng-required="needBasicValidateZone()">
+                                    <div ng-show=" (form1.stationOther.$invalid && !form1.stationOther.$pristine) || (form1.$submitted && form1.stationOther.$invalid) ">
+                                        <span ng-show="form1.stationOther.$error.required" class="help-block">Please enter other Radio station.</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 margin-b-15 clearfix">
+                        <input type="button" class="btn-kaching-first pull-right" ng-click="submitMedia()" ng-show="!editMode" value="Save" />
+                        <input type="button" class="btn-kaching-first pull-right" ng-click="submitMedia()" ng-show="editMode" value="Update" />
+                        <span class="btn-kaching-second margin-r-15 pull-right" ng-click="cancelEdit()">Cancel</span>
+                    </div>
+                </form>
+                <form id="form1" name="form1" novalidate ng-show="campaign.type === 'billboard' || campaign.type === 'in_store' || campaign.type === 'store_front'">
+                    <div class="col-sm-12 margin-b-15 clearfix">
+                        <input type="button" class="btn-kaching-first pull-right" ng-click="submitMedia()" ng-show="!editMode" value="Save" />
+                        <input type="button" class="btn-kaching-first pull-right" ng-click="submitMedia()" ng-show="editMode" value="Update" />
+                        <span class="btn-kaching-second margin-r-15 pull-right" ng-click="cancelEdit()">Cancel</span>
+                    </div>
+                    <div class="row form-row clearfix">
+                        <div class="col-sm-6">
+                            <label class="medium-font margin-b-0">
+                                Interaction with user
+                            </label>
+                            <div class="custom-radio-v1 clearfix">
+                                <div class="col-sm-12 no-gutter">
+                                    <div class="radio">
+                                        <input type="radio" name="geo-location" id="geo-location" ng-model="targetOption" value="geo" ng-change="clearImageUploader('geo')"/>
+                                        <label for="geo-location" style="min-width: 110px">By arriving at the location</label>
+                                    </div>
+                                </div>
+                                <div class="col-sm-12 no-gutter">
+                                    <div class="radio">
+                                        <input type="radio" name="scan-predefined" id="scan-predefined" ng-model="targetOption" value="scan"/>
+                                        <label for="scan-predefined" style="min-width: 200px">By scanning a predefined image</label>
+                                    </div>
+                                </div>
+                                <div class="col-sm-12 no-gutter">
+                                    <div class="radio">
+                                        <input type="radio" name="beacon-approach" id="beacon-approach" ng-model="targetOption" value="approach_beacon"/>
+                                        <label for="beacon-approach" style="min-width: 110px">By approaching the beacon</label>
+                                    </div>
+                                </div>
+                                <div class="col-sm-12 no-gutter">
+                                    <div class="radio">
+                                        <input type="radio" name="read-share-instore-purchase" id="read-share-instore-purchase" ng-model="targetOption" value="share"/>
+                                        <label for="read-share-instore-purchase" style="min-width: 110px">Read promotion information, sharing, instore purchase</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="file-uploader-wrapper" ng-class="{'disabled-uploader': targetOption !== 'scan'}">
+                                <cropper-image class="pull-right" image-need-crop="data.imageFile"></cropper-image>
+                                <btn-clear-upload-file image-name="'imageFile3'" current-file="data.imageFile"></btn-clear-upload-file>
+                                <div
+                                    id="imageFile3"
+                                    name="imageFile"
+                                    ng-model="data.imageFile"
+                                    nv-file-drop
+                                    ifm-uploader-preview-image="data.imageFile"
+                                    uploader="uploader"
+                                    options="{ alias: 'imageFile' }"
+                                    filters="imageFilter"
+                                    ifm-over-class="fileover"
+                                    class="uploader-dropzone">
+                                    <div class="uploader-label-overlay" ng-class="{ 'has-error-image': form1.imageFile.$invalid && (form1.$submitted || !form1.imageFile.$pristine) }">
+                                        <div class="box-label-uploader" ng-show="!data.imageFile">
+                                            <i class="icon-ic-upload"></i>
+                                            <span class="label-uploader">Simply drag and drop file<br>or <span class="higlight">browse</span> on your disk.</span>
+                                            <span class="file-format-hint">Supported image: .jpg, .png, .jpeg</span>
+                                        </div>
+                                        <span class="size-hint">Optimal size ratio is 1:1</span>
+                                    </div>
+                                    <input nv-file-select type="file" uploader="uploader" options="{ alias: 'imageFile' }" filters="imageFilter" title=" " multiple ng-disabled="targetOption == 'geo'">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="row form-row margin-t-30 clearfix" ng-show="mediaList.length > 0 && (campaign.type == 'in_store' || campaign.type == 'store_front')">
+                                <label class="medium-font">Select storefront or Instore</label>
+                                <div class="custom-radio-v1 clearfix">
+                                    <div class="col-sm-12 no-gutter">
+                                        <div class="col-sm-6 pLeft_0">
+                                            <div class="radio">
+                                                <input type="radio" name="store-options" id="store-front" ng-model="selectedStoreType" value="in_store" ng-change="changeFormat()"/>
+                                                <label for="store-front" style="min-width: 250px">This is instore media of</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6" ng-show="selectedStoreType === 'in_store'" style="margin-top: 5px;">
+                                            <select ng-model="selectedStore" ng-options="store.name for store in mediaList track by store.id" ng-init="selectedStore"></select>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-12 no-gutter">
+                                        <div class="radio">
+                                            <input type="radio" name="store-options" id="in-store" ng-model="selectedStoreType" value="store_front" ng-change="changeFormat()"/>
+                                            <label for="in-store" style="min-width: 250px">This is a new storefront</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="row form-row margin-t-30 clearfix">
+                                <label class="medium-font">The effect to display for the interaction</label>
+                                <div class="animation-box form-group" ng-show="isAnimationField">
+                                    <input type="text" class="form-input" ng-model="data.animation" name="animation" placeholder="Please enter animation.">
+                                </div>
+                                <div class="file-uploader-wrapper" ng-class="{'disabled-uploader': targetOption === 'approach_beacon' || targetOption === 'share'}">
+                                    <cropper-image class="pull-right" image-need-crop="data.arImageFile"></cropper-image>
+                                    <btn-clear-upload-file image-name="'arImageFile3'" current-file="data.arImageFile"></btn-clear-upload-file>
+                                    <div
+                                        id="arImageFile3"
+                                        ng-model="data.arImageFile"
+                                        name="arImageFile"
+                                        nv-file-drop
+                                        ifm-uploader-preview-image="data.arImageFile"
+                                        uploader="uploader"
+                                        options="{ alias: 'arDisplay' }"
+                                        ifm-over-class="fileover"
+                                        class="uploader-dropzone"
+                                        ng-class="{ 'image-error' : showErrors() && arImageHasError() }"
+                                        ng-required="(campaign.type === 'billboard' || campaign.type === 'in_store' || campaign.type === 'store_front') && (targetOption === 'geo' || targetOption === 'scan')">
+                                        <div class="uploader-label-overlay" ng-class="{ 'has-error-image': form1.arImageFile.$invalid && (form1.$submitted || !form1.arImageFile.$pristine)}">
+                                            <div class="box-label-uploader" ng-show="!data.arImageFile">
+                                                <i class="icon-ic-upload"></i>
+                                                <span class="label-uploader">Simply drag and drop file<br>or <span class="higlight">browse</span> on your disk.</span>
+                                                <span class="file-format-hint">Supported animation, video and image: .wt3, .avi, .mp4, .mov ,.jpg, .png, .jpeg</span>
+                                            </div>
+                                            <span class="size-hint">Optimal size ratio is 1:1</span>
+                                        </div>
+                                        <input nv-file-select type="file" uploader="uploader" options="{ alias: 'arDisplay' }" filters="imageFilter, videoFilter" title=" " multiple>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row beacon-list">
+                        <div class="col-sm-12">
+                            <label class="medium-font">Beacons</label>
+                        </div>
+                        <div class="col-sm-12">
+                            <ul class="list-group">
+                                <li class="list-group-item">
+                                    <div class="row">
+                                        <div class="col-sm-5">UUID</div>
+                                        <div class="col-sm-3">Minor</div>
+                                        <div class="col-sm-3">Major</div>
+                                        <div class="col-sm-1">Action</div>
+                                    </div>
+                                </li>
+                                <li class="list-group-item" ng-if="!beacons || beacons.length == 0">No beacon is added</li>
+                                <li class="list-group-item" ng-repeat="beacon in beacons">
+                                    <div class="row">
+                                        <div class="col-sm-5">
+                                            <input type="text" required id="beacon-{{beacon.id}}-uuid" name="beacon-{{beacon.id}}-uuid" class="form-control" ng-model="beacon.uuid" do-focus="true"/>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <input type="number" min="0" required id="beacon-{{beacon.id}}-minor" name="beacon-{{beacon.id}}-minor" class="form-control" ng-model="beacon.minor" onkeypress="return event.metaKey || (event.charCode >= 48 && event.charCode <= 57)"/>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <input type="number" min="0" required id="beacon-{{beacon.id}}-major" name="beacon-{{beacon.id}}-major" class="form-control" ng-model="beacon.major" onkeypress="return event.metaKey || (event.charCode >= 48 && event.charCode <= 57)"/>
+                                        </div>
+                                        <div class="col-sm-1 text-right">
+                                            <div ng-click="removeBeacon(beacon)"><i class="fa fa-trash"></i></div>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                            <span class="btn btn-default btn-add-beacon" ng-click="addBeacon()">Add beacon</span>
+                        </div>
+                    </div>
+                    <div ng-show="selectedStoreType === 'store_front' || campaign.type === 'billboard'">
+                        <div class="row location-section">
+                            <div class="col-sm-12">
+                                <label class="medium-font">Select location - Place where the media will appear</label>
+                            </div>
+                            <div class="col-sm-12 col-md-6">
+                                <div class="form-group">
+                                    <label>Display address</label>
+                                    <input id="displayAddress" name="display-address" type="text" class="form-control display-address" placeholder="" ng-model="data.display_address">
+                                </div>
+                                <div class="form-group" ng-show="groups.length > 0">
+                                    <label>Group</label>
+                                    <select
+                                        ng-model="group"
+                                        ng-options="group.name for group in groups track by group.id"
+                                        class="form-control"
+                                    ></select>
+                                </div>
+                                <div class="form-group">
+                                    <label>Floor</label>
+                                    <input id="floor" name="floor" type="text" class="form-control display-address" placeholder="" ng-model="data.floor">
+                                </div>
+                                <div class="dropdown form-group">
+                                    <label>The required distance to catch the object</label>
+                                    <select
+                                        ng-model="inclusionZone"
+                                        ng-options="distance.label for distance in distances track by distance.value"
+                                        class="form-control">
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-sm-12 col-md-6">
+                                <div ng-class="{ 'has-error': !form1.latitude.$invalid && (form1.$submitted || !form1.latitude.$pristine) && (position==undefined && formSummited )}">
+                                    <div class="box-map-area">
+                                        <input id="pac-input" class="controls" placeholder="Search Box" ng-model="pacInput">
+                                        <div style="height:35.5vh;" id="map"></div>
+                                    </div>
+                                    <span ng-show="position==undefined && formSummited" class="help-block text-right">Please choose a place!</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row form-row margin-t-30 clearfix">
+                            <div class="col-sm-6">
+                                <label class="medium-font">
+                                    Define how your media will appear on the app</label>
+                                <div class="custom-radio-v1 clearfix">
+                                    <div class="col-sm-12 no-gutter">
+                                        <div class="radio">
+                                            <input type="radio" name="default-marker" id="default-marker" ng-model="markerOption" value="default" ng-change="clearImageUploader('default')"/>
+                                            <label for="default-marker" style="min-width: 150px">Use default marker</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-12 no-gutter">
+                                        <div class="radio">
+                                            <input type="radio" name="custom-marker" id="custom-marker" ng-model="markerOption" value="custom"/>
+                                            <label for="custom-marker" style="min-width: 200px">Or define the way you like</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="file-uploader-wrapper row" ng-class="{'disabled-uploader':markerOption === 'default'}">
+                                    <cropper-image class="pull-right" image-need-crop="data.brandImageFile"></cropper-image>
+                                    <btn-clear-upload-file image-name="'brandImageFile'" current-file="data.brandImageFile"></btn-clear-upload-file>
+                                    <div
+                                        id="brandImageFile"
+                                        name="brandImageFile"
+                                        ng-model="data.brandImageFile"
+                                        nv-file-drop
+                                        ifm-uploader-preview-image="data.brandImageFile"
+                                        uploader="uploader"
+                                        options="{ alias: 'brandImage' }"
+                                        filters="imageFilter"
+                                        ifm-over-class="fileover"
+                                        class="uploader-dropzone">
+                                        <div class="uploader-label-overlay" ng-class="{ 'has-error-image' : form1.brandImageFile.$invalid && (form1.$submitted || !form1.brandImageFile.$pristine) }">
+                                            <div class="box-label-uploader" ng-show="!data.brandImageFile">
+                                                <i class="icon-ic-upload"></i>
+                                                <span class="label-uploader">Simply drag and drop file<br>or <span class="higlight">browse</span> on your disk.</span>
+                                                <span class="file-format-hint">Supported image: .jpg, .png, .jpeg</span>
+                                            </div>
+                                            <span class="size-hint">Optimal size ratio is 1:1</span>
+                                        </div>
+                                        <input nv-file-select type="file" uploader="uploader" options="{ alias: 'brandImage' }" filters="imageFilter" title=" " multiple ng-disabled="markerOption == 'default'">
+                                    </div>
+                                </div>
+
+                                <div class="row form-row clearfix">
+                                    <div class="col-sm-6 no-padding-left">
+                                        <div class="dropdown form-group">
+                                            <label class="medium-font">Display marker size</label>
+                                            <select
+                                                ng-model="markerSize"
+                                                ng-options="sizeItem.label for sizeItem in  markerSizes track by sizeItem.value"
+                                                class="form-control">
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6 no-padding-right">
+                                        <div class="dropdown form-group">
+                                            <label class="medium-font">Display marker stand</label>
+                                            <select
+                                                ng-model="markerStand"
+                                                ng-options="standItem.label for standItem in  markerStands track by standItem.value"
+                                                class="form-control">
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6 product-info">
+                                <label class="medium-font">Preview</label>
+                                <div class="phone-preview">
+                                    <div id="map-preview" class="map-preview">
+                                        <div id="marker-preview"
+                                             class="marker-preview {{markerSizeClass + ' ' + markerShapeClass}}"
+                                             style="{{reviewMarker}}">
+                                        </div>
+                                    </div>
+                                    <img ng-src="{{kachingAppConfig.wpTemplateUri + '/assets/images/wireframe_iphone.png'}}" height="550px;">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 margin-b-15 clearfix">
+                        <input type="button" class="btn-kaching-first pull-right" ng-click="submitMedia()" ng-show="!editMode" value="Save" />
+                        <input type="button" class="btn-kaching-first pull-right" ng-click="submitMedia()" ng-show="editMode" value="Update" />
+                        <span class="btn-kaching-second margin-r-15 pull-right" ng-click="cancelEdit()">Cancel</span>
+                    </div>
+                </form>
+            </div>
+        </media-upload>
+    </div>
+</div>

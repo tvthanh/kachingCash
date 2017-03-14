@@ -1,0 +1,288 @@
+<div class="billboards-step2" ng-controller="instoreStep2Ctrl">
+    <div loader ng-show="view.busy"></div>
+    <div ng-show="!view.busy">
+        <media-upload>
+            <span class="required-text">* Required field</span>
+            <div class="block-content padd-bot-0">
+                <form id="form1" name="form1" novalidate>
+                    <div class="row flex-row">
+                        <div class="col-sm-5 upload-container flex-column">
+                            <label>*Add image <a ng-show="isAddImage" ng-click="removeAddImageForm()">/ Remove</a></label>
+                            <div class="medias">
+                                <div class="col-sm-9 file-uploader">
+                                    <div id="imageFile" name="imageFile" ng-model="data.imageFile" nv-file-drop ifm-uploader-preview-image="data.imageFile" uploader="uploader" options="{ alias: 'display' }" filters="imageFilter" ifm-over-class="fileover" class="uploader-dropzone" ng-required="needBasicValidateZone()">
+                                        <div class="uploader-label-overlay" ng-class="{ 'has-error-image' : form1.imageFile.$invalid && (form1.$submitted || !form1.imageFile.$pristine) }">
+                                            <i class="icon-ic-upload"></i>
+                                            <br><br> Simply drag and drop file<br>or <span class="higlight">browse</span> on your disk.
+                                        </div>
+                                        <div class="progress-container" ng-show="view.imageUploadStarted">
+                                            <div class="progress" ng-class="{ 'complete': view.imageUploadComplete }">
+                                                <div class="progress-bar" ng-style="{ 'width': view.imageUploadProgress + '%' }"></div>
+                                            </div>
+                                        </div>
+                                        <input nv-file-select type="file" uploader="uploader" options="{ alias: 'display' }" filters="imageFilter" title=" " multiple>
+                                    </div>
+                                </div>
+                                <ul class="col-sm-3 uploadeds row-eq-height">
+                                    <li ng-repeat="imgStyle in imageList track by $index">
+                                        <div class="image-review-list" style="{{imgStyle}}" ng-click="updateReviewIndex($index)"></div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-sm-7 product-info flex-column">
+                            <div class="row">
+                                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 no-padding-left form-group" ng-class="{ 'has-error' : form1.imageName.$invalid && (form1.$submitted || !form1.imageName.$pristine) }">
+                                    <label>*Image Name</label>
+                                    <input id="imageName" type="text" class="form-input" ng-model="data.imageName" name="imageName" ng-required="needBasicValidateZone()">
+                                    <span ng-show="form1.imageName.$invalid && (form1.$submitted || !form1.imageName.$pristine)" class="help-block">Please enter image name.</span>
+                                </div>
+                                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 no-padding-right">
+                                    <label>*Format</label>
+                                    <!-- <select ng-model="selectedFormat" ng-options="format for format in formats" ng-init="selectedFormat" ng-disabled="storeList.length === 0"></select> -->
+                                    <select ng-model="selectedFormat" ng-options="format.label for format in formats track by format.value" ng-change="changeFormat()" class="form-control"></select>
+                                </div>
+                            </div>
+
+                            <div class="row" ng-hide="selectedFormat.value !== 'in_store'">
+                                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 no-padding-right no-padding-left form-group">
+                                    <label>*Storefront</label>
+                                    <select ng-model="selectedStore" ng-options="store.name for store in storeList track by store.id" ng-init="selectedStore"></select>
+                                </div>
+                            </div>
+
+                            <div class="row margin-bot-0" ng-class="{'has-error': form1.description.$invalid && (form1.$submitted || !form1.description.$pristine) }">
+                                <label>*Description</label>
+                                <textarea id="description" name="description" class="form-input description" placeholder="Add description here..." ng-model="data.description" ng-required="needBasicValidateZone()"></textarea>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row ar-section ar-image-section flex-row">
+                        <div class="col-sm-5 upload-container flex-column">
+                            <label>*Add AR Image/Video/Icon/Text</label>
+                            <div class="file-uploader-wrapper">
+                                <div id="arImageFile" name="arImageFile" ng-model="data.arImageFile" nv-file-drop ifm-uploader-preview-image="data.arImageFile" uploader="uploader" options="{ alias: 'arDisplay' }" ifm-over-class="fileover" class="uploader-dropzone" ng-class="{ 'image-error' : showErrors() && arImageHasError() }"
+                                    required>
+                                    <div class="uploader-label-overlay" ng-class="{'has-error-image': form1.arImageFile.$invalid && (form1.$submitted || !form1.arImageFile.$pristine) }">
+                                        <i class="icon-ic-upload"></i>
+                                        <br><br> Simply drag and drop file<br>or <span class="higlight">browse</span> on your disk.
+                                    </div>
+                                    <input nv-file-select type="file" uploader="uploader" options="{ alias: 'arDisplay' }" filters="imageFilter, videoFilter" title=" " multiple>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-7 product-info flex-column">
+                            <label class="medium-font">Media Format</label>
+                            <div class="clearfix">
+                                <div class="row clearfix special">
+                                    <div class="custom-radio-v1 col-sm-3">
+                                        <div class="radio" ng-init="imageType='image'">
+                                            <input type="radio" name="imageType" id="arImage" ng-model="imageType" value="image" />
+                                            <label for="arImage" style="min-width: 110px">AR Image</label>
+                                        </div>
+                                    </div>
+                                    <div class="custom-radio-v1 col-sm-3">
+                                        <div class="radio">
+                                            <input type="radio" name="imageType" id="video" ng-model="imageType" value="video" />
+                                            <label for="video" style="min-width: 100px">Video</label>
+                                        </div>
+                                    </div>
+                                    <div class="custom-radio-v1 col-sm-3">
+                                        <div class="radio">
+                                            <input type="radio" name="imageType" id="icon" ng-model="imageType" value="icon" />
+                                            <label for="icon" style="min-width: 100px">Icon</label>
+                                        </div>
+                                    </div>
+                                    <div class="custom-radio-v1 col-sm-3">
+                                        <div class="radio">
+                                            <input type="radio" name="imageType" id="text" ng-model="imageType" value="text" />
+                                            <label for="text" style="min-width: 100px">Text</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group" ng-class="{ 'has-error' : form1.arImageName.$invalid && (form1.$submitted || !form1.arImageName.$pristine) }">
+                                    <label>*Image name</label>
+                                    <input id="arImageName" class="form-control" ng-model="data.arImageName" name="arImageName" required>
+                                    <span ng-show="form1.arImageName.$invalid && (form1.$submitted || !form1.arImageName.$pristine)" class="help-block">Please enter image name.</span>
+                                </div>
+                            </div>
+                            <div>
+                                <div>
+                                    <label class="medium-font">Appearance</label>
+                                    <div class="clearfix">
+                                        <div class="row clearfix special">
+                                            <div class="custom-radio-v1 col-sm-3">
+                                                <div class="radio" ng-init="appearance='2'">
+                                                    <input type="radio" name="appearance" id="twoD" ng-model="appearance" value="2" />
+                                                    <label for="twoD" style="min-width: 110px">2D</label>
+                                                </div>
+                                            </div>
+                                            <div class="custom-radio-v1 col-sm-3">
+                                                <div class="radio">
+                                                    <input type="radio" name="appearance" id="threeD" ng-model="appearance" value="3" />
+                                                    <label for="threeD" style="min-width: 100px">3D</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <label class="medium-font">Animation</label>
+                                    <input type="text" class="form-input" ng-model="data.animation" name="animation">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div ng-show="selectedFormat.value === 'store_front'" class="row ar-section flex-row">
+                        <div class="col-sm-5 upload-container flex-column">
+                            <label>*Add Brand Icon/logo</label>
+                            <div class="btn-marker-default">
+                                <a ng-click="updateLogoIcon(true)" ng-show="!editMode">Set default marker</a>
+                            </div>
+                            <div class="file-uploader-wrapper">
+                                <div id="brandImageFile" name="brandImageFile" ng-model="data.brandImageFile" nv-file-drop ifm-uploader-preview-image="data.brandImageFile" uploader="uploader" options="{ alias: 'brandImage' }" filters="imageFilter" ifm-over-class="fileover" class="uploader-dropzone"
+                                    ng-required="needBrandValidationZone()">
+                                    <div class="uploader-label-overlay" ng-class="{ 'has-error-image' : form1.brandImageFile.$invalid && (form1.$submitted || !form1.brandImageFile.$pristine) }">
+                                        <i class="icon-ic-upload"></i>
+                                        <br><br> Simply drag and drop file<br>or <span class="higlight">browse</span> on your disk.
+                                    </div>
+                                    <div class="progress-container" ng-show="view.brandImageUploadStarted">
+                                        <div class="progress" ng-class="{ 'complete': view.brandImageUploadComplete }">
+                                            <div class="progress-bar" ng-style="{ 'width': view.brandImageUploadProgress + '%' }"></div>
+                                        </div>
+                                    </div>
+                                    <input nv-file-select type="file" uploader="uploader" options="{ alias: 'brandImage' }" filters="imageFilter" title=" " multiple>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-7 product-info flex-column">
+                            <div class="row">
+                                <div ng-class="{ 'has-error' : form1.shoppingMall.$invalid && (form1.$submitted || !form1.shoppingMall.$pristine) }" class="form-group">
+                                    <label>Shopping Mall</label>
+                                    <input type="text" class="form-input" ng-model="data.shoppingMall" name="shoppingMall">
+                                    <span ng-show="form1.shoppingMall.$invalid && (form1.$submitted || !form1.shoppingMall)" class="help-block">Please enter shopping mall.</span>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div ng-class="{ 'has-error' : form1.shopNumber.$invalid && (form1.$submitted || !form1.shopNumber.$pristine) }" class="form-group">
+                                    <label>Shop Number</label>
+                                    <input type="text" class="form-input" ng-model="data.shopNumber" name="shopNumber">
+                                    <span ng-show="form1.shopNumber.$invalid && (form1.$submitted || !form1.shopNumber)" class="help-block">Please enter shop number.</span>
+                                </div>
+                            </div>
+                            <div class="row minus-space">
+                                <div ng-class="{ 'has-error' : form1.brandIconLogo.$invalid && (form1.$submitted || !form1.brandIconLogo.$pristine) }" class="form-group">
+                                    <label>Brand Icon/Logo</label>
+                                    <input type="text" class="form-input" ng-model="data.brandIconLogo" name="brandIconLogo">
+                                    <span ng-show="form1.brandIconLogo.$invalid && (form1.$submitted || !form1.brandIconLogo)" class="help-block">Please enter brand icon/logo name.</span>
+                                </div>
+                            </div>
+                            <div class="clearfix">
+                                <div class="col-sm-2 no-padding-left">
+                                    <div ng-class="{ 'has-error' : form1.dWidth.$invalid && (form1.$submitted || !form1.dimension.$pristine) }" class="form-group">
+                                        <label>*Width</label>
+                                        <input id="dimension-width" name="dWidth" class="form-control" ng-model="dimensionWidth" maxlength="3" ng-required="needBrandValidationZone()" />
+                                        <span ng-show="form1.dWidth.$invalid && (form1.$submitted || !form1.dWidth.$pristine)" class="help-block">Please enter dimension width.</span>
+                                    </div>
+                                </div>
+                                <div class="col-sm-2 no-padding-left">
+                                    <div ng-class="{ 'has-error' : form1.dHeight.$invalid && (form1.$submitted || !form1.dimension.$pristine) }" class="form-group">
+                                        <label>*Height</label>
+                                        <input id="dimension-height" name="dHeight" class="form-control" ng-model="dimensionHeight" maxlength="3" ng-required="needBrandValidationZone()" />
+                                        <span ng-show="form1.dHeight.$invalid && (form1.$submitted || !form1.dHeight.$pristine)" class="help-block">Please enter dimension height.</span>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4 no-padding-right">
+                                    <div class="dropdown form-group" ng-init="material = materials[0]">
+                                        <label>*Material</label>
+
+                                        <select ng-model="material" ng-options="(material | uppercase) for material in materials" class="form-control"></select>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4 no-padding-right">
+                                    <div class="dropdown form-group">
+                                        <label>*Format</label>
+
+                                        <select ng-model="shape" ng-options="shapeItem.label for shapeItem in shapes track by shapeItem.value" class="form-control"></select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row location-section">
+                        <div>
+                            <label>*Add Location</label>
+                            <span ng-show="position==undefined && formSummited" class="help-block">Please choose a place!</span>
+                            <div class="row">
+                                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                                    <label>*City</label>
+                                    <select ng-disabled="selectedFormat.value === 'in_store'" ng-model="selectedCity" ng-options="city.name for city in cityList" ng-change="updateDistrict()"></select>
+                                </div>
+                                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                                    <label>*District</label>
+                                    <select ng-model="selectedDistrict" ng-disabled="selectedFormat.value === 'in_store' || districtList.length === 0" ng-options="district.name for district in districtList" ng-change="updateMap(selectedDistrict)"></select>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 no-padding-left no-padding-right">
+                                    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 form-group" ng-class="{ 'has-error' : form1.latitude.$invalid && (form1.$submitted || !form1.latitude.$pristine) }">
+                                        <label>Latitude</label>
+                                        <input ng-disabled="selectedFormat.value === 'in_store'" id="latitude" name="latitude" ng-model="latitude" class="form-control" ng-change="updateMapManually()" ng-required="selectedFormat===formats[0]" />
+                                        <!-- <span ng-show="!form1.latitude.$invalid && (form1.$submitted || !form1.latitude.$pristine)" class="help-block">Please enter latitude.</span> -->
+                                    </div>
+                                    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 form-group" ng-class="{ 'has-error' : form1.longitude.$invalid && (form1.$submitted || !form1.longitude.$pristine) }">
+                                        <label>Longitude</label>
+                                        <input ng-disabled="selectedFormat.value === 'in_store'" id="longitude" name="longitude" ng-model="longitude" class="form-control" ng-change="updateMapManually()" ng-required="selectedFormat===formats[0]" />
+                                        <!-- <span ng-show="form1.longitude.$invalid && (form1.$submitted || !form1.longitude.$pristine)" class="help-block">Please enter longitude.</span> -->
+                                    </div>
+                                </div>
+                                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 no-padding-left no-padding-right">
+                                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                        <label>Inclusion zone</label>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                                            <input type="text" class="form-input inline" placeholder="" ng-model="inclusionZone">
+                                        </div>
+                                        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                                            <select ng-model="measure" ng-init="measure=measures[0]" ng-options="item.name for item in measures"></select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div ng-show="selectedFormat.value === 'store_front'">
+                                <input id="pac-input" class="controls" type="text" placeholder="Search Box" ng-model="pacInput">
+                                <div style="height:80vh;" id="map"></div>
+                            </div>
+                            <div class="row" ng-hide="selectedFormat.value === 'in_store'">
+                                <div style="padding-top: 20px;">
+                                    <label>*Store name</label>
+                                    <input id="address" class="form-control" ng-model="address" />
+                                </div>
+                            </div>
+
+                            <div>
+                                <a class="btn-cancel pull-right" ng-click="cancelEdit()" ng-show="editMode">Cancel</a>
+                                <input type="submit" class="btn-submit pull-right" ng-click="submitMedia()" ng-show="!editMode" value="Submit" />
+                                <input type="submit" class="btn-submit pull-right" ng-click="submitMedia()" ng-show="editMode" value="Update" />
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="block-content col-sm-6">
+                <instore-media-preview store-list="storeList" item-edit="editMedia(mediaId)" item-delete="deleteMedia(mediaId)" show-edit="true"></instore-media-preview>
+            </div>
+        </media-upload>
+        <div class="footer-popup-stream-video clearfix">
+            <button class="btn-next-step pull-right" ng-click="nextStep();">Save & Continue to Step 3 - Recommend Products</button>
+            <a class="btn-back-to-step pull-right" ng-click="goPrev()">Back to step 1</a>
+        </div>
+    </div>
+</div>

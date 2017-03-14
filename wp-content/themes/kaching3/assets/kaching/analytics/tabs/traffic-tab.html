@@ -1,0 +1,297 @@
+<div class="container-analytics" ng-controller="trafficCtrl">
+    <div class="traffic-container">
+        <h2 class="title-top">Total Traffic Sources</h2>
+        <div class="container-globe-kaching banner-payout">
+            <img ng-src="{{kachingAppConfig.wpTemplateUri + '/assets/images/dashboard/global-static.png'}}" width="100%">
+        </div>
+
+        <div class="traffic-chart-wrapper clearfix">
+            <div class="col-sm-9">
+                <h3 class="traffic-header">
+                    <strong>Traffic Source
+                    </strong>
+                    <span>by day
+                    </span>
+                    <span class="start-day">11/01/2015</span>
+                    -
+                    <span class="end-day">11/02/2015</span>
+                </h3>
+                <highchart id="trafficSource" config="trafficSource"></highchart>
+            </div>
+            <div class="summary-block col-sm-3">
+                <div class="summary-top">
+                    <h3 class="title-summary">Summary</h3>
+                    <p class="label-total">Total Views</p>
+                    <p class="num-total">
+                        <span class="num">198,087</span>
+                        <span class="percent">+2.5%</span>
+                        <span class="ic-question glyphicon glyphicon-question-sign" aria-hidden="true"></span>
+                    </p>
+                </div>
+                <div class="summary-list">
+                    <p class="th-header clearfix">
+                        <span>Top Revenue</span>
+                        <span>View</span>
+                    </p>
+                    <ul class="list-item">
+                        <li class="clearfix">
+                            <span class="time">12 Jan 2016</span>
+                            <span class="money">USD 1,200.00</span>
+                        </li>
+                        <li class="clearfix">
+                            <span class="time">21 Jan 2016</span>
+                            <span class="money">USD 918.30</span>
+                        </li>
+                        <li class="clearfix">
+                            <span class="time">9 Jan 2016</span>
+                            <span class="money">USD 791.10</span>
+                        </li>
+                    </ul>
+                    <p class="th-header clearfix">
+                        <span>Top Converation Rate</span>
+                        <span>View</span>
+                    </p>
+                    <ul class="list-item">
+                        <li class="clearfix">
+                            <span class="time">21 Jan 2016</span>
+                            <span class="money">3.12%</span>
+                        </li>
+                        <li class="clearfix">
+                            <span class="time">8 Jan 2016</span>
+                            <span class="money">2.98%</span>
+                        </li>
+                        <li class="clearfix">
+                            <span class="time">5 Jan 2016</span>
+                            <span class="money">2.62%</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="campaign-payout-details">
+            <div class="campaign-payout-header clearfix">
+                <div class="col-sm-6 no-gutter">
+                    <h2 class="title">Product Traffic Details</h2>
+                </div>
+                <div class="col-sm-6 no-gutter text-right">
+                    <div class="btn-group clearfix">
+                        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            EXPORT
+                            <span class="caret pull-right"></span>
+                        </button>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="#">Action</a>
+                            <a class="dropdown-item" href="#">Another action</a>
+                            <a class="dropdown-item" href="#">Something else here</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="#">Separated link</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="campaign-payout-table">
+                <table class="table-status table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Customer Name/ Campaign Name</th>
+                            <th>Revenue</th>
+                            <th>Units Sold</th>
+                            <th>Order</th>
+                            <th>Views</th>
+                            <th>Con.Rate</th>
+                            <th>AOV</th>
+                            <th colspan="2">RPV</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="productItem in dataProductTrafficeDetails" class="{{productItem.status}}">
+                            <td>
+                                <div class="campaign-name one-line clearfix">
+                                    <p class="audio-item pull-left"><img ng-src="{{productItem.srcImg}}" alt=""/></p>
+                                    <div class="pull-left">
+                                        <p class="title">{{productItem.title}}</p>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="campaign-dollars">
+                                    <p class="dollars">USD {{productItem.dollars}}</p>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="campaign-unit-sold">
+                                    <p class="unit-sold">{{productItem.unitSold}}</p>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="campaign-order">
+                                    <p class="order">{{productItem.order}}</p>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="campaign-view">
+                                    <p class="num-view">{{productItem.numView}}</p>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="campaign-coin-rate">
+                                    <p class="coin-rate">{{productItem.coinRate}}%</p>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="campaign-aov">
+                                    <p class="avo-dollar">USD {{productItem.dollarAVO}}</p>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="campaign-rpv">
+                                    <p class="rpv-dollar">USD {{productItem.dollarRPV}}</p>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="campaign-rpv">
+                                    <span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="view-world-wrapper row clearfix">
+            <div class="col-sm-6">
+                <div class="cotainer-click-per-view frame-kaching">
+                    <h4 class="title-chart-kaching">campaigns click per views</h4>
+                    <div class="row clearfix">
+                        <div class="col-sm-6">
+                            <p class="uppercase txt-grey font-13 margin-b-5">top</p>
+                            <div class="process-perview">
+                                <div class="frame-logo-brand">
+                                    <div class="logo-brand-view">
+                                        <img ng-src="{{kachingAppConfig.wpTemplateUri + '/assets/images/dashboard/logo-brand.png'}}" width="40">
+
+                                    </div>
+                                </div>
+                                <div class="percent-view-click">
+                                    <div class="live-percent-click top-click-one" style="width:90%;"></div>
+                                </div>
+                                <label class="number-percent-click">91%</label>
+                            </div>
+                            <div class="process-perview">
+                                <div class="frame-logo-brand">
+                                    <div class="logo-brand-view">
+                                        <img ng-src="{{kachingAppConfig.wpTemplateUri + '/assets/images/dashboard/logo-brand.png'}}" width="40">
+
+                                    </div>
+                                </div>
+                                <div class="percent-view-click">
+                                    <div class="live-percent-click top-click-two" style="width:13%;"></div>
+                                </div>
+                                <label class="number-percent-click">13%</label>
+                            </div>
+                            <div class="process-perview">
+                                <div class="frame-logo-brand">
+                                    <div class="logo-brand-view">
+                                        <img ng-src="{{kachingAppConfig.wpTemplateUri + '/assets/images/dashboard/logo-brand.png'}}" width="40">
+                                    </div>
+                                </div>
+                                <div class="percent-view-click">
+                                    <div class="live-percent-click top-click-three" style="width:90%;"></div>
+                                </div>
+                                <label class="number-percent-click">91%</label>
+                            </div>
+                            <div class="process-perview">
+                                <div class="frame-logo-brand">
+                                    <div class="logo-brand-view">
+                                        <img ng-src="{{kachingAppConfig.wpTemplateUri + '/assets/images/dashboard/logo-brand.png'}}" width="40">
+                                    </div>
+                                </div>
+                                <div class="percent-view-click">
+                                    <div class="live-percent-click top-click-four" style="width:90%;"></div>
+                                </div>
+                                <label class="number-percent-click">91%</label>
+                            </div>
+                            <div class="process-perview">
+                                <div class="frame-logo-brand">
+                                    <div class="logo-brand-view">
+                                        <img ng-src="{{kachingAppConfig.wpTemplateUri + '/assets/images/dashboard/logo-brand.png'}}" width="40">
+                                    </div>
+                                </div>
+                                <div class="percent-view-click">
+                                    <div class="live-percent-click top-click-five" style="width:90%;"></div>
+                                </div>
+                                <label class="number-percent-click">91%</label>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <p class="uppercase txt-grey font-13 margin-b-5">bottom</p>
+                            <div class="process-perview">
+                                <div class="frame-logo-brand">
+                                    <div class="logo-brand-view">
+                                        <img ng-src="{{kachingAppConfig.wpTemplateUri + '/assets/images/dashboard/logo-brand.png'}}" width="40">
+                                    </div>
+                                </div>
+                                <div class="percent-view-click">
+                                    <div class="live-percent-click bottom-click-one" style="width:90%;"></div>
+                                </div>
+                                <label class="number-percent-click">91%</label>
+                            </div>
+                            <div class="process-perview">
+                                <div class="frame-logo-brand">
+                                    <div class="logo-brand-view">
+                                        <img ng-src="{{kachingAppConfig.wpTemplateUri + '/assets/images/dashboard/logo-brand.png'}}" width="40">
+                                    </div>
+                                </div>
+                                <div class="percent-view-click">
+                                    <div class="live-percent-click bottom-click-two" style="width:13%;"></div>
+                                </div>
+                                <label class="number-percent-click">13%</label>
+                            </div>
+                            <div class="process-perview">
+                                <div class="frame-logo-brand">
+                                    <div class="logo-brand-view">
+                                        <img ng-src="{{kachingAppConfig.wpTemplateUri + '/assets/images/dashboard/logo-brand.png'}}" width="40">
+                                    </div>
+                                </div>
+                                <div class="percent-view-click">
+                                    <div class="live-percent-click bottom-click-three" style="width:90%;"></div>
+                                </div>
+                                <label class="number-percent-click">91%</label>
+                            </div>
+                            <div class="process-perview">
+                                <div class="frame-logo-brand">
+                                    <div class="logo-brand-view">
+                                        <img ng-src="{{kachingAppConfig.wpTemplateUri + '/assets/images/dashboard/logo-brand.png'}}" width="40">
+                                    </div>
+                                </div>
+                                <div class="percent-view-click">
+                                    <div class="live-percent-click bottom-click-four" style="width:90%;"></div>
+                                </div>
+                                <label class="number-percent-click">91%</label>
+                            </div>
+                            <div class="process-perview">
+                                <div class="frame-logo-brand">
+                                    <div class="logo-brand-view">
+                                        <img ng-src="{{kachingAppConfig.wpTemplateUri + '/assets/images/dashboard/logo-brand.png'}}" width="40">
+                                    </div>
+                                </div>
+                                <div class="percent-view-click">
+                                    <div class="live-percent-click bottom-click-five" style="width:90%;"></div>
+                                </div>
+                                <label class="number-percent-click">91%</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="frame-kaching">
+                    <h4 class="title-chart-kaching">Top Conv. Rate by brand</h4>
+                    <highchart id="trafficRateChart" config="trafficRateChart"></highchart>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

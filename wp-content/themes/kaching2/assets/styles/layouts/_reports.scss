@@ -1,0 +1,15 @@
+.report{
+	.chart{
+		background-color:$violet-dark;
+		border-radius:4px;
+		box-shadow: 0 0 20px rgba(0,0,0,0.2);
+		padding:10px;
+		margin-bottom:30px;
+	}
+	select.form-control{
+		width:190px;
+		float: left;
+		margin: 0px 13px 15px 13px;
+
+	}
+}

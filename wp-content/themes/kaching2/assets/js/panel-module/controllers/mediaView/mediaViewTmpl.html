@@ -1,0 +1,84 @@
+<div class="wrap container media-view-page">
+    <div class="content row">
+
+        <div loader ng-show="view.busy"></div>
+
+        <div class="header-bar" ng-hide="view.busy">
+            <div class="row">
+                <div class="col-md-7">
+                    <a ui-sref="media" class="btn-back"><i class="icon icon-ic-back"></i></a>
+                    <h1>{{data.mediaItem.name}}</h1>
+                </div>
+                <div class="col-md-5 text-right">
+                    <a ui-sref="media.edit({ mediaId: data.mediaItem.id })" class="btn btn-primary uppercase">Edit</a>
+                    <a href="" ng-click="showDeleteMediaDialog( data.mediaItem )" ng-hide="data.mediaItem.is_active" class="btn btn-danger uppercase">Remove</a>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="panel panel-kaching" ng-hide="view.busy">
+            <div class="panel-heading"><h3 class="panel-title">Media preview</h3></div>
+            <div class="panel-body">
+
+                <div ng-show="view.mediaLoaded">
+
+                    <div class="media-preview-container-lg">
+                        <div class="video-container">
+                            <div videogular>
+                                <vg-media vg-src="videogular.sources" vg-native-controls="true"></vg-media>
+                            </div>
+                        </div>
+                        <div class="image-container" style="background-image:url({{data.mediaItem.display}});"></div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+
+        <div class="panel panel-kaching" ng-hide="view.busy">
+            <div class="panel-heading"><h3 class="panel-title">Media details</h3></div>
+            <div class="panel-body">
+                <div class="form-group">
+                    <input type="text" class="form-control" value="{{data.mediaItem.name}}" disabled>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="control-label">Date added</label>
+                            <input
+                                type="text"
+                                class="form-control"
+                                value="{{ data.mediaItem.date_added | date : 'dd-MM-yyyy' }}"
+                                disabled
+                                >
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="control-label">Last used date</label>
+                            <input
+                                type="text"
+                                class="form-control"
+                                value="{{ data.mediaItem.last_used_date | date : 'dd-MM-yyyy' }}"
+                                disabled
+                                >
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="control-label">Status</label>
+                            <input type="text" class="form-control" value="{{ data.mediaItem.is_active ? 'Active' : 'Inactive' }}" disabled>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

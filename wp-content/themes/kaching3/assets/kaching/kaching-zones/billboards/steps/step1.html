@@ -1,0 +1,175 @@
+<div class="add-campaign-step" ng-controller="step1Ctrl">
+    <form name="form1" class="campaign-step1" novalidate>
+
+        <div loader ng-show="view.busy"></div>
+        <div ng-show="!view.busy">
+            <div class="step-campaign-details">
+                <div class="item-card-v1 basic-info">
+                    <div class="row form-row ">
+                        <div class="col-sm-6 form-group" ng-class="{ 'has-error' : showErrors() && fieldHasError( this, 'form1', 'campaign_name' ) }">
+                            <label class="medium-font">Campaign name - Just to know what it is </label>
+                            <input id="campaignName" name="campaign_name" type="text" class="form-control campaign-name" placeholder="Campaign name here" ng-model="campaign.name" required>
+                            <span ng-show="showErrors() && fieldHasError( this, 'form1', 'campaign_name' )" class="help-block">Please enter campaign name.</span>
+                        </div>
+                        <div class="col-sm-6 form-group" ng-class="{ 'has-error' : fundError || showErrors() && fieldHasError( this, 'form1', 'funds' ) }">
+                            <label class="medium-font">Fund for this campaign (coins)</label>
+                            <input id="funds" name="funds" placeholder="Fund for this campaign" class="form-control"
+                                ng-model="campaign.fund"
+                                required
+                                balance-input
+                                balance="{{availableCoin}}"
+                                spent-coins="{{campaign.spentCoins}}"
+                                remainning-coins="{{campaign.remainningCoins}}"/>
+                            <span ng-show="fundError || showErrors() && fieldHasError( this, 'form1', 'funds' )" class="help-block">Please enter fund between {{campaign.spentCoins || 1}} and {{availableCoin}}</span>
+                        </div>
+                    </div>
+                    <div class="row form-row" ng-if="campaignId">
+                        <div class="col-sm-6 form-group">
+                            <label class="medium-font">Spent coins</label>
+                            <input disabled type="text" class="form-control" ng-model="campaign.spentCoins">
+                        </div>
+                        <div class="col-sm-6 form-group">
+                            <label class="medium-font">Remaining coins</label>
+                            <input disabled class="form-control" ng-model="campaign.remainningCoins" />
+                        </div>
+                    </div>
+                    <div class="row form-row">
+                        <div class="col-sm-3 form-group">
+                            <label class="medium-font">Campaign type</label>
+                            <select
+                                ng-disabled="editId || isCreated"
+                                ng-model="selectedCampaignType"
+                                ng-options="item.label for item in campaignTypes track by item.value"
+                                class="form-control">
+                            </select>
+                        </div>
+                        <div class="col-sm-3 form-group">
+                            <label class="medium-font">Country</label>
+                            <select class="height_37"
+                                ng-model="selectedLocation"
+                                ng-options="location.short_name for location in locations track by location.alpha2_code"
+                                >
+                            </select>
+                        </div>
+                        <div class="col-sm-6 form-group">
+                            <label class="medium-font">Schedule</label>
+                            <div class="clearfix">
+                                <div class="row clearfix">
+                                    <div class="form-group col-sm-8 calendar-input relative" ng-class="{ 'has-error' : showErrors() && fieldHasError( this, 'form1', 'daterange' ) }">
+                                        <date-picker-addon
+                                            display-date="daterange.display"
+                                            date-range="daterange.dates"
+                                            clear-status="true"
+                                        ></date-picker-addon>
+                                        <span ng-show="showErrors() && fieldHasError( this, 'form1', 'daterange', 'required' )" class="help-block">Please select the campaign start and end dates.</span>
+                                        <span ng-show="showErrors() && fieldHasError( this, 'form1', 'daterange', 'min' )" class="help-block">Start date cannot be in the past.</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row form-row">
+                        <div class="col-sm-6 form-group">
+                            <label class="medium-font">Campaign logo</label>
+                            <div class="file-uploader-wrapper">
+                                <cropper-image class="pull-right" image-need-crop="campaign.logo_image"></cropper-image>
+                                <btn-clear-upload-file image-name="'logo_image'" current-file="campaign.logo_image"></btn-clear-upload-file>
+                                <div
+                                    id="logo_image"
+                                    nv-file-drop
+                                    ifm-uploader-preview-image="campaign.logo_image"
+                                    uploader="uploader"
+                                    options="{ alias: 'customerLogo' }"
+                                    filters="imageFilter"
+                                    ifm-over-class="fileover"
+                                    class="uploader-dropzone  customer-upload-section"
+                                    ng-class="{ 'has-error' : showErrors() && imageHasError() }">
+                                    <div class="uploader-label-overlay">
+                                        <div class="box-label-uploader" ng-show="!campaign.logo_image">
+                                            <i class="icon-ic-upload"></i>
+                                            <span class="label-uploader">Simply drag and drop file<br>or <span class="higlight">browse</span> on your disk.</span>
+                                            <span class="file-format-hint">Supported image: .jpg, .png, .jpeg</span>
+                                        </div>
+                                        <span class="size-hint">Optimal size ratio is 1:1</span>
+                                    </div>
+                                    <input nv-file-select type="file" uploader="uploader" options="{ alias: 'customerLogo' }" filters="imageFilter" title=" " multiple>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 form-group">
+                            <label class="medium-font">Campaign background</label>
+                            <div class="file-uploader-wrapper">
+                                <cropper-image class="pull-right" image-need-crop="campaign.header_image"></cropper-image>
+                                <btn-clear-upload-file image-name="'header_image'" current-file="campaign.header_image"></btn-clear-upload-file>
+                                <div
+                                    id="header_image"
+                                    nv-file-drop
+                                    ifm-uploader-preview-image="campaign.header_image"
+                                    uploader="uploader"
+                                    options="{ alias: 'backgroundImage' }"
+                                    filters="imageFilter"
+                                    ifm-over-class="fileover"
+                                    class="uploader-dropzone  customer-upload-section"
+                                    ng-class="{ 'has-error' : showErrors() && imageHasError() }">
+                                    <div class="uploader-label-overlay">
+                                        <div class="box-label-uploader" ng-show="!campaign.header_image">
+                                            <i class="icon-ic-upload"></i>
+                                            <span class="label-uploader">Simply drag and drop file<br>or <span class="higlight">browse</span> on your disk.</span>
+                                            <span class="file-format-hint">Supported image: .jpg, .png, .jpeg</span>
+                                        </div>
+                                        <span class="size-hint">Optimal size ratio is 1:1</span>
+                                    </div>
+                                    <input nv-file-select type="file" uploader="uploader" options="{ alias: 'backgroundImage' }" filters="imageFilter" title=" " multiple>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row form-row">
+                        <div class="col-sm-12 form-group">
+                            <label class="medium-font">Promoting text</label>
+                            <textarea rows="6" id="description" name="description" class="form-control description" placeholder="" ng-model="campaign.description"></textarea>
+                        </div>
+                    </div>
+                    <div class="row form-row clearfix">
+                        <div class="col-sm-6 form-group">
+                            <label class="medium-font">Targeting</label>
+                            <div class="clearfix">
+                                <div class="custom-checkbox-v1 col-sm-6">
+                                    <div class="margin-b-10">
+                                        <div class="checkbox">
+                                            <input type="checkbox" name="genderSpecific" id="genderSpecificMale" ng-model="targeting.gender.male" value="male" ng-init="checked=true" ng-change="changeStatusGender(true)" />
+                                            <label for="genderSpecificMale" style="min-width: 100px">Male</label>
+                                        </div>
+                                    </div>
+                                    <div class="margin-b-10">
+                                        <div class="checkbox">
+                                            <input type="checkbox" name="genderSpecific" id="genderSpecificFeMale" ng-model="targeting.gender.female" value="female" ng-init="checked=true" ng-change="changeStatusGender(false)" />
+                                            <label for="genderSpecificFeMale" style="min-width: 100px">Female</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="custom-checkbox-v1 col-sm-6">
+                                    <div class="margin-b-10">
+                                        <div class="checkbox">
+                                            <input type="checkbox" name="osSpecific" id="osSpecificIos" ng-model="targeting.os.ios" value="ios" ng-init="checked=true" ng-change="changeStatusOS(true)" />
+                                            <label for="osSpecificIos" style="min-width: 100px">IOS</label>
+                                        </div>
+                                    </div>
+                                    <div class="margin-b-10">
+                                        <div class="checkbox">
+                                            <input type="checkbox" name="osSpecific" id="osSpecificAndroid" ng-model="targeting.os.android" value="android" ng-init="checked=true" ng-change="changeStatusOS(false)" />
+                                            <label for="osSpecificAndroid" style="min-width: 100px">Android</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-popup-stream-video clearfix">
+                <button type="button" class="btn-kaching-first pull-right" ng-click="nextStep()">Save & Continue to step 2</button>
+            </div>
+        </div>
+    </form>
+</div>

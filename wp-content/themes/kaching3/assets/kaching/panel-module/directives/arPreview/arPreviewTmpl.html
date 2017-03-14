@@ -1,0 +1,38 @@
+<div class="ar-media-preview" ng-if="arType == false || arType == 'wikitude'">
+    <span>No Preview Available</span>
+</div>
+
+<div class="ar-media-preview" ng-if="arType == 'image'">
+    <img ng-src="{{arResource | mediaType}}">
+</div>
+<div class="ar-media-preview" ng-if="arType == 'video'">
+    <video controls autoplay>
+    <source ng-src="{{arResource}}" >
+    Your browser does not support HTML5 video.
+    </video>
+</div>
+<div class="ar-media-preview" ng-if="arType == 'audio'">
+    <audio controls autoplay>
+    <source ng-src="{{arResource}}" >
+    Your browser does not support the audio element.
+    </audio>
+</div>
+
+<div class="row qr-code-container" ng-show="media.instore_rewards && media.instore_rewards.length > 0">
+    <div class="col-xs-12">
+        <div class="row">
+            <div class="col-xs-12">
+                <span class="medium-font instore-purchase-title">In-Store Purchase: </span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6 col-md-4" ng-repeat="reward in media.instore_rewards">
+                <div class="qr-code">
+                    <img src="{{reward.action_image}}" alt="QR Code"/>
+                    <h5>{{reward.action_note}} - {{reward.coins}} coins</h5>
+                    <a download="download.jpg" href="{{reward.action_image}}" title="Download this QR Code">Download</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

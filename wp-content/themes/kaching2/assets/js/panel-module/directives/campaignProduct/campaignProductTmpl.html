@@ -1,0 +1,82 @@
+<div class="panel panel-default campaign-product">
+    <div class="panel-body">
+
+        <div class="row">
+            <div class="col-md-11">
+
+                <div class="form-group form-group-product-title" ng-class="{ 'has-error' : $parent.showErrors() && $parent.fieldHasError( $parent, 'form1', 'title_'+index ) }">
+                    <label ng-show="showLabels">Name of your product</label>
+                    <input
+                        name="title_{{index}}"
+                        type="text"
+                        class="form-control product-title"
+                        placeholder="Name of your product"
+                        ng-model="product.title"
+                        required
+                        >
+                    <span ng-show="$parent.showErrors() && $parent.fieldHasError( $parent, 'form1', 'title_'+index )" class="help-block">Please enter product title.</span>
+                </div>
+
+                <div class="form-group form-group-product-url" ng-class="{ 'has-error' : $parent.showErrors() && $parent.fieldHasError( $parent, 'form1', 'url_'+index ) }">
+                    <label ng-show="showLabels">URL to your product</label>
+                    <input
+                        name="url_{{index}}"
+                        type="text"
+                        class="form-control product-url"
+                        placeholder="URL to your product"
+                        ng-model="product.url"
+                        ng-pattern="urlRegex"
+                        required
+                        >
+                    <span ng-show="$parent.showErrors() && $parent.fieldHasError( $parent, 'form1', 'url_'+index )" class="help-block">Please enter product url.</span>
+                </div>
+
+                <div class="form-group form-group-product-price" ng-class="{ 'has-error' : $parent.showErrors() && $parent.fieldHasError( $parent, 'form1', 'price_'+index ) }">
+                    <label ng-show="showLabels">Price of your product</label>
+                    <div class="input-group">
+                        <div class="input-group-addon">$</div>
+                        <input
+                            name="price_{{index}}"
+                            type="text"
+                            class="form-control product-price"
+                            placeholder="Price of your product"
+                            ng-model="product.price"
+                            ifm-number
+                            required
+                            >
+                    </div>
+                    <span ng-show="$parent.showErrors() && $parent.fieldHasError( $parent, 'form1', 'price_'+index, 'required' )" class="help-block">Please enter product price.</span>
+                    <span ng-show="$parent.showErrors() && $parent.fieldHasError( $parent, 'form1', 'price_'+index, 'ifmNumber' )" class="help-block">Product price must be a number</span>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="image-container">
+                            <div class="image-holder" ng-style="{ 'background-image' : 'url({{ product.image || product.image_url }})' }"></div>
+                        </div>
+                    </div>
+                    <div class="col-md-9">
+
+                        <div class="form-group form-group-product-description" ng-class="{ 'has-error' : $parent.showErrors() && $parent.fieldHasError( $parent, 'form1', 'description_'+index ) }">
+                            <label ng-show="showLabels">Description of your product</label>
+                            <textarea
+                                name="description_{{index}}"
+                                class="form-control form-control-desc"
+                                ng-model="product.description"
+                                placeholder="Description of your product"
+                                required
+                                ></textarea>
+                            <span ng-show="$parent.showErrors() && $parent.fieldHasError( $parent, 'form1', 'description_'+index )" class="help-block">Please enter product description.</span>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-md-1">
+                <button class="btn btn-secondary uppercase btn-remove pull-right" ng-click="remove( index )"><i class="icon-delete icon"></i></button>
+            </div>
+        </div>
+
+    </div>
+</div>

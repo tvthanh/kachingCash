@@ -1,0 +1,5 @@
+webserver_hosts_conf_dir: /etc/apache2/sites-enabled
+webserver_root_dir: /var/www/html
+
+git_repo: git@bitbucket.org:micheal_phuoc/new_kaching-frontend.git
+git_dest_dir: "{{ webserver_host_dir }}"

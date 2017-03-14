@@ -1,0 +1,21 @@
+webserver_server_port: 83
+webserver_host_name: kaching-frontend-dev
+webserver_host_conf_file: "{{ webserver_hosts_conf_dir }}/{{ webserver_host_name }}.conf"
+webserver_host_dir: "{{ webserver_root_dir }}/{{ webserver_host_name }}"
+webserver_access_log_file: "{{ webserver_host_name }}-access.log"
+webserver_error_log_file: "{{ webserver_host_name }}-error.log"
+
+git_branch: kaching-dashboard-cms2-3-new-campaign-editor
+
+database_login_user: "{{ vault_database_login_user }}"
+database_login_password: "{{ vault_database_login_password }}"
+database_kaching_user: "{{ vault_database_kaching_user }}"
+database_kaching_password: "{{ vault_database_kaching_password }}"
+database_name: dbkaching
+database_host: localhost
+database_port: 3306
+database_dump_path: data/dbkaching.sql
+database_wp_options_siteurl: "{{ inventory_hostname }}"
+database_wp_options_home: "{{ inventory_hostname }}"
+
+wp_config_cms_api: http://54.179.156.207/cms-api

@@ -1,0 +1,172 @@
+<div class="header-campaigns-list">
+    <div class="container1">
+        <div class="clearfix filter-campaign">
+            <div class="col-sm-4 pLeft_0 filter-title">
+                <h4 class="medium-font txt-lightBlack margin-0 capitalize">campaign information</h4>
+            </div>
+            <div class="col-sm-8 pRight_0 clearfix">
+                <div class="col-sm-9 pRight_0 clearfix">
+                    <div class="col-sm-4 pRight_0">
+                        <input
+                        type="text"
+                        class="form-control"
+                        ng-model="filters.name"
+                        ng-change="updateFilters()"
+                        ng-model-options="{debounce: 600}"
+                        placeholder= "Campaign name"
+                        >
+                    </div>
+                    <div class="col-sm-5 pRight_0">
+                        <date-picker-addon
+                            display-date="daterange.display"
+                            date-range="daterange.dates"
+                            campaing-style="true"
+                            clear-status="false"
+                        ></date-picker-addon>
+                    </div>
+                    <div class="col-sm-3 pRight_0">
+                        <select
+                        class="filter-sort-by"
+                        ng-model="view.statusFilterModel"
+                        ng-options="status.label for status in view.campaignStatuses track by status.code"
+                        ng-change="updateFilters()"
+                        ></select>
+                    </div>
+                </div>
+                <div class="col-sm-3 pRight_0 text-right">
+                    <button href="" ng-click="createCampaign()" type="button" class="btn-kaching-first percent_100">New Campaign</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container1 limit-width">
+    <div class="container-list-campaign-kaching">
+        <div class="row-campaign-kaching campaign-header-box clearfix">
+            <div class="column-campaign-kaching column-campaign-1">
+                <div class="clearfix">
+                    <label class="medium-font">Campaign</label>
+                </div>
+            </div>
+            <div class="column-campaign-kaching column-campaign-2">
+                <div class="clearfix">
+                    <label class="medium-font">Period</label>
+                </div>
+            </div>
+            <div class="column-campaign-kaching column-campaign-3">
+                <div class="clearfix">
+                    <label class="medium-font">Spent coins</label>
+                </div>
+            </div>
+            <div class="column-campaign-kaching column-campaign-4">
+                <div class="clearfix">
+                    <label class="medium-font">Status</label>
+                </div>
+            </div>
+        </div>
+        <div loader ng-show="view.busy"></div>
+        <div ng-show="!view.busy">
+            <div ng-repeat="campaign in data.campaigns">
+                <div class="row-campaign-kaching clearfix" ng-class="{'active-campaign':campaign.status === 3,'stop-campaign':campaign.status === 5}">
+                    <div class="column-campaign-kaching column-campaign-1">
+                        <div class="clearfix">
+                            <div class="logo-campaign-box">
+                                <img ng-src="{{ campaign.logo_image ? campaign.logo_image : kachingAppConfig.wpTemplateUri + '/assets/images/logo.png' }}">
+                            </div>
+                            <div class="info-brand-kaching">
+                                <label class="ellipsis">{{ campaign.name }}</label>
+                                <span class="font-12 medium-font">{{ campaign.type }}</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="column-campaign-kaching column-campaign-2 margin-t-8">
+                        <div class="clearfix">
+                            <label class="pull-left">{{ campaign.start_date | date:'yyyy-MM-dd' }}</label>
+                            <span class="pull-left" style="margin:0 3px;">-</span>
+                            <label class="pull-left">{{ campaign.end_date | date:'yyyy-MM-dd' }}</label>
+                        </div>
+                    </div>
+                    <div class="column-campaign-kaching column-campaign-3 margin-t-8">
+                        <label>{{ campaign.spent }} / {{ campaign.fund }}</label>
+                    </div>
+                    <!-- <div class="column-campaign-kaching column-campaign-5">
+                        <label>{{ campaign.status | campaignStatus }}</label>
+                        <span class="note-column-campaign">status</span>
+                    </div> -->
+                    <div class="column-campaign-kaching column-campaign-4">
+                        <div class="checkbox-ios" style="margin-top:8px" ng-class="{'incompleted': campaign.status === 0}">
+                            <input
+                            id="{{campaign.id}}"
+                            type="checkbox" value="None"
+                            ng-click="checkCampaignActive($event, campaign)"
+                            data-animation="am-fade-and-scale"
+                            data-placement="top"
+                            data-trigger="hover"
+                            data-type="success"
+                            data-title="Stop Campaign"
+                            ng-checked="campaign.status === 3"
+                            bs-tooltip >
+                            <label for="{{campaign.id}}"></label>
+                            <div class="for-inactive"></div>
+                        </div>
+                    </div>
+                    <div class="column-campaign-kaching column-campaign-5">
+                        <div class="clearfix pull-right">
+                            <a
+                                href=""
+                                ng-click="showDeleteCampaignDialog( campaign )"
+                                class="action-campaign pull-left"
+                                data-animation="am-fade-and-scale"
+                                data-placement="top"
+                                data-trigger="hover"
+                                data-type="success"
+                                data-title="Delete Campaign"
+                                bs-tooltip
+                                >
+                               <img src="/wp-content/themes/kaching3/assets/images/campaign/trash-kaching.svg">
+                            </a>
+                            <a
+                                class="action-campaign pull-left"
+                                data-animation="am-fade-and-scale"
+                                data-placement="top"
+                                data-trigger="hover"
+                                data-type="success"
+                                data-title="Edit Campaign"
+                                bs-tooltip
+                                ng-click="showCampaignPopup(campaign)"
+                                >
+                                <img src="/wp-content/themes/kaching3/assets/images/campaign/setting-kaching.svg">
+                            </a>
+                            <a
+                                href=""
+                                ng-click="showCampaignPopup( campaign, true )"
+                                class="action-campaign pull-left"
+                                data-animation="am-fade-and-scale"
+                                data-placement="top"
+                                data-trigger="hover"
+                                data-type="success"
+                                data-title="Campaign details"
+                                bs-tooltip
+                                >
+                                <img src="/wp-content/themes/kaching3/assets/images/campaign/ico-detail.svg">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="text-center kaching-pagination paging-wrapper" ng-hide="data.campaignsCount <= view.itemsPerPage">
+            <div
+                uib-pagination
+                ng-change="changePage()"
+                ng-model="view.currentPage"
+                max-size="view.maxSize"
+                total-items="data.campaignsCount"
+                items-per-page="view.itemsPerPage"
+                force-ellipses="true"
+                template-url="template/pagination/pagination.html"
+                >
+            </div>
+        </div>
+    </div>
+</div>

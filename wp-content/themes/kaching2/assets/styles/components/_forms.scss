@@ -1,0 +1,117 @@
+form{
+  .form-group{
+    margin-bottom:10px;
+  }
+}
+
+.comment-form input[type=text],
+.comment-form input[type=email],
+.comment-form input[type=url],
+.comment-form textarea,
+.form-control {
+    height: auto;
+    padding: 9px 12px;
+    font-size:16px;
+    box-shadow:none;
+    border-radius:3px;
+    border:1px solid $colour_gray_light;
+    background-color: $light;
+    color: $colour_gray_dark;
+}
+textarea {
+  resize: none;
+  min-height: 152px;
+}
+.form-control::-webkit-input-placeholder { color: $colour_gray_medium; }
+.form-control:-moz-placeholder { color: $colour_gray_medium; }
+.form-control::-moz-placeholder { color: $colour_gray_medium; }
+.form-control:-ms-input-placeholder { color: $colour_gray_medium; }
+.control-label {}
+.comment-form input[type=text]:focus,
+.comment-form input[type=email]:focus,
+.comment-form input[type=url]:focus,
+.comment-form textarea:focus,
+.form-control:focus {
+	box-shadow: none;
+	border-color: $brand-primary;
+}
+
+.form-horizontal .control-label {
+	@media (min-width: $screen-sm-min) {
+  	padding-top: 10px;
+  }
+}
+
+.form-group > [class*='col-'] {
+  padding-right: 10px;
+  padding-left: 10px;
+  @media (max-width: $screen-sm-min) {
+    padding-right: 15px;
+    padding-left: 15px;
+  }
+}
+
+select.form-control {
+   appearance: none;
+}
+
+.form-control[disabled]{
+  background-color:$new-gray-lighter;
+  font-weight:600;
+  color:#8c8c8c !important;
+  border:1px solid #c6c6c6;
+}
+.search{
+  padding-bottom:25px;
+  .form-control{
+    font-size:16px;
+    padding: 8px 15px;
+  }
+  .btn{
+    padding: 10.5px 15px;
+    font-size: 16px;
+  }
+}
+
+input:-webkit-autofill,
+textarea:-webkit-autofill,
+select:-webkit-autofill,
+input:-webkit-autofill:focus {
+  color: $colour_gray_dark !important;
+  background-color: $light !important;
+  border: 1px solid $colour_gray_light !important;
+  -webkit-box-shadow: none !important;
+  -webkit-text-fill-color: $colour_gray_dark !important;
+}
+
+.field-with-tooltip {
+  position: relative;
+  input,
+  textarea,
+  .input-group input.form-control {
+    padding-right: 40px;
+  }
+  .tooltip-indicator {
+    top: 8px;
+    right: 8px;
+  }
+}
+.field-with-tooltip-outside {
+  position: relative;
+  .tooltip-indicator {
+    top: 8px;
+    right: -30px;
+  }
+}
+.tooltip-indicator {
+  position: absolute;
+  cursor: pointer;
+  z-index: 100;
+  &:hover {
+    color: $colour_gray_dark;
+  }
+}
+
+.date-picker.ng-empty {
+  color: $colour_gray_medium;
+}

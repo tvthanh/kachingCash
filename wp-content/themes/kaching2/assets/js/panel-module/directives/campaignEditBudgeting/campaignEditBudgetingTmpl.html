@@ -1,0 +1,146 @@
+<div class="campaign-edit campaign-edit-targeting">
+
+    <div loader ng-show="view.busy"></div>
+
+    <form
+        name="form1"
+        ng-show="!view.busy"
+        novalidate>
+
+        <div class="row">
+            <div class="col-md-6">
+
+                <h3>Cost per view</h3>
+                <p class="small">CPV should be higher than <strong>10</strong> and lower than <strong>50</strong>.</p>
+                <div class="form-group" ng-class="{
+                    'has-error' :
+                        ( showErrors() && fieldHasError( this, 'form1', 'bid_amount' ) ) ||
+                        ( form1.bid_amount.$dirty && form1.bid_amount.$error.ifmNumber ) ||
+                        ( form1.bid_amount.$dirty && form1.bid_amount.$error.ifmMin ) ||
+                        ( form1.bid_amount.$dirty && form1.bid_amount.$error.ifmMax )
+                    }">
+                    <input
+                        name="bid_amount"
+                        type="text"
+                        class="form-control campaign-bid"
+                        ng-model="data.bidAmount"
+                        ng-change="changedBid()"
+                        ng-model-options='{ debounce: 600 }'
+                        ifm-min="10"
+                        ifm-max="50"
+                        ifm-number
+                        required
+                        >
+                    <span ng-show="form1.bid_amount.$dirty && form1.bid_amount.$error.ifmNumber" class="help-block">Bid amount must be a number.</span>
+                    <span ng-show="form1.bid_amount.$dirty && form1.bid_amount.$error.ifmMin" class="help-block">Bid amount must be higher than 10.</span>
+                    <span ng-show="form1.bid_amount.$dirty && form1.bid_amount.$error.ifmMax" class="help-block">Bid amount must be lower than 50.</span>
+                    <span ng-show="showErrors() && form1.bid_amount.$error.required" class="help-block">Please enter a bid amount.</span>
+                </div>
+
+                <h3>Budget type</h3>
+                <div class="form-group">
+                    <label class="radio-inline">
+                        <input type="radio" name="budget_type" ng-model="data.budgetType" ng-value="'ongoing'">
+                        Ongoing
+                    </label>
+                    <label class="radio-inline">
+                        <input type="radio" name="budget_type" ng-model="data.budgetType" ng-value="'fixed'">
+                        Fixed
+                    </label>
+                    <label class="radio-inline">
+                        <input type="radio" name="budget_type" ng-model="data.budgetType" ng-value="'daily'">
+                        Daily
+                    </label>
+                </div>
+                <p class="small" ng-show="data.budgetType === 'fixed'">Spread budget through the duration of the campaign.</p>
+                <p class="small" ng-show="data.budgetType === 'daily'">Spread budget through the day.</p>
+                <div
+                    class="form-group"
+                    ng-class="{ 'has-error' : showErrors() && fieldHasError( this, 'form1', 'budget_amount' ) }"
+                    ng-if="data.budgetType !== 'ongoing'"
+                    >
+                    <input
+                        name="budget_amount"
+                        type="text"
+                        class="form-control campaign-budget"
+                        ng-model="data.budgetAmount"
+                        required
+                        >
+                    <span ng-show="showErrors() && fieldHasError( this, 'form1', 'budget_amount' )" class="help-block">Please enter a budget amount.</span>
+                </div>
+
+            </div>
+            <div class="col-md-6">
+
+                <h3>Estimated views</h3>
+
+                <div class="row">
+                    <div class="col-md-6">
+
+                        <div ng-if="view.showCharts" class="est-daily-views-chart">
+                            <canvas
+                                class="chart chart-doughnut"
+                                chart-data="estDailyViewsChart.data"
+                                chart-labels="estDailyViewsChart.labels"
+                                chart-colours="estDailyViewsChart.colours"
+                                chart-options="estDailyViewsChart.options"
+                                chart-legend="false"
+                                width="600"
+                                height="600"
+                                ></canvas>
+                            <div class="content-overlay">
+                                <div class="percent">{{ estViews.daily.percentage }}%</div>
+                                <div class="caption">Reach users of your target group in daily period</div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="col-md-6">
+
+                        <div ng-if="view.showCharts" class="est-total-views-chart">
+                            <canvas
+                                class="chart chart-doughnut"
+                                chart-data="estTotalViewsChart.data"
+                                chart-labels="estTotalViewsChart.labels"
+                                chart-colours="estTotalViewsChart.colours"
+                                chart-options="estTotalViewsChart.options"
+                                chart-legend="false"
+                                width="600"
+                                height="600"
+                                ></canvas>
+                            <div class="content-overlay">
+                                <div class="percent">{{ estViews.total.percentage }}%</div>
+                                <div class="caption">Reach users of your target group</div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="est-daily-views">
+                    <p class="heading small">Your estimated daily views will be:</p>
+                    <div class="progress">
+                        <div class="progress-bar" ng-style="{ 'width': estViews.daily.percentage + '%' }"></div>
+                    </div>
+                    <p class="figures small"><span ng-show="estViews.daily.max > 0">{{ estViews.daily.min | number : 0 }} &ndash; </span>{{ estViews.daily.max | number : 0 }} views</p>
+                </div>
+
+                <div class="est-views">
+                    <p class="heading small">Your total estimated views will be:</p>
+                    <div class="progress">
+                        <div class="progress-bar progress-bar-default" ng-style="{ 'width': estViews.total.percentage + '%' }"></div>
+                    </div>
+                    <p class="figures small"><span ng-show="estViews.total.max > 0">{{ estViews.total.min | number : 0 }} &ndash; </span>{{ estViews.total.max | number : 0 }} views</p>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="campaign-edit-btns-container">
+            <a href="" class="btn btn-default uppercase" ng-click="cancelEdit()">Cancel</a>
+            <a href="" class="btn btn-primary uppercase" ng-click="saveForm()">Save changes</a>
+        </div>
+
+    </form>
+
+</div>

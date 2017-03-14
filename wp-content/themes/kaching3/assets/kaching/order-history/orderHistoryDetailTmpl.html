@@ -1,0 +1,167 @@
+<div class="order-history-container">
+    <div class="header-block">
+        <div class="inner-header-block clearfix">
+            <div class="col-sm-8 pLeft_0">
+                <h3>Order History Details</h3>
+            </div>
+        </div>
+        <div class="title-cropper-line"></div>
+    </div>
+    <div class="body-block">
+        <div class="content-order-detail">
+            <div class="clearfix">
+                <div class="col-sm-6 pLeft_0">
+                    <div class="clearfix">
+                        <div class="col-sm-4 pLeft_0">
+                            <div class="form-group">
+                                <label class="medium-font">Order number</label>
+                                <input disabled class="form-control" ng-model="orderData.orderNumber"/>
+                            </div>
+                        </div>
+                        <div class="col-sm-8 pRight_0">
+                            <div class="form-group">
+                                <label class="medium-font">Order Date</label>
+                                <input disabled class="form-control" ng-model="orderData.date"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="medium-font">Buyer name</label>
+                        <input disabled class="form-control" ng-model="orderData.buyer"/>
+                    </div>
+                    <div class="form-group">
+                        <label class="medium-font">Email</label>
+                        <input disabled class="form-control" ng-model="orderData.userEmail"/>
+                    </div>
+                    <div class="form-group">
+                        <label class="medium-font">Phone number</label>
+                        <input class="form-control" valid-number ng-model="orderData.shippingPhoneNumber"/>
+                    </div>
+                </div>
+                <div class="col-sm-6 pRight_0">
+                    <div class="form-group">
+                        <label class="medium-font">Address</label>
+                        <input class="form-control" ng-model="orderData.shippingAddress"/>
+                    </div>
+                    <div class="form-group">
+                        <label class="medium-font">Zip Code</label>
+                        <input class="form-control w_150" valid-number ng-model="orderData.zipCode"/>
+                    </div>
+                    <div class="form-group">
+                        <label class="medium-font">City</label>
+                        <input class="form-control" ng-model="orderData.shippingCity"/>
+                    </div>
+                    <div class="form-group">
+                        <label class="medium-font">Country</label>
+                        <input class="form-control" ng-model="orderData.shippingCountry"/>
+                    </div>
+                </div>
+            </div>
+            <div class="container-order-edit clearfix">
+                <label class="medium-font">Order status</label>
+                <div class="container-product-list">
+                    <div class="widget-product-ordered">
+                        <div class="process-status-order">
+                            <div class="row clearfix">
+                                <div class="col-sm-3">
+                                    <button type="button" class="btn-process-order" ng-class="{'active-btn':  orderData.status === 'cancelled'}" ng-click="changeOrderStatus('cancelled')">
+                                        Cancelled
+                                        <div class="arrow-order"></div>
+                                    </button>
+                                </div>
+                                <div class="col-sm-3">
+                                    <button type="button" class="btn-process-order" ng-class="{'active-btn':  orderData.status === 'pending'}" ng-click="changeOrderStatus('pending')">Pending<div class="arrow-order"></div>
+                                        <div class="arrow-order-left"></div>
+                                    </button>
+                                </div>
+                                <div class="col-sm-3">
+                                    <button type="button" class="btn-process-order" ng-class="{'active-btn':  orderData.status === 'processing'}" ng-click="changeOrderStatus('processing')">Processing<div class="arrow-order"></div>
+                                        <div class="arrow-order-left"></div>
+                                    </button>
+                                </div>
+                                <div class="col-sm-3">
+                                    <button type="button" class="btn-process-order" ng-class="{'active-btn':  orderData.status === 'completed'}" ng-click="changeOrderStatus('completed')">
+                                        <div class="arrow-order-left"></div>Completed</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item-product-details col-sm-12">
+                            <div class="row clearfix" ng-repeat="product in orderData.products">
+                                <div class="col-sm-5 no-gutter clearfix">
+                                    <div class="col-sm-4">
+                                        <span class="photo-item-product"><img ng-src="{{product.product_image}}" alt="" /></span>
+                                    </div>
+                                    <div class="col-sm-8">
+                                        <div class="form-group">
+                                            <label class="medium-font">product name</label>
+                                            <input disabled class="form-control ellipsis" type="text" name="" ng-model="product.product_name">
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="medium-font">Affiliate Other Number</label>
+                                            <input valid-number class="form-control" type="text" name="" ng-model="product.affiliate_order_number">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-7 no-gutter clearfix">
+                                    <div class="col-sm-5">
+                                        <div class="form-group">
+                                            <label class="medium-font">URL</label>
+                                            <input disabled class="form-control ellipsis" type="text" name="" ng-model="product.product_url">
+                                        </div>
+                                        <div class="clearfix">
+                                            <div class="col-sm-6 pLeft_0">
+                                                <div class="form-group">
+                                                    <label class="medium-font">Size</label>
+                                                    <input disabled class="form-control" type="text" name="" ng-model="product.product_size">
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6 pRight_0">
+                                                <div class="form-group">
+                                                    <label class="medium-font">Color</label>
+                                                    <input disabled class="form-control" type="text" name="" ng-model="product.product_color">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-5">
+                                        <div class="form-group">
+                                            <label class="medium-font">Price</label>
+                                            <input disabled class="form-control" type="text" name="" ng-model="product.product_price">
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="medium-font">Total</label>
+                                            <input disabled class="form-control" type="text" name="" ng-model="totalProduct" value="{{product.product_price * product.product_quantity}}">
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-2">
+                                        <div class="form-group">
+                                            <label class="medium-font">Quantity</label>
+                                            <input class="form-control" type="text" name="" valid-number ng-model="product.product_quantity" ng-change="changeTotalProduct($event)">
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="medium-font">Status</label>
+                                            <input disabled class="form-control ellipsis" type="text" name="" ng-model="orderData.status">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row clearfix">
+                        <div class="col-sm-12 text-right">
+                            <p class="item-product-total medium-font">
+                                Total: {{ orderData.totalMount}} USD
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="btn-group-controll margin-t-15 clearfix">
+                    <div class="form-group text-right">
+                        <button type="button" class="btn-kaching-second margin-r-10" ng-click="goToOrderLists()">Cancel</button>
+                        <button type="button" class="btn-kaching-first" ng-click="saveOrderItem()">Save</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

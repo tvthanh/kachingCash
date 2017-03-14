@@ -1,0 +1,358 @@
+<div class="container-analytics" ng-controller="overviewCtrl">
+    <div class="overview-container">
+
+        <!-- <div class="campaign-payout-details">
+            <div class="campaign-payout-header clearfix">
+                <div class="col-sm-6 no-gutter">
+                    <h2 class="title">View Details</h2>
+                </div>
+                <div class="col-sm-6 no-gutter text-right">
+                    <div class="btn-group clearfix">
+                        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            EXPORT
+                            <span class="caret pull-right"></span>
+                        </button>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="#">Action</a>
+                            <a class="dropdown-item" href="#">Another action</a>
+                            <a class="dropdown-item" href="#">Something else here</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="#">Separated link</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="campaign-payout-table">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Customer Name/ Campaign Name</th>
+                            <th>View On</th>
+                            <th>User</th>
+                            <th>Sex/Age</th>
+                            <th>Platform/Medium</th>
+                            <th>City/Country</th>
+                            <th>Coin Earn</th>
+                            <th>User History</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="dataViewDetail in dataViewDetails">
+                            <td>
+                                <div class="campaign-name clearfix">
+                                    <p class="audio-item pull-left"><img ng-src="{{dataViewDetail.srcImg}}" alt=""/></p>
+                                    <div class="pull-left">
+                                        <p class="title">{{dataViewDetail.title}}</p>
+                                        <p class="sub-title">{{dataViewDetail.subTitle}}</p>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="campaign-view">
+                                    <p class="hours">{{dataViewDetail.hours}}</p>
+                                    <p class="date">{{dataViewDetail.date}}</p>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="campaign-user">
+                                    <p class="name">{{dataViewDetail.name}}</p>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="campaign-sex">
+                                    <p class="sex">{{dataViewDetail.sex}}</p>
+                                    <p class="age">{{dataViewDetail.age}}</p>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="campaign-flatform">
+                                    <p class="device">{{dataViewDetail.device}}</p>
+                                    <p class="type">{{dataViewDetail.type}}</p>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="campaign-country">
+                                    <p class="country">{{dataViewDetail.country}}</p>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="campaign-coin">
+                                    <p class="coin">{{dataViewDetail.coin}}</p>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="campaign-history">
+                                    <a href="{{dataViewDetail.hrefReview}}">Review</a>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div> -->
+
+        <div class="row clearfix margin-b-30">
+            <div class="col-sm-4">
+                <div class="frame-kaching">
+                    <h4 class="title-chart-kaching">genre</h4>
+                    <p class="clearfix font-13">
+                        <span class="pull-left">Metrics:</span>
+                        <span class="txt-grey pull-right uppercase">female</span>
+                        <span class="dot-genre dot-genre-blue pull-right"></span>
+                        <span class="txt-grey pull-right uppercase">male</span>
+                        <span class="dot-genre dot-genre-deep-blue pull-right"></span>
+                    </p>
+                    <highchart id="chartconfigGenres" config="chartconfigGenres"></highchart>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="frame-kaching">
+                    <h4 class="title-chart-kaching">age</h4>
+                    <div class="clearfix">
+                        <div class="column-note-age pull-left">
+                            <div class="info-age-for-chart">
+                                <span class="dot-age-kaching dot-age-one"></span>
+                                <p class="margin-0">0-24</p>
+                                <p class="margin-0">0%</p>
+                            </div>
+                            <div class="info-age-for-chart middle-column-age">
+                                <span class="dot-age-kaching dot-age-two"></span>
+                                <p class="margin-0">25-34</p>
+                                <p class="margin-0">0%</p>
+                            </div>
+                            <div class="info-age-for-chart">
+                                <span class="dot-age-kaching dot-age-three"></span>
+                                <p class="margin-0">35-44</p>
+                                <p class="margin-0">0%</p>
+                            </div>
+                        </div>
+                        <div class="container-chart-age pull-left">
+                            <highchart id="chartconfigAge" config="chartconfigAge"></highchart>
+                        </div>
+                        <div class="column-note-age pull-left">
+                            <div class="info-age-for-chart">
+                                <span class="dot-age-kaching dot-age-four"></span>
+                                <p class="margin-0">45-54</p>
+                                <p class="margin-0">0%</p>
+                            </div>
+                            <div class="info-age-for-chart middle-column-age">
+                                <span class="dot-age-kaching dot-age-five"></span>
+                                <p class="margin-0">55-64</p>
+                                <p class="margin-0">0%</p>
+                            </div>
+                            <div class="info-age-for-chart">
+                                <span class="dot-age-kaching dot-age-six"></span>
+                                <p class="margin-0">55+</p>
+                                <p class="margin-0">0%</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="frame-kaching">
+                    <div class="container-chart-education">
+                        <h4 class="title-chart-kaching">education</h4>
+                        <div class="container-row-info-education row clearfix">
+                            <div class="col-sm-6">
+                                <div class="process-education">
+                                    <div class="outside-circle-edu">
+                                        <div class="circle-bg-edu top-click-two">
+                                            <!-- <img ng-src="/wp-content/themes/kaching2/assets/images/ico-primary.svg" width="28"> -->
+                                            <img ng-src="{{kachingAppConfig.wpTemplateUri + '/assets/images/dashboard/ico-primary.svg'}}" width="28">
+                                        </div>
+                                    </div>
+                                    <div class="percent-education top-click-two" style="width:45%;"></div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <p class="clearfix margin-0 font-13 line-h-44">
+                                    <span class="uppercase">primary</span>
+                                    <span class="pull-right">24%</span>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="container-row-info-education row clearfix">
+                            <div class="col-sm-6">
+                                <div class="process-education">
+                                    <div class="outside-circle-edu">
+                                        <div class="circle-bg-edu top-click-one">
+                                            <!-- <img ng-src="/wp-content/themes/kaching2/assets/images/ico-highschool.svg" width="28"> -->
+                                            <img ng-src="{{kachingAppConfig.wpTemplateUri + '/assets/images/dashboard/ico-highschool.svg'}}" width="28">
+                                        </div>
+                                    </div>
+                                    <div class="percent-education top-click-one" style="width:45%;"></div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <p class="clearfix margin-0 font-13 line-h-44">
+                                    <span class="uppercase">high school</span>
+                                    <span class="pull-right">24%</span>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="container-row-info-education row clearfix">
+                            <div class="col-sm-6">
+                                <div class="process-education">
+                                    <div class="outside-circle-edu">
+                                        <div class="circle-bg-edu top-click-three">
+                                            <!-- <img ng-src="/wp-content/themes/kaching2/assets/images/ico-college.svg" width="28"> -->
+                                            <img ng-src="{{kachingAppConfig.wpTemplateUri + '/assets/images/dashboard/ico-college.svg'}}" width="28">
+                                        </div>
+                                    </div>
+                                    <div class="percent-education top-click-three" style="width:45%;"></div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <p class="clearfix margin-0 font-13 line-h-44">
+                                    <span class="uppercase">college</span>
+                                    <span class="pull-right">24%</span>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="container-row-info-education row clearfix">
+                            <div class="col-sm-6">
+                                <div class="process-education">
+                                    <div class="outside-circle-edu">
+                                        <div class="circle-bg-edu top-click-five">
+                                            <!-- <img ng-src="/wp-content/themes/kaching2/assets/images/ico-university.svg" width="28"> -->
+                                            <img ng-src="{{kachingAppConfig.wpTemplateUri + '/assets/images/dashboard/ico-university.svg'}}" width="28">
+                                        </div>
+                                    </div>
+                                    <div class="percent-education top-click-five" style="width:45%;"></div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <p class="clearfix margin-0 font-13 line-h-44">
+                                    <span class="uppercase">university</span>
+                                    <span class="pull-right">24%</span>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row clearfix margin-b-30">
+            <div class="col-sm-4">
+                <div class="frame-kaching">
+                    <h4 class="title-chart-kaching">Household Income ($/Year)</h4>
+                    <highchart id="chartconfigHouseholdIncome" config="chartconfigHouseholdIncome"></highchart>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="frame-kaching">
+                    <h4 class="title-chart-kaching">Community Type</h4>
+                    <div class="container-chart-comunity">
+                        <div class="info-chart-comunity">
+                            <p>
+                                <label class="font-13 medium-font">urban</label>
+                                <span class="font-13">50%</span>
+                            </p>
+                            <p>
+                                <label class="font-13 medium-font">suburban</label>
+                                <span class="font-13">35%</span>
+                            </p>
+                            <p>
+                                <label class="font-13 medium-font">rural</label>
+                                <span class="font-13">15%</span>
+                            </p>
+                        </div>
+                        <highchart id="chartconfigCommunity" config="chartconfigCommunity"></highchart>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="frame-kaching">
+                    <h4 class="title-chart-kaching">platform</h4>
+                    <div class="container-chart-platform">
+                        <highchart id="chartconfigPlatform" config="chartconfigPlatform"></highchart>
+                        <div class="note-mobile-ico">
+                            <!-- <img ng-src="/wp-content/themes/kaching2/assets/images/ico-ios.svg"> -->
+                            <img ng-src="{{kachingAppConfig.wpTemplateUri + '/assets/images/dashboard/ico-ios.svg'}}">
+
+                            <p class="margin-0 text-center font-13 txt-blue uppercase">ios</p>
+                            <p class="margin-0 text-center uppercase">22%</p>
+                        </div>
+                        <div class="note-mobile-ico note-android">
+                            <!-- <img ng-src="/wp-content/themes/kaching2/assets/images/ico-android.svg"> -->
+                            <img ng-src="{{kachingAppConfig.wpTemplateUri + '/assets/images/dashboard/ico-android.svg'}}">
+
+                            <p class="margin-0 text-center font-13 txt-blue uppercase">android</p>
+                            <p class="margin-0 text-center uppercase">22%</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row clearfix">
+            <div class="col-sm-6">
+                <div class="frame-kaching">
+                    <h4 class="title-chart-kaching">Ages timeline</h4>
+                    <div class="row clearfix">
+                        <div class="col-sm-10">
+                            <highchart id="chartGender" config="chartConfigAgeTimeline"></highchart>
+                        </div>
+                        <div class="col-sm-2">
+                            <div class="note-age-timeline">
+                                <p class="clearfix">
+                                    <span class="dot-age-timeline dot-age-timeline-one pull-left"></span>
+                                    <span class="font-13 pull-left">0-24</span>
+                                </p>
+                                <p class="clearfix">
+                                    <span class="dot-age-timeline dot-age-timeline-two pull-left"></span>
+                                    <span class="font-13 pull-left">25-34</span>
+                                </p>
+                                <p class="clearfix">
+                                    <span class="dot-age-timeline dot-age-timeline-three pull-left"></span>
+                                    <span class="font-13 pull-left">35-44</span>
+                                </p>
+                                <p class="clearfix">
+                                    <span class="dot-age-timeline dot-age-timeline-four pull-left"></span>
+                                    <span class="font-13 pull-left">45-54</span>
+                                </p>
+                                <p class="clearfix">
+                                    <span class="dot-age-timeline dot-age-timeline-five pull-left"></span>
+                                    <span class="font-13 pull-left">55-64</span>
+                                </p>
+                                <p class="clearfix">
+                                    <span class="dot-age-timeline dot-age-timeline-six pull-left"></span>
+                                    <span class="font-13 pull-left">65+</span>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="frame-kaching">
+                    <h4 class="title-chart-kaching">gender timeline</h4>
+                    <p class="clearfix text-right margin-0">
+                        <span class="dot-gerder-timeline dot-gender-blue"></span>
+                        <span class="font-13">Male</span>
+                        <span class="dot-gerder-timeline dot-gender-yellow"></span>
+                        <span class="font-13">Female</span>
+                    </p>
+                    <div class="row clearfix">
+                        <div class="col-sm-9">
+                            <highchart id="chartGender" config="chartConfigGender"></highchart>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="note-gender-timeline">
+                                <label class="medium-font">45%</label>
+                                <p class="margin-0 txt-grey text-right capitalize">most active</p>
+                            </div>
+                            <div class="note-gender-timeline">
+                                <label class="medium-font">55%</label>
+                                <p class="margin-0 txt-grey text-right capitalize">least active</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

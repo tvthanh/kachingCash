@@ -1,0 +1,153 @@
+<div class="billboards-step3" ng-controller="magStep3Ctrl">
+	<form name="form1" novalidate>
+	<div loader ng-show="view.busy"></div>
+	<div ng-show="!view.busy">
+		<div class="detail-content-tab-stream">
+			<div class="container-step-3-stream">
+				<p class="font-11 capitalize text-right">* require field</p>
+				<ad-dollars medias="medias" campaign="campaign"></ad-dollars>
+
+				<div class="frame-bg-popup">
+					<div class="row clearfix">
+						<div class="col-sm-12">
+							<label class="popup-name">Ad-Dollar Purchase</label>
+							<a class="ad-dollar-price-list">Ad-Dollar Price List</a>
+							<ul class="media-list">
+								<li class="head">
+									<span class="col-sm-3">Type</span>
+									<span class="col-sm-3">Total Ad-Dollars</span>
+									<span class="col-sm-4">Per Dollar Per Click (USD)</span>
+									<span class="col-sm-2">Total (USD)</span>
+									<!-- <span class="clearfix"></span> -->
+								</li>
+								<li ng-repeat="purchaseAd in purchaseAds" class="purchase-preview">
+										<label class="col-sm-3">{{purchaseAd.type}}</label>
+										<div class="col-sm-2"><input type="text" ng-model="purchaseAd.totalAdDollars"></input></div>
+										<span class="col-sm-1 display-span without-border">X</span>
+										<span class="col-sm-3 display-span without-border">{{ purchaseAd.perDollarPerClick}}</span>
+										<span class="col-sm-1 display-span without-border">=</span>
+										<span class="col-sm-2 display-span">{{ purchaseAd.perDollarPerClick * purchaseAd.totalAdDollars | number }}</span>
+
+									<div class="clearfix"></div>
+								</li>
+								<!-- <li class="media-preview clearfix summary">
+									<span>Grand total (per set)</span>
+									<span>13 dollars</span>
+								</li> -->
+							</ul>
+						</div>
+						<div class="col-sm-12">
+							<a class="btn-submit pull-right">Submit & Update Account</a>
+						</div>
+						<!-- <div>
+							<a class="btn-submit pull-right" ng-click="saveMedia()">Submit</a>
+						</div> -->
+					</div>
+				</div>
+
+				<div class="frame-bg-popup">
+					<div class="row clearfix">
+						<div class="col-sm-5 recommend-border-right">
+							<label class="margin-b-10 capitalize font-13">* Add products</label>
+							<!-- <div class="container-input-file-video">
+								<div class="widget-input-file-video text-center">
+									<i class="icon-ic-upload" style="font-size: 36px;padding: 10px;">
+									</i>
+									<p class="margin-0 text-center txt-grey font-13" style="padding:0 30px;">
+										Drag an image here or browse for an image to upload.
+									</p>
+									<input type="file" name="">
+								</div>
+							</div> -->
+							<div class="file-uploader" style="height: 200px; margin-bottom: 10px;">
+			                    <div
+			                        nv-file-drop
+			                        ifm-uploader-preview-image="data.productImageFile"
+			                        uploader="uploader"
+			                        options="{ alias: 'productImage' }"
+			                        filters="imageFilter"
+			                        ifm-over-class="fileover"
+			                        class="uploader-dropzone"
+			                        ng-class="{ 'has-error' : showErrors() && imageHasError() }"
+			                        >
+			                        <div class="uploader-label-overlay">
+			                            <i class="icon-ic-upload"></i>
+			                            <br><br>
+			                            Simply drag and drop file<br>or <span class="higlight">browse</span> on your disk.
+			                            <!-- <span class="size-hint">1280x1200</span> -->
+			                        </div>
+			                        <div class="progress-container" ng-show="view.productImageUploadStarted">
+			                            <div class="progress" ng-class="{ 'complete': view.productImageUploadComplete }">
+			                              <div class="progress-bar" ng-style="{ 'width': view.productImageUploadProgress + '%' }"></div>
+			                            </div>
+			                        </div>
+			                        <input
+			                            nv-file-select
+			                            type="file"
+			                            uploader="uploader"
+			                            options="{ alias: 'productImage' }"
+			                            filters="imageFilter"
+			                            title=" "
+			                            multiple
+
+			                            >
+			                    </div>
+			                </div>
+							<div class="row clearfix">
+								<div class="col-sm-4">
+									<select>
+										<option>Currency</option>
+									</select>
+								</div>
+								<div class="col-sm-8">
+									<input type="text" name="" placeholder="Add a price" ng-model="data.price">
+								</div>
+							</div>
+						</div>
+						<div class="col-sm-7">
+							<label class="margin-b-10 capitalize font-13">Product Information</label>
+							<div ng-class="{ 'has-error' : showErrors() && fieldHasError( this, 'form1', 'productName' ) }">
+								<input type="text" name="productName" placeholder="product name here" class="form-input margin-b-10" ng-model="data.title">
+								<span ng-show="showErrors() && fieldHasError( this, 'form1', 'productName' )" class="help-block">Please enter product name.</span>
+							</div>
+							<input type="text" name="" placeholder="add a URL" class="margin-b-10" ng-model="data.url">
+							<textarea class="desc-product-stream" placeholder="Add description here..."  ng-model="data.description"></textarea>
+						</div>
+						<div class="col-sm-12">
+							<a class="btn-submit pull-right" ng-click="submitProduct()">Submit & Update Account</a>
+						</div>
+					</div>
+					<div class="panel panel-kaching panel-recommended-products billing-kaching">
+					    <div class="panel-heading"><h3 class="panel-title">Recommended products</h3></div>
+					    <div class="panel-body">
+
+					        <div
+					            owl-carousel
+					            class="owl-carousel recommended-products"
+					            data-options="carouselOptions"
+					            >
+					            <div
+					                owl-carousel-item
+					                ng-repeat="product in recommendedProducts"
+					                class="product"
+					                ng-click="selectRecommendedProduct( product )"
+					                >
+					                <div class="image-container">
+					                    <div class="image-holder" ng-style="{ 'background-image' : 'url({{ product.image || product.image_url }})' }"></div>
+					                </div>
+					            </div>
+					        </div>
+
+					    </div>
+					</div>
+				</div>
+
+			</div>
+		</div>
+		<div class="footer-popup-stream-video clearfix">
+			<a class="btn-next-step pull-right" ng-click="nextStep()">Continue to Step 4 - Confirmation</a>
+			<a class="btn-back-to-step pull-right" ng-click="goPrev()">Back to step 2</a>
+		</div>
+	</div>
+	</form>
+</div>

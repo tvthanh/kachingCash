@@ -1,0 +1,56 @@
+<div class="wrap container two-columns">
+    <div class="css-table">
+        <div class="col col-sidebar">
+
+            <h1 class="sidebar-heading">New Campaign</h1>
+            <h2 class="sidebar-subheading">Make your campaign customized to your own needs.</h2>
+
+            <ul class="sidebar-nav">
+                <li ng-class="{ 'active-tab': currentStep() === 'step1' }">
+                    <a ui-sref="{{states.step1}}">
+                        Step 1<br>
+                        <span class="tab-title">Campaign Details</span>
+                    </a>
+                </li>
+                <li class="separator"></li>
+                <li ng-class="{ 'active-tab': currentStep() === 'step2' }">
+                    <a ui-sref="{{states.step2}}">
+                        Step 2<br>
+                        <span class="tab-title">Targeting</span>
+                    </a>
+                </li>
+                <li class="separator"></li>
+                <li ng-class="{ 'active-tab': currentStep() === 'step3' }">
+                    <a ui-sref="{{states.step3}}">
+                        Step 3<br>
+                        <span class="tab-title">Budgeting</span>
+                    </a>
+                </li>
+                <li class="separator"></li>
+                <li ng-class="{ 'active-tab': currentStep() === 'step4' }">
+                    <a ui-sref="{{states.step4}}">
+                        Step 4<br>
+                        <span class="tab-title">Media</span>
+                    </a>
+                </li>
+                <li class="separator"></li>
+                <li ng-class="{ 'active-tab': currentStep() === 'step5' }">
+                    <a ui-sref="{{states.step5}}">
+                        Step 5 (optional)<br>
+                        <span class="tab-title">Products</span>
+                    </a>
+                </li>
+                <li class="separator"></li>
+                <li ng-class="{ 'active-tab': currentStep() === 'step6' }">
+                    <a ui-sref="{{states.step6}}">
+                        Step 6<br>
+                        <span class="tab-title">Confirmation</span>
+                    </a>
+                </li>
+            </ul>
+            <a ui-sref="campaigns" class="btn btn-default btn-block uppercase btn-exit-editor">Exit from campaign creator</a>
+
+        </div>
+        <div class="col col-main" ui-view="campaignEditorMain"></div>
+    </div>
+</div>

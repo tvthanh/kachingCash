@@ -1,0 +1,79 @@
+<div class="campaign-edit campaign-edit-targeting">
+
+    <div loader ng-show="view.loading"></div>
+
+    <form
+        name="form1"
+        ng-show="!view.loading"
+        novalidate>
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="add-media-toolbar pull-right" ng-show="hasMedia()">
+                    <button class="btn btn-primary uppercase" ng-click="showNewMediaDialog()">Add new media</button> or
+                    <button class="btn btn-primary uppercase" ng-click="showMediaLibrary()">Pick media from library</button>
+                </div>
+            </div>
+        </div>
+
+        <br>
+
+        <div loader ng-show="view.loadingMedia"></div>
+
+        <div ng-hide="hasMedia()" class="text-center">
+            <button class="btn btn-primary uppercase" ng-click="showNewMediaDialog()">Add new media</button> or
+            <button class="btn btn-primary uppercase" ng-click="showMediaLibrary()">Pick media from library</button>
+        </div>
+
+        <div ng-show="view.mediaLoaded">
+
+            <h4>{{ data.media.name }}</h4>
+
+            <div class="media-preview-container-lg">
+                <div class="video-container">
+                    <div videogular vg-player-ready="onPlayerReady($API)">
+                        <vg-media vg-src="videogular.sources" vg-native-controls="true"></vg-media>
+                    </div>
+                </div>
+                <div class="image-container" style="background-image:url({{data.media.display}});"></div>
+            </div>
+
+        </div>
+
+        <br>
+        <br>
+
+        <div class="form-group" ng-class="{ 'has-error' : showErrors() && fieldHasError( this, 'form1', 'media_title' ) }">
+            <label>Title inside application</label>
+            <input
+                name="media_title"
+                type="text"
+                class="form-control"
+                placeholder="Title inside application"
+                ng-model="data.mediaTitle"
+                required
+                >
+            <span ng-show="showErrors() && fieldHasError( this, 'form1', 'media_title' )" class="help-block">Please enter media title.</span>
+        </div>
+
+        <div class="form-group" ng-class="{ 'has-error' : showErrors() && fieldHasError( this, 'form1', 'media_description' ) }">
+            <label>Description inside application</label>
+            <textarea
+                name="media_description"
+                type="text"
+                class="form-control"
+                placeholder="Description inside application"
+                ng-model="data.mediaDesc"
+                required
+                ></textarea>
+            <span ng-show="showErrors() && fieldHasError( this, 'form1', 'media_description' )" class="help-block">Please enter media description.</span>
+        </div>
+
+        <div class="campaign-edit-btns-container">
+            <a href="" class="btn btn-default uppercase" ng-click="cancelEdit()">Cancel</a>
+            <a href="" class="btn btn-primary uppercase" ng-click="saveForm()">Save changes</a>
+        </div>
+
+    </form>
+
+</div>

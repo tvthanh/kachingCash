@@ -1,0 +1,60 @@
+<div class="modal kaching-modal modal-signin" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" ng-click="$hide()"><span class="ion-icon ion-close-round"></span></button>
+                <h4 class="modal-title">Login</h4>
+            </div>
+            <form class="form-signin" ng-submit="signinFormSubmit()">
+                <div class="modal-body text-center">
+
+                    <div class="form-group">
+                        <input
+                            type="text"
+                            class="form-control"
+                            placeholder="E-mail"
+                            autofocus
+                            ng-model="loginFormData.email"
+                            ng-disabled="view.busy"
+                            >
+                    </div>
+
+                    <div class="form-group">
+                        <input
+                            type="password"
+                            class="form-control"
+                            placeholder="Password"
+                            ng-model="loginFormData.password"
+                            ng-disabled="view.busy"
+                            >
+                    </div>
+
+                    <div
+                        class="alert alert-danger"
+                        ng-show="view.formError && !view.busy"
+                        >Please enter valid e-mail address and password.</div>
+
+                    <div class="row row-buttons">
+                        <div class="col-md-6 col-left">
+                            <button
+                                class="btn btn-default btn-block uppercase"
+                                ng-disabled="view.busy"
+                                ng-click="showSignupDialog()"
+                                type="button"
+                                >Sign up</button>
+                        </div>
+                        <div class="col-md-6 col-right">
+                            <button
+                                class="btn btn-primary btn-block uppercase"
+                                type="submit"
+                                ng-disabled="view.busy"
+                                >Sign in</button>
+                        </div>
+                    </div>
+
+                </div>
+            </form>
+        </div>
+        <span class="bottom-info">Forgot your password? <a href="" ng-click="showForgotPasswordDialog()">Click here</a></span>
+    </div>
+</div>

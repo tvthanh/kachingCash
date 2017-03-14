@@ -1,0 +1,126 @@
+.loader {
+  position: relative;
+  margin: 0px auto;
+  width: 300px;
+  max-height: 300px;
+  p {
+    padding-top: 30px;
+    text-align:center;
+    color:$gray-darkest;
+    position:relative;
+    top:-120px;
+  }
+  &:before {
+    content: '';
+    display: block;
+    padding-top: 100%;
+  }
+}
+
+.showbox {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  /*padding: 5%;*/
+}
+
+.circular {
+  -webkit-animation: rotate 2s linear infinite;
+          animation: rotate 2s linear infinite;
+  height: 30%;
+  -webkit-transform-origin: center center;
+          transform-origin: center center;
+  width: 30%;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+}
+
+.path {
+  stroke-dasharray: 1,200;
+  stroke-dashoffset: 0;
+  -webkit-animation: dash 1.5s ease-in-out infinite,
+ color 6s ease-in-out infinite;
+          animation: dash 1.5s ease-in-out infinite,
+ color 6s ease-in-out infinite;
+  stroke-linecap: round;
+}
+
+@-webkit-keyframes rotate {
+  100% {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+  }
+}
+
+@keyframes rotate {
+  100% {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+  }
+}
+
+@-webkit-keyframes dash {
+  0% {
+    stroke-dasharray: 1,200;
+    stroke-dashoffset: 0;
+  }
+  50% {
+    stroke-dasharray: 89,200;
+    stroke-dashoffset: -35px;
+  }
+  100% {
+    stroke-dasharray: 89,200;
+    stroke-dashoffset: -124px;
+  }
+}
+
+@keyframes dash {
+  0% {
+    stroke-dasharray: 1,200;
+    stroke-dashoffset: 0;
+  }
+  50% {
+    stroke-dasharray: 89,200;
+    stroke-dashoffset: -35px;
+  }
+  100% {
+    stroke-dasharray: 89,200;
+    stroke-dashoffset: -124px;
+  }
+}
+
+@-webkit-keyframes color {
+  100%, 0% {
+    stroke: $gray-darkest;
+  }
+  40% {
+    stroke: $gray-darkest;
+  }
+  66% {
+    stroke: $gray-darkest;
+  }
+  80%, 90% {
+    stroke: $gray-darkest;
+  }
+}
+
+@keyframes color {
+  100%, 0% {
+    stroke: $gray-darkest;
+  }
+  40% {
+    stroke: $gray-darkest;
+  }
+  66% {
+    stroke: $gray-darkest;
+  }
+  80%, 90% {
+    stroke: $gray-darkest;
+  }
+}

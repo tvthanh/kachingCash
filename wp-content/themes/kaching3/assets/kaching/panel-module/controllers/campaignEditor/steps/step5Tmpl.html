@@ -1,0 +1,63 @@
+<div class="panel panel-kaching panel-recommended-products">
+    <div class="panel-heading"><h3 class="panel-title">Recommended products</h3></div>
+    <div class="panel-body">
+
+        <div
+            owl-carousel
+            class="owl-carousel recommended-products"
+            data-options="carouselOptions"
+            >
+            <div
+                owl-carousel-item
+                ng-repeat="product in recommendedProducts"
+                class="product"
+                ng-click="selectRecommendedProduct( product )"
+                >
+                <div class="image-container">
+                    <div class="image-holder" ng-style="{ 'background-image' : 'url({{ product.image || product.image_url }})' }"></div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div class="panel panel-kaching panel-add-products">
+    <div class="panel-heading">
+        <h3 class="panel-title">Products</h3>
+        <div class="add-product-toolbar" ng-show="hasProducts()">
+            <button class="btn btn-primary uppercase" ng-click="showNewProductDialog()">Add product</button> or
+            <button class="btn btn-primary uppercase" ng-click="showProductsLibrary()">Pick from library</button>
+        </div>
+    </div>
+    <div class="panel-body">
+
+        <div ng-hide="hasProducts()" class="text-center">
+            <button class="btn btn-primary uppercase" ng-click="showNewProductDialog()">Add product</button> or
+            <button class="btn btn-primary uppercase" ng-click="showProductsLibrary()">Pick product from library</button>
+        </div>
+
+        <form
+            class="campaign-products-form"
+            name="form1"
+            novalidate
+            >
+
+            <div ng-repeat="product in products">
+                <div campaign-product="product" product-index="$index" on-remove="removeProduct( index )" show-labels="true"></div>
+            </div>
+
+        </form>
+
+    </div>
+</div>
+
+<div class="steps-footer">
+    <div class="pull-right">
+        <a href="" class="btn btn-default uppercase" ng-click="skipStep()">Skip</a>
+        <a href="" class="btn btn-default uppercase" ng-click="previousStep()">Previous step</a>
+        <a href="" class="btn btn-primary uppercase" ng-click="nextStep()">Next step</a>
+    </div>
+</div>
+
+<!-- <div><button class="btn" ng-click="logControllerData()">LOG CONTROLLER DATA</button></div> -->

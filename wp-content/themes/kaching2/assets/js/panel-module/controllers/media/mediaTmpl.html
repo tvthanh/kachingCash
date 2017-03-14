@@ -1,0 +1,90 @@
+<div class="wrap container media-page">
+    <div class="content row">
+
+        <div class="toolbar">
+            <div class="row">
+                <div class="col-md-4 text-left">
+                    <form name="searchForm" ng-submit="search()" novalidate>
+                        <div class="input-group input-group-search">
+                            <input
+                                type="text"
+                                class="form-control"
+                                placeholder="Search"
+                                ng-model="view.searchInput"
+                                ng-disabled="view.busy"
+                                >
+                            <span class="input-group-btn">
+                                <button class="btn btn-primary" type="submit" ng-disabled="view.busy">
+                                    <span class="glyphicon glyphicon-search"></span>
+                                </button>
+                            </span>
+                        </div>
+                    </form>
+                </div>
+                <div class="col-md-2">
+                    <button
+                        bs-select
+                        bs-options="option.value as option.label for option in view.orderByOptions"
+                        ng-model="view.orderBy"
+                        placement="bottom-right"
+                        type="button"
+                        class="btn btn-secondary"
+                        ng-change="changeOrder()"
+                        ng-disabled="view.busy"
+                        >
+                        Action <span class="caret"></span>
+                    </button>
+                </div>
+                <div class="col-md-6 text-right">
+                    <a href="" ng-click="showNewMediaDialog()" type="button" class="btn btn-primary uppercase">New media collection</a>
+                </div>
+            </div>
+        </div>
+
+        <div
+            class="media-grid"
+            ng-show="data.media.length > 0"
+            infinite-scroll="nextPage()"
+            infinite-scroll-disabled="view.busy"
+            infinite-scroll-distance="0"
+            >
+            <div
+                ng-repeat="item in data.media"
+                ng-click="toggleItem(item)"
+                class="media-container"
+                >
+                <div class="image-container">
+                    <img ng-src="{{item.display}}" class="image img-responsive">
+                    <div class="icon-selected" ng-show="item.selected"><span class="glyphicon glyphicon-ok-circle"></span></div>
+                </div>
+                <span class="badge-active" ng-show="item.is_active">Active</span>
+                <div class="media-container-bottom">
+                    <div class="media-metadata">
+                        <div class="title">{{ item.name }}</div>
+                        <div class="date">Added: <span>{{ item.date_added | date: 'yyyy-MM-dd'}}</span></div>
+                    </div>
+                    <div class="media-toolbar">
+                        <a ui-sref="media.view({mediaId:item.id})" class="btn btn-action">
+                            <span class="icon icon-ic-eye"></span>
+                        </a>
+                        <a ui-sref="media.edit({mediaId:item.id})" class="btn btn-action">
+                            <span class="icon icon-ic-pen"></span>
+                        </a>
+                        <a ng-click="showDeleteMediaDialog( item )" ng-hide="item.is_active" href="" class="btn btn-action">
+                            <span class="icon icon-ic-remove"></span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="scroll-spacer"></div>
+        </div>
+
+        <div loader ng-show="view.busy"></div>
+
+        <div ng-show="!view.busy && data.media.length == 0">
+            <h2 class="text-center" ng-show="view.searchPhrase.length == 0">You don't have any media.</h2>
+            <h2 class="text-center" ng-show="view.searchPhrase.length > 0">You don't have any media<br>matching this search criteria.</h2>
+        </div>
+
+    </div>
+</div>

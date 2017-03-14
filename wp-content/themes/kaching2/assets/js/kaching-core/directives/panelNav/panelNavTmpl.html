@@ -1,0 +1,15 @@
+<ul class="panel-nav" ng-if="loggedIn">
+
+    <li ng-if="isPanel && isAdvertiser()" ui-sref-active="current"><a ui-sref="campaigns">Campaigns</a></li>
+    <li ng-if="isPanel && isAdvertiser()" ui-sref-active="current"><a ui-sref="media">Media</a></li>
+    <li ng-if="isPanel && isAdvertiser()" ui-sref-active="current"><a ui-sref="products">Products</a></li>
+    <li ng-if="isPanel && isAdvertiser()" ui-sref-active="current"><a ui-sref="billing">Billing</a></li>
+
+    <li ng-if="!isPanel && isAdvertiser()"><a href="{{ urls.campaigns }}">Campaigns</a></li>
+    <li ng-if="!isPanel && isAdvertiser()"><a href="{{ urls.media }}">Media</a></li>
+    <li ng-if="!isPanel && isAdvertiser()"><a href="{{ urls.products }}">Products</a></li>
+    <li ng-if="!isPanel && isAdvertiser()"><a href="{{ urls.billing }}">Billing</a></li>
+
+    <li ng-if="isPanel && isDeveloper()" ui-sref-active="current"><a ui-sref="apikeys">API Keys</a></li>
+    <li ng-if="!isPanel && isDeveloper()"><a href="{{ urls.apikeys }}">API Keys</a></li>
+</ul>

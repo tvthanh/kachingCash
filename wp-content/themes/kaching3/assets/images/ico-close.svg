@@ -1,0 +1,11 @@
+
+<svg width="40px" height="41px" viewBox="1263 95 40 41" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 3.8.3 (29802) - http://www.bohemiancoding.com/sketch -->
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Delete-Icon" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" transform="translate(1263.000000, 95.936557)">
+        <path d="M20,0.690843203 C31.0457143,0.690843203 40,9.35992267 40,20.0538159 C40,30.747709 31.045,39.4167885 20,39.4167885 C8.95428571,39.4167885 0,30.747709 0,20.0538159 C-0.000714285714,9.35992267 8.95357143,0.690843203 20,0.690843203 L20,0.690843203 Z" id="outline" fill="#3E3E3E"></path>
+        <polygon id="icon" fill="#FFFFFF" transform="translate(20.000000, 20.399583) rotate(-45.000000) translate(-20.000000, -20.399583) " points="9.28571429 19.3622811 30.7142857 19.3622811 30.7142857 21.4368853 9.28571429 21.4368853"></polygon>
+        <polygon id="icon" fill="#FFFFFF" transform="translate(20.000000, 20.399583) rotate(-315.000000) translate(-20.000000, -20.399583) " points="9.28571429 19.3622811 30.7142857 19.3622811 30.7142857 21.4368853 9.28571429 21.4368853"></polygon>
+    </g>
+</svg>

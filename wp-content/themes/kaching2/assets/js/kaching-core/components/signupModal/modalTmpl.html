@@ -1,0 +1,128 @@
+<div class="modal kaching-modal modal-signup" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" ng-click="$hide()"><span class="ion-icon ion-close-round"></span></button>
+                <h4 class="modal-title">
+                    <span ng-show="!view.success">Create an account</span>
+                    <span ng-show="view.success">Thank you for<br>registering</span>
+                </h4>
+            </div>
+            <div class="modal-body text-center">
+
+                <form
+                    ng-show="!view.success"
+                    name="form1"
+                    ng-submit="signupFormSubmit()"
+                    novalidate
+                    >
+
+                    <div class="row">
+                        <div class="col-md-5 col-firstname">
+                            <div class="form-group" ng-class="{ 'has-error' : showErrors() && fieldHasError( this, 'form1', 'firstname' ) }">
+                                <input
+                                    type="text"
+                                    name="firstname"
+                                    class="form-control"
+                                    placeholder="First Name"
+                                    maxlength="32"
+                                    ng-maxlength="32"
+                                    ng-model="data.firstName"
+                                    ng-disabled="view.sending"
+                                    required
+                                    >
+                                <span ng-show="showErrors() && fieldHasError( this, 'form1', 'firstname' )" class="help-block">Please enter your first name.</span>
+                            </div>
+                        </div>
+                        <div class="col-md-7 col-lastname">
+                            <div class="form-group" ng-class="{ 'has-error' : showErrors() && fieldHasError( this, 'form1', 'lastname' ) }">
+                                <input
+                                    name="lastname"
+                                    type="text"
+                                    class="form-control"
+                                    placeholder="Last Name"
+                                    maxlength="32"
+                                    ng-maxlength="32"
+                                    ng-model="data.lastName"
+                                    ng-disabled="view.sending"
+                                    required
+                                    >
+                                <span ng-show="showErrors() && fieldHasError( this, 'form1', 'lastname' )" class="help-block">Please enter your last name.</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group" ng-class="{ 'has-error' : showErrors() && fieldHasError( this, 'form1', 'email' ) }">
+                        <input
+                            type="email"
+                            name="email"
+                            class="form-control"
+                            placeholder="E-mail"
+                            autocomplete="off"
+                            maxlength="254"
+                            ng-model="data.email"
+                            ng-maxlength="254"
+                            ng-disabled="view.sending"
+                            ng-change="clearCustomErrors()"
+                            required
+                            >
+                        <span ng-show="showErrors() && fieldHasError( this, 'form1', 'email' )" class="help-block">
+                            <span ng-show="!form1.email.$error.email && !form1.email.$error.emailRegistered && !form1.email.$error.emailInvalid">Please enter your e-mail address.</span>
+                            <span ng-show="form1.email.$error.email || form1.email.$error.emailInvalid">Please enter a valid e-mail.</span>
+                            <span ng-show="form1.email.$error.emailRegistered">User with this e-mail already exists.</span>
+                        </span>
+                    </div>
+
+                    <div class="form-group" ng-class="{ 'has-error' : showErrors() && fieldHasError( this, 'form1', 'company' ) }">
+                        <input
+                            type="text"
+                            name="company"
+                            class="form-control"
+                            placeholder="Company"
+                            autocomplete="off"
+                            maxlength="64"
+                            ng-model="data.company"
+                            ng-maxlength="64"
+                            ng-disabled="view.sending"
+                            required
+                            >
+                        <span ng-show="showErrors() && fieldHasError( this, 'form1', 'company' )" class="help-block">Please enter your company name.</span>
+                    </div>
+
+                    <div class="form-group" ng-class="{ 'has-error' : showErrors() && fieldHasError( this, 'form1', 'password' ) }">
+                        <input
+                            type="password"
+                            name="password"
+                            class="form-control"
+                            placeholder="Password"
+                            autocomplete="off"
+                            ng-model="data.password"
+                            ng-disabled="view.sending"
+                            ng-minlength="6"
+                            required
+                            >
+                        <span ng-show="showErrors() && fieldHasError( this, 'form1', 'password' )" class="help-block">
+                            <span ng-show="!form1.password.$error.minlength">Please enter a password.</span>
+                            <span ng-show="form1.password.$error.minlength">This password is too short, it should have 6 characters or more.</span>
+                        </span>
+                    </div>
+
+                    <button
+                        class="btn btn-primary btn-block uppercase"
+                        type="submit"
+                        ng-disabled="view.sending"
+                        >Sign up</button>
+
+                </form>
+
+                <div ng-show="view.success">
+                    <p>The activation link has been sent<br>to your e-mail address.</p>
+                    <br>
+                    <button type="button" class="btn btn-primary" ng-click="showLoginDialog()">Sign in</button>
+                </div>
+
+            </div>
+        </div>
+        <span class="bottom-info">Already have an account? <a href="" ng-click="showLoginDialog()">Sign In</a></span>
+    </div>
+</div>

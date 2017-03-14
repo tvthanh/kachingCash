@@ -1,0 +1,73 @@
+<div class="modal kaching-modal modal-credit-card-add" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" ng-click="$hide()" ng-disabled="view.sending"><span class="ion-icon ion-close-round"></span></button>
+                <h4 class="modal-title">New credit card</h4>
+            </div>
+            <div class="modal-body">
+
+                <form class="new-card-form" name="form1">
+
+                    <!--
+                    <div class="form-group" ng-class="{ 'has-error' : showErrors() && fieldHasError( this, 'form1', 'card_number' ) }">
+                        <input
+                            name="card_number"
+                            type="text"
+                            class="form-control"
+                            placeholder="Card number"
+                            ng-model="data.cardNumber"
+                            ng-disabled="view.sending"
+                            required
+                            >
+                        <span ng-show="showErrors() && fieldHasError( this, 'form1', 'card_number' )" class="help-block">Please enter the card number.</span>
+                    </div>
+                    <div class="form-group" ng-class="{ 'has-error' : showErrors() && fieldHasError( this, 'form1', 'card_expiry' ) }">
+                        <input
+                            name="card_expiry"
+                            type="text"
+                            class="form-control"
+                            placeholder="Expiry date"
+                            ng-model="data.cardExpiry"
+                            ng-disabled="view.sending"
+                            required
+                            >
+                        <span ng-show="showErrors() && fieldHasError( this, 'form1', 'card_expiry' )" class="help-block">Please enter the card expiration date.</span>
+                    </div>
+                    -->
+
+                    <!--
+                    <div ng-show="view.braintreeReady" class="form-group" ng-class="{ 'has-error' : showErrors() && fieldHasError( this, 'form1', 'card_name' ) }">
+                        <input
+                            name="card_name"
+                            type="text"
+                            class="form-control"
+                            placeholder="Card name"
+                            ng-model="data.cardName"
+                            ng-disabled="view.sending"
+                            required
+                            >
+                        <span ng-show="showErrors() && fieldHasError( this, 'form1', 'card_name' )" class="help-block">Please a card name.</span>
+                    </div>
+                    -->
+
+                    <div loader ng-show="view.savingCard"></div>
+
+                    <div ng-show="!view.nonceReceived">
+                        <div id="braintree-form"></div>
+                        <div ng-show="view.braintreeReady" class="modal-buttons-container">
+                            <button type="submit" class="btn btn-block btn-primary uppercase" ng-disabled="view.sending">Add card</button>
+                        </div>
+                    </div>
+
+                    <div ng-show="view.cardSaved" class="text-center">
+                        <p>Card has been added to your account.</p>
+                        <button class="btn btn-primary" ng-click="$hide()">OK</button>
+                    </div>
+
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>

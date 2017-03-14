@@ -1,0 +1,263 @@
+.container-overal-data {
+    padding: 15px 15px 0;
+    margin: 30px 0;
+    background-color: #fff;
+    border: 1px solid #c9c9c9;
+    // @include border-radius(10px);
+    .active-users {
+        padding: 0 25px;
+    }
+
+    .container-campaign-process {
+        .bar-process-campaign {
+            margin-bottom: 8px;
+
+            .bar-percent-campaign {
+                width: 100%;
+                height: 7px;
+                border-radius: 4px;
+                position: relative;
+                background-color: #eaeef5;
+
+                .percen-blue {
+                    background-color: #429cff;
+                }
+
+                .percen-orange {
+                    background-color: #ff8133;
+                }
+
+                .percen-campaign-top {
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    z-index: 4;
+                    height: 100%;
+                    border-radius: 4px;
+                    cursor: pointer;
+
+                    &:hover {
+                        .arrow-popup,
+                        .popup-info-campaign {
+                            display: block;
+                        }
+                    }
+
+                    .popup-info-campaign {
+                        background-color: #1e2225;
+                        border-radius: 4px;
+                        width: 250px;
+                        padding: 10px 12px;
+                        position: absolute;
+                        height: 80px;
+                        top: -90px;
+                        left: 50%;
+                        display: none;
+                        .popup-paragraph {
+                            line-height:15px;
+                        }
+                    }
+
+                    .arrow-popup {
+                        width: 0;
+                        height: 0;
+                        border-left: 5px solid transparent;
+                        border-right: 5px solid transparent;
+                        border-top: 6px solid #1e2225;
+                        position: absolute;
+                        top: -10px;
+                        right: 0;
+                        z-index: 2;
+                        display: none;
+                    }
+                }
+            }
+
+            label {
+                color: #91969b;
+            }
+        }
+    }
+
+    .table-campaign-total {
+        margin-top: 15px;
+
+        .number-percent-total {
+            width: 30%;
+        }
+
+        .bar-process-total {
+            width: 70%;
+
+            span {
+                height: 8px;
+                border-radius: 4px;
+                background-color: #429cff;
+                display: block;
+                margin-top: 12px;
+            }
+        }
+
+        table {
+            thead {
+                th {
+                    height: 35px;
+                    line-height: 35px;
+                    text-transform: uppercase;
+                    color: #767c82;
+                    font-family: 'gotham-medium';
+                    font-size: 12px;
+                    border-bottom: 2px solid #e9edf4;
+                    border-top: 2px solid #e9edf4;
+                }
+            }
+
+            tbody {
+                tr {
+                    td {
+                        border-bottom: 1px solid #f6f8fc;
+                        height: 35px;
+                        line-height: 35px;
+                        text-transform: capitalize;
+                        font-size: 13px;
+                        font-family: 'gotham-medium';
+                    }
+                }
+            }
+        }
+    }
+
+    .list-top-trigger {
+        margin-left: -7px;
+        margin-right: -7px;
+
+        .widget-top-trigger {
+            padding-left: 7px;
+            padding-right: 7px;
+            width: 50%;
+            float: left;
+            margin-bottom: 14px;
+
+            .box-top-trigger {
+                position: relative;
+                cursor: pointer;
+
+                &:hover {
+                    .popup-info-top-trigger {
+                        display: block;
+                    }
+                }
+
+                .frame-product-top-trigger {
+                    background-size: cover;
+                    background-position: center center;
+                    height: 100px;
+                    border-radius: 4px;
+                    margin-bottom: 3px;
+                }
+
+                .popup-info-top-trigger {
+                    height: 50px;
+                    background-color: #1e2225;
+                    border-radius: 4px;
+                    width: 250px;
+                    padding: 10px 12px;
+                    position: absolute;
+                    top: -55px;
+                    left: -50%;
+                    display: none;
+                    .popup-paragraph {
+                        line-height:15px;
+                    }
+
+                    .arrow-top-trigger {
+                        width: 0;
+                        height: 0;
+                        border-left: 5px solid transparent;
+                        border-right: 5px solid transparent;
+                        border-top: 6px solid #1e2225;
+                        position: relative;
+                        top: 0;
+                        left: 110px;
+                        z-index: 2;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.txt-grey {
+    color: #bcc3cb;
+}
+
+.txt-white {
+    color: #ffffff;
+}
+
+.increase {
+    color: #0fbd66;
+}
+
+.decrease {
+    color: #E6315E;
+}
+
+.pie-block {
+    padding: 5px;
+    border: 1px solid #c9c9c9;
+    border-radius: 10px;
+}
+
+.box-icon-pie {
+    width: 70px;
+    height: 35px;
+    text-align: center;
+    margin: 0 auto;
+    z-index: 0;
+    img {
+        vertical-align: middle;
+    }
+}
+
+.box-num-pie {
+    width: 100px;
+    font-size: 12px;
+    text-align: center;
+}
+
+.banner-analytices {
+    padding: 7px;
+    .number-label-top {
+        font-size: 18px;
+        padding: 5px 0 5px;
+    }
+}
+
+.pb_5 {
+    padding-bottom: 5px;
+}
+.fz_11 {
+    font-size: 11px;
+}
+.fz_12 {
+    font-size: 12px;
+}
+.fz_13 {
+    font-size: 13px;
+}
+.fz_14 {
+    font-size: 14px;
+}
+.fz_15 {
+    font-size: 15px;
+}
+.fz_16 {
+    font-size: 16px;
+}
+.fz_17 {
+    font-size: 17px;
+}
+.fz_18 {
+    font-size: 18px;
+}

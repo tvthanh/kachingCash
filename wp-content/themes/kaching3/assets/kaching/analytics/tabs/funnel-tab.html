@@ -1,0 +1,101 @@
+<div class="container-analytics" ng-controller="funnelCtrl" ng-cloak>
+  <div class="funnel-container">
+    <h2 class="title-top">Total Purchase Funnet</h2>
+    <div class="container-globe-kaching banner-payout">
+      <img ng-src="{{kachingAppConfig.wpTemplateUri + '/assets/images/dashboard/global-static.png'}}" width="100%">
+    </div>
+
+    <div class="campaign-payout-details">
+        <div class="campaign-payout-header clearfix">
+            <div class="col-sm-6 no-gutter">
+                <h2 class="title">Product Purchase Funnel Details</h2>
+            </div>
+            <div class="col-sm-6 no-gutter text-right">
+                <div class="btn-group clearfix">
+                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        EXPORT
+                        <span class="caret pull-right"></span>
+                    </button>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="#">Action</a>
+                        <a class="dropdown-item" href="#">Another action</a>
+                        <a class="dropdown-item" href="#">Something else here</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#">Separated link</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="campaign-payout-table">
+            <table class="table-status table table-striped">
+                <thead>
+                    <tr>
+                        <th>Customer Name/ Campaign Name</th>
+                        <th>Revenue</th>
+                        <th>Campaign Visit</th>
+                        <th>Product Viewed</th>
+                        <th>Add to Cart</th>
+                        <th colspan="2">Purchased</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="productItem in dataProductFunnelDetails" class="{{productItem.status}}">
+                        <td>
+                            <div class="campaign-name one-line clearfix">
+                                <p class="audio-item pull-left"><img ng-src="{{productItem.srcImg}}" alt=""/></p>
+                                <div class="pull-left">
+                                    <p class="title">{{productItem.title}}</p>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="campaign-dollars">
+                                <p class="dollars">USD {{productItem.dollars}}</p>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="campaign-visit">
+                                <p class="num-visit">{{productItem.numVist}}</p>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="campaign-product-view">
+                                <p class="num-view">{{productItem.numView}}</p>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="campaign-cart">
+                                <p class="num-cart">{{productItem.numCart}} %</p>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="campaign-purchase">
+                                <p class="purchase">USD {{productItem.purchase}}</p>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="campaign-control">
+                                <span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="view-world-wrapper clearfix">
+        <div class="container-net-income frame-kaching">
+          <select class="comb-filter-date pull-right">
+            <option>Month</option>
+          </select>
+          <select class="comb-filter-campaign pull-right">
+            <option>Year</option>
+          </select>
+          <h4 class="title-chart-kaching">net income | Avg. $120k</h4>
+          <highchart id="chart2" config="chartNetIncome" ></highchart>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

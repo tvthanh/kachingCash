@@ -1,0 +1,59 @@
+<div class="campaign-edit campaign-edit-details">
+
+    <div loader ng-if="view.busy"></div>
+
+    <form
+        name="form1"
+        novalidate>
+
+        <div ng-if="!view.busy">
+
+            <div class="fields-container">
+
+                <div class="form-group" ng-class="{ 'has-error' : showErrors() && fieldHasError( this, 'form1', 'campaign_name' ) }">
+                    <label>Campaign name</label>
+                    <input
+                        name="campaign_name"
+                        type="text"
+                        class="form-control campaign-name"
+                        placeholder="Campaign name"
+                        ng-model="data.campaign.name"
+                        required
+                        >
+                    <span ng-show="showErrors() && fieldHasError( this, 'form1', 'campaign_name' )" class="help-block">Please enter campaign name.</span>
+                </div>
+
+                <div class="form-group" ng-class="{ 'has-error' : showErrors() && fieldHasError( this, 'form1', 'daterange' ) }">
+                    <label>Date range</label>
+                    <div class="input-group">
+                        <div
+                            date-range-picker
+                            name="daterange"
+                            type="text"
+                            placeholder="Date range"
+                            class="form-control date-picker"
+                            min="daterange.min"
+                            options="{ opens: 'center', autoApply: true, locale: { format: 'YYYY-MM-DD', firstDay: 1 } }"
+                            ng-model="daterange.dates"
+                            ng-required="true"
+                            >{{ daterange.display }}</div>
+                        <div class="input-group-addon">
+                            <span class="icon ion-ios-calendar-outline"></span>
+                        </div>
+                    </div>
+                    <span ng-show="showErrors() && fieldHasError( this, 'form1', 'daterange', 'required' )" class="help-block">Please select the campaign start and end dates.</span>
+                    <span ng-show="showErrors() && fieldHasError( this, 'form1', 'daterange', 'min' )" class="help-block">Start date cannot be in the past.</span>
+                </div>
+
+            </div>
+
+            <div class="campaign-edit-btns-container">
+                <a href="" class="btn btn-default uppercase" ng-click="cancelEdit()">Cancel</a>
+                <a href="" class="btn btn-primary uppercase" ng-click="saveForm()">Save changes</a>
+            </div>
+
+        </div>
+
+    </form>
+
+</div>

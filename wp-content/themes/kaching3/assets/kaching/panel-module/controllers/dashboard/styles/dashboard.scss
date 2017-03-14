@@ -1,0 +1,389 @@
+@import '../../../../../styles/common/_mixin.scss';
+.page-title {
+  .text-sub{
+    font-size: 16px;
+    text-transform: capitalize
+  }
+}
+.no-of-search {
+  position: relative;
+  top: 50%;
+  -webkit-transform: translateY(-50%) rotate(-90deg);
+  -moz-transform: translateY(-50%) rotate(-90deg);
+  -ms-transform: translateY(-50%) rotate(-90deg);
+  -o-transform: translateY(-50%) rotate(-90deg);
+  filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
+  transform: translateY(0%) rotate(270deg);
+  transform-origin: left top 0;
+  width: 400px;
+}
+.fix-hightchart-customer{
+  height:150px;
+}
+.dashboard-button {
+  display: block;
+  width: 100%;
+  height: 70px;
+  background-color: #008bc1;
+  border-radius: 8px;
+  color: #fff;
+  text-transform: uppercase;
+  font-size: 16px;
+  padding: 25px 10px 25px 0;
+  font-weight: bold;
+  text-align: right;
+  position: relative;
+  overflow: hidden;
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: none;
+    color: #fff;
+  }
+
+  > .icon {
+    position: absolute;
+    top: -20px;
+    left: 24px;
+    font-size: 82px;
+    font-weight: normal;
+    color: #33a2cd;
+  }
+
+  > .text {
+
+  }
+
+  &.dashboard-button-2 {
+    background-color: #33a1cd;
+
+    > .icon {
+      color: #71bddc;
+    }
+
+  }
+
+  &.dashboard-button-3 {
+    background-color: #5cb5d6;
+    > .icon {
+      color: #8fcce2;
+    }
+
+  }
+}
+
+.how-this-work-popup {
+
+  .modal-header {
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+
+  .close2 {
+    font-size: 40px;
+    color: #009fd9;
+    background: transparent;
+    border: none;
+    padding: 0;
+    line-height: 1em;
+    float: right;
+  }
+
+  .modal-body {
+    padding-top: 0;
+    > .wrapper {
+      padding: 0 20px 20px;
+
+      text-align: center;
+
+      h3 {
+        font-size: 40px;
+        text-transform: uppercase;
+        color: #009fd9;
+      }
+
+      img.process-info {
+        width: 100%;
+      }
+    }
+  }
+
+}
+
+.dashboard-container {
+
+  .search-location-map {
+    margin-top: 20px;
+  }
+
+  .charts-container {
+    margin-top: 20px;
+    .chart-info{
+      > .wrapper{
+        border: 1px solid $border-gray;
+        border-radius: 8px;
+      }
+
+      .chart-title{
+        padding: 17px;
+        border-bottom: 1px solid $border-gray;
+        .icon{
+          color: #76c0dd;
+        }
+
+        .text{
+          text-transform: uppercase;
+          font-weight: bold;
+          color: #0b5a92;
+
+        }
+      }
+
+      .content{
+        > .wrapper{
+          padding: 0px 17px;
+          min-height: 400px;
+        }
+
+        &.trigger-container{
+          >.wrapper{
+            padding: 17px;
+          }
+
+          .img-responsive, .thumbnail > img, .thumbnail a > img, .carousel-inner > .item > img, .carousel-inner > .item > a > img {
+            display: block;
+            max-width: 100%;
+            max-height: 370px;
+            margin: auto;
+          }
+        }
+      }
+    }
+    .line-chart-group {
+      .linechartCustom {
+        border: 1px solid #e4e8f0;
+        margin-left: 10px;
+        margin-right: 10px;
+        padding: 0px;
+        padding-left: 10px;
+        width: 23%;
+      }
+      .inforChart {
+        float: left;
+        width: 60%;
+        margin-top: 10px;
+        word-wrap: break-word;
+        .headline {
+          font-size: 40px;
+          margin-bottom: 0px;
+        }
+        .title {
+          text-transform: uppercase;
+          font-weight: bold;
+        }
+      }
+      .drawChart {
+        width:40%;
+        float: right;
+        padding:0px;
+        margin-top: 10px;
+        .percent {
+          margin-left: 15%;
+        }
+        i {
+          float: right;
+          margin-right: 10px;
+          margin-top: 2px;
+        }
+        .ct-series-a .ct-line {
+
+          stroke: green;
+          /* Control the thikness of your lines */
+          stroke-width: 2px;
+          /* Create a dashed line with a pattern */
+          //stroke-dasharray: 10px 20px;
+        }
+        .ct-golden-section {
+          height: 57px;
+          width: 125%;
+        }
+        .ct-chart-line {
+          left: -25%;
+        }
+      }
+    }
+    .bar-charts-group {
+      .scanTrends {
+        .ct-bar {
+          stroke-width: 20px;
+        }
+      }
+      .scanWeedly {
+        .ct-bar {
+          stroke-width: 5px;
+        }
+      }
+    }
+    .pie-chart-group {
+      .ages {
+        width: 40%;
+        .ct-golden-section {
+          //height: 284.5px;
+          width: 72%;
+          height: 72%;
+          left: 13%;
+        }
+        .ct-chart-donut {
+          .ct-slice-donut {
+            stroke-width: 20px !important;
+          }
+          .ct-series-b, .ct-series-d, .ct-series-f, .ct-series-h {
+            .ct-slice-donut {
+              stroke: white;
+            }
+          }
+        }
+        .rangeAges {
+          background-color: #F7F9FD;
+          width: 28%;
+          height: 50px;
+          margin: 10px;
+          padding: 10px;
+          padding-top: 17px;
+          float: left;
+          i {
+            font-size: 0.5em;
+            float:left;
+          }
+          .range {
+            float: left;
+            margin-left: 5px;
+          }
+          .percent {
+            margin-left: 70%;
+          }
+        }
+      }
+      .genres {
+        width: 30%;
+        .man, .woman {
+          .ct-chart-donut {
+            .ct-slice-donut {
+              stroke-width: 7px !important;
+            }
+          }
+        }
+        .man {
+          .rangeAges {
+            background-color: #F7F9FD;
+            width: 42%;
+            height: 93px;
+            margin: 10px;
+            padding: 10px;
+            padding-top: 17px;
+            float: left;
+            i {
+              font-size: 5em;
+              float:left;
+            }
+            .infor {
+
+            }
+          }
+          .ct-chart-donut {
+            .ct-slice-donut {
+              stroke: #134DBF;
+            }
+          }
+        }
+        .woman {
+          .ct-golden-section {
+            position: absolute;
+            top: 65px;
+            left: 65px;
+            .ct-chart-donut {
+              .ct-slice-donut {
+                stroke: #40BFFF;
+              }
+            }
+          }
+        }
+      }
+      .platform {
+        width: 30%;
+        .ios {
+          .ct-chart-donut {
+            .ct-slice-donut {
+              stroke: #134DBF;
+              stroke-width: 15px !important;
+            }
+          }
+        }
+        .android {
+          .ct-golden-section {
+            position: absolute;
+            top: 72px;
+            left: 45px;
+            .ct-chart-donut {
+              .ct-slice-donut {
+                stroke: #40BFFF;
+                stroke-width: 7px !important;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+.container-step-drop-off{
+  position:relative;
+  .popup-drop-off{
+    background-color:#1e2225;
+    border-radius:4px;
+    padding:5px;
+    width:330px;
+    position:absolute;
+    height:100px;
+    z-index:3;
+    top:-110px;
+    display: none;
+    .arrow-drop-off{
+        position:absolute;
+        width: 0;
+        top:99px;
+        height: 0;
+        left:45%;
+        border-left: 7px solid transparent;
+        border-right: 7px solid transparent;
+        border-top: 7px solid #1e2225;
+    }
+  }
+}
+// .genresWoman {
+//   position: absolute;
+//   top: 0px;
+//   width: 100%;
+//   height: 100%;
+// }
+
+@media (max-width: 1200px) {
+  .dashboard-button > .icon {
+    top: 8px;
+    left: 10px;
+    font-size: 40px;
+  }
+}
+@media (max-width: 1024px) {
+  .dashboard-button > .icon {
+    top: 22px;
+    left: 10px;
+    font-size: 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .dashboard-button {
+    margin-bottom: 10px
+  }
+}

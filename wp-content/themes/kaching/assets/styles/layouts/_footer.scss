@@ -1,0 +1,166 @@
+footer.footer {
+  width: 100%;
+  text-align: center;
+
+  @media (min-width: $screen-sm-min) {
+		text-align: left;
+	}
+
+	.container {
+		// border-top: 2px solid $gray-light;
+		padding: 30px 15px;
+	}
+
+	.nav {
+		margin: 0 0 10px 0;
+		padding: 0;
+		list-style: none;
+		line-height: 24px;
+
+		@media (min-width: $screen-sm-min) {
+	    margin: 0;
+	  }
+
+		li {
+			display: inline-block; 
+			margin: 0 5px 0 0;
+		}
+
+		a {
+			font-size: 12px;
+			color: #999;
+			padding: 2px;
+			font-weight:600;
+			&:hover {
+				color: $brand-primary;
+				background: transparent;
+			}
+		}
+	}
+
+	p {
+		display: inline-block;
+		color: #999;
+		margin: 0 0 10px 0;
+		font-size: 12px;
+		line-height: 28px;
+		width: 100%;
+
+		@media (min-width: $screen-sm-min) {
+	    width: auto;
+	    margin: 0 0 0 15px;
+	  }
+	}
+
+
+	.footer-social {
+		list-style:none;
+		display: inline-block;
+		margin: 0;
+		padding: 0;
+		width: 100%;
+
+		@media (min-width: $screen-sm-min) {
+	  	width: auto;
+	  }
+
+		li {
+			display: inline-block;
+			margin: 0 2px;
+		}
+
+		a {
+			width: 28px;
+			height: 28px;
+			display: block;
+			border-radius: 14px;
+			background-color: $new-gray;
+			border: 2px solid $new-gray;
+			text-align: center;
+			text-decoration: none;
+
+			&.icoFacebook:hover {
+				background: #3b5a9b;
+				border-color: #3b5a9b;
+			}
+
+			&.icoTwitter:hover {
+				background: #2aabe2;
+				border-color: #2aabe2;
+			}
+
+			&.icoGoogle:hover {
+				background: #f63e26;
+				border-color: #f63e26;
+			}
+
+			&:hover i {
+				color: $light;
+			}
+		}
+
+		i {
+			color: #969696;
+			font-size: 12px;
+			line-height: 24px;
+		}
+	}
+}	
+footer.front-footer {
+
+
+	.container {
+		border-top: 2px solid $gray-light;
+
+	}
+
+	.nav {
+
+
+		a {
+			font-size: 12px;
+			color: $gray-dark;
+			padding: 2px;
+			font-weight:400;
+			&:hover {
+				color: $brand-primary;
+				background: transparent;
+			}
+		}
+	}
+
+	p {
+		display: inline-block;
+		color: $gray-dark;
+		margin: 0 0 10px 0;
+		font-size: 12px;
+		line-height: 28px;
+		width: 100%;
+
+		@media (min-width: $screen-sm-min) {
+	    width: auto;
+	    margin: 0 0 0 15px;
+	  }
+	}
+
+
+	.footer-social {
+
+		a {
+			width: 28px;
+			height: 28px;
+			display: block;
+			border-radius: 14px;
+			border: 2px solid $gray-light;
+			text-align: center;
+			background-color: transparent;
+
+		}
+
+		i {
+			color: $gray-dark;
+			font-size: 12px;
+			line-height: 24px;
+		}
+	}
+}

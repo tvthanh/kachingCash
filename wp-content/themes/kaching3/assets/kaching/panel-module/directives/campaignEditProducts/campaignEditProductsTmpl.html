@@ -1,0 +1,37 @@
+<div class="campaign-edit campaign-edit-targeting">
+
+    <div loader ng-show="view.loading"></div>
+
+    <form
+        name="form1"
+        ng-show="!view.loading"
+        novalidate>
+
+        <div class="row" ng-show="hasProducts()">
+            <div class="col-md-12">
+                <div class="add-product-toolbar pull-right">
+                    <button class="btn btn-primary uppercase" ng-click="showNewProductDialog()">Add product</button> or
+                    <button class="btn btn-primary uppercase" ng-click="showProductsLibrary()">Pick from library</button>
+                </div>
+            </div>
+        </div>
+
+        <br>
+
+        <div class="text-center" ng-hide="hasProducts()">
+            <button class="btn btn-primary uppercase" ng-click="showNewProductDialog()">Add product</button> or
+            <button class="btn btn-primary uppercase" ng-click="showProductsLibrary()">Pick product from library</button>
+        </div>
+
+        <div ng-repeat="product in data.products">
+            <div campaign-product="product" product-index="$index" show-labels="true" on-remove="removeProduct( index )"></div>
+        </div>
+
+        <div class="campaign-edit-btns-container">
+            <a href="" class="btn btn-default uppercase" ng-click="cancelEdit()">Cancel</a>
+            <a href="" class="btn btn-primary uppercase" ng-click="saveForm()">Save changes</a>
+        </div>
+
+    </form>
+
+</div>

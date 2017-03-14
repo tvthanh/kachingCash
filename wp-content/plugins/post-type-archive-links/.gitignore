@@ -1,0 +1,8 @@
+*~
+.project
+.settings
+.buildpath
+.metadata
+compiler.jar
+externs.js
+Makefile

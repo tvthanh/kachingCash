@@ -1,0 +1,141 @@
+/**
+ * CSS for Traffic tab
+ */
+
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  li {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+}
+
+h1, h2, h3, h4, h5, h6, p {
+  margin: 0;
+  padding: 0;
+}
+
+.cl-green {
+  color: #38ba24;
+}
+
+@mixin border-radius($radius) {
+   -webkit-border-radius: $radius;
+      -moz-border-radius: $radius;
+       -ms-border-radius: $radius;
+           border-radius: $radius;
+}
+
+@mixin linearGradient($top, $bottom) {
+	background: $top; /* Old browsers */
+	background: -moz-linear-gradient(top,  $top 0%, $bottom 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,$top), color-stop(100%,$bottom)); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top,  $top 0%,$bottom 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top,  $top 0%,$bottom 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top,  $top 0%,$bottom 100%); /* IE10+ */
+	background: linear-gradient(to bottom,  $top 0%,$bottom 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='$top', endColorstr='$bottom',GradientType=0 ); /* IE6-9 */
+}
+
+.traffic-container {
+  p {
+    line-height: 24px;
+  }
+}
+
+.traffic-chart-wrapper {
+  margin-top: 30px;
+  background-color: #fff;
+  border: 1px solid #c3c3c3;
+  padding-bottom: 20px;
+  @include border-radius(10px);
+  > div {
+    padding-left: 0;
+  }
+  > div + div {
+    padding-right: 0;
+  }
+  .traffic-header {
+    font-size: 18px;
+    color: #636462;
+    padding: 20px 15px;
+  }
+  .summary-block {
+    padding: 0 20px;
+    .summary-top {
+      padding-bottom: 30px;
+      border-bottom: 1px solid #e1e1e1;
+      .title-summary {
+        color: #364153;
+        font-size: 26px;
+        line-height: 20px;
+        padding: 20px 0 10px;
+      }
+      .label-total {
+        color: #8f9caf;
+        font-size: 14px;
+        font-weight: bold;
+        line-height: 20px;
+      }
+      .num-total {
+        padding-top: 10px;
+        .num {
+          color: #364153;
+          font-size: 30px;
+        }
+        .percent {
+          color: #38ba24;
+          font-size: 30px;
+        }
+        .ic-question {
+          // color: #fff;
+          // background-color: #ff001f;
+        }
+      }
+    }
+    .summary-list {
+      .th-header {
+        padding: 15px 0 10px;
+        span {
+          float: left;
+          color: #909eb0;
+          font-size: 16px;
+          font-weight: bold;
+        }
+        span + span {
+          float: right;
+          color: #3ba5de;
+          font-size: 16px;
+          text-align: right;
+          font-weight: bold;
+        }
+      }
+      .list-item {
+        li {
+          font-size: 14px;
+          color: #636462;
+          padding: 5px 0;
+          border-bottom: 1px solid #e1e1e1;
+          &:last-child {
+            border: none;
+          }
+        }
+        .time {
+          float: left;
+          color: #364153;
+          font-size: 14px;
+          font-weight: bold;
+        }
+        .money {
+          float: right;
+          font-size: 14px;
+          font-weight: bold;
+          text-align: right;
+        }
+      }
+    }
+  }
+}

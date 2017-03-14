@@ -1,0 +1,160 @@
+<div class="wrap1 container1 product-view-page">
+    <div class="content row">
+
+        <div class="header-bar">
+            <div class="row">
+                <div class="col-md-7">
+                    <a ui-sref="kaching.products" class="btn-back"><i class="icon icon-ic-back"></i></a>
+                    <h1>{{data.product.title}}</h1>
+                </div>
+                <div class="col-md-5 text-right">
+                <button ng-click="saveProduct()" class="btn-kaching-first" ng-disabled="view.uploading">Save</button>
+                </div>
+            </div>
+        </div>
+
+        <div loader ng-show="view.busy"></div>
+
+        <form
+            class="edit-product-form"
+            name="form1"
+            novalidate
+            >
+
+            <div class="row" ng-show="!view.busy">
+                <div class="col-md-4">
+
+                    <div class="product-preview-container">
+                        <div
+                            nv-file-drop
+                            ifm-uploader-preview-image="data.imageFile"
+                            uploader="uploader"
+                            options="{ alias: 'image' }"
+                            filters="imageFilter"
+                            ifm-over-class="fileover"
+                            class="uploader-dropzone image-holder"
+                            ng-class="{ 'has-error' : showErrors() && imageHasError() }"
+                            >
+                            <div class="uploader-label-overlay">
+                                <i class="icon-ic-upload"></i>
+                                <br>
+                                Simply drag and drop file<br>or <span class="higlight">browse</span> on your disk.
+                                <span class="size-hint">Optimal size ratio is 360x360</span>
+                            </div>
+                            <div class="progress-container" ng-show="view.uploadStarted">
+                                <div class="progress" ng-class="{ 'complete': view.uploadComplete }">
+                                  <div class="progress-bar" ng-style="{ 'width': view.uploadProgress + '%' }"></div>
+                                </div>
+                            </div>
+                            <input
+                                nv-file-select
+                                type="file"
+                                uploader="uploader"
+                                options="{ alias: 'image' }"
+                                filters="imageFilter"
+                                title=" "
+                                >
+                        </div>
+                        <div class="error-container-image" ng-class="{ 'has-error' : showErrors() && imageHasError() }">
+                            <span ng-show="showErrors() && imageHasError()" class="help-block">Please add the image.</span>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col-md-8">
+
+                    <div class="panel panel-kaching panel-tooltips-outside">
+                        <div class="panel-heading"><h3 class="panel-title">Product details</h3></div>
+                        <div class="panel-body">
+
+                            <div ng-show="data.product.is_active" class="alert alert-danger">
+                                This product belongs to an active campaign!
+                            </div>
+
+                            <div class="form-group form-group-product-title" ng-class="{ 'has-error' : showErrors() && fieldHasError( this, 'form1', 'title' ) }">
+                                <label class="control-label">Name</label>
+                                <input
+                                    name="title"
+                                    type="text"
+                                    class="form-control product-title"
+                                    placeholder="Name of your product"
+                                    ng-model="data.product.title"
+                                    required
+                                    >
+                                <span ng-show="showErrors() && fieldHasError( this, 'form1', 'title' )" class="help-block">Please enter product title.</span>
+                            </div>
+
+                            <div class="form-group form-group-product-url" ng-class="{ 'has-error' : showErrors() && fieldHasError( this, 'form1', 'url' ) }">
+                                <label class="control-label">URL</label>
+                                <div class="input-group">
+                                    <input
+                                        name="url"
+                                        type="text"
+                                        autocomplete="off"
+                                        class="form-control product-url"
+                                        placeholder="URL to your product"
+                                        ng-model="data.product.url"
+                                        url-input
+                                        required
+                                        >
+                                    <span class="input-group-btn">
+                                        <button
+                                            class="btn btn-default uppercse"
+                                            data-tooltip-title="Copied!"
+                                            data-clipboard-text="{{data.product.url}}"
+                                            ifm-clipboard
+                                            >
+                                            Copy
+                                        </button>
+                                    </span>
+                                </div>
+                                <span ng-show="showErrors() && fieldHasError( this, 'form1', 'url' )" class="help-block">Please enter a valid product url.</span>
+                            </div>
+
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group form-group-product-price" ng-class="{ 'has-error' : showErrors() && fieldHasError( this, 'form1', 'price' ) }">
+                                        <label class="control-label">Price in USD</label>
+                                        <div class="input-group">
+                                            <div class="input-group-addon">$</div>
+                                            <input
+                                                name="price"
+                                                type="text"
+                                                class="form-control product-price"
+                                                placeholder="Price of your product"
+                                                ng-model="data.product.price"
+                                                ifm-number
+                                                required
+                                                >
+                                        </div>
+                                        <span ng-show="showErrors() && fieldHasError( this, 'form1', 'price', 'required' )" class="help-block">Please enter product price.</span>
+                                        <span ng-show="showErrors() && fieldHasError( this, 'form1', 'price', 'ifmNumber' )" class="help-block">Product price must be a number</span>
+                                    </div>
+                                </div>
+                                <div class="col-md-6"></div>
+                            </div>
+
+                            <div class="form-group form-group-product-description" ng-class="{ 'has-error' : showErrors() && fieldHasError( this, 'form1', 'description' ) }">
+                                <label class="control-label">Description</label>
+                                <textarea
+                                    rows="6"
+                                    name="description"
+                                    class="form-control form-control-desc"
+                                    ng-model="data.product.description"
+                                    placeholder="Description of your product"
+                                    required
+                                    ></textarea>
+                                <span ng-show="showErrors() && fieldHasError( this, 'form1', 'description' )" class="help-block">Please enter product description.</span>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </form>
+
+    </div>
+</div>

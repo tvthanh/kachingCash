@@ -1,0 +1,61 @@
+<div class="modal billboards-modal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="header-stream-video relative clearfix">
+                <div class="container-in-stream-video col-sm-6">
+                    <h4 class="medium-font">TV Ads</h4>
+                </div>
+                <div class="col-sm-6 clearfix" ng-show="!viewDetail">
+                    <div class="info-stream-video pull-right clearfix">
+                        <a class="inside-info-stream" ng-click="goToFund(this)">+ Add more</a>
+                        <div class="inside-info-stream">
+                            Funds: <span ng-show="balance !== undefined">USD {{balance}}</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="ico-close-billboard" ng-click="$hide()">
+                    <img src="/wp-content/themes/kaching3/assets/images/billboards/ico-close.svg">
+                </div>
+            </div>
+            <div class="container-content-popup-stream" ng-show="!viewDetail">
+                <div class="navigation-video-campaign billboards-tab">
+                    <ul class="clearfix margin-0">
+                        <li>
+                            <a ng-class="{ 'actived' : step === 1 }" ng-click="updateStep(1)">step 1 <span ng-class="{ 'step-actived' : step === 1 }">campaign details</span></a>
+                        </li>
+                        <li>
+                            <a ng-class="{ 'actived' : step === 2 }" ng-click="updateStep(2)">step 2 <span ng-class="{ 'step-actived' : step === 2 }">media upload & location</span></a>
+                        </li>
+                        <li>
+                            <a ng-class="{ 'actived' : step === 3 }" ng-click="updateStep(3)">step 3 <span ng-class="{ 'step-actived' : step === 3 }">Ad-Dollars & products</span></a>
+                        </li>
+                        <li>
+                            <a ng-class="{ 'actived' : step === 4 }" ng-click="updateStep(4)">step 4 <span ng-class="{ 'step-actived' : step === 4 }">confirmation</span></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="container-content-popup-stream" style="margin-top:0 !important;">
+                <div class="detail-content-tab-stream"
+                    ng-switch on="step">
+
+                    <div ng-switch-when="1">
+                        <ng-include src="tvAdsStep.step1"></ng-include>
+                    </div>
+
+                    <div ng-switch-when="2">
+                        <ng-include src="tvAdsStep.step2"></ng-include>
+                    </div>
+
+                    <div ng-switch-when="3">
+                        <ng-include src="tvAdsStep.step3"></ng-include>
+                    </div>
+
+                    <div ng-switch-when="4">
+                        <ng-include src="tvAdsStep.step4"></ng-include>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

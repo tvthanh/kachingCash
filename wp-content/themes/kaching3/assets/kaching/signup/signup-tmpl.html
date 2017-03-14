@@ -1,0 +1,146 @@
+<div class="modal kaching-modal modal-signup" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="header-sign-up-kaching clearfix">
+                    <span class="font-14 pull-left capitalize txt-white title-signup" ng-show="!view.success && !view.signupSuccess"><strong>Sign up</strong></span>
+                    <span class="font-14 pull-left capitalize txt-white medium-font" ng-show="view.success && !view.signupSuccess">Signup - Credit Card Setup</span>
+                    <span class="font-14 pull-left capitalize txt-white medium-font" ng-show="view.signupSuccess">Thank you for registering</span>
+                    <a href="#" class="pull-right" ng-click="$hide()">
+                        <img ng-src="{{kachingAppConfig.wpTemplateUri + '/assets/images/close-popup.svg'}}" />
+                    </a>
+                </div>
+            </div>
+            <div class="modal-body text-center">
+                <form ng-show="!view.success && !view.signupSuccess" name="form1" ng-submit="signupFormSubmit()" novalidate>
+                    <div class="container-sign-up-kaching">
+                        <div class="detail-sign-up-kaching">
+                            <div class="input-user-pass margin-b-15">
+                                <div class="avatar-user-kaching">
+                                    <label class="medium-font">Profile picture</label>
+                                    <div id="profileImage" class="file-upload-photo-kaching">
+                                        <input type="file" nv-file-select uploader="profileImageUploader" ng-model="data.avatar" onchange="angular.element(this).scope().previewImage(event)">
+                                    </div>
+                                </div>
+                                <label class="medium-font">Email</label>
+                                <div class="form-group" ng-class="{ 'has-error' : showErrors() && fieldHasError( this, 'form1', 'email' ) }">
+                                    <input type="email" name="email" placeholder="" autocomplete="off" maxlength="254" ng-model="data.email" ng-maxlength="254" ng-disabled="view.sending" ng-change="clearCustomErrors()" required class="margin-b-15">
+                                    <span ng-show="showErrors() && fieldHasError( this, 'form1', 'email' )" class="help-block">
+                                    <span ng-show="!form1.email.$error.email && !form1.email.$error.emailRegistered && !form1.email.$error.emailInvalid">Please enter your email address.</span>
+                                    <span ng-show="form1.email.$error.email || form1.email.$error.emailInvalid">Please enter a valid email.</span>
+                                    <span ng-show="form1.email.$error.emailRegistered">User with this email already exists.</span>
+                                    </span>
+                                </div>
+
+                                <div class="row clearfix">
+                                    <div class="col-md-6 padding-r-5">
+                                        <label class="medium-font">Password</label>
+                                        <div class="form-group" ng-class="{ 'has-error' : showErrors() && fieldHasError( this, 'form1', 'password' ) }">
+                                            <input id="password" type="password" name="password" class="form-control" placeholder="" autocomplete="off" ng-model="data.password" ng-disabled="view.sending" ng-minlength="6" required>
+                                            <span ng-show="showErrors() && fieldHasError( this, 'form1', 'password' )" class="help-block">
+                                                <span ng-show="!form1.password.$error.minlength">Please enter a password.</span>
+                                            <span ng-show="form1.password.$error.minlength">This password is too short, it should have 6 characters or more.</span>
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 padding-l-5">
+                                        <label class="medium-font">Comfirm password</label>
+                                        <div class="form-group" ng-class="{ 'has-error' : showErrors() && fieldHasError( this, 'form1', 'confirmPassword' ) }">
+                                            <input id="confirm-password" type="password" name="confirmPassword" class="form-control" placeholder="" ng-disabled="view.sending" ng-model='data.confirmPassword' password-match="password" required>
+                                            <span ng-show="showErrors() && fieldHasError( this, 'form1', 'confirmPassword' )" class="help-block">
+                                                <span ng-show="!form1.confirmPassword.$error.pwmatch">Please repeat the password.</span>
+                                            <span ng-show="form1.confirmPassword.$error.pwmatch">Comfirm password must be the same.</span>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row clearfix">
+                                <div class="col-md-6 padding-r-5">
+                                    <div class="form-group">
+                                        <label class="medium-font">First name</label>
+                                        <div class="form-group" ng-class="{ 'has-error' : showErrors() && fieldHasError( this, 'form1', 'firstname' ) }">
+                                            <input type="text" name="firstname" class="form-control" placeholder="" maxlength="32" ng-maxlength="32" ng-model="data.firstName" ng-disabled="view.sending" required>
+                                            <span ng-show="showErrors() && fieldHasError( this, 'form1', 'firstname' )" class="help-block">Please enter your first name.</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 padding-l-5">
+                                    <div class="form-group">
+                                        <label class="medium-font">Last name</label>
+                                        <div class="form-group" ng-class="{ 'has-error' : showErrors() && fieldHasError( this, 'form1', 'lastname' ) }">
+                                            <input name="lastname" type="text" class="form-control" placeholder="" maxlength="32" ng-maxlength="32" ng-model="data.lastName" ng-disabled="view.sending" required>
+                                            <span ng-show="showErrors() && fieldHasError( this, 'form1', 'lastname' )" class="help-block">Please enter your last name.</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group margin-t-15">
+                                <label class="medium-font">Business name</label>
+                                <div class="form-group" ng-class="{ 'has-error' : showErrors() && fieldHasError( this, 'form1', 'company' ) }">
+                                    <input type="text" name="company" class="form-control" placeholder="" autocomplete="off" maxlength="64" ng-model="data.company" ng-maxlength="64" ng-disabled="view.sending" required>
+                                    <span ng-show="showErrors() && fieldHasError( this, 'form1', 'company' )" class="help-block">Please enter your company name.</span>
+                                </div>
+                            </div>
+                            <div class="row target-option-box margin-t-15">
+                                <div class="col-sm-12">
+                                    <label class="medium-font">Have you got your business registration code yet?</label>
+                                </div>
+                                <div class="clearfix">
+                                    <div class="col-md-6 padding-r-5">
+                                        <div class="form-group">
+                                            <div class="radio">
+                                                <input class="col-sm-1" type="radio" name="targetOption" required id="has-code" ng-model="targetOption" value="1" ng-change="clearImageUploader('geo')" />
+                                                <label class="col-sm-11" for="has-code" style="min-width: 310px">Yes,  the code is.</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 padding-l-5">
+                                        <div class="form-group" ng-class="{ 'has-error' : showCodeError() }">
+                                            <input type="text" name="code" class="form-control col-sm-3" autocomplete="off" ng-model="code" ng-disabled="targetOption != 1" ng-required="targetOption==1">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-12">
+                                    <div class="radio">
+                                        <input class="col-sm-1" type="radio" name="targetOption" required id="want-demo" ng-model="targetOption" value="2" ng-change="clearImageUploader('geo')" />
+                                        <label class="col-sm-11" for="want-demo" style="min-width: 310px">No, I just want to try a demo.</label>
+                                    </div>
+                                </div>
+                                <div class="col-sm-12">
+                                    <div class="radio">
+                                        <input class="col-sm-1" type="radio" name="targetOption" required id="wait-approve" ng-model="targetOption" value="3" ng-change="clearImageUploader('geo')" />
+                                        <label class="col-sm-11" for="wait-approve" style="min-width: 310px">No, I just register for the first time. <br> <em class="sms-target-option">This may require longer approval process.</em></label>
+                                    </div>
+                                </div>
+                                <!-- <div class="col-sm-12">
+                                    <em class="sms-target-option">This may require longer approval process.</em>
+                                </div> -->
+                                <!-- <div ng-class="{ 'has-error' : showErrors() && fieldHasError( this, 'form1', 'targetOption' ) }">
+                                    <span ng-show="showErrors() && fieldHasError( this, 'form1', 'targetOption' )" class="help-block">This may require longer approval process.</span>
+                                </div> -->
+                            </div>
+                            <div class="form-group text-center margin-t-15">
+                                <button class="btn-kaching-first" type="submit" ng-disabled="view.sending">Submit</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+
+                <form ng-show="view.signupSuccess" name="form3" novalidate>
+                    <div class="container-sign-up-kaching">
+                        <div class="detail-creditcard-kaching">
+                            <p class="font-13">The activation link has been sent<br>to your email address.</p>
+                            <div class="form-group text-center margin-t-15">
+                                <button class="btn-kaching-first" ng-click="$hide()">Sign in</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

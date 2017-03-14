@@ -1,0 +1,16 @@
+<header>
+    <nav class="navbar navbar-main clearfix">
+        <div class="navbar-main-container">
+
+            <a class="logo-link" href="" ng-click="logoClick()" prevent-default>
+                <img class="logo" ng-src="{{logoSrc}}" alt="">
+            </a>
+
+            <span panel-nav logged-in="loggedIn"></span>
+            <span site-nav logged-in="loggedIn"></span>
+
+            <span user-nav-bar logged-in="loggedIn" is-homepage="false"></span>
+
+        </div>
+    </nav>
+</header>

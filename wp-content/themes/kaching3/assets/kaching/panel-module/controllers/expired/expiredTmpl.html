@@ -1,0 +1,77 @@
+<div class="wrap container expired-page" role="document">
+    <div class="container-login-kaching new-format-kaching-login" ng-controller="loginCtrl">
+        <div class="container-login-left"></div>
+        <div class="container-login-right"></div>
+
+        <div class="kaching-login-wrapper">
+            <div class="kaching-login-wrapper-body relative clearfix">
+                <div class="kaching-login-wrapper-right">
+                    <div class="logo-brand">
+                        <img src="{{kachingAppConfig.wpTemplateUri + '/assets/images/logo.png'}}"/>
+                        <span>KACHING</span>
+                    </div>
+                    <div class="alert alert-danger">
+                        Your session has expired.
+                    </div>
+                    <div class="kaching-login-wrapper-top">
+                        <h4>Login to your account</h4>
+                    </div>
+                    <form name="signInForm" role="form" novalidate class="sign-in-form">
+                        <div class="container-input-login">
+                            <div ng-class="{ 'has-error':  ( signInForm.$submitted || signInForm.email.$touched ) && signInForm.email.$invalid  }" class="relative form-group">
+                                <input
+                                    enter-press="signinFormSubmit()"
+                                    type="email"
+                                    placeholder="Email"
+                                    autofocus
+                                    ng-model="loginFormData.email"
+                                    ng-disabled="view.busy"
+                                    name="email"
+                                    class="form-control"
+                                    ng-required="true" />
+                                <span ng-show="(signInForm.$submitted || signInForm.email.$touched ) && signInForm.email.$invalid && signInForm.email.$error.required" class="help-block">Please enter an email.</span>
+                                <span ng-show="(signInForm.$submitted || signInForm.email.$touched ) && signInForm.email.$invalid && signInForm.email.$error.email" class="help-block">Please enter a valid email.</span>
+                            </div>
+                            <div ng-class="{ 'has-error':  ( signInForm.$submitted || signInForm.password.$touched ) && signInForm.password.$invalid  }" class="relative form-group">
+                                <input
+                                    enter-press="signinFormSubmit()"
+                                    type="password"
+                                    name="password"
+                                    placeholder="Password"
+                                    ng-model="loginFormData.password"
+                                    ng-disabled="view.busy"
+                                    class="form-control"
+                                    ng-required="true" />
+                                <span ng-show="(signInForm.$submitted || signInForm.password.$touched ) && signInForm.password.$invalid && signInForm.password.$error.required" class="help-block">Please enter password.</span>
+                            </div>
+                            <div
+                                class="alert alert-danger"
+                                ng-show="view.formError && !view.busy"
+                                >Please enter valid email address and password.</div>
+                        </div>
+                    </form>
+                    <div class="kaching-login-wrapper-bottom clearfix">
+                        <div class="action-login pull-left">
+                            <div ng-show="view.busy" class="ic-loading">
+                                <i class="fa fa-refresh" aria-hidden="true"></i>
+                            </div>
+                            <button
+                                    type="submit"
+                                    class="btn-kaching-first pull-left"
+                                    ng-disabled="view.busy"
+                                    ng-class="{ 'loading' : view.busy}"
+                                    ng-click="signinFormSubmit()"
+                            >Sign in
+                            </button>
+                            <a href="#" class="btn-forgot-password line-35 pull-left" ng-click="showForgotPasswordDialog()">Forgot Password ?</a>
+                        </div>
+                        <div class="sign-up-kaching txt-white line-35 pull-left">
+                            Don’t have an account yet ? <a href="#" ng-click="showSignupDialog()">Sign Up</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

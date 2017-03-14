@@ -1,0 +1,603 @@
+<div class="container-analytics" ng-controller="payoutCtrl">
+    <div class="payout-container">
+        <h2 class="title-top">Total Payout</h2>
+        <div class="container-globe-kaching banner-payout">
+            <img ng-src="{{kachingAppConfig.wpTemplateUri + '/assets/images/dashboard/global-static.png'}}" width="100%">
+        </div>
+        <div class="total-payout-details">
+            <h3 class="payout-header">
+                <strong>Payout / view
+                </strong>
+                <span>by day
+                </span>
+                <span class="start-day">11/01/2015</span>
+                -
+                <span class="end-day">11/02/2015</span>
+            </h3>
+            <div class="total-payout-view clearfix">
+                <div class="col-sm-3">
+                    <p class="amounts">USD
+                        <span class="dollars">188,450</span>
+                        |
+                        <span class="percents">65%</span>
+                    </p>
+                    <p class="num-view">Total Payout / Views</p>
+                </div>
+                <div class="col-sm-9">
+                    <div class="progress-bar-wrapper larger">
+                        <p class="progress-bar-bg"></p>
+                        <p class="progress-bar-item success percent65"></p>
+                    </div>
+                </div>
+            </div>
+            <ul class="total-payout-list clearfix">
+                <li class="col-sm-4">
+                    <div class="clearfix">
+                        <div class="country pull-left">
+                            <p class="flag-country">
+                                <img ng-src="{{kachingAppConfig.wpTemplateUri + '/assets/images/analytics/england.png'}}" alt=""/>
+                            </p>
+                            <p class="name-country ellipsis">United Kingdom</p>
+                            <p class="total-country">Total Payouts</p>
+                            <p class="view-country">Total view</p>
+                        </div>
+                        <div class="amounts pull-right">
+                            <p class="dollars">USD 12,000</p>
+                            <p class="percents success">81%</p>
+                        </div>
+                    </div>
+                    <div class="clearfix">
+                        <div class="progress-bar-wrapper">
+                            <p class="progress-bar-bg"></p>
+                            <p class="progress-bar-item success percent81"></p>
+                        </div>
+                    </div>
+                </li>
+                <li class="col-sm-4">
+                    <div class="clearfix">
+                        <div class="country pull-left">
+                            <p class="flag-country">
+                                <img ng-src="{{kachingAppConfig.wpTemplateUri + '/assets/images/analytics/canada.png'}}" alt=""/>
+                            </p>
+                            <p class="name-country ellipsis">Canada</p>
+                            <p class="total-country">Total Payouts</p>
+                            <p class="view-country">Total view</p>
+                        </div>
+                        <div class="amounts pull-right">
+                            <p class="dollars">USD 10,000</p>
+                            <p class="percents success">60%</p>
+                        </div>
+                    </div>
+                    <div class="clearfix">
+                        <div class="progress-bar-wrapper">
+                            <p class="progress-bar-bg"></p>
+                            <p class="progress-bar-item success percent60"></p>
+                        </div>
+                    </div>
+                </li>
+                <li class="col-sm-4">
+                    <div class="clearfix">
+                        <div class="country pull-left">
+                            <p class="flag-country">
+                                <img ng-src="{{kachingAppConfig.wpTemplateUri + '/assets/images/analytics/china.png'}}" alt=""/>
+                            </p>
+                            <p class="name-country ellipsis">China</p>
+                            <p class="total-country">Total Payouts</p>
+                            <p class="view-country">Total view</p>
+                        </div>
+                        <div class="amounts pull-right">
+                            <p class="dollars">USD 11,000</p>
+                            <p class="percents success">75%</p>
+                        </div>
+                    </div>
+                    <div class="clearfix">
+                        <div class="progress-bar-wrapper">
+                            <p class="progress-bar-bg"></p>
+                            <p class="progress-bar-item success percent75"></p>
+                        </div>
+                    </div>
+                </li>
+                <li class="col-sm-4">
+                    <div class="clearfix">
+                        <div class="country pull-left">
+                            <p class="flag-country">
+                                <img ng-src="{{kachingAppConfig.wpTemplateUri + '/assets/images/analytics/brazil.png'}}" alt=""/>
+                            </p>
+                            <p class="name-country ellipsis">Brazil</p>
+                            <p class="total-country">Total Payouts</p>
+                            <p class="view-country">Total view</p>
+                        </div>
+                        <div class="amounts pull-right">
+                            <p class="dollars">USD 5,000</p>
+                            <p class="percents danger">45%</p>
+                        </div>
+                    </div>
+                    <div class="clearfix">
+                        <div class="progress-bar-wrapper">
+                            <p class="progress-bar-bg"></p>
+                            <p class="progress-bar-item danger percent45"></p>
+                        </div>
+                    </div>
+                </li>
+                <li class="col-sm-4">
+                    <div class="clearfix">
+                        <div class="country pull-left">
+                            <p class="flag-country">
+                                <img ng-src="{{kachingAppConfig.wpTemplateUri + '/assets/images/analytics/portugal.png'}}" alt=""/>
+                            </p>
+                            <p class="name-country ellipsis">Portugal</p>
+                            <p class="total-country">Total Payouts</p>
+                            <p class="view-country">Total view</p>
+                        </div>
+                        <div class="amounts pull-right">
+                            <p class="dollars">USD 9,000</p>
+                            <p class="percents success">52%</p>
+                        </div>
+                    </div>
+                    <div class="clearfix">
+                        <div class="progress-bar-wrapper">
+                            <p class="progress-bar-bg"></p>
+                            <p class="progress-bar-item success percent52"></p>
+                        </div>
+                    </div>
+                </li>
+                <li class="col-sm-4">
+                    <div class="clearfix">
+                        <div class="country pull-left">
+                            <p class="flag-country">
+                                <img ng-src="{{kachingAppConfig.wpTemplateUri + '/assets/images/analytics/cameroon.png'}}" alt=""/>
+                            </p>
+                            <p class="name-country ellipsis">Cameroom</p>
+                            <p class="total-country">Total Payouts</p>
+                            <p class="view-country">Total view</p>
+                        </div>
+                        <div class="amounts pull-right">
+                            <p class="dollars">USD 3,000</p>
+                            <p class="percents danger">30%</p>
+                        </div>
+                    </div>
+                    <div class="clearfix">
+                        <div class="progress-bar-wrapper">
+                            <p class="progress-bar-bg"></p>
+                            <p class="progress-bar-item danger percent30"></p>
+                        </div>
+                    </div>
+                </li>
+                <li class="col-sm-4">
+                    <div class="clearfix">
+                        <div class="country pull-left">
+                            <p class="flag-country">
+                                <img ng-src="{{kachingAppConfig.wpTemplateUri + '/assets/images/analytics/usa.png'}}" alt=""/>
+                            </p>
+                            <p class="name-country ellipsis">The United State</p>
+                            <p class="total-country">Total Payouts</p>
+                            <p class="view-country">Total view</p>
+                        </div>
+                        <div class="amounts pull-right">
+                            <p class="dollars">USD 15,000</p>
+                            <p class="percents success">90%</p>
+                        </div>
+                    </div>
+                    <div class="clearfix">
+                        <div class="progress-bar-wrapper">
+                            <p class="progress-bar-bg"></p>
+                            <p class="progress-bar-item success percent90"></p>
+                        </div>
+                    </div>
+                </li>
+                <li class="col-sm-4">
+                    <div class="clearfix">
+                        <div class="country pull-left">
+                            <p class="flag-country">
+                                <img ng-src="{{kachingAppConfig.wpTemplateUri + '/assets/images/analytics/cambodia.png'}}" alt=""/>
+                            </p>
+                            <p class="name-country ellipsis">Cambodia</p>
+                            <p class="total-country">Total Payouts</p>
+                            <p class="view-country">Total view</p>
+                        </div>
+                        <div class="amounts pull-right">
+                            <p class="dollars">USD 4,000</p>
+                            <p class="percents danger">40%</p>
+                        </div>
+                    </div>
+                    <div class="clearfix">
+                        <div class="progress-bar-wrapper">
+                            <p class="progress-bar-bg"></p>
+                            <p class="progress-bar-item danger percent40"></p>
+                        </div>
+                    </div>
+                </li>
+                <li class="col-sm-4">
+                    <div class="clearfix">
+                        <div class="country pull-left">
+                            <p class="flag-country">
+                                <img ng-src="{{kachingAppConfig.wpTemplateUri + '/assets/images/analytics/singapore.png'}}" alt=""/>
+                            </p>
+                            <p class="name-country ellipsis">Singapore</p>
+                            <p class="total-country">Total Payouts</p>
+                            <p class="view-country">Total view</p>
+                        </div>
+                        <div class="amounts pull-right">
+                            <p class="dollars">USD 14,000</p>
+                            <p class="percents success">85%</p>
+                        </div>
+                    </div>
+                    <div class="clearfix">
+                        <div class="progress-bar-wrapper">
+                            <p class="progress-bar-bg"></p>
+                            <p class="progress-bar-item success percent85"></p>
+                        </div>
+                    </div>
+                </li>
+                <li class="col-sm-4">
+                    <div class="clearfix">
+                        <div class="country pull-left">
+                            <p class="flag-country">
+                                <img ng-src="{{kachingAppConfig.wpTemplateUri + '/assets/images/analytics/peru.png'}}" alt=""/>
+                            </p>
+                            <p class="name-country ellipsis">Peru</p>
+                            <p class="total-country">Total Payouts</p>
+                            <p class="view-country">Total view</p>
+                        </div>
+                        <div class="amounts pull-right">
+                            <p class="dollars">USD 4,500</p>
+                            <p class="percents danger">43%</p>
+                        </div>
+                    </div>
+                    <div class="clearfix">
+                        <div class="progress-bar-wrapper">
+                            <p class="progress-bar-bg"></p>
+                            <p class="progress-bar-item danger percent43"></p>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+        <div class="campaign-payout-details">
+            <div class="campaign-payout-header clearfix">
+                <div class="col-sm-6 no-gutter">
+                    <h2 class="title">Payout Details</h2>
+                </div>
+                <div class="col-sm-6 no-gutter text-right">
+                    <div class="btn-group clearfix">
+                        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            EXPORT
+                            <span class="caret pull-right"></span>
+                        </button>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="#">Action</a>
+                            <a class="dropdown-item" href="#">Another action</a>
+                            <a class="dropdown-item" href="#">Something else here</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="#">Separated link</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="campaign-payout-table">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Customer Name/ Campaign Name</th>
+                            <th>View On</th>
+                            <th>User</th>
+                            <th>Coin Earn</th>
+                            <th>Total Coin Earned</th>
+                            <th>Weekly Payouts</th>
+                            <th>Monthly Payouts</th>
+                            <th>User History</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="campaignItem in data.campaigns">
+                            <td>
+                                <div class="campaign-name clearfix">
+                                    <p class="audio-item pull-left"><img ng-src="{{campaignItem.srcImg}}" alt=""/></p>
+                                    <div class="pull-left">
+                                        <p class="title">{{campaignItem.title}}</p>
+                                        <p class="sub-title">{{campaignItem.subTitle}}</p>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="campaign-view">
+                                    <p class="hours">{{campaignItem.recent_view_on}}</p>
+                                    <!-- <p class="date">{{campaignItem.date}}</p> -->
+                                </div>
+                            </td>
+                            <td>
+                                <div class="campaign-user">
+                                    <p class="name">{{campaignItem.recent_user}}</p>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="campaign-coin">
+                                    <p class="coin">{{campaignItem.coin_earned}}</p>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="campaign-total-coin">
+                                    <p class="total-coin">{{campaignItem.totalCoin}}</p>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="campaign-weekly">
+                                    <p class="dollars">{{campaignItem.dollars ? 'USD ' + campaignItem.dollars : '-'}}</p>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="campaign-month">
+                                    <p class="month">{{campaignItem.month ? campaignItem.month : '-'}}</p>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="campaign-history">
+                                    <a href="{{campaignItem.hrefReview}}">Review</a>
+                                </div>
+                            </td>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="text-center kaching-pagination paging-wrapper" ng-hide="data.campaignsCount <= view.itemsPerPage">
+                    <div
+                        uib-pagination
+                        ng-change="changePage()"
+                        ng-model="view.currentPage"
+                        max-size="view.maxSize"
+                        total-items="data.campaignsCount"
+                        items-per-page="view.itemsPerPage"
+                        force-ellipses="true"
+                        template-url="template/pagination/pagination.html"
+                        >
+                    </div>
+                </div>
+            </div>
+
+            <div class="campaign-payout-details world-winner-wrapper clearfix">
+                <div class="campaign-payout-header clearfix">
+                    <div class="col-sm-6 no-gutter">
+                        <h2 class="title">world wide winners</h2>
+                    </div>
+                </div>
+                <div class="container-world-wide payout-item clearfix">
+                    <div class="col-md-5">
+                        <div class="map-box">
+                            <img ng-src="{{kachingAppConfig.wpTemplateUri + '/assets/images/dashboard/map-winner.png'}}" width="100%">
+                        </div>
+                    </div>
+                    <div class="col-md-7">
+                        <div class="col-md-4">
+                            <p class="margin-b-5 font-14 txt-grey">Top 6 Countries</p>
+                            <div class="note-map-winner clearfix">
+                                <div class="each-country">
+                                    <p class="column-info-winner margin-b-5 line-h-30 clearfix">
+                                        <span class="dot-country-winner bg-country-one pull-left"></span>
+                                        <span class="font-13 uppercase">usa</span>
+                                        <span class="font-13 pull-right">198</span>
+                                    </p>
+                                </div>
+                                <div class="each-country">
+                                    <p class="column-info-winner margin-b-5 line-h-30 clearfix">
+                                        <span class="dot-country-winner bg-country-two pull-left"></span>
+                                        <span class="font-13 uppercase">france</span>
+                                        <span class="font-13 pull-right">23</span>
+                                    </p>
+                                </div>
+                                <div class="each-country">
+                                    <p class="column-info-winner margin-b-5 line-h-30 clearfix">
+                                        <span class="dot-country-winner bg-country-three pull-left"></span>
+                                        <span class="font-13 uppercase">brazil</span>
+                                        <span class="font-13 pull-right">344</span>
+                                    </p>
+                                </div>
+                                <div class="each-country">
+                                    <p class="column-info-winner margin-b-5 line-h-30 clearfix">
+                                        <span class="dot-country-winner bg-country-four pull-left"></span>
+                                        <span class="font-13 uppercase">australia</span>
+                                        <span class="font-13 pull-right">344</span>
+                                    </p>
+                                </div>
+                                <div class="each-country">
+                                    <p class="column-info-winner margin-b-5 line-h-30 clearfix">
+                                        <span class="dot-country-winner bg-country-five pull-left"></span>
+                                        <span class="font-13 uppercase">china</span>
+                                        <span class="font-13 pull-right">344</span>
+                                    </p>
+                                </div>
+                                <div class="each-country">
+                                    <p class="column-info-winner margin-b-5 line-h-30 clearfix">
+                                        <span class="dot-country-winner bg-country-six pull-left"></span>
+                                        <span class="font-13 uppercase">thailand</span>
+                                        <span class="font-13 pull-right">344</span>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="weekly-winner-block">
+                                <div class="part-top">
+                                    <h3><b>Weekly winner</b></h3>
+                                    <p class="date-winner"> 07/02/2016</p>
+                                    <p class="amount-dollars">USD 100,000</p>
+                                </div>
+                                <div class="part-middle">
+                                    <div class="photo-box">
+                                        <img ng-src="http://previews.123rf.com/images/noedelhap/noedelhap1201/noedelhap120100011/12225268-Happy-guy-cheering-Stock-Vector-man-happy-smile.jpg" alt="" />
+                                        <!-- <img ng-src="{{kachingAppConfig.wpTemplateUri + '/assets/images/analytics/man-avatar.jpg'}}"> -->
+                                    </div>
+                                </div>
+                                <div class="part-bottom">
+                                    <p class="winner-user">User: <strong>John Appleseed</strong></p>
+                                    <p class="winner-country">Country: <strong>United States</strong></p>
+                                    <p class="btn-detail-winner"><a href="#">View Details</a></p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="monthly-winner-block">
+                                <div class="part-top">
+                                    <h3><b>Monthly winner</b></h3>
+                                    <p class="date-winner"> 29/02/2016</p>
+                                    <p class="amount-dollars">USD 1,000,000</p>
+                                </div>
+                                <div class="part-middle">
+                                    <div class="photo-box">
+                                        <img ng-src="http://previews.123rf.com/images/realmccoy/realmccoy1210/realmccoy121000186/15770896-Clipart-Illustration-of-a-Retro-Woman-Holding-Handfulls-Of-Cash-and-shocked-Stock-Vector.jpg" alt="" />
+                                        <!-- <img ng-src="{{kachingAppConfig.wpTemplateUri + '/assets/images/analytics/woman-avatar.png'}}"> -->
+                                    </div>
+                                </div>
+                                <div class="part-bottom">
+                                    <p class="winner-user">User: <strong>Annie LeBron</strong></p>
+                                    <p class="winner-country">Country: <strong>Frand</strong></p>
+                                    <p class="btn-detail-winner"><a href="#">View Details</a></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="view-world-wrapper row margin-b-30 clearfix">
+                <div class="col-sm-6">
+                    <div class="campaign-payout-details cotainer-click-per-view">
+                        <div class="campaign-payout-header clearfix">
+                            <div class="col-sm-6 no-gutter">
+                                <h2 class="title">world wide winners</h2>
+                            </div>
+                        </div>
+                        <div class="clearfix">
+                            <div class="col-sm-6">
+                                <p class="uppercase txt-grey font-13 margin-b-5">top</p>
+                                <div class="process-perview">
+                                    <div class="frame-logo-brand">
+                                        <div class="logo-brand-view">
+                                            <!-- <img ng-src="/wp-content/themes/kaching2/assets/images/logo-brand.png" width="40"> -->
+                                            <img ng-src="{{kachingAppConfig.wpTemplateUri + '/assets/images/dashboard/logo-brand.png'}}" width="40">
+
+                                        </div>
+                                    </div>
+                                    <div class="percent-view-click">
+                                        <div class="live-percent-click top-click-one" style="width:90%;"></div>
+                                    </div>
+                                    <label class="number-percent-click">91%</label>
+                                </div>
+                                <div class="process-perview">
+                                    <div class="frame-logo-brand">
+                                        <div class="logo-brand-view">
+                                            <!-- <img ng-src="/wp-content/themes/kaching2/assets/images/logo-brand.png" width="40"> -->
+                                            <img ng-src="{{kachingAppConfig.wpTemplateUri + '/assets/images/dashboard/logo-brand.png'}}" width="40">
+
+                                        </div>
+                                    </div>
+                                    <div class="percent-view-click">
+                                        <div class="live-percent-click top-click-two" style="width:13%;"></div>
+                                    </div>
+                                    <label class="number-percent-click">13%</label>
+                                </div>
+                                <div class="process-perview">
+                                    <div class="frame-logo-brand">
+                                        <div class="logo-brand-view">
+                                            <!-- <img ng-src="/wp-content/themes/kaching2/assets/images/logo-brand.png" width="40"> -->
+                                            <img ng-src="{{kachingAppConfig.wpTemplateUri + '/assets/images/dashboard/logo-brand.png'}}" width="40">
+                                        </div>
+                                    </div>
+                                    <div class="percent-view-click">
+                                        <div class="live-percent-click top-click-three" style="width:90%;"></div>
+                                    </div>
+                                    <label class="number-percent-click">91%</label>
+                                </div>
+                                <div class="process-perview">
+                                    <div class="frame-logo-brand">
+                                        <div class="logo-brand-view">
+                                            <!-- <img ng-src="/wp-content/themes/kaching2/assets/images/logo-brand.png" width="40"> -->
+                                            <img ng-src="{{kachingAppConfig.wpTemplateUri + '/assets/images/dashboard/logo-brand.png'}}" width="40">
+                                        </div>
+                                    </div>
+                                    <div class="percent-view-click">
+                                        <div class="live-percent-click top-click-four" style="width:90%;"></div>
+                                    </div>
+                                    <label class="number-percent-click">91%</label>
+                                </div>
+                                <div class="process-perview">
+                                    <div class="frame-logo-brand">
+                                        <div class="logo-brand-view">
+                                            <!-- <img ng-src="/wp-content/themes/kaching2/assets/images/logo-brand.png" width="40"> -->
+                                            <img ng-src="{{kachingAppConfig.wpTemplateUri + '/assets/images/dashboard/logo-brand.png'}}" width="40">
+                                        </div>
+                                    </div>
+                                    <div class="percent-view-click">
+                                        <div class="live-percent-click top-click-five" style="width:90%;"></div>
+                                    </div>
+                                    <label class="number-percent-click">91%</label>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <p class="uppercase txt-grey font-13 margin-b-5">bottom</p>
+                                <div class="process-perview">
+                                    <div class="frame-logo-brand">
+                                        <div class="logo-brand-view">
+                                            <!-- <img ng-src="/wp-content/themes/kaching2/assets/images/logo-brand.png" width="40"> -->
+                                            <img ng-src="{{kachingAppConfig.wpTemplateUri + '/assets/images/dashboard/logo-brand.png'}}" width="40">
+                                        </div>
+                                    </div>
+                                    <div class="percent-view-click">
+                                        <div class="live-percent-click bottom-click-one" style="width:90%;"></div>
+                                    </div>
+                                    <label class="number-percent-click">91%</label>
+                                </div>
+                                <div class="process-perview">
+                                    <div class="frame-logo-brand">
+                                        <div class="logo-brand-view">
+                                            <!-- <img ng-src="/wp-content/themes/kaching2/assets/images/logo-brand.png" width="40"> -->
+                                            <img ng-src="{{kachingAppConfig.wpTemplateUri + '/assets/images/dashboard/logo-brand.png'}}" width="40">
+                                        </div>
+                                    </div>
+                                    <div class="percent-view-click">
+                                        <div class="live-percent-click bottom-click-two" style="width:13%;"></div>
+                                    </div>
+                                    <label class="number-percent-click">13%</label>
+                                </div>
+                                <div class="process-perview">
+                                    <div class="frame-logo-brand">
+                                        <div class="logo-brand-view">
+                                            <!-- <img ng-src="/wp-content/themes/kaching2/assets/images/logo-brand.png" width="40"> -->
+                                            <img ng-src="{{kachingAppConfig.wpTemplateUri + '/assets/images/dashboard/logo-brand.png'}}" width="40">
+                                        </div>
+                                    </div>
+                                    <div class="percent-view-click">
+                                        <div class="live-percent-click bottom-click-three" style="width:90%;"></div>
+                                    </div>
+                                    <label class="number-percent-click">91%</label>
+                                </div>
+                                <div class="process-perview">
+                                    <div class="frame-logo-brand">
+                                        <div class="logo-brand-view">
+                                            <!-- <img ng-src="/wp-content/themes/kaching2/assets/images/logo-brand.png" width="40"> -->
+                                            <img ng-src="{{kachingAppConfig.wpTemplateUri + '/assets/images/dashboard/logo-brand.png'}}" width="40">
+                                        </div>
+                                    </div>
+                                    <div class="percent-view-click">
+                                        <div class="live-percent-click bottom-click-four" style="width:90%;"></div>
+                                    </div>
+                                    <label class="number-percent-click">91%</label>
+                                </div>
+                                <div class="process-perview">
+                                    <div class="frame-logo-brand">
+                                        <div class="logo-brand-view">
+                                            <!-- <img ng-src="/wp-content/themes/kaching2/assets/images/logo-brand.png" width="40"> -->
+                                            <img ng-src="{{kachingAppConfig.wpTemplateUri + '/assets/images/dashboard/logo-brand.png'}}" width="40">
+                                        </div>
+                                    </div>
+                                    <div class="percent-view-click">
+                                        <div class="live-percent-click bottom-click-five" style="width:90%;"></div>
+                                    </div>
+                                    <label class="number-percent-click">91%</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>

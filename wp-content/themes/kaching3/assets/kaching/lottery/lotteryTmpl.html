@@ -1,0 +1,81 @@
+<div class="order-history-container lottery-container-page">
+    <div class="header-block">
+        <div class="inner-header-block clearfix">
+            <div class="col-sm-8 pLeft_0">
+                <h3>Lottery List</h3>
+            </div>
+            <div class="col-sm-4 text-right pRight_0">
+                <button type="button" class="btn-kaching-first btn-medium" name="button" ng-csv="lotteryList" lazy-load="true" csv-header="['Photo', 'Winner Name', 'Date', 'Dollars']" filename="lotteryList.csv">Export to CSV</button>
+            </div>
+        </div>
+        <div class="title-cropper-line"></div>
+    </div>
+    <div class="body-block">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th colspan="2">
+                        <div class="inner-th">
+                            <span>Winner name</span>
+                            <div class="form-group">
+                                <input type="text" class="form-control" name="name" value="" placeholder="Search name" ng-model="winnerName">
+                            </div>
+                        </div>
+                    </th>
+                    <th>
+                        <div class="inner-th">
+                            <span>Date</span>
+                            <div class="form-group">
+                                <date-picker-addon
+                                    display-date="daterange.display"
+                                    date-range="daterange.dates"
+                                    clear-status="false"
+                                ></date-picker-addon>
+                                </div>
+                            </div>
+                        </div>
+                    </th>
+                    <th>
+                        <div class="inner-th">
+                            <span>Prize</span>
+                        </div>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="lotteryItem in data.lotteryLists | lotteryFilter:daterange.dates.startDate:daterange.dates.endDate:winnerName | limitTo: view.itemsPerPage : view.itemsPerPage * (view.currentPage-1)">
+                    <td class="w_50">
+                        <div class="box-photo">
+                            <img ng-src="{{ lotteryItem.photo ? lotteryItem.photo : kachingAppConfig.wpTemplateUri + '/assets/images/ic_user.png' }}">
+                        </div>
+                    </td>
+                    <td>
+                        <div class="ellipsis w_250">
+                            <span>{{lotteryItem.winner}}</span>
+                        </div>
+                    </td>
+                    <td>
+                        <span>{{lotteryItem.date}}</span>
+                    </td>
+                    <td>
+                        <span>{{lotteryItem.dollars}}</span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div ng-hide="data.lotteryLists.length <= view.itemsPerPage" class="text-center kaching-pagination paging-wrapper" ng-hide="data.lotteryListsCount <= view.itemsPerPage">
+            <div
+                uib-pagination
+                ng-change="changePage()"
+                ng-model="view.currentPage"
+                max-size="view.maxSize"
+                total-items="data.lotteryLists.length"
+                items-per-page="kaching.lotteryFilteredDataLength"
+                force-ellipses="true"
+                template-url="template/pagination/pagination.html"
+                >
+            </div>
+        </div>
+        <div loader ng-show="view.busy && !data.lotteryListsCount" ng-init="view.busy=true"></div>
+    </div>
+</div>

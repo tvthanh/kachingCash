@@ -1,0 +1,153 @@
+{
+    "js": {
+        "libsCore": [
+            "./bower-components/wow/dist/wow.min.js",
+            "./bower-components/angular/angular.min.js",
+            "./bower-components/angular-sanitize/angular-sanitize.min.js",
+            "./bower-components/angular-cookies/angular-cookies.min.js",
+            "./bower-components/angular-ui-router/release/angular-ui-router.min.js",
+            "./bower-components/angular-animate/angular-animate.min.js",
+            "./bower-components/angular-touch/angular-touch.min.js",
+            "./bower-components/angular-bootstrap/ui-bootstrap.min.js",
+            "./bower-components/angular-bootstrap/ui-bootstrap-tpls.min.js",
+            "./bower-components/angular-strap/dist/angular-strap.min.js",
+            "./bower-components/angular-strap/dist/angular-strap.tpl.min.js",
+            "./bower-components/ngInfiniteScroll/build/ng-infinite-scroll.min.js",
+            "./bower-components/oclazyload/dist/ocLazyLoad.min.js",
+            "./bower-components/underscore/underscore-min.js",
+            "./assets/js/libs/angular-underscore.js",
+            "./bower-components/slick-carousel/slick/slick.min.js"
+        ],
+        "libsPanel": [
+            "./bower-components/moment/min/moment.min.js",
+            "./bower-components/bootstrap-daterangepicker/daterangepicker.js",
+            "./bower-components/angular-daterangepicker/js/angular-daterangepicker.js",
+            "./bower-components/videogular/videogular.min.js",
+            "./bower-components/angular-file-upload/dist/angular-file-upload.min.js",
+            "./bower-components/clipboard/dist/clipboard.min.js",
+            "./bower-components/owl.carousel/dist/owl.carousel.min.js",
+            "./bower-components/Chart.js/Chart.js",
+            "./bower-components/angular-chart.js/dist/angular-chart.min.js"
+        ],
+        "kachingCore": [
+            "./assets/js/kaching-core/kachingCore.js",
+
+            "./assets/js/kaching-core/components/utils.js",
+            "./assets/js/kaching-core/components/header/headerCtrl.js",
+            "./assets/js/kaching-core/components/loginModal/modalCtrl.js",
+            "./assets/js/kaching-core/components/signupModal/modalCtrl.js",
+            "./assets/js/kaching-core/components/forgotPasswordModal/modalCtrl.js",
+            "./assets/js/kaching-core/components/resetPasswordModal/modalCtrl.js",
+
+            "./assets/js/kaching-core/services/apiService.js",
+            "./assets/js/kaching-core/services/authService.js",
+            "./assets/js/kaching-core/services/authToken.js",
+            "./assets/js/kaching-core/services/userService.js",
+            "./assets/js/kaching-core/services/errorHandler.js",
+
+            "./assets/js/kaching-core/directives/loader/loader.js",
+            "./assets/js/kaching-core/directives/preventDefault.js",
+            "./assets/js/kaching-core/directives/passwordMatch.js",
+            "./assets/js/kaching-core/directives/panelTitle.js",
+            "./assets/js/kaching-core/directives/header/header.js",
+            "./assets/js/kaching-core/directives/panelNav/panelNav.js",
+            "./assets/js/kaching-core/directives/userNavBar/userNavBar.js",
+            "./assets/js/kaching-core/directives/resetPassword/resetPassword.js",
+            "./assets/js/kaching-core/directives/activateAccount/activateAccount.js"
+        ],
+        "panelApp": [
+
+            "./assets/js/panel-module/panelApp.js",
+
+            "./assets/js/panel-module/components/fileUploadDecorator.js",
+            "./assets/js/panel-module/components/ifm-clipboard.js",
+
+            "./assets/js/panel-module/components/header/headerCtrl.js",
+            "./assets/js/panel-module/components/campaignDetailsModal/modalCtrl.js",
+            "./assets/js/panel-module/components/campaignDeleteModal/modalCtrl.js",
+            "./assets/js/panel-module/components/campaignStopModal/modalCtrl.js",
+            "./assets/js/panel-module/components/mediaDeleteModal/modalCtrl.js",
+            "./assets/js/panel-module/components/mediaLibraryModal/modalCtrl.js",
+            "./assets/js/panel-module/components/producstLibraryModal/modalCtrl.js",
+            "./assets/js/panel-module/components/newMediaModal/modalCtrl.js",
+            "./assets/js/panel-module/components/newProductModal/modalCtrl.js",
+            "./assets/js/panel-module/components/productDeleteModal/modalCtrl.js",
+            "./assets/js/panel-module/components/passwordChangeModal/modalCtrl.js",
+            "./assets/js/panel-module/components/appDeleteModal/modalCtrl.js",
+            "./assets/js/panel-module/components/newAppModal/modalCtrl.js",
+            "./assets/js/panel-module/components/newCardModal/modalCtrl.js",
+            "./assets/js/panel-module/components/cardDeleteModal/modalCtrl.js",
+            "./assets/js/panel-module/components/appKeyModal/modalCtrl.js",
+            "./assets/js/panel-module/components/appEditModal/modalCtrl.js",
+
+            "./assets/js/panel-module/controllers/expired/expiredCtrl.js",
+            "./assets/js/panel-module/controllers/campaigns/campaignsCtrl.js",
+            "./assets/js/panel-module/controllers/profile/profileCtrl.js",
+            "./assets/js/panel-module/controllers/creditCards/creditCardsCtrl.js",
+            "./assets/js/panel-module/controllers/addFunds/addFundsCtrl.js",
+            "./assets/js/panel-module/controllers/billing/billingCtrl.js",
+
+            "./assets/js/panel-module/controllers/apiKeys/apiKeysCtrl.js",
+
+            "./assets/js/panel-module/controllers/media/mediaCtrl.js",
+            "./assets/js/panel-module/controllers/mediaView/mediaViewCtrl.js",
+            "./assets/js/panel-module/controllers/mediaEdit/mediaEditCtrl.js",
+
+            "./assets/js/panel-module/controllers/products/productsCtrl.js",
+            "./assets/js/panel-module/controllers/productView/productViewCtrl.js",
+            "./assets/js/panel-module/controllers/productEdit/productEditCtrl.js",
+
+            "./assets/js/panel-module/controllers/campaignEditor/campaignEditorCtrl.js",
+            "./assets/js/panel-module/controllers/campaignEditor/editCampaignCtrl.js",
+            "./assets/js/panel-module/controllers/campaignEditor/steps/step1Ctrl.js",
+            "./assets/js/panel-module/controllers/campaignEditor/steps/step2Ctrl.js",
+            "./assets/js/panel-module/controllers/campaignEditor/steps/step3Ctrl.js",
+            "./assets/js/panel-module/controllers/campaignEditor/steps/step4Ctrl.js",
+            "./assets/js/panel-module/controllers/campaignEditor/steps/step5Ctrl.js",
+            "./assets/js/panel-module/controllers/campaignEditor/steps/step6Ctrl.js",
+
+            "./assets/js/panel-module/services/permissionsService.js",
+            "./assets/js/panel-module/services/campaignEditorService.js",
+            "./assets/js/panel-module/services/campaignsService.js",
+            "./assets/js/panel-module/services/clientsService.js",
+            "./assets/js/panel-module/services/mediaService.js",
+            "./assets/js/panel-module/services/productsService.js",
+            "./assets/js/panel-module/services/applicationsService.js",
+            "./assets/js/panel-module/services/billingService.js",
+
+            "./assets/js/panel-module/directives/siteNav/siteNav.js",
+            "./assets/js/panel-module/directives/owlCarousel.js",
+            "./assets/js/panel-module/directives/campaignProduct/campaignProduct.js",
+            "./assets/js/panel-module/directives/ifmUploaderPreviewImage.js",
+            "./assets/js/panel-module/directives/ifmUploaderPreviewVideo.js",
+            "./assets/js/panel-module/directives/validators/ifmMin.js",
+            "./assets/js/panel-module/directives/validators/ifmMax.js",
+            "./assets/js/panel-module/directives/validators/ifmNumber.js",
+
+            "./assets/js/panel-module/directives/campaignEditDetails/campaignEditDetails.js",
+            "./assets/js/panel-module/directives/campaignEditTargeting/campaignEditTargeting.js",
+            "./assets/js/panel-module/directives/campaignEditBudgeting/campaignEditBudgeting.js",
+            "./assets/js/panel-module/directives/campaignEditMedia/campaignEditMedia.js",
+            "./assets/js/panel-module/directives/campaignEditProducts/campaignEditProducts.js",
+
+            "./assets/js/panel-module/filters/campaignStatus.js",
+            "./assets/js/panel-module/filters/transactionStatus.js",
+            "./assets/js/panel-module/filters/transactionType.js",
+            "./assets/js/panel-module/filters/budgetType.js",
+            "./assets/js/panel-module/filters/trustUrl.js"
+        ]
+    },
+    "css": {
+        "main": [
+            "./assets/styles/main.scss"
+        ],
+        "libs": [
+            "./bower-components/angular-motion/dist/angular-motion.min.css",
+            "./bower-components/bootstrap-daterangepicker/daterangepicker.css",
+            "./bower-components/videogular-themes-default/videogular.min.css",
+            "./bower-components/owl.carousel/dist/assets/owl.carousel.min.css",
+            "./bower-components/angular-chart.js/dist/angular-chart.min.css",
+            "./bower-components/slick-carousel/slick/slick.css"
+        ]
+    }
+}

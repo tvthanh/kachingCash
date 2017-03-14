@@ -1,0 +1,28 @@
+---
+  - name: Create .ssh directory
+    file:
+      path: /home/root/.ssh
+      state: directory
+    become: yes
+    become_method: sudo
+    when: setup|bool or deploy|bool
+  - name: Send private key which is going to be used to clone repository
+    copy:
+      src: files/key
+      dest: /home/root/.ssh/git_key
+      mode: 0400
+      force: yes
+    become: yes
+    become_method: sudo
+    when: setup|bool or deploy|bool
+  - name: Clone git repository
+    git:
+      repo: "{{ git_repo }}"
+      dest: "{{ git_dest_dir }}"
+      version: "{{ git_branch }}"
+      key_file: /home/root/.ssh/git_key
+      accept_hostkey: yes
+      force: yes
+    become: yes
+    become_method: sudo
+    when: setup|bool or deploy|bool

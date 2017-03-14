@@ -1,0 +1,97 @@
+<div class="wrap container product-view-page">
+    <div class="content row">
+
+        <div class="header-bar">
+            <div class="row">
+                <div class="col-md-7">
+                    <a ui-sref="products" class="btn-back"><i class="icon icon-ic-back"></i></a>
+                    <h1>{{data.product.title}}</h1>
+                </div>
+                <div class="col-md-5 text-right">
+                    <a ui-sref="products.edit({ productId: data.product.id })" class="btn btn-primary uppercase">Edit</a>
+                    <a href="" ng-click="showDeleteProductDialog( data.product )" class="btn btn-danger uppercase">Remove</a>
+                </div>
+            </div>
+        </div>
+
+        <div loader ng-show="view.busy"></div>
+
+        <div class="row" ng-if="!view.busy">
+            <div class="col-md-4">
+                <div class="image-container">
+                    <div class="image-holder" ng-style="{ 'background-image' : 'url({{ data.product.image || data.product.image_url }})' }"></div>
+                </div>
+            </div>
+            <div class="col-md-8">
+
+                <div class="panel panel-kaching">
+                    <div class="panel-heading"><h3 class="panel-title">Product details</h3></div>
+                    <div class="panel-body">
+                        <div class="form-group">
+                            <label class="control-label">Name</label>
+                            <input type="text" class="form-control" value="{{data.product.title}}" disabled>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">URL</label>
+                            <div class="input-group">
+                                <input type="text" class="form-control" value="{{data.product.url}}" disabled>
+                                <span class="input-group-btn">
+                                    <button
+                                        class="btn btn-default uppercse"
+                                        data-tooltip-title="Copied!"
+                                        data-clipboard-text="{{data.product.url}}"
+                                        ifm-clipboard
+                                        >
+                                        Copy
+                                    </button>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label">Price in USD</label>
+                                    <div class="input-group">
+                                        <div class="input-group-addon">$</div>
+                                        <input type="text" class="form-control" value="{{ data.product.price }}" disabled>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6"></div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">Description</label>
+                            <textarea class="form-control" disabled>{{data.product.description}}</textarea>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label">Date added</label>
+                                    <input
+                                        type="text"
+                                        class="form-control"
+                                        value="{{ data.product.date_added | date : 'dd-MM-yyyy' }}"
+                                        disabled
+                                        >
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label">Last used date</label>
+                                    <input
+                                        type="text"
+                                        class="form-control"
+                                        value="{{ data.product.last_used_date | date : 'dd-MM-yyyy' }}"
+                                        disabled
+                                        >
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</div>

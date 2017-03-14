@@ -1,0 +1,107 @@
+//
+// Tables
+// --------------------------------------------------
+
+.table {
+  th {
+    position: relative;
+    text-transform: uppercase;
+    border-top: 0 !important;
+    border-bottom: 2px solid $colour_brand_primary;
+    color: $colour_gray_dark;
+  }
+  td {
+    font-size: 16px;
+    line-height: 24px;
+    color: $colour_gray_dark;
+    border-bottom: 1px solid $colour_gray_light;
+  }
+  tr {
+    &:hover{
+      background: none !important;
+      th {
+        background: none !important;
+      }
+      td {
+        background-color: $new-gray-light;
+      }
+    }
+  }
+  a {
+    display: inline-block;
+    margin-right:8px;
+    color: $gray-dark;
+    &:hover {
+      color: $brand-primary;
+    }
+  }
+  .search-icon{
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    padding: 12px 12px 4px 12px;
+    font-size:17px;
+    cursor: pointer;
+    border: 1px solid $new-gray-lighter;
+    border-radius: 5px 5px 0 0;
+    border-bottom:0px;
+    color: $gray-semidark;
+    background-color: $new-gray-lighter;
+    &:hover {
+      color: $gray-dark;
+    }
+  }
+  .filters {
+    td {
+      padding: 6px;
+      border-bottom: 0;
+      background-color: $new-gray-lighter;
+    }
+    &:hover {
+      td {
+        background-color: $new-gray-lighter !important;
+      }
+    }
+    input, select {
+      padding: 5px 10px;
+      background: $light;
+    }
+    .close-search {
+      margin-top: 4px;
+      cursor: pointer;
+      font-size: 24px;
+      color: $gray-semidark;
+      &:hover {
+        color: $gray-dark;
+      }
+    }
+  }
+  &.filters-active {
+    th {
+      border-bottom: 0;
+    }
+  }
+}
+
+
+
+.pagination {
+  margin: 0 auto;
+  margin-top: 30px;
+  text-align: center;
+  > li > a {
+    background-color: $new-gray-lighter;
+    color: $new-gray-dark;
+    font-weight: 600;
+  }
+  > .disabled > a {
+    background-color: lighten($new-gray-lighter, 5%);
+    color: $new-gray-dark;
+    font-weight: 600;
+  }
+  > .active > a {
+    background-color: #a5a5a5;
+    color: $light;
+    border-color: #d3d5d6;
+  }
+}

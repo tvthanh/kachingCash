@@ -1,0 +1,138 @@
+#searchform{
+	.btn{
+	 padding: 10.5px 15px;
+	 font-weight:700;
+	 line-height:1;
+	}
+}
+.btn{
+	 padding: 12px 23px;
+	 font-weight:700;
+	 line-height:1;
+}
+.btn-move {
+	transition: transform 0.2s;
+	display: inline-block;
+	&:hover {
+		transform: translate(0px,1px);
+	}
+}
+.step{
+	h3{
+		border-bottom: 1px solid #dae2e5;
+		width:100%;
+		font-size:14px;
+	}
+}
+.btn-success{
+	i{
+		color: #fff !important;
+	}
+}
+.btn-default {
+	color: $gray-lightest;
+    background: $gray-darkest;
+    border:1px solid $gray-darkest;
+	&:hover{
+	    background: darken($violet-semilight, 4%);
+        border:1px solid #606587;
+        color: $gray-lightest;
+	}
+}
+.btn-primary{
+	color:$violet-dark;
+	&:hover{
+		color:$violet-dark;
+	}
+}
+.btn-learn{
+	font-size:22px;
+	padding:10.5px 28px;
+	border-radius:25.5px;
+	background: $brand-primary !important;
+	line-height:1;
+	color:$gray-darkest !important;
+	text-decoration:none !important;
+}
+.btn-file {
+  border: none;
+  position: relative;
+  overflow: hidden;
+  padding:0px;
+}
+.btn-form{
+	padding-top: 17px;
+	padding-bottom: 17px;
+	width:100%;
+}
+.btn-file input[type=file] {
+  position: absolute;
+  top: 0;
+  right: 0;
+  min-width: 100%;
+  min-height: 100%;
+  font-size: 100px;
+  text-align: right;
+  filter: alpha(opacity=0);
+  opacity: 0;
+  background: red;
+  cursor: inherit;
+  display: block;
+}
+input[readonly] {
+  background-color: white !important;
+  cursor: text !important;
+}
+.btn-upload{
+	background-color: $new-gray-light;
+	// border: 1px solid $new-gray-semilight;
+	border-radius:3px;
+	cursor:pointer;
+}
+
+.btn-medium {
+	width: 120px;
+}
+
+.btn-large {
+	width: 150px;
+}
+
+.btn-kaching-first {
+	height: 35px;
+	min-width: 80px;
+    line-height: 35px;
+    color: #343b45;
+    font-size: 13px;
+    padding: 0 12px;
+    border-radius: 4px;
+    text-decoration: none;
+    font-family: 'gotham-medium';
+    background-color: #F7BE00;
+    border: none;
+}
+
+.btn-kaching-second {
+    text-align: center;
+	height: 35px;
+	min-width: 80px;
+    line-height: 35px;
+    color: #343b45;
+    font-size: 13px;
+    padding: 0 12px;
+    border-radius: 4px;
+    text-decoration: none;
+    font-family: 'gotham-medium';
+    background-color: #B1B1B1;
+    border: none;
+}
+
+.btn-kaching-first[disabled='disabled'],
+.btn-kaching-second[disabled='disabled'] {
+    color: #e2e2e2;
+}
+
+
+span.btn-kaching-second {
+    cursor: pointer;
+}

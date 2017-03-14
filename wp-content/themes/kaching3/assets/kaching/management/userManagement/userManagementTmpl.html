@@ -1,0 +1,133 @@
+<div class="order-history-container lottery-container-page advertiser-management-page">
+    <div class="header-block">
+        <div class="inner-header-block clearfix">
+            <div class="col-sm-10 pLeft_0">
+                <h3>User Management</h3>
+            </div>
+            <div class="col-sm-2 text-right pRight_0">
+                <button type="button" class="btn-kaching-first btn-medium" ng-click="createUser()">New User</button>
+            </div>
+        </div>
+        <div class="title-cropper-line"></div>
+    </div>
+    <div class="body-block">
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th colspan="2" style="min-width: 91px;">
+                            <div class="inner-th">
+                                <span>User Name</span>
+                                <div class="form-group">
+                                    <input
+                                    type="text"
+                                    class="form-control"
+                                    ng-model="filters.name"
+                                    ng-change="updateFilters()"
+                                    ng-model-options="{debounce: 600}"
+                                    placeholder= "Search by name"
+                                    >
+                                </div>
+                            </div>
+                        </th>
+                        <th style="min-width: 91px;">
+                            <div class="inner-th">
+                                <span>Business</span>
+                                <div class="form-group">
+                                    <input
+                                    type="text"
+                                    class="form-control"
+                                    ng-model="filters.company"
+                                    ng-change="updateFilters()"
+                                    ng-model-options="{debounce: 600}"
+                                    placeholder= "Search by business"
+                                    >
+                                </div>
+                            </div>
+                        </th>
+                        <th style="min-width: 289px;">
+                            <div class="inner-th">
+                                <span>Join Date</span>
+                            </div>
+                        </th>
+                        <th style="min-width: 173px;">
+                            <div class="inner-th">
+                                <span>Status</span>
+                                <select
+                                class="filter-sort-by"
+                                ng-model="status"
+                                ng-options="statusItem.label for statusItem in  statusAdvertisers track by statusItem.value"
+                                ng-change="updateFilters()"
+                                ></select>
+                            </div>
+                        </th>
+                        <th style="min-width: 85px;">
+                            <div class="inner-th">
+                                <span></span>
+                            </div>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="userItem in data.userList">
+                        <td class="w_50">
+                            <div class="box-photo">
+                                <img ng-src="{{ userItem.photo ? userItem.photo : kachingAppConfig.wpTemplateUri + '/assets/images/ic_user.png' }}">
+                            </div>
+                        </td>
+                        <td>
+                            <div class="ellipsis w_250">
+                                <span>{{userItem.userName}}</span>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="ellipsis w_250">
+                                <span>{{userItem.advertiser}}</span>
+                            </div>
+                        </td>
+                        <td>
+                            <span>{{userItem.date}}</span>
+                        </td>
+                        <td>
+                            <span>{{userItem.status}}</span>
+                        </td>
+                        <td>
+                            <div class="clearfix pull-right">
+                                <a
+                                    href=""
+                                    ng-click="showDeleteConfirm(userItem)"
+                                    class="action-campaign pull-left"
+                                    data-animation="am-fade-and-scale"
+                                    data-placement="top"
+                                    data-trigger="hover"
+                                    data-type="success"
+                                    data-title="Delete User"
+                                    bs-tooltip
+                                    >
+                                   <img src="/wp-content/themes/kaching3/assets/images/campaign/trash-kaching.svg">
+                                </a>
+                                <a
+                                    class="action-campaign pull-left"
+                                    data-animation="am-fade-and-scale"
+                                    data-placement="top"
+                                    data-trigger="hover"
+                                    data-type="success"
+                                    data-title="Edit User"
+                                    bs-tooltip
+                                    ng-click="editUser(userItem)"
+                                    >
+                                    <img src="/wp-content/themes/kaching3/assets/images/campaign/setting-kaching.svg">
+                                </a>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div ng-hide="data.userListCount <= view.itemsPerPage" class="text-center kaching-pagination paging-wrapper">
+            <div uib-pagination ng-change="changePage()" ng-model="view.currentPage" max-size="view.maxSize" total-items="data.userListCount" items-per-page="view.itemsPerPage" force-ellipses="true" template-url="template/pagination/pagination.html">
+            </div>
+        </div>
+        <div loader ng-show="view.busy && !data.orderHistorys.length" ng-init="view.busy=true"></div>
+    </div>
+</div>

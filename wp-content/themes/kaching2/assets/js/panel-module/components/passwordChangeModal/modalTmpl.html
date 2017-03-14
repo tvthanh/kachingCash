@@ -1,0 +1,91 @@
+<div class="modal change-password-modal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Change Password</h4>
+            </div>
+            <div class="modal-body text-center">
+
+                <form
+                    name="form1"
+                    autocomplete="false"
+                    ng-submit="changePassword()"
+                    novalidate
+                    >
+
+                    <div class="form-group" ng-class="{ 'has-error' : showErrors() && fieldHasError( this, 'form1', 'current_password' ) }">
+                        <input
+                            type="password"
+                            name="current_password"
+                            class="form-control"
+                            placeholder="Current password"
+                            ng-model="data.currentPassword"
+                            ng-disabled="view.sending"
+                            required
+                            >
+                        <span ng-show="showErrors() && fieldHasError( this, 'form1', 'current_password' )" class="help-block">
+                            <span ng-show="!form1.new_password.$error.password">Please enter your current password.</span>
+                            <span ng-show="form1.new_password.$error.password">Please enter correct password.</span>
+                        </span>
+                    </div>
+
+                    <div class="form-group" ng-class="{ 'has-error' : showErrors() && fieldHasError( this, 'form1', 'new_password' ) }">
+                        <input
+                            id="new-password"
+                            type="password"
+                            name="new_password"
+                            class="form-control"
+                            placeholder="New password"
+                            ng-model="data.newPassword"
+                            ng-disabled="view.sending"
+                            ng-minlength="6"
+                            required
+                            >
+                        <span ng-show="showErrors() && fieldHasError( this, 'form1', 'new_password' )" class="help-block">
+                            <span ng-show="!form1.new_password.$error.minlength">Please enter new password.</span>
+                            <span ng-show="form1.new_password.$error.minlength">This password is too short, it should have 6 characters or more.</span>
+                        </span>
+                    </div>
+
+                    <div class="form-group" ng-class="{ 'has-error' : showErrors() && fieldHasError( this, 'form1', 'new_password_repeat' ) }">
+                        <input
+                            id="new-password-repeat"
+                            type="password"
+                            name="new_password_repeat"
+                            class="form-control"
+                            placeholder="Repeat new password"
+                            ng-model="data.newPasswordRepeat"
+                            ng-disabled="view.sending"
+                            password-match="new-password"
+                            required
+                            >
+                        <span ng-show="showErrors() && fieldHasError( this, 'form1', 'new_password_repeat' )" class="help-block">
+                            <span ng-show="!form1.new_password_repeat.$error.pwmatch">Please repeat the new password.</span>
+                            <span ng-show="form1.new_password_repeat.$error.pwmatch">This value must be the same.</span>
+                        </span>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <button
+                                type="button"
+                                class="btn btn-default btn-block uppercase"
+                                ng-click="$hide()"
+                                ng-disabled="view.sending"
+                                >Cancel</button>
+                        </div>
+                        <div class="col-md-6">
+                            <button
+                                type="submit"
+                                class="btn btn-primary btn-block uppercase"
+                                ng-disabled="view.sending"
+                                >OK</button>
+                        </div>
+                    </div>
+
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>

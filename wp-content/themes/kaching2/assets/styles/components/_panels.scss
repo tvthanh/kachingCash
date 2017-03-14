@@ -1,0 +1,40 @@
+.panel-kaching {
+    margin-bottom: 20px;
+    @include box-shadow( none );
+    border-radius: 10px;
+    border: 1px solid $colour_gray_light;
+    background: $colour_off_white;
+    .panel-heading {
+        padding: 20px;
+        background: transparent;
+        border: 0;
+    }
+    .panel-title {
+        font-size: 22px;
+        font-weight: 500;
+        color: $colour_gray_dark;
+    }
+    .panel-body {
+        padding: 20px;
+    }
+}
+
+.panel-multiselect {
+    .panel-heading {
+        padding: 10px 0;
+    }
+    .panel-body {
+        overflow-y: scroll;
+        max-height: 264px;
+        padding: 5px 15px;
+        background: $light;
+        border-radius: 10px;
+        border: 1px solid $colour_gray_light;
+    }
+}
+
+.panel-tooltips-outside {
+  .panel-body {
+    padding-right: 50px;
+  }
+}

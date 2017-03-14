@@ -1,0 +1,70 @@
+<div class="modal kaching-modal modal-new-app" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" ng-click="$hide()" ng-disabled="view.sending"><span class="ion-icon ion-close-round"></span></button>
+                <h4 class="modal-title">Generate new key</h4>
+            </div>
+            <div class="modal-body">
+
+                <div loader ng-show="view.loading"></div>
+
+                <form
+                    class="new-app-form"
+                    name="form1"
+                    ng-submit="formSubmit()"
+                    novalidate
+                    >
+
+                    <div ng-hide="view.loading">
+
+                        <div class="form-group" ng-class="{ 'has-error' : view.showErrors && fieldHasError( this, 'form1', 'key_name' ) }">
+                            <input
+                                name="key_name"
+                                type="text"
+                                class="form-control"
+                                placeholder="Key name"
+                                ng-model="data.appName"
+                                ng-disabled="view.sending"
+                                ng-change="clearCustomErrors()"
+                                required
+                                >
+                            <div ng-show="view.showErrors && fieldHasError( this, 'form1', 'key_name' )" class="help-block">
+                                <span ng-show="!form1.key_name.$error.key_name && !form1.key_name.$error.nameUnique">Please enter the key name.</span>
+                                <span ng-show="form1.key_name.$error.nameUnique">This name has already been used.</span>
+                            </div>
+                        </div>
+
+                        <div class="panel-multiselect">
+                            <div class="panel-heading">App categories</div>
+                            <div class="panel-body">
+                                <div class="checkbox" ng-repeat="category in data.categories">
+                                    <label>
+                                        <input type="checkbox" ng-model="category.selected" ng-change="setSelectedCategories()"> {{category.name}}
+                                    </label>
+                                </div>
+                            </div>
+                            <div ng-class="{ 'has-error' : view.showErrors && view.categoriesError }">
+                                <div ng-show="view.showErrors && view.categoriesError" class="help-block">You must select at least 1 category.</div>
+                            </div>
+                        </div>
+
+                        <br>
+
+                        <div class="row row-buttons">
+                            <div class="col-md-6 col-left">
+                                <button type="button" class="btn btn-block btn-default uppercase" ng-click="$hide()" ng-disabled="view.sending">Cancel</button>
+                            </div>
+                            <div class="col-md-6 col-right">
+                                <button type="submit" class="btn btn-block btn-primary uppercase" ng-disabled="view.sending">Add</button>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>

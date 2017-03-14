@@ -1,0 +1,71 @@
+<div class="wrap container invoices">
+    <div class="content row">
+
+        <div loader ng-hide="view.initialLoadComplete"></div>
+
+        <div ng-show="view.initialLoadComplete">
+
+            <div class="page-header">
+                <h1>Billing</h1>
+
+                <div
+                    date-range-picker
+                    class="daterange-picker"
+                    options="{ opens: 'left', autoApply: true, locale: { format: 'YYYY-MM-DD', firstDay: 1 } }"
+                    ng-model="daterange.dates"
+                    >
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-date">{{ daterange.datepickerLabel }}</button>
+                        <button type="button" class="btn btn-primary dropdown-toggle">
+                            <span class="caret"></span>
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+
+            <br>
+
+            <table class="table table-hover table-no-bordered">
+                <tr>
+                    <th>ID</th>
+                    <th>Invoiced date</th>
+                    <th>Credits</th>
+                    <th>Due amount</th>
+                    <th>Type</th>
+                    <th>Status</th>
+                    <th></th>
+                </tr>
+                <tr ng-repeat="transaction in data.transactions">
+                    <td>{{ transaction.id }}</td>
+                    <td>{{ transaction.created_at | date:'yyyy-MM-dd' }}</td>
+                    <td>{{ transaction.credits }}</td>
+                    <td>{{ transaction.amount | currency:'$':2 }}</td>
+                    <td>{{ transaction.payment_type | transactionType }}</td>
+                    <td>{{ transaction.status | transactionStatus }}</td>
+                    <td><a href="" ng-click="getInvoicePdf( transaction.id )" ng-show="data.user.hasBillingDetails"><span class="icon ion-document"></span></a></td>
+                </tr>
+            </table>
+
+            <div ng-if="data.transactions.length == 0">
+                <h2 class="text-center">No invoices found.</h2>
+            </div>
+
+            <div class="text-center" ng-hide="data.transactionsCount <= view.itemsPerPage">
+                <div
+                    uib-pagination
+                    ng-change="changePage()"
+                    ng-model="view.currentPage"
+                    max-size="view.maxSize"
+                    total-items="data.transactionsCount"
+                    items-per-page="view.itemsPerPage"
+                    force-ellipses="true"
+                    template-url="template/pagination/pagination.html"
+                    >
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</div>

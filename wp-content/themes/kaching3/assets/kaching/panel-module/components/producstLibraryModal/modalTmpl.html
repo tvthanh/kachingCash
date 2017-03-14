@@ -1,0 +1,98 @@
+<div class="modal kaching-modal products-library-modal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" aria-label="Close" ng-click="$hide()"><span class="ion-icon ion-close-round"></span></button>
+                <h4 class="modal-title">Products library</h4>
+            </div>
+            <div class="modal-body">
+
+                <div class="modal-section">
+                    <div class="row">
+                        <div class="col-md-6 text-left">
+                            <form name="searchForm" ng-submit="search()" novalidate>
+                                <div class="input-group input-group-search">
+                                    <input
+                                        type="text"
+                                        class="form-control"
+                                        placeholder="Search"
+                                        ng-model="view.searchInput"
+                                        ng-disabled="view.busy"
+                                        >
+                                    <span class="input-group-btn">
+                                        <button class="btn btn-primary" type="submit" ng-disabled="view.busy">
+                                            <span class="glyphicon glyphicon-search"></span>
+                                        </button>
+                                    </span>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="col-md-6 text-right">
+                            <button
+                                bs-select
+                                bs-options="option.value as option.label for option in view.orderByOptions"
+                                ng-model="view.orderBy"
+                                placement="bottom-right"
+                                type="button"
+                                class="btn btn-secondary"
+                                ng-change="changeOrder()"
+                                ng-disabled="view.busy"
+                                >
+                                Action <span class="caret"></span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div loader ng-show="view.busy"></div>
+
+                <div class="products" ng-if="!view.busy && view.products.length > 0">
+                    <div
+                        ng-repeat="item in view.products"
+                        ng-click="toggleItem(item)"
+                        ng-class="{ 'selected': item.selected }"
+                        class="product-container"
+                        >
+                        <div class="image-container">
+                            <div class="image-holder" ng-style="{ 'background-image' : 'url({{ item.image || item.image_url }})' }"></div>
+                            <div class="icon-selected" ng-show="item.selected"><span class="glyphicon glyphicon-ok-circle"></span></div>
+                        </div>
+                        <div class="title">{{ item.title }}</div>
+                        <div class="date">Added: <span>{{ item.date_added | date: 'yyyy-MM-dd'}}</span></div>
+                    </div>
+                </div>
+
+                <div ng-if="!view.busy && view.products.length == 0">
+                    <h2 class="text-center" ng-show="view.searchPhrase.length == 0">You don't have any products.</h2>
+                    <h2 class="text-center" ng-show="view.searchPhrase.length > 0">You don't have any products<br>matching this search criteria.</h2>
+                </div>
+
+                <div class="modal-section text-center paging-wrapper" ng-hide="view.productsCount <= view.itemsPerPage">
+                    <div
+                        uib-pagination
+                        ng-change="changePage()"
+                        ng-model="view.currentPage"
+                        max-size="view.maxSize"
+                        total-items="view.productsCount"
+                        items-per-page="view.itemsPerPage"
+                        force-ellipses="true"
+                        template-url="template/pagination/pagination.html"
+                        >
+                    </div>
+                </div>
+
+                <div class="modal-section text-right">
+                    <button class="btn btn-default uppercase" ng-click="$hide()">Cancel</button>
+                    <button
+                        class="btn btn-primary uppercase"
+                        ng-disabled="view.busy || !view.selectItem"
+                        ng-click="selectProduct()"
+                        >
+                        Done
+                    </button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

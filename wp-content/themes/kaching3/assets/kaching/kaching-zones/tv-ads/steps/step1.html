@@ -1,0 +1,649 @@
+
+<div class="add-campaign-step" ng-controller="tvStep1Ctrl">
+
+    <form name="form1" class="campaign-step1" novalidate>
+
+        <div loader ng-show="view.busy"></div>
+        <div ng-if="!view.busy">
+            <div class="step-campaign-details">
+                <div class="top-note">
+                    Please fill out the form below. In order to create your campaign you need to upload <span class="medium-font">at least 1 creative</span>. Maximum file size: 200KB. Only 3rd party VAST tag in-stream campaign creation is possible at the moment.
+                    <span class="medium-font">All campaigns must comply with the <span class="text-underline">KaChing quality agreement</span></span>.
+                </div>
+                <div class="item-card-v1 basic-info">
+                    <div class="row form-row ">
+                        <div class="col-sm-6 form-group" ng-class="{ 'has-error' : fundError || showErrors() && fieldHasError( this, 'form1', 'funds' ) }">
+                            <label class="medium-font">*Funds</label>
+                            <input id="funds" name="funds" placeholder="Fund amount here" class="form-control" name="funds" ng-model="campaign.fund" required balance-input balance="{{balance}}"/>
+                            <span ng-show="fundError || showErrors() && fieldHasError( this, 'form1', 'funds' )" class="help-block">Please enter fund</span>
+                        </div>
+                        <div class="col-sm-6 form-group">
+                            <label class="medium-font">*SDK/App</label>
+                            <select>
+                                <option>select here</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row form-row ">
+                        <div class="col-sm-6 form-group" ng-class="{ 'has-error' : showErrors() && fieldHasError( this, 'form1', 'customerName' ) }">
+                            <label class="medium-font">*Customer Name</label>
+                            <input id="customerName" placeholder="Customer name here" class="form-control" name="customerName" ng-model="campaign.client" required/>
+                            <span ng-show="showErrors() && fieldHasError( this, 'form1', 'customerName' )" class="help-block">Please enter customer name.</span>
+                        </div>
+                        <div class="col-sm-6 form-group" ng-class="{ 'has-error' : showErrors() && fieldHasError( this, 'form1', 'campaign_name' ) }">
+                            <label class="medium-font">*Campaign Name</label>
+                            <input
+                                id="campaignName"
+                                name="campaign_name"
+                                type="text"
+                                class="form-control campaign-name"
+                                placeholder="Campaign name here"
+                                ng-model="campaign.name"
+                                required
+                                >
+                            <span ng-show="showErrors() && fieldHasError( this, 'form1', 'campaign_name' )" class="help-block">Please enter campaign name.</span>
+                        </div>
+                    </div>
+                    <div class="row form-row ">
+                        <div class="col-sm-12 form-group">
+                            <label class="medium-font">Description</label>
+                            <textarea id="description" class="form-input description" placeholder="Add description here..." name="description" ng-model="campaign.description"></textarea>
+                        </div>
+                    </div>
+                    <div class="row form-row ">
+                        <div class="col-sm-6 form-group">
+                            <label class="medium-font">Add Customer Icon/Logo<span class="question" tooltip-placement="top" uib-tooltip-template="'customerIconLogo.html'" tooltip-class="custom-class">?</span></label>
+                            <script type="text/ng-template" id="customerIconLogo.html">
+                                <p class="step-one-tooltips">
+                                    Add Customer Icon/Logo
+                                </p>
+                            </script>
+                            <div
+                                    nv-file-drop
+                                    ifm-uploader-preview-image="campaign.logo_image"
+                                    uploader="uploader"
+                                    options="{ alias: 'customerLogo' }"
+                                    filters="imageFilter"
+                                    ifm-over-class="fileover"
+                                    class="uploader-dropzone  customer-upload-section"
+                                    ng-class="{ 'has-error' : showErrors() && imageHasError() }"
+                            >
+                                <div class="uploader-label-overlay">
+                                    <i class="icon-ic-upload"></i>
+                                    <br><br>
+                                    Simply drag and drop file<br>or <span class="higlight">browse</span> on your disk.
+                                    <!-- <span class="size-hint">1280x1200</span> -->
+                                </div>
+                                <input
+                                        nv-file-select
+                                        type="file"
+                                        uploader="uploader"
+                                        options="{ alias: 'customerLogo' }"
+                                        filters="imageFilter"
+                                        title=" "
+                                        multiple
+
+                                >
+                            </div>
+                            <input placeholder="Customer logo here" class="form-control" name="logoDescription" ng-model="campaign.logo_description"  />
+                        </div>
+                        <div class="col-sm-6 form-group">
+                            <label class="medium-font">Add Background Image<span class="question" tooltip-placement="top" uib-tooltip-template="'backgroundImage.html'" tooltip-class="custom-class">?</span></label>
+                            <script type="text/ng-template" id="backgroundImage.html">
+                                <p class="step-one-tooltips">
+                                    Add Background Image
+                                </p>
+                            </script>
+                            <div
+                                    nv-file-drop
+                                    ifm-uploader-preview-image="campaign.header_image"
+                                    uploader="uploader"
+                                    options="{ alias: 'backgroundImage' }"
+                                    filters="imageFilter"
+                                    ifm-over-class="fileover"
+                                    class="uploader-dropzone  customer-upload-section"
+                                    ng-class="{ 'has-error' : showErrors() && imageHasError() }"
+                            >
+                                <div class="uploader-label-overlay">
+                                    <i class="icon-ic-upload"></i>
+                                    <br><br>
+                                    Simply drag and drop file<br>or <span class="higlight">browse</span> on your disk.
+                                    <!-- <span class="size-hint">1280x1200</span> -->
+                                </div>
+                                <input
+                                        nv-file-select
+                                        type="file"
+                                        uploader="uploader"
+                                        options="{ alias: 'backgroundImage' }"
+                                        filters="imageFilter"
+                                        title=" "
+                                        multiple
+
+                                >
+                            </div>
+                            <input placeholder="Background image here" class="form-control" name="headerDescription" ng-model="campaign.header_description"  />
+                        </div>
+                    </div>
+                    <div class="row form-row">
+                        <div class="col-sm-6 form-group">
+                            <label class="medium-font">*Schedule <span class="question" tooltip-placement="top" uib-tooltip-template="'schedule.html'" tooltip-class="custom-class">?</span></label>
+                            <script type="text/ng-template" id="schedule.html">
+                                <p class="step-one-tooltips">
+                                    Schedule Time
+                                </p>
+                            </script>
+                            <div class="clearfix">
+                                <div class="radio">
+                                    <input type="radio" name="radioDate" id="radioAllDates" value="option1" disabled />
+                                    <label for="radioAllDates" style="min-width: 100px">All dates</label>
+                                </div>
+                                <div class="row clearfix">
+                                    <div class="col-sm-4">
+                                        <div class="radio radio-inline" style="padding-top: 5px; ">
+                                            <input type="radio" name="radioDate" id="radioDateRange" value="option1" checked />
+                                            <label for="radioDateRange" style="min-width: 100px">Date range</label>
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-sm-8 calendar-input relative" ng-class="{ 'has-error' : showErrors() && fieldHasError( this, 'form1', 'daterange' ) }">
+                                        <div class="input-group wrapper-input-datepicker">
+                                            <div
+                                                date-range-picker
+                                                name="daterange"
+                                                type="text"
+                                                placeholder="Date range"
+                                                class="form-control date-picker format-input-datepicker"
+                                                min="daterange.min"
+                                                options="{ opens: 'center',parentEl: '.calendar-input', autoApply: true, locale: { format: 'YYYY-MM-DD', firstDay: 1 } }"
+                                                ng-model="daterange.dates"
+                                                ng-required="true"
+                                                >{{ daterange.display }}</div>
+                                            <div class="input-group-addon">
+                                                <span class="icon ion-ios-calendar-outline"></span>
+                                            </div>
+                                        </div>
+                                        <span ng-show="showErrors() && fieldHasError( this, 'form1', 'daterange', 'required' )" class="help-block">Please select the campaign start and end dates.</span>
+                                        <span ng-show="showErrors() && fieldHasError( this, 'form1', 'daterange', 'min' )" class="help-block">Start date cannot be in the past.</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 form-group">
+                            <label class="medium-font">*Weekly distribution <span class="question">?</span></label>
+                            <div class="clearfix">
+                                <div class="radio">
+                                    <input type="radio" name="radioWeekly" id="radioWeekly" value="option1" checked>
+                                    <label for="radioWeekly" style="min-width: 100px">
+    									24/7
+    								</label>
+                                </div>
+                                <div class="row clearfix">
+                                    <div class="col-sm-4" style="padding-top: 5px; ">
+                                        <div class="radio radio-inline">
+                                            <input type="radio" name="radioWeekly" id="radioCustomWeekly" value="option1" />
+                                            <label for="radioCustomWeekly" style="min-width: 130px">Custom (GMT)</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-8">
+                                        <div class="form-inline">
+                                            <select class="form-control">
+    											<option>GMT Hong Kong +8</option>
+    										</select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row form-row">
+                        <div class="col-sm-12 form-group">
+                            <label class="medium-font">Campaign Status After Creation<span class="question" tooltip-placement="top" uib-tooltip-template="'campaignStatus.html'" tooltip-class="custom-class">?</span></label>
+                            <script type="text/ng-template" id="campaignStatus.html">
+                                <p class="step-one-tooltips">
+                                    Campaign Status After Creation
+                                </p>
+                            </script>
+                            <div class="note-status">Your campaign can not be started due to low funds. <a ng-click="goToFund(this)">Add funds</a></div>
+                            <div class="clearfix">
+                                <div class="custom-radio-v1">
+                                    <div class="radio">
+                                        <input type="radio" name="radioCampaignStatus" id="radioCampaignStatusStart" ng-model="campaignStatus.status" value="start" />
+                                        <label for="radioCampaignStatusStart" style="min-width: 100px">Start</label>
+                                    </div>
+                                </div>
+                                <div class="custom-radio-v1">
+                                    <div class="radio">
+                                        <input type="radio" name="radioCampaignStatus" id="radioCampaignStatusPause" ng-model="campaignStatus.status" value="paused" />
+                                        <label for="radioCampaignStatusPause" style="min-width: 100px">Paused</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="item-card-v1 targeting-info">
+                    <label class="medium-font">Targeting</label>
+                    <div class="card-note">
+                        When you first launch your campaign, you keep the targeting options set as broad as possible and then, by analyzing the data you can narrow down your audience to the point where you’re completely satisfied. You may be tempted at first to dive into all the really detailed advanced targeting options right away, but we recommend that you avoid doing this.
+                    </div>
+                    <div class="row form-row">
+                        <div class="col-sm-12 form-group" style="margin-bottom:0 !important;">
+                            <label class="medium-font">*Subject of User Interest <span class="question" tooltip-placement="top" uib-tooltip-template="'subject.html'" tooltip-class="custom-class">?</span></label>
+                            <script type="text/ng-template" id="subject.html">
+                                <p class="step-one-tooltips">
+                                    Subject of User Interest
+                                </p>
+                            </script>
+                            <p>Making a selection will include only traffic from users intersted in the subject.</p>
+                            <input placeholder="Search for a subject..." class="form-control" name="subject" ng-model="campaign.subject"  />
+                        </div>
+                    </div>
+                    <div class="row form-row">
+                        <div class="col-sm-12 flex-box">
+                            <div class="item-card-v2 user-interest">
+                                <div class="content">
+                                    <uib-accordion close-others="oneAtATime">
+                                        <uib-accordion-group is-open="catAccordionStatus.open">
+                                            <uib-accordion-heading>
+                                                <i class="fa fa-plus-circle" style="margin-right:10px;"></i>Primary categories
+                                                <i class="fa" ng-class="{'fa-chevron-up': catAccordionStatus.open, 'fa-chevron-down': !catAccordionStatus.open}"></i>
+                                            </uib-accordion-heading>
+                                            <ul>
+                                                <li ng-repeat="category in targeting.categories" ng-class="{'added' : category.selected}" class="custom-checkbox-wrapper">
+                                                    <a>
+                                                        <input type="checkbox" ng-model="category.selected" id="{{category.id}}">
+                                                        <label ng-click="updateDataModel($event, category)" for="{{category.id}}"><span class="fa" ng-class="{'fa-check-circle-o' : category.selected, 'fa-minus-circle' : !category.selected}"></span>{{category.name}}</label>
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </uib-accordion-group>
+                                    </uib-accordion>
+                                </div>
+                            </div>
+                            <div class="item-card-v2  user-interested">
+                                <div class="content">
+                                    <div class="title-add">Added</div>
+                                    <ul class="added">
+                                        <li ng-repeat="category in targeting.categories" class="added" ng-if="category.selected">
+                                            <a><i class="fa fa-minus-circle" ng-click="updateDataModel($event, category)"></i> {{category.name}}</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row form-row">
+                        <div class="col-sm-6 form-group">
+                            <label class="medium-font">Genres</label>
+                            <div class="clearfix">
+                                <div class="custom-radio-v1">
+                                    <div class="radio">
+                                        <input type="radio" name="genderOption" id="genderAll" ng-model="allGender.all" value="true" checked/>
+                                        <label for="genderAll" style="min-width: 100px">All</label>
+                                    </div>
+                                </div>
+                                <div class="row clearfix special">
+                                    <div class="custom-radio-v1 col-sm-5">
+                                        <div class="radio">
+                                            <input type="radio" name="genderOption" id="genderSpecify" ng-model="allGender.all" value="false" />
+                                            <label for="genderSpecify" style="min-width: 120px">Specify Gender</label>
+                                        </div>
+                                    </div>
+                                    <div class="custom-radio-v1 col-sm-3">
+                                        <div class="radio">
+                                            <input type="radio" name="genderSpecific" id="genderSpecificMale" ng-model="gender.sex" value="male" />
+                                            <label for="genderSpecificMale" style="min-width: 100px">Male</label>
+                                        </div>
+                                    </div>
+                                    <div class="custom-radio-v1 col-sm-4">
+                                        <div class="radio">
+                                            <input type="radio" name="genderSpecific" id="genderSpecificFeMale" ng-model="gender.sex" value="female" />
+                                            <label for="genderSpecificFeMale" style="min-width: 100px">Female</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 form-group">
+                            <label class="medium-font">Ages</label>
+                            <!-- <div class="clearfix">
+                                <label>Select age range</label>
+                                <select
+                                    ng-model="targeting.ageRange"
+                                    ng-options="range.label for range in targeting.ageRanges track by range.value"
+                                    class="form-control"
+                                    ></select>
+                            </div> -->
+                            <div class="clearfix">
+                                <div class="radio">
+                                    <input type="radio" name="ageOption" id="ageAll" value="option1" checked />
+                                    <label for="ageAll" style="min-width: 100px">All</label>
+                                </div>
+                                <div class="row clearfix">
+                                    <div class="col-sm-4" style="padding-top: 5px;">
+                                        <div class="radio radio-inline">
+                                            <input type="radio" name="ageOption" id="ageSpecific" value="option1" />
+                                            <label for="ageSpecific" style="min-width: 130px;">Specify Range</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-8">
+                                        <div class="form-inline row clearfix">
+                                            <div class="form-group col-sm-6">
+                                                <div class="row-billboard clearfix">
+                                                    <div class="column-billboard-1">
+                                                        <label class="control-label">From:</label>
+                                                    </div>
+                                                    <div class="column-billboard-2">
+                                                        <input type="text" placeholder="0 - 24" class="form-control" name="fromDate" ng-model="campaign.fromDate"  style="width: 80px;" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group col-sm-6">
+                                                <div class="row-billboard clearfix">
+                                                    <div class="column-billboard-1">
+                                                        <label class="control-label">To:</label>
+                                                    </div>
+                                                    <div class="column-billboard-2">
+                                                        <input type="text"  placeholder="65+" class="form-control" name="toDate" ng-model="campaign.toDate"  style="width: 80px;" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row form-row">
+                        <div class="col-sm-6 form-group">
+                            <label class="medium-font">Education</label>
+                            <div class="clearfix">
+                                <div class="radio">
+                                    <input type="radio" name="EducationOption" id="EducationAll" value="option1" checked/>
+                                    <label for="EducationAll" style="min-width: 100px">All</label>
+                                </div>
+                                <div class="clearfix">
+                                    <div class="pull-left" style="padding-top: 5px;">
+                                        <div class="radio radio-inline">
+                                            <input type="radio" name="EducationOption" id="EducationSpecific" value="option1" />
+                                            <label for="EducationSpecific" style="min-width: 130px;">Specify Range</label>
+                                        </div>
+                                    </div>
+                                    <div class="pull-right">
+                                        <div class="form-inline">
+                                            <div class="form-group">
+                                                <label class="control-label">From:</label>
+                                                <input placeholder="Primary School" class="form-control pLeft_5 pRight_5" name="fromDate" ng-model="campaign.fromDate"  style="width: 80px;" />
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="control-label">To:</label>
+                                                <input placeholder="University" class="form-control pLeft_5 pRight_5" name="toDate" ng-model="campaign.toDate"  style="width: 80px;" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 form-group">
+                            <label class="medium-font">Household Income ($/Year)</label>
+                            <div class="clearfix">
+                                <div class="radio">
+                                    <input type="radio" name="householdOption" id="householdAll" value="option1" checked />
+                                    <label for="householdAll" style="min-width: 100px">All</label>
+                                </div>
+                                <div class="clearfix">
+                                    <div class="pull-left" style="padding-top: 5px;">
+                                        <div class="radio radio-inline">
+                                            <input type="radio" name="householdOption" id="householdSpecific" value="option1" />
+                                            <label for="householdSpecific" style="min-width: 130px;">Specify Range</label>
+                                        </div>
+                                    </div>
+                                    <div class="pull-right">
+                                        <div class="form-inline">
+                                            <div class="form-group">
+                                                <label class="control-label">From:</label>
+                                                <input placeholder="0 - 20k" class="form-control pLeft_5 pRight_5" name="fromDate" ng-model="campaign.fromDate"  style="width: 80px;" />
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="control-label">To:</label>
+                                                <input placeholder="60k - 80k" class="form-control pLeft_5 pRight_5" name="toDate" ng-model="campaign.toDate"  style="width: 80px;" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 form-group">
+                            <label class="medium-font">Platform</label>
+                            <div class="clearfix">
+                                <div class="custom-radio-v1">
+                                    <div class="radio">
+                                        <input type="radio" name="osAll" id="osAll" ng-model="allFlatform.all" value="true" checked />
+                                        <label for="osAll" style="min-width: 100px">All</label>
+                                    </div>
+                                </div>
+                                <div class="row clearfix special">
+                                    <div class="custom-radio-v1 col-sm-5">
+                                        <div class="radio">
+                                            <input type="radio" name="osAll" id="osSpecify" ng-model="allFlatform.all" value="false" />
+                                            <label for="osSpecify" style="min-width: 120px">Specify Platform</label>
+                                        </div>
+                                    </div>
+                                    <div class="custom-radio-v1 col-sm-4">
+                                        <div class="radio">
+                                            <input type="radio" name="osSpecific" id="osSpecificIos" ng-model="flatform.os" value="ios" />
+                                            <label for="osSpecificIos" style="min-width: 100px">IOS</label>
+                                        </div>
+                                    </div>
+                                    <div class="custom-radio-v1 col-sm-4">
+                                        <div class="radio">
+                                            <input type="radio" name="osSpecific" id="osSpecificAndroid" ng-model="flatform.os" value="android" />
+                                            <label for="osSpecificAndroid" style="min-width: 100px">Android</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="community-section  col-sm-6 form-group">
+                            <label class="medium-font">Community Type</label>
+                            <div class="clearfix">
+                                <div class="custom-radio-v1">
+                                    <div class="radio">
+                                        <input type="radio" name="communityOption" id="communityAll" ng-model="communityOption.all" ng-value="true" checked ng-click="unSelectAllCommunities()"/>
+                                        <label for="communityAll" style="min-width: 100px">All</label>
+                                    </div>
+                                </div>
+                                <div class="row clearfix special">
+                                    <div class="custom-radio-v1 col-sm-5">
+                                        <div class="radio">
+                                            <input type="radio" name="communityOption" id="communitySpecific" ng-model="communityOption.all" ng-value="false" ng-click="firstSelectCommunity()"/>
+                                            <label for="communitySpecific" style="min-width: 120px">Specify Platform</label>
+                                        </div>
+                                    </div>
+                                    <div ng-repeat="community in targeting.communities">
+                                        <div ng-if="community.length < 7" class="custom-radio-v1 checkbox-campaign-special col-sm-2">
+                                            <div class="square-checkbox">
+                                                <input type="checkbox" name="community{{community}}" id="community{{community}}" ng-checked="communityExists(community, targeting.selectedCommunity)" ng-click="toggleCommunity(community, targeting.selectedCommunity)"/>
+                                                <label for="community{{community}}" style="min-width: 100px">{{community}}</label>
+                                            </div>
+                                        </div>
+                                        <div ng-if="community.length >= 7" class="custom-radio-v1 checkbox-campaign-special col-sm-3">
+                                            <div class="square-checkbox">
+                                                <input type="checkbox" name="community{{community}}" id="community{{community}}" ng-checked="communityExists(community, targeting.selectedCommunity)" ng-click="toggleCommunity(community, targeting.selectedCommunity)"/>
+                                                <label for="community{{community}}" style="min-width: 100px">{{community}}</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row form-row m-bottom-0">
+                        <div class="col-sm-12">
+                            <label class="medium-font">Locations</label>
+                            <div class="clearfix ">
+                                <div class="radio">
+                                    <input type="radio" name="locationOption" id="locationAll" value="option1" checked />
+                                    <label for="locationAll" style="min-width: 100px">Worldwide</label>
+                                </div>
+                                <div class="clearfix flex-box">
+                                    <div class="radio" style="margin-top: 5px">
+                                        <input type="radio" name="locationOption" id="locationSpecific" value="option1" />
+                                        <label for="locationSpecific" style="min-width: 120px">Custom Search</label>
+                                    </div>
+                                    <div class="form-group" style="margin-left: 120px; width: 100%;">
+                                        <input placeholder="Search Country" class="form-control" name="fromDate" ng-model="campaign.fromDate"  style="width: 100%; " />
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row form-row">
+                        <div class="col-sm-12 flex-box">
+                            <div class="item-card-v2 user-interest">
+                                <div class="content">
+                                    <uib-accordion close-others="oneAtATime">
+                                        <uib-accordion close-others="oneAtATime">
+                                            <uib-accordion-group is-open="countriesAccordionStatus.open">
+                                                <uib-accordion-heading>
+                                                    <i class="fa fa-plus-circle" style="margin-right:10px;"></i>Select countries
+                                                    <i class="fa" ng-class="{'fa-chevron-up': countriesAccordionStatus.open, 'fa-chevron-down': !countriesAccordionStatus.open}"></i>
+                                                </uib-accordion-heading>
+                                                <ul>
+                                                    <li ng-repeat="location in targeting.locations" ng-class="{'added' : location.selected}" class="custom-checkbox-wrapper">
+                                                        <a>
+                                                            <input type="checkbox" ng-model="location.selected" id="{{location.id}}">
+                                                            <label ng-click="updateDataModel($event, location)" for="{{location.id}}"><span class="fa" ng-class="{'fa-check-circle-o' : location.selected, 'fa-minus-circle' : !location.selected}"></span>{{location.name.short_name}}</label>
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </uib-accordion-group>
+                                        </uib-accordion>
+                                    </uib-accordion>
+                                </div>
+                            </div>
+                            <div class="item-card-v2  user-interested">
+                                <div class="content">
+                                    <div class="title-add">Added</div>
+                                    <ul class="added">
+                                        <li ng-repeat="location in targeting.locations" class="added" ng-if="location.selected">
+                                            <a><i class="fa fa-minus-circle" ng-click="updateDataModel($event, location)"></i> {{location.name.short_name}}</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="item-card-v1">
+                    <div class="row form-row ">
+                        <div class="col-sm-12 form-group">
+                            <label class="medium-font">*Currency</label>
+                            <select>
+                                <option>US Dollar (USD)</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row form-row ">
+                        <div class="col-sm-12">
+                            <label class="medium-font" style="margin:0;">*Payout</label>
+                        </div>
+                        <div class="col-sm-6" style="margin-bottom:8px;">
+                            <div class="radio">
+                                <input type="radio" name="optionsPayout" id="payoutBid" value="option1" checked/>
+                                <label for="payoutBid" style="min-width:200px;">CPV (cost per view) bid</label>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="radio">
+                                <input type="radio" name="optionsPayout" id="payoutPrice" value="option1" />
+                                <label for="payoutPrice" style="min-width:250px;">CPM (cost per thousand) price</label>
+                            </div>
+                        </div>
+                        <div class="col-sm-12 form-group">
+                            <input type="text" name="">
+                            <span style="display:block;margin-top:5px;font-size:11px;">CPM bid should be higher than 10.00 and lower than 50</span>
+                        </div>
+                    </div>
+                    <div class="row form-row ">
+                        <div class="col-sm-6">
+                            <label class="medium-font">Format frequency capping (per IP)</label>
+                            <select>
+                                <option>Default</option>
+                            </select>
+                            <span style="display:block;margin-top:5px;font-size:11px;">CPM bid should be higher than 10.00 and lower than 50</span>
+                        </div>
+                        <div class="col-sm-6">
+                            <label class="medium-font">Budget type</label>
+                            <div class="row clearfix">
+                                <div class="col-sm-3">
+                                    <div class="radio">
+                                        <input type="radio" name="optionsBudget" id="budgetUnlimited" value="option1" checked="" />
+                                        <label for="budgetUnlimited" style="min-width:250px;">Unlimited</label>
+                                    </div>
+                                </div>
+                                <div class="col-sm-3">
+                                    <div class="radio">
+                                        <input type="radio" name="optionsBudget" id="budgetOneTime" value="option1" />
+                                        <label for="budgetOneTime" style="min-width:250px;">One time</label>
+                                    </div>
+                                </div>
+                                <div class="col-sm-3">
+                                    <div class="radio">
+                                        <input type="radio" name="optionsBudget" id="budgetDaily" value="option1"  />
+                                        <label for="budgetDaily" style="min-width:250px;">Daily</label>
+                                    </div>
+                                </div>
+                                <div class="col-sm-3">
+                                    <div class="radio">
+                                        <input type="radio" name="optionsBudget" id="budgetHours" value="option1" />
+                                        <label for="budgetHours" style="min-width:250px;">24hrs</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="item-card-v1 payroll-info">
+                    <div class="row form-row">
+                        <div class="col-sm-12 form-group">
+                            <label class="medium-font margin-0">Payroll <span class="question">?</span></label>
+                            <div class="clearfix">
+                                <div class="special clearfix">
+                                    <div class="custom-radio-v1  pull-left" style="min-width: 120px;">
+                                        <div class="radio">
+                                            <input type="radio" name="optionsPayroll" id="payrollDefault" value="option1" checked="" />
+                                            <label for="payrollDefault">Default</label>
+                                        </div>
+                                    </div>
+                                    <div class="custom-radio-v1 pull-left" style="min-width: 130px;">
+                                        <div class="radio">
+                                            <input type="radio" name="optionsPayroll" id="payrollOneTime" value="option1" />
+                                            <label for="payrollOneTime" style="min-width: 100px">One time</label>
+                                        </div>
+                                    </div>
+                                    <div class="custom-radio-v1 pull-left" style="min-width: 100px;">
+                                        <div class="radio">
+                                            <input type="radio" name="optionsPayroll" id="payrollDaily" value="option1" />
+                                            <label for="payrollDaily">Daily</label>
+                                        </div>
+                                    </div>
+                                    <div class="custom-radio-v1 ">
+                                        <div class="radio">
+                                            <input type="radio" name="optionsPayroll" id="payrollUnlimted" value="option1"/>
+                                            <label for="payrollUnlimted">Unlimted</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-popup-stream-video clearfix">
+                <!-- <a class="btn-next-step pull-right" ng-click="goNext()">Save & Continue to Step 2 - Media Upload</a> -->
+    			<a class="btn-next-step pull-right" ng-click="nextStep()">Save & Continue to Step 2 - Media Upload</a>
+            </div>
+        </div>
+    </form>
+</div>

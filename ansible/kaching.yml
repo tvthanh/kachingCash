@@ -1,0 +1,10 @@
+---
+  - hosts: webserver
+    remote_user: ubuntu
+    vars:
+      deploy: false
+      setup: false
+    roles:
+      - host
+      - wordpress
+      - apache

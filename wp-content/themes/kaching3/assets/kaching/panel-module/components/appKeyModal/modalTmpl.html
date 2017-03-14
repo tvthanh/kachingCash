@@ -1,0 +1,29 @@
+<div class="modal kaching-modal modal-app-key" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" ng-click="$hide()"><span class="ion-icon ion-close-round"></span></button>
+                <h4 class="modal-title">API key</h4>
+            </div>
+            <div class="modal-body ">
+
+                <p>Copy the API key to clipboard</p>
+
+                <div class="input-group">
+                    <input type="text" class="form-control" value="{{ app.api_key }}" disabled>
+                    <span class="input-group-btn">
+                        <button
+                            class="btn btn-default uppercse"
+                            data-tooltip-title="Copied!"
+                            data-clipboard-text="{{ app.api_key }}"
+                            ifm-clipboard
+                            >
+                            Copy
+                        </button>
+                    </span>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

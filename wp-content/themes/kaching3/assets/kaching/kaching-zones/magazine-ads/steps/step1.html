@@ -1,0 +1,320 @@
+
+<div class="add-campaign-step" ng-controller="magStep1Ctrl">
+
+    <form name="form1" class="campaign-step1" novalidate>
+
+        <div loader ng-show="view.busy"></div>
+        <div ng-if="!view.busy">
+            <div class="step-campaign-details">
+                <div class="top-note">
+                    Please fill out the form below. In order to create your campaign you need to upload <span class="medium-font">at least 1 creative</span>. Maximum file size: 200KB. Only 3rd party VAST tag in-stream campaign creation is possible at the moment.
+                    <span class="medium-font">All campaigns must comply with the <span class="text-underline">KaChing quality agreement</span></span>.
+                </div>
+                <div class="item-card-v1 basic-info">
+                    <div class="row form-row ">
+                        <div class="col-sm-6 form-group" ng-class="{ 'has-error' : fundError || showErrors() && fieldHasError( this, 'form1', 'funds' ) }">
+                            <label class="medium-font">*Funds</label>
+                            <input id="funds" name="funds" placeholder="Fund amount here" class="form-control" name="funds" ng-model="campaign.fund" required balance-input balance="{{balance}}"/>
+                            <span ng-show="fundError || showErrors() && fieldHasError( this, 'form1', 'funds' )" class="help-block">Please enter fund</span>
+                        </div>
+                        <div class="col-sm-6 form-group">
+                            <label class="medium-font">*SDK/App</label>
+                            <select>
+                                <option>select here</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row form-row ">
+                        <div class="col-sm-6 form-group" ng-class="{ 'has-error' : showErrors() && fieldHasError( this, 'form1', 'customerName' ) }">
+                            <label class="medium-font">*Customer Name</label>
+                            <input id="customerName" placeholder="Customer name here" class="form-control" name="customerName" ng-model="campaign.client" required/>
+                            <span ng-show="showErrors() && fieldHasError( this, 'form1', 'customerName' )" class="help-block">Please enter customer name.</span>
+                        </div>
+                        <div class="col-sm-6 form-group" ng-class="{ 'has-error' : showErrors() && fieldHasError( this, 'form1', 'campaign_name' ) }">
+                            <label class="medium-font">*Campaign Name</label>
+                            <input
+                                id="campaignName"
+                                name="campaign_name"
+                                type="text"
+                                class="form-control campaign-name"
+                                placeholder="Campaign name here"
+                                ng-model="campaign.name"
+                                required
+                                >
+                            <span ng-show="showErrors() && fieldHasError( this, 'form1', 'campaign_name' )" class="help-block">Please enter campaign name.</span>
+                        </div>
+                    </div>
+                    <div class="row form-row ">
+                        <div class="col-sm-12 form-group">
+                            <label class="medium-font">Description</label>
+                            <textarea id="description" class="form-input description" placeholder="Add description here..." name="description" ng-model="campaign.description"></textarea>
+                        </div>
+                    </div>
+                    <div class="row form-row ">
+                        <div class="col-sm-6 form-group">
+                            <label class="medium-font">Add Customer Icon/Logo<span class="question" tooltip-placement="top" uib-tooltip-template="'customerIconLogo.html'" tooltip-class="custom-class">?</span></label>
+                            <script type="text/ng-template" id="customerIconLogo.html">
+                                <p class="step-one-tooltips">
+                                    Add Customer Icon/Logo
+                                </p>
+                            </script>
+                            <div
+                                    nv-file-drop
+                                    ifm-uploader-preview-image="campaign.logo_image"
+                                    uploader="uploader"
+                                    options="{ alias: 'customerLogo' }"
+                                    filters="imageFilter"
+                                    ifm-over-class="fileover"
+                                    class="uploader-dropzone  customer-upload-section"
+                                    ng-class="{ 'has-error' : showErrors() && imageHasError() }"
+                            >
+                                <div class="uploader-label-overlay">
+                                    <i class="icon-ic-upload"></i>
+                                    <br><br>
+                                    Simply drag and drop file<br>or <span class="higlight">browse</span> on your disk.
+                                    <!-- <span class="size-hint">1280x1200</span> -->
+                                </div>
+                                <input
+                                        nv-file-select
+                                        type="file"
+                                        uploader="uploader"
+                                        options="{ alias: 'customerLogo' }"
+                                        filters="imageFilter"
+                                        title=" "
+                                        multiple
+
+                                >
+                            </div>
+                            <input placeholder="Customer logo here" class="form-control" name="logoDescription" ng-model="campaign.logo_description"  />
+                        </div>
+                        <div class="col-sm-6 form-group">
+                            <label class="medium-font">Add Background Image<span class="question" tooltip-placement="top" uib-tooltip-template="'backgroundImage.html'" tooltip-class="custom-class">?</span></label>
+                            <script type="text/ng-template" id="backgroundImage.html">
+                                <p class="step-one-tooltips">
+                                    Add Background Image
+                                </p>
+                            </script>
+                            <div
+                                    nv-file-drop
+                                    ifm-uploader-preview-image="campaign.header_image"
+                                    uploader="uploader"
+                                    options="{ alias: 'backgroundImage' }"
+                                    filters="imageFilter"
+                                    ifm-over-class="fileover"
+                                    class="uploader-dropzone  customer-upload-section"
+                                    ng-class="{ 'has-error' : showErrors() && imageHasError() }"
+                            >
+                                <div class="uploader-label-overlay">
+                                    <i class="icon-ic-upload"></i>
+                                    <br><br>
+                                    Simply drag and drop file<br>or <span class="higlight">browse</span> on your disk.
+                                    <!-- <span class="size-hint">1280x1200</span> -->
+                                </div>
+                                <input
+                                        nv-file-select
+                                        type="file"
+                                        uploader="uploader"
+                                        options="{ alias: 'backgroundImage' }"
+                                        filters="imageFilter"
+                                        title=" "
+                                        multiple
+
+                                >
+                            </div>
+                            <input placeholder="Background image here" class="form-control" name="headerDescription" ng-model="campaign.header_description"  />
+                        </div>
+                    </div>
+                    <div class="row form-row">
+                        <div class="col-sm-6 form-group">
+                            <label class="medium-font">*Schedule<span class="question" tooltip-placement="top" uib-tooltip-template="'schedule.html'" tooltip-class="custom-class">?</span></label>
+                            <script type="text/ng-template" id="schedule.html">
+                                <p class="step-one-tooltips">
+                                    Schedule Time
+                                </p>
+                            </script>
+                            <div class="clearfix">
+                                <div class="radio">
+                                    <input type="radio" name="radioDate" id="radioAllDates" value="option1" disabled />
+                                    <label for="radioAllDates" style="min-width: 100px">All dates</label>
+                                </div>
+                                <div class="row clearfix">
+                                    <div class="col-sm-4">
+                                        <div class="radio radio-inline" style="padding-top: 5px; ">
+                                            <input type="radio" name="radioDate" id="radioDateRange" value="option1" checked />
+                                            <label for="radioDateRange" style="min-width: 100px">Date range</label>
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-sm-8 calendar-input relative" ng-class="{ 'has-error' : showErrors() && fieldHasError( this, 'form1', 'daterange' ) }">
+                                        <div class="input-group wrapper-input-datepicker">
+                                            <div
+                                                date-range-picker
+                                                name="daterange"
+                                                type="text"
+                                                placeholder="Date range"
+                                                class="form-control date-picker format-input-datepicker"
+                                                min="daterange.min"
+                                                options="{ opens: 'center',parentEl: '.calendar-input', autoApply: true, locale: { format: 'YYYY-MM-DD', firstDay: 1 } }"
+                                                ng-model="daterange.dates"
+                                                ng-required="true"
+                                                >{{ daterange.display }}</div>
+                                            <div class="input-group-addon">
+                                                <span class="icon ion-ios-calendar-outline"></span>
+                                            </div>
+                                        </div>
+                                        <span ng-show="showErrors() && fieldHasError( this, 'form1', 'daterange', 'required' )" class="help-block">Please select the campaign start and end dates.</span>
+                                        <span ng-show="showErrors() && fieldHasError( this, 'form1', 'daterange', 'min' )" class="help-block">Start date cannot be in the past.</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- <div class="col-sm-6 form-group">
+                            <label class="medium-font">*Weekly distribution <span class="question">?</span></label>
+                            <div class="clearfix">
+                                <div class="radio">
+                                    <input type="radio" name="radioWeekly" id="radioWeekly" value="option1" checked>
+                                    <label for="radioWeekly" style="min-width: 100px">
+    									24/7
+    								</label>
+                                </div>
+                                <div class="row clearfix">
+                                    <div class="col-sm-4" style="padding-top: 5px; ">
+                                        <div class="radio radio-inline">
+                                            <input type="radio" name="radioWeekly" id="radioCustomWeekly" value="option1" />
+                                            <label for="radioCustomWeekly" style="min-width: 130px">Custom (GMT)</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-8">
+                                        <div class="form-inline">
+                                            <select class="form-control">
+    											<option>GMT Hong Kong +8</option>
+    										</select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div> -->
+                    </div>
+                    <div class="row form-row">
+                        <div class="col-sm-12 form-group">
+                            <label class="medium-font">Campaign Status After Creation<span class="question" tooltip-placement="top" uib-tooltip-template="'campaignStatus.html'" tooltip-class="custom-class">?</span></label>
+                            <script type="text/ng-template" id="campaignStatus.html">
+                                <p class="step-one-tooltips">
+                                    Campaign Status After Creation
+                                </p>
+                            </script>
+                            <div class="note-status">Your campaign can not be started due to low funds. <a ng-click="goToFund(this)">Add funds</a></div>
+                            <div class="clearfix">
+                                <div class="custom-radio-v1">
+                                    <div class="radio">
+                                        <input type="radio" name="radioCampaignStatus" id="radioCampaignStatusStart" ng-model="campaignStatus.status" value="start" />
+                                        <label for="radioCampaignStatusStart" style="min-width: 100px">Start</label>
+                                    </div>
+                                </div>
+                                <div class="custom-radio-v1">
+                                    <div class="radio">
+                                        <input type="radio" name="radioCampaignStatus" id="radioCampaignStatusPause" ng-model="campaignStatus.status" value="paused" />
+                                        <label for="radioCampaignStatusPause" style="min-width: 100px">Paused</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="item-card-v1 targeting-info">
+                    <label class="medium-font">Targeting</label>
+                    <div class="card-note">
+                        When you first launch your campaign, you keep the targeting options set as broad as possible and then, by analyzing the data you can narrow down your audience to the point where you’re completely satisfied. You may be tempted at first to dive into all the really detailed advanced targeting options right away, but we recommend that you avoid doing this.
+                    </div>
+                    <div class="row form-row">
+                        <div class="col-sm-6 form-group">
+                            <label class="medium-font">Gender</label>
+                            <div class="clearfix row">
+                                <div class="col-sm-3">
+                                    <div class="radio">
+                                        <input type="radio" name="genderOption" id="genderAll" ng-model="allGender.all" value="true" checked/>
+                                        <label for="genderAll" style="min-width: 100px">All</label>
+                                    </div>
+                                </div>
+                                <div class="col-sm-9">
+                                    <div class="custom-radio-v1 col-sm-3">
+                                        <div class="radio">
+                                            <input type="radio" name="genderSpecific" id="genderSpecificMale" ng-model="gender.sex" value="male" />
+                                            <label for="genderSpecificMale" style="min-width: 100px">Male</label>
+                                        </div>
+                                    </div>
+                                    <div class="custom-radio-v1 col-sm-4">
+                                        <div class="radio">
+                                            <input type="radio" name="genderSpecific" id="genderSpecificFeMale" ng-model="gender.sex" value="female" />
+                                            <label for="genderSpecificFeMale" style="min-width: 100px">Female</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row form-row">
+                        <div class="col-sm-6 form-group">
+                            <label class="medium-font">Platform</label>
+                            <div class="clearfix row">
+                                <div class="col-sm-3">
+                                    <div class="radio">
+                                        <input type="radio" name="osAll" id="osAll" ng-model="allFlatform.all" value="true" checked />
+                                        <label for="osAll" style="min-width: 100px">All</label>
+                                    </div>
+                                </div>
+                                <div class="col-sm-9">
+                                    <div class="col-sm-3">
+                                        <div class="radio">
+                                            <input type="radio" name="osSpecific" id="osSpecificIos" ng-model="flatform.os" value="ios" />
+                                            <label for="osSpecificIos" style="min-width: 100px">IOS</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <div class="radio">
+                                            <input type="radio" name="osSpecific" id="osSpecificAndroid" ng-model="flatform.os" value="android" />
+                                            <label for="osSpecificAndroid" style="min-width: 100px">Android</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row form-row m-bottom-0">
+                        <div class="col-sm-12">
+                            <label class="medium-font">Locations</label>
+                        </div>
+                    </div>
+                    <div class="row form-row">
+                        <div class="col-sm-12 flex-box">
+                            <div class="item-card-v2">
+                                <div class="content">
+                                    <uib-accordion close-others="oneAtATime">
+                                        <uib-accordion close-others="oneAtATime">
+                                            <uib-accordion-group is-open="countriesAccordionStatus.open">
+                                                <uib-accordion-heading>
+                                                    <i class="fa fa-plus-circle" style="margin-right:10px;"></i>Select countries
+                                                    <i class="fa" ng-class="{'fa-chevron-up': countriesAccordionStatus.open, 'fa-chevron-down': !countriesAccordionStatus.open}"></i>
+                                                </uib-accordion-heading>
+                                                <ul>
+                                                    <li ng-repeat="location in targeting.locations" ng-class="{'added' : location.selected}" class="custom-checkbox-wrapper">
+                                                        <a>
+                                                            <input type="checkbox" ng-model="location.selected" id="{{location.id}}">
+                                                            <label ng-click="updateDataModel($event, location)" for="{{location.id}}"><span class="fa" ng-class="{'fa-check-circle-o' : location.selected, 'fa-minus-circle' : !location.selected}"></span>{{location.name.short_name}}</label>
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </uib-accordion-group>
+                                        </uib-accordion>
+                                    </uib-accordion>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-popup-stream-video clearfix">
+    			<a class="btn-next-step pull-right" ng-click="nextStep()">Save & Continue to Step 2 - Media Upload</a>
+            </div>
+        </div>
+    </form>
+</div>

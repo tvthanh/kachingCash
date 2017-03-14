@@ -1,0 +1,478 @@
+/**
+ * CSS for Payout tab
+ */
+ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+
+    li {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+    margin: 0;
+    padding: 0;
+}
+
+.pLeft_5 {
+    padding-left: 5px;
+}
+
+.pRight_5 {
+    padding-right: 5px;
+}
+
+.cl-green {
+    color: #38ba24;
+}
+@mixin border-radius($radius) {
+    -webkit-border-radius: $radius;
+    -moz-border-radius: $radius;
+    -ms-border-radius: $radius;
+    border-radius: $radius;
+}
+@mixin linearGradient($top, $bottom) {
+    background: $top;
+    /* Old browsers */
+    background: -moz-linear-gradient(top, $top 0%, $bottom 100%);
+    /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,$top), color-stop(100%,$bottom));
+    /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top, $top 0%,$bottom 100%);
+    /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top, $top 0%,$bottom 100%);
+    /* Opera 11.10+ */
+    background: -ms-linear-gradient(top, $top 0%,$bottom 100%);
+    /* IE10+ */
+    background: linear-gradient(to bottom, $top 0%,$bottom 100%);
+    /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr= '$top', endColorstr='$bottom',GradientType=0 );
+    /* IE6-9 */
+}
+
+.funnel-container,
+.overview-container,
+.payout-container,
+.traffic-container {
+    padding-top: 30px;
+
+    .title-top {
+        color: #414b5c;
+        font-size: 28px;
+        padding-bottom: 10px;
+    }
+
+    .banner-payout {
+        margin: 0;
+    }
+
+    .payout-header {
+        margin: 30px 15px;
+    }
+
+    .total-payout-details {
+        margin-top: 30px;
+        background-color: #fff;
+        border: 1px solid #c3c3c3;
+        @include border-radius(10px);
+    }
+}
+// CSS Progress Bar
+.progress-bar-wrapper {
+    position: relative;
+    height: 15px;
+
+    &.larger {
+        height: 40px;
+
+        .progress-bar-bg,
+        .progress-bar-item {
+            height: 40px;
+        }
+    }
+
+    .progress-bar-bg,
+    .progress-bar-item {
+        height: 15px;
+        @include border-radius(10px);
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 2;
+    }
+
+    .progress-bar-item {
+        z-index: 4;
+    }
+
+    .progress-bar-bg {
+        width: 100%;
+        background-color: #e2e7ee;
+    }
+
+    .progress-bar-item {
+        &.success {
+            background-color: #38ba24;
+        }
+
+        &.danger {
+            background-color: #ff001f;
+        }
+    }
+}
+
+.total-payout-view {
+    padding-bottom: 25px;
+
+    .amounts {
+        font-size: 24px;
+        line-height: 24px;
+        text-transform: uppercase;
+    }
+
+    .num-view {
+        color: #98a5b5;
+        font-size: 12px;
+        line-height: 24px;
+        font-weight: bold;
+        text-transform: uppercase;
+    }
+
+    .percents {
+        color: #38ba24;
+    }
+}
+
+.total-payout-list {
+    padding-bottom: 25px;
+    border-top: 1px solid #d6d6d6;
+
+    li {
+        padding-top: 25px;
+    }
+
+    p {
+        line-height: 18px;
+    }
+
+    .country {
+        position: relative;
+        padding-left: 70px;
+        margin-bottom: 20px;
+        max-width: 215px;
+
+        .flag-country {
+            position: absolute;
+            top: 0;
+            left: 0;
+
+            img {
+                width: 50px;
+                height: 50px;
+                @include border-radius(100%);
+            }
+        }
+
+        .name-country {
+            color: #535c6c;
+            font-size: 14px;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        .total-country,
+        .view-country {
+            color: #98a5b5;
+            font-size: 12px;
+            font-weight: bold;
+        }
+    }
+
+    .amounts {
+        text-align: right;
+
+        .dollars {
+            color: #98a5b5;
+            font-size: 20px;
+            line-height: 24px;
+        }
+
+        .percents {
+            font-size: 16px;
+            line-height: 24px;
+
+            &.success {
+                color: #38ba24;
+            }
+
+            &.danger {
+                color: #ff001f;
+            }
+        }
+    }
+}
+// CSS Payout Details
+.campaign-payout-details {
+    padding: 15px 0 25px;
+    margin: 30px 0;
+    background-color: #fff;
+    border: 1px solid #c9c9c9;
+    @include border-radius(10px);
+}
+
+.campaign-payout-header {
+    padding: 0 15px 15px;
+    border-bottom: 1px solid #dbdbdb;
+
+    .title {
+        color: #414b5c;
+        font-size: 20px;
+        font-weight: bold;
+        padding-top: 7px;
+        text-transform: capitalize;
+    }
+
+    button[type='button'] {
+        width: 160px;
+        text-align: left;
+        color: #696a68 !important;
+        background-color: #f3f5f8;
+        border: 1px solid #acaeba;
+        @include linearGradient(#fdfefe, #f3f5f7);
+    }
+
+    span.caret {
+        margin-top: 7px;
+    }
+}
+
+.campaign-payout-table {
+    table {
+        margin: 0;
+
+        &.table-status {
+
+            tr {
+                padding-left: 3px;
+                &.status-organce {
+                    border-left: 3px solid #ffb500;
+                }
+                &.status-green {
+                    border-left: 3px solid #04be5b;
+                }
+                &.status-gray {
+                    border-left: 3px solid #9b9b9b;
+                }
+            }
+        }
+
+        tr {
+            padding: 0 20px;
+        }
+
+        th {
+            color: #8090a4;
+            font-size: 12px;
+            font-weight: bold;
+            text-transform: capitalize;
+
+            &:first-child {
+                padding-left: 15px;
+            }
+
+            &:last-child {
+                padding-right: 15px;
+            }
+        }
+
+        td {
+            vertical-align: middle !important;
+
+            &:first-child {
+                padding-left: 20px;
+            }
+
+            &:last-child {
+                padding-right: 20px;
+            }
+        }
+
+        p {
+            color: #3e495a;
+            font-size: 14px;
+            line-height: 22px;
+        }
+    }
+
+    .campaign-name {
+        position: relative;
+        padding-left: 57px;
+        min-height: 40px;
+
+        &.one-line {
+            .title {
+                padding-top: 10px;
+            }
+        }
+
+        .audio-item {
+            width: 50px;
+            height: 40px;
+            position: absolute;
+            left: 0;
+            top: 0;
+
+
+            img {
+                width: 100%;
+                height: 100%;
+            }
+        }
+
+        .title {
+            color: #414b5d;
+            font-size: 16px;
+        }
+
+        .sub-title {
+            color: #3e495a;
+            font-size: 14px;
+            font-weight: bold;
+        }
+    }
+
+    .thumbsnail {
+        img {
+            width: 50px;
+            height: 50px;
+            @include border-radius(100%);
+        }
+    }
+
+    .campaign-view {
+        .hours {}
+
+        .date {}
+    }
+
+    .campaign-user {
+        .name {}
+    }
+
+    .campaign-coin {
+        .coin {}
+    }
+
+    .campaign-total-coin {
+        .total-coin {}
+    }
+
+    .campaign-weekly {
+        .dollars {
+            font-size: 14px;
+        }
+    }
+
+    .campaign-month {}
+
+    .campaign-history {
+        a {
+            color: #3ba5de;
+        }
+    }
+
+    &.fund-details-table {
+        table {
+            border: none;
+            tr {
+                margin: 3px 0;
+            }
+        }
+    }
+}
+// CSS World Wide Winners
+.view-world-wrapper {
+    .campaign-payout-details {
+        margin-top: 0;
+    }
+    .cotainer-click-per-view {
+        .campaign-payout-header {
+            margin-bottom: 15px;
+        }
+    }
+}
+
+.container-world-wide {
+    &.payout-item {
+        padding: 0;
+        padding-top: 30px;
+    }
+    .map-box {
+        img {
+            vertical-align: middle;
+        }
+    }
+}
+
+.weekly-winner-block,
+.monthly-winner-block {
+    .part-top {
+        h3 {
+            color: #354052;
+            font-size: 16px;
+            text-align: center;
+            line-height: 24px;
+        }
+        p {
+            text-align: center;
+            color: #354052;
+            font-size: 14px;
+            line-height: 24px;
+        }
+        .date-winner {
+            font-size: 12px;
+        }
+        .amount-dollars {
+            font-size: 18px;
+        }
+    }
+    .part-middle {
+        margin: 10px 0;
+        text-align: center;
+        .photo-box {
+            text-align: center;
+            img {
+                width: 90px;
+                height: 90px;
+                border: 1px solid #ececec;
+                vertical-align: middle;
+                @include border-radius(100%);
+            }
+        }
+    }
+    .part-bottom {
+        text-align: center;
+        p {
+            text-align: center;
+            color: #354052;
+            font-size: 14px;
+            line-height: 24px;
+        }
+        .btn-detail-winner {
+            a {
+                color: #67b9e5 !important;
+                font-size: 14px;
+            }
+        }
+    }
+}

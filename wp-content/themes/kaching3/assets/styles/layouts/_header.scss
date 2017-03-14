@@ -1,0 +1,41 @@
+.signinup{
+	a{
+		float:left;
+		margin-left: 6px !important;
+		margin-right: 6px !important;
+	}
+	span{
+		float:left;
+		padding:22px 6px;
+		font-size:14px;
+	}
+}
+.navbar-brand svg{
+	height:24px;
+	fill: $light;
+}
+.username{
+	&:before{
+		width:18px;
+		height:18px;
+		padding-right:8px;
+		font-size:18px;
+		position:relative;
+		top:4px;
+		content: '\6a' !important;
+		font-family: "untitled-font-5" !important;
+		content: attr(data-icon);
+		font-style: normal !important;
+		font-weight: normal !important;
+		font-variant: normal !important;
+		text-transform: none !important;
+		speak: none;
+		line-height: 1;
+		-webkit-font-smoothing: antialiased;
+		-moz-osx-font-smoothing: grayscale;	  		
+	}
+	.wicon-down{
+		padding-left:10px;
+		font-size:10px;
+	}
+}

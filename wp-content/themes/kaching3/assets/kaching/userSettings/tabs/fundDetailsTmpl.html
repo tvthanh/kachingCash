@@ -1,0 +1,53 @@
+<div class="tab-content fund-details-container" ng-controller="fundDetailsCtrl">
+    <div class="campaign-payout-details">
+        <div class="campaign-payout-table fund-details-table">
+            <table class="table-status table table-striped">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>Views</th>
+                        <th>Conversion</th>
+                        <th>Payout</th>
+                        <th>Total</th>
+                        <th colspan="2"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="fundItem in dataFundDetails">
+                        <td>
+                            <div class="campaign-name one-line clearfix">
+                                <p class="title">{{fundItem.title}}</p>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="campaign-view-fund">
+                                <p class="view-fund">{{fundItem.view}}</p>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="campaign-conversion">
+                                <p class="conversion">{{fundItem.conversion}} %</p>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="campaign-payout">
+                                <p class="num-payout">USD {{fundItem.numPayout}}</p>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="campaigntotal-fund">
+                                <p class="total-fund">USD {{fundItem.totalFund}}</p>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="campaign-control">
+                                <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+                                <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

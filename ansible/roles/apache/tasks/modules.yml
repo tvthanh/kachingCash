@@ -1,0 +1,10 @@
+---
+  - name: "Enable mod_rewrite module"
+    apache2_module:
+      name: rewrite
+      state: present
+    become: yes
+    become_method: sudo
+    notify:
+      - Apache restart
+    when: setup|bool

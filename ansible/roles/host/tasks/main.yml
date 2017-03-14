@@ -1,0 +1,3 @@
+---
+# Role with all needed actions to do on host
+  - include: packages.yml

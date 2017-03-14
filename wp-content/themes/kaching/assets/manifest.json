@@ -1,0 +1,51 @@
+{
+  "dependencies": {
+    "main.js": {
+      "files": [
+        "scripts/main.js",
+        "scripts/table-filter.js",
+        "scripts/register.js",
+        "scripts/login.js",
+        "scripts/signout.js",
+        "scripts/usersettings.js",
+        "scripts/resetPass.js",
+        "scripts/contactmail.js",
+        "scripts/documentation.js",
+        "scripts/getapikeys.js",      
+        "scripts/assets.js",
+        "scripts/clients.js",        
+        "scripts/products.js",        
+        "scripts/campaigns.js",
+        "scripts/addCampaign.js",        
+        "scripts/user-profile.js",
+        "scripts/settings.js"        
+      ],
+      "main": true
+    },
+    "main.css": {
+      "files": [
+        "styles/main.scss"
+      ],
+      "main": true
+    },
+    "editor-style.css": {
+      "files": [
+        "styles/editor-style.scss"
+      ]
+    },
+    "jquery.js": {
+      "bower": ["jquery"]
+    },
+    "modernizr.js": {
+      "bower": ["modernizr"]
+    },
+    "dragndrop.js": {
+      "files": [
+        "scripts/file-upload/jquery.fileupload.js"
+      ]     
+    }    
+  },
+  "config": {
+    "devUrl": "http://kaching.loc/"
+  }
+}

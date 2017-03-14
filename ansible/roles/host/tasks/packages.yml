@@ -1,0 +1,53 @@
+---
+  - debug:
+      msg: "Update required packages"
+  - name: Update packages using apt
+    apt:
+      name: "{{ item }}"
+      state: latest
+    with_items:
+      - git
+      - mysql-server
+      - libmysqlclient-dev
+      - apache2
+      - php5
+      - php5-mysql
+      - php5-gd
+      - nodejs
+      - rubygems-integration
+      - npm
+      - python-dev
+      - python-pip
+    become: yes
+    become_method: sudo
+    when: setup|bool or deploy|bool
+
+  - name: Update packages using gem
+    gem:
+      name: "{{ item }}"
+      state: latest
+    with_items:
+      - sass
+    become: yes
+    become_method: sudo
+    when: setup|bool or deploy|bool
+
+  - name: Update packages using npm
+    npm:
+      name: "{{ item }}"
+      state: latest
+      global: yes
+    with_items:
+      - bower
+    become: yes
+    become_method: sudo
+    when: setup|bool or deploy|bool
+
+  - name: Update packages using pip
+    pip:
+      name: "{{ item }}"
+      state: latest
+    with_items:
+      - MySQL-python
+    become: yes
+    when: setup|bool or deploy|bool

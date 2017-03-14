@@ -1,0 +1,21 @@
+.progress {
+    background-color: $colour_gray_light;
+    border-radius:  5px;
+    height: 12px;
+    @include box-shadow( none );
+    .progress-bar {
+        background-color: $colour_brand_primary;
+        font-size: 11px;
+        line-height: 16px;
+        transition: 0.3s all;
+        @include box-shadow( none );
+    }
+    .progress-bar-default {
+        background-color: $colour_gray_dark;
+    }
+    &.complete {
+        .progress-bar{
+            background-color: $brand-success-dark;
+        }
+    }
+}

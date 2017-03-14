@@ -1,0 +1,69 @@
+<div class="modal kaching-modal modal-password-reset" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" ng-click="$hide()"><span class="ion-icon ion-close-round"></span></button>
+                <h4 class="modal-title">
+                    <span ng-show="!view.success">Forgot your password?</span>
+                    <span ng-show="view.success">Email sent</span>
+                </h4>
+            </div>
+            <div class="modal-body text-center">
+
+                <form
+                    ng-show="!view.success"
+                    name="form1"
+                    ng-submit="formSubmit()"
+                    novalidate
+                    >
+
+                    <p>Enter your email address below<br>and we will send you password<br>reset instructions</p>
+                    <br>
+
+                    <div class="form-group" ng-class="{ 'has-error' : showErrors() && fieldHasError( this, 'form1', 'email' ) }">
+                        <input
+                            type="email"
+                            name="email"
+                            class="form-control"
+                            placeholder="Email"
+                            autocomplete="off"
+                            maxlength="254"
+                            ng-model="data.email"
+                            ng-maxlength="254"
+                            ng-disabled="view.sending"
+                            required
+                            >
+                        <span ng-show="showErrors() && fieldHasError( this, 'form1', 'email' )" class="help-block">
+                            <span ng-show="!form1.email.$error.email">Please enter your email address.</span>
+                            <span ng-show="form1.email.$error.email">Please enter a valid email.</span>
+                        </span>
+                    </div>
+
+                    <div class="row row-buttons">
+                        <div class="col-md-5 col-left">
+                            <button
+                                class="btn btn-default btn-block uppercase"
+                                ng-disabled="view.sending"
+                                ng-click="showLoginDialog()"
+                                type="button"
+                                >Cancel</button>
+                        </div>
+                        <div class="col-md-7 col-right">
+                            <button
+                                class="btn btn-primary btn-block uppercase"
+                                type="submit"
+                                ng-disabled="view.sending"
+                                >Reset password</button>
+                        </div>
+                    </div>
+
+                </form>
+
+                <div ng-show="view.success">
+                    <p>Password reset instructions have been sent to your email address.</p>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,22 @@
+.panel-default{
+	border: 1px solid $gray-lighten;
+	.panel-heading{
+		color: $gray-darkest;
+		font-size:18px;
+		font-weight:700;
+		padding: 23px 15px;
+		background: $gray-fa;
+
+	}
+	.panel-body{
+
+		background: $gray-fa;
+		.form-control{
+			border: 1px solid $gray-lighten;
+			&:disabled{
+				background: $gray-30;
+
+			}
+		}
+	}
+}

@@ -1,0 +1,56 @@
+---
+  - name: Create kaching database
+    mysql_db:
+      login_host: "{{ database_host }}"
+      login_port: "{{ database_port }}"
+      login_user: "{{ database_login_user }}"
+      login_password: "{{ database_login_password }}"
+      name: "{{ database_name }}"
+      state: present
+    when: setup|bool
+  - name: Fill kaching database with prepared data
+    mysql_db:
+      login_host: "{{ database_host }}"
+      login_port: "{{ database_port }}"
+      login_user: "{{ database_login_user }}"
+      login_password: "{{ database_login_password }}"
+      name: "{{ database_name }}"
+      state: import
+      target: "{{ git_dest_dir }}/{{ database_dump_path }}"
+    when: setup|bool
+  - name: Create kaching database user
+    mysql_user:
+      login_host: "{{ database_host }}"
+      login_port: "{{ database_port }}"
+      login_user: "{{ database_login_user }}"
+      login_password: "{{ database_login_password }}"
+      name: "{{ database_kaching_user }}"
+      host: "%"
+      password: "{{ database_kaching_password }}"
+      append_privs: yes
+      priv: "{{ database_name }}.*:ALL,GRANT"
+    when: setup|bool
+  - name: Update WordPress siteurl option
+    command: >
+      mysql --database={{ database_name }} --user={{ database_kaching_user }} --password={{ database_kaching_password }} --host={{ database_host }}
+      --port={{ database_port }} --execute="update wp_options set option_value = 'http://{{ database_wp_options_siteurl }}:{{ webserver_server_port }}'
+      where option_name = 'siteurl';"
+    when: webserver_server_port != 80 and setup|bool
+  - name: Update WordPress home option
+    command: >
+      mysql --database={{ database_name }} --user={{ database_kaching_user }} --password={{ database_kaching_password }} --host={{ database_host }}
+      --port={{ database_port }} --execute="update wp_options set option_value = 'http://{{ database_wp_options_home }}:{{ webserver_server_port }}'
+      where option_name = 'home';"
+    when: webserver_server_port != 80 and setup|bool
+  - name: Update WordPress siteurl option
+    command: >
+      mysql --database={{ database_name }} --user={{ database_kaching_user }} --password={{ database_kaching_password }} --host={{ database_host }}
+      --port={{ database_port }} --execute="update wp_options set option_value = 'http://{{ database_wp_options_siteurl }}'
+      where option_name = 'siteurl';"
+    when: webserver_server_port == 80 and setup|bool
+  - name: Update WordPress home option
+    command: >
+      mysql --database={{ database_name }} --user={{ database_kaching_user }} --password={{ database_kaching_password }} --host={{ database_host }}
+      --port={{ database_port }} --execute="update wp_options set option_value = 'http://{{ database_wp_options_home }}'
+      where option_name = 'home';"
+    when: webserver_server_port == 80 and setup|bool

@@ -1,0 +1,76 @@
+<div class="wrap1 container1 credit-cards order-history-container">
+    <div class="content row">
+        <div class="header-block">
+            <div class="inner-header-block clearfix">
+                <div class="col-sm-8 pLeft_0">
+                    <h3>Your Credit Cards</h3>
+                </div>
+            </div>
+            <div class="title-cropper-line"></div>
+        </div>
+
+        <div loader ng-show="view.busy"></div>
+
+        <div ng-show="!view.busy" class="credit-cards-container clearfix">
+
+            <div class="card-container" ng-repeat="card in data.cards">
+                <div class="panel panel-credit-card">
+                    <div class="panel-heading">
+                        <span class="card-name">{{card.name}}</span>
+                        <span class="card-buttons">
+                            <span
+                                ng-show="card.default"
+                                class="default"
+                                data-placement="top"
+                                data-trigger="hover"
+                                data-title="Main card"
+                                bs-tooltip
+                                ><span class="icon ion-star"></span></span>
+                            <a
+                                class="btn"
+                                ng-hide="card.default"
+                                ng-click="setMainCard( card )"
+                                data-animation="am-fade-and-scale"
+                                data-placement="top"
+                                data-trigger="hover"
+                                data-title="Set as main card"
+                                bs-tooltip
+                                ><span class="icon ion-ios-star-outline"></span></a>
+                            <a
+                                class="btn"
+                                ng-click="showDeleteCardDialog( card )"
+                                data-animation="am-fade-and-scale"
+                                data-placement="top"
+                                data-trigger="hover"
+                                data-title="Delete card"
+                                bs-tooltip
+                                ><span class="icon icon-delete"></span></a>
+                        </span>
+                    </div>
+                    <div class="panel-body">
+                        <div class="card-number">
+                            <div class="heading uppercase">Card number</div>
+                            <div class="number">{{card.masked_number}}</div>
+                        </div>
+                        <div class="card-expiry">
+                            <div class="heading uppercase">Expiration</div>
+                            <div class="date"><span class="month">{{ card.expiration_date }}</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card-container">
+                <div class="panel panel-new-card">
+                    <div class="panel-body text-center">
+                        <button class="btn btn-new-card" ng-click="showNewCardDialog()"><span class="icon ion-ios-plus"></span></button>
+                        <div class="panel-label">
+                            Add new card
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</div>

@@ -1,0 +1,142 @@
+<div class="modal kaching-modal new-media-modal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" ng-click="closeModal()" ng-disabled="view.uploading"><span class="ion-icon ion-close-round"></span></button>
+                <h4 class="modal-title">New media collection dddd</h4>
+            </div>
+            <div class="modal-body">
+
+                <form
+                    class="new-media-form"
+                    name="form1"
+                    novalidate
+                    >
+
+                    <div class="form-group form-group-media-name" ng-class="{ 'has-error' : showErrors() && fieldHasError( this, 'form1', 'media_name' ) }">
+                        <input
+                            name="media_name"
+                            type="text"
+                            class="form-control media-name"
+                            placeholder="Name of your media"
+                            ng-model="data.mediaName"
+                            required
+                            >
+                        <span ng-show="showErrors() && fieldHasError( this, 'form1', 'media_name' )" class="help-block">Please enter media name.</span>
+                    </div>
+
+                    <div class="form-group form-group-media-name">
+                        <select ng-model="mediaTypeProp.mediaTypeSelect" ng-options="v for v in mediaTypeProp.values">
+                        </select>
+
+                    </div>
+
+                    <div class="media-preview-container">
+                        <div class="video-container">
+                            <div
+                                nv-file-drop
+                                ifm-uploader-preview-video="data.videoFile"
+                                uploader="uploader"
+                                options="{ alias: 'video' }"
+                                filters="videoFilter"
+                                ifm-over-class="fileover"
+                                class="uploader-dropzone"
+                                ng-class="{ 'has-error' : showErrors() && videoHasError() }"
+                                ng-show="mediaTypeProp.mediaTypeSelect == 'Upload Media'"
+                                >
+                                <div class="progress-container" ng-show="view.videoUploadStarted">
+                                    <div class="progress" ng-class="{ 'complete': view.videoUploadComplete }">
+                                      <div class="progress-bar" ng-style="{ 'width': view.videoUploadProgress + '%' }"></div>
+                                    </div>
+                                </div>
+                                <div class="uploader-label-overlay">
+                                    <i class="icon-ic-upload"></i>
+                                    <br>
+                                    <span ng-hide="data.videoFile"><br>Simply drag and drop video file<br>or <span class="higlight">browse</span> on your disk.</span>
+                                    <span ng-show="data.videoFile">{{data.videoFile.name}}</span>
+                                    <span class="size-hint">16:9</span>
+                                </div>
+                                <input
+                                    nv-file-select
+                                    type="file"
+                                    uploader="uploader"
+                                    options="{ alias: 'video' }"
+                                    filters="videoFilter"
+                                    title=" "
+                                    multiple
+                                    >
+                            </div>
+                            <div ng-show="mediaTypeProp.mediaTypeSelect == 'External Link'">
+                                <div class="form-group" ng-class="{ 'has-error' : showErrors() && fieldHasError( this, 'form1', 'media_link' ) }">
+                                    <input
+                                            name="media_link"
+                                            type="url"
+                                            class="form-control media-link"
+                                            placeholder="Adding video link before upload"
+                                            ng-model="data.mediaLink"
+                                            ng-required="mediaTypeProp.mediaTypeSelect == 'External Link'"
+                                    >
+                                    <span ng-show="showErrors() && fieldHasError( this, 'form1', 'media_link' )" class="help-block">Please enter media video link.</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="image-container">
+                            <div
+                                nv-file-drop
+                                ifm-uploader-preview-image="data.imageFile"
+                                uploader="uploader"
+                                options="{ alias: 'display' }"
+                                filters="imageFilter"
+                                ifm-over-class="fileover"
+                                class="uploader-dropzone"
+                                ng-class="{ 'has-error' : showErrors() && imageHasError() }"
+                                >
+                                <div class="uploader-label-overlay">
+                                    <i class="icon-ic-upload"></i>
+                                    <br><br>
+                                    Simply drag and drop file<br>or <span class="higlight">browse</span> on your disk.
+                                    <!-- <span class="size-hint">1280x1200</span> -->
+                                </div>
+                                <div class="progress-container" ng-show="view.imageUploadStarted">
+                                    <div class="progress" ng-class="{ 'complete': view.imageUploadComplete }">
+                                      <div class="progress-bar" ng-style="{ 'width': view.imageUploadProgress + '%' }"></div>
+                                    </div>
+                                </div>
+                                <input
+                                    nv-file-select
+                                    type="file"
+                                    uploader="uploader"
+                                    options="{ alias: 'display' }"
+                                    filters="imageFilter"
+                                    title=" "
+                                    multiple
+
+                                    >
+                            </div>
+                        </div>
+                        <div class="error-container-video" ng-class="{ 'has-error' : showErrors() && videoHasError() }">
+                            <span ng-show="showErrors() && videoHasError() && (mediaTypeProp.mediaTypeSelect == 'Upload Media')" class="help-block">Please add the video.</span>
+                        </div>
+                        <div class="error-container-image" ng-class="{ 'has-error' : showErrors() && imageHasError() }">
+                            <!-- <button ng-show="showErrors() && imageHasError() && errors.image.size" ng-click="resizeImage()">Resize</button> -->
+                            <span ng-show="showErrors() && imageHasError() && errors.image.size" class="help-block">Image size must be 1280 wide and 1200 tall.</span>
+                            <span ng-show="showErrors() && imageHasError() && !errors.image.size" class="help-block">Please add the image.</span>
+                        </div>
+                    </div>
+
+                </form>
+
+                <div class="form-container text-right" ng-hide="view.mediaCreated">
+                    <button type="button" class="btn modal-link btn-default" ng-click="closeModal()" ng-disabled="view.uploading">Cancel</button>
+                    <button type="button" class="btn modal-link btn-primary" ng-click="saveMedia()" ng-disabled="view.uploading">Create media</button>
+                </div>
+                <div class="form-container text-right" ng-show="view.mediaCreated">
+                    <strong class="message-success">Media created sucessfully</strong>
+                    <button type="button" class="btn modal-link btn-default" ng-click="closeModal()">Close</button>
+                    <button type="button" class="btn modal-link btn-primary" ng-click="viewMedia()">View media</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

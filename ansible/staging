@@ -1,0 +1,8 @@
+# Inventory file
+
+[webserver]
+# cms-staging.kachingcash.com
+kachingcash.com
+
+[staging:children]
+webserver

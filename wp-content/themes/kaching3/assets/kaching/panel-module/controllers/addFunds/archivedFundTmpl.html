@@ -1,0 +1,97 @@
+<div class="header-campaigns-list">
+    <div class="container">
+        <div class="row clearfix filter-campaign">
+            <div class="col-sm-4 filter-title">
+                <h4 class="medium-font txt-grey margin-0 capitalize">Funds Overview</h4>
+            </div>
+            <div class="select-wrapper col-sm-8 clearfix">
+                <div class="select-inner col-sm-9 col-sm-offset-3">
+                    <div class="col-sm-6">
+                        <select class="filter-sort-by" ng-model="filters.status" ng-model="view.statusFilterModel" ng-options="status.label for status in view.campaignStatuses track by status.code" ng-change="updateFilters()"></select>
+                    </div>
+                    <div class="col-sm-6">
+                        <select class="filter-sort-by" ng-model="filters.status" ng-model="view.statusFilterModel" ng-options="status.label for status in view.campaignStatuses track by status.code" ng-change="updateFilters()"></select>
+                    </div>
+                </div>
+                <div class="anchor-fillter">
+                    <a href="">Reset fillter</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container container-fluid no-gutter">
+    <div class="container-funds" ng-controller="archivedFundCtrl">
+        <div class="funds-chart-wrapper">
+            <h3 class="funds-header">
+                <strong>Funds
+                </strong>
+                <span>by day
+                </span>
+                <span class="start-day">11/01/2015</span>
+                -
+                <span class="end-day">11/02/2015</span>
+            </h3>
+            <div class="clearfix nomargin">
+                <div class="revenue-pie col-sm-4 nopadding" id="revenuePieProduct"></div>
+                <div class="revenue-pie col-sm-4 nopadding" id="revenuePieSource"></div>
+                <div class="revenue-pie col-sm-4 nopadding" id="revenuePieCountry"></div>
+            </div>
+        </div>
+
+        <div class="campaign-payout-details">
+            <div class="campaign-payout-table fund-details-table">
+                <table class="table-status table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Customer Name/ Campaign Name</th>
+                            <th>Total Funds (from Start)</th>
+                            <th>Total Payout</th>
+                            <th>Refiled Funds</th>
+                            <th colspan="2">Total Current Funds</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="fundItem in dataFundDetails" class="{{fundItem.status}}">
+                            <td>
+                                <div class="campaign-name one-line clearfix">
+                                    <p class="audio-item thumbsnail pull-left"><img src="{{fundItem.srcImg}}" alt=""/></p>
+                                    <div class="pull-left">
+                                        <p class="title">{{fundItem.title}}</p>
+                                        <p class="sub-title">{{dataPayoutDetail.subTitle}}</p>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="campaign-total-fund">
+                                    <p class="total-fund">USD {{fundItem.totalFund}}</p>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="campaign-total-payout">
+                                    <p class="total-payout">USD {{fundItem.totalPayout}}</p>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="campaign-refiled-fund">
+                                    <p class="refiled-fund">USD {{fundItem.refiledFund}}</p>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="campaign-total-current-fund">
+                                    <p class="total-current-fund">USD {{fundItem.totalCurrentFund}}</p>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="campaign-control">
+                                    <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+                                    <span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

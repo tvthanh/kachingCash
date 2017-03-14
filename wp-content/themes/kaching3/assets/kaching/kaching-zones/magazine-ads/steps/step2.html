@@ -1,0 +1,224 @@
+<div class="billboards-step2" ng-controller="magStep2Ctrl">
+    <div loader ng-show="view.busy"></div>
+    <div ng-show="!view.busy">
+        <media-upload>
+          <span class="required-text">* Required field</span>
+          <!-- Product Information -->
+          <div class="block-content padd-bot-0">
+            <form name="form1" novalidate>
+              <div class="row flex-row">
+                <div class="col-sm-5 upload-container flex-column">
+                  <label>*Add image <a ng-show="isAddImage" ng-click="removeAddImageForm()">/ Remove</a></label>
+                  <div class="medias">
+                    <div class="col-sm-9 file-uploader">
+                        <div
+                            id="imageFile"
+                            name="imageFile"
+                            ng-model="data.imageFile"
+                            nv-file-drop
+                            ifm-uploader-preview-image="data.imageFile"
+                            uploader="uploader"
+                            options="{ alias: 'display' }"
+                            filters="imageFilter"
+                            ifm-over-class="fileover"
+                            class="uploader-dropzone"
+                            ng-class="{ 'has-error' : showErrors() && imageHasError() }"
+                            ng-required="needBasicValidateZone()"
+                            >
+                            <div class="uploader-label-overlay" ng-class="{ 'has-error-image' : (form1.imageFile.$invalid && !form1.imageFile.$pristine) || (form1.$submitted && form1.imageFile.$invalid) }">
+                                <i class="icon-ic-upload"></i>
+                                <br><br>
+                                Simply drag and drop file<br>or <span class="higlight">browse</span> on your disk.
+                                <!-- <span class="size-hint">1280x1200</span> -->
+                            </div>
+                            <div class="progress-container" ng-show="view.imageUploadStarted">
+                                <div class="progress" ng-class="{ 'complete': view.imageUploadComplete }">
+                                  <div class="progress-bar" ng-style="{ 'width': view.imageUploadProgress + '%' }"></div>
+                                </div>
+                            </div>
+                            <input
+                                nv-file-select
+                                type="file"
+                                uploader="uploader"
+                                options="{ alias: 'display' }"
+                                filters="imageFilter"
+                                title=" "
+                                multiple
+
+                                >
+                        </div>
+                    </div>
+                    <ul class="col-sm-3 uploadeds row-eq-height">
+                      <li ng-repeat="imgStyle in imageList track by $index">
+                          <div class="image-review-list" style="{{imgStyle}}" ng-click="updateReviewIndex($index)"></div>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="col-sm-7 product-info">
+                  <div class="row">
+                      <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 no-padding-left" ng-class="{ 'has-error' : (form1.imageName.$invalid && !form1.imageName.$pristine) || (form1.$submitted && form1.imageName.$invalid) }">
+                          <label>*Image Name</label>
+                          <input id="imageName" class="form-control" ng-model="data.imageName" name="imageName" ng-required="needBasicValidateZone()">
+                          <div  ng-show=" (form1.imageName.$invalid && !form1.imageName.$pristine) || (form1.$submitted && form1.imageName.$invalid) ">
+                              <span ng-show="form1.imageName.$error.required" class="help-block">Please enter image name.</span>
+                          </div>
+                      </div>
+                      <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 no-padding-right">
+                          <label>*Format</label>
+                          <select ng-model="selectedFormat" ng-options="format for format in formats" ng-init="selectedFormat=formats[0]"></select>
+                      </div>
+                  </div>
+
+                  <div class="row">
+                      <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 no-padding-left no-padding-right" ng-class="{ 'has-error' : (form1.url.$invalid && !form1.url.$pristine) || (form1.$submitted && form1.url.$invalid) }">
+                          <label>*URL</label>
+                          <input id="url" class="form-control" ng-model="data.url" name="url" ng-required="needBasicValidateZone()">
+                          <div ng-show=" (form1.url.$invalid && !form1.url.$pristine) || (form1.$submitted && form1.url.$invalid) ">
+                              <span ng-show="form1.url.$error.required" class="help-block">Please enter URL.</span>
+                          </div>
+                      </div>
+                      <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 no-padding-right" ng-class="{ 'has-error' : (form1.magazineOther.$invalid && !form1.magazineOther.$pristine) || (form1.$submitted && form1.magazineOther.$invalid) }">
+                          <label>*Magazine</label>
+                          <select ng-model="selectedMagezine" ng-options="magezine for magezine in magezines" ng-init="selectedMagezine=selectedMagezine||magezines[0]" ng-change="changeSelect()"></select>
+                          <div class="magazine-other margin-t-5" ng-if="isOther">
+                              <input id="magazineOther" class="form-control" ng-model="$parent.magazineOther" name="magazineOther" placeholder="Please enter other magezine" ng-required="needBasicValidateZone()">
+                              <div ng-show=" (form1.magazineOther.$invalid && !form1.magazineOther.$pristine) || (form1.$submitted && form1.magazineOther.$invalid) ">
+                                  <span ng-show="form1.magazineOther.$error.required" class="help-block">Please enter other magazine.</span>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+
+                  <div class="row margin-bot-0"  ng-class="{ 'has-error' : (form1.description.$invalid && !form1.description.$pristine) || (form1.$submitted && form1.description.$invalid) }">
+                    <label>*Description</label>
+                    <textarea id="description" name="description" class="form-control description" placeholder="Add description here..." ng-model="data.description" ng-required="needBasicValidateZone()"></textarea>
+                    <div ng-show=" (form1.description.$invalid && !form1.description.$pristine) || (form1.$submitted && form1.description.$invalid) ">
+                        <span ng-show="form1.description.$error.required" class="help-block">Please enter description.</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row ar-section ar-image-section flex-row">
+                <div class="col-sm-5 upload-container flex-column">
+                    <label>*Add AR Image/Video/Icon/Text</label>
+                    <div class="file-uploader-wrapper">
+                        <div
+                            id="arImageFile"
+                            name="arImageFile"
+                            ng-model="data.arImageFile"
+                            nv-file-drop
+                            ifm-uploader-preview-image="data.arImageFile"
+                            uploader="uploader"
+                            options="{ alias: 'arDisplay' }"
+
+                            ifm-over-class="fileover"
+                            class="uploader-dropzone"
+                            required
+                            >
+                            <div ng-class="{ 'has-error-image' : (form1.arImageFile.$invalid && !form1.arImageFile.$pristine) || (form1.$submitted && form1.arImageFile.$invalid) }" class="uploader-label-overlay">
+                                <i class="icon-ic-upload"></i>
+                                <br><br>
+                                Simply drag and drop file<br>or <span class="higlight">browse</span> on your disk.
+                                <!-- <span class="size-hint">1280x1200</span> -->
+                            </div>
+                            <div class="progress-container" ng-show="view.arImageUploadStarted">
+                                <div class="progress" ng-class="{ 'complete': view.arImageUploadComplete }">
+                                  <div class="progress-bar" ng-style="{ 'width': view.arImageUploadProgress + '%' }"></div>
+                                </div>
+                            </div>
+                            <input
+                                nv-file-select
+                                type="file"
+                                uploader="uploader"
+                                options="{ alias: 'arDisplay' }"
+                                filters="imageFilter, videoFilter"
+                                title=" "
+                                multiple
+
+                                >
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-7 product-info">
+                  <label class="medium-font">Media Format</label>
+                  <div class="clearfix">
+                    <div class="row clearfix special">
+                        <div class="custom-radio-v1 col-sm-3">
+                            <div class="radio" ng-init="imageType='image'">
+                                <input type="radio" name="imageType" id="arImage" ng-model="imageType" value="image"/>
+                                <label for="arImage" style="min-width: 110px">AR Image</label>
+                            </div>
+                        </div>
+                        <div class="custom-radio-v1 col-sm-3">
+                            <div class="radio">
+                                <input type="radio" name="imageType" id="video" ng-model="imageType" value="video" />
+                                <label for="video" style="min-width: 100px">Video</label>
+                            </div>
+                        </div>
+                        <div class="custom-radio-v1 col-sm-3">
+                            <div class="radio">
+                                <input type="radio" name="imageType" id="icon" ng-model="imageType" value="icon" />
+                                <label for="icon" style="min-width: 100px">Icon</label>
+                            </div>
+                        </div>
+                        <div class="custom-radio-v1 col-sm-3">
+                            <div class="radio">
+                                <input type="radio" name="imageType" id="text" ng-model="imageType" value="text" />
+                                <label for="text" style="min-width: 100px">Text</label>
+                            </div>
+                        </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                      <div ng-class="{ 'has-error' : (form1.arImageName.$invalid && !form1.arImageName.$pristine) || (form1.$submitted && form1.arImageName.$invalid) }">
+                          <label>*Image name</label>
+                          <input id="arImageName" class="form-control" ng-model="data.arImageName" name="arImageName" required>
+                          <div  ng-show=" (form1.arImageName.$invalid && !form1.arImageName.$pristine) || (form1.$submitted && form1.arImageName.$invalid) ">
+                              <span ng-show="form1.arImageName.$error.required" class="help-block">Please enter image name.</span>
+                          </div>
+                      </div>
+                  </div>
+
+                  <div class="row">
+                      <div>
+                        <label class="medium-font">Appearance</label>
+                        <div class="clearfix">
+                          <div class="row clearfix special">
+                            <div class="custom-radio-v1 col-sm-3">
+                              <div class="radio" ng-init="appearance='2'">
+                                <input type="radio" name="appearance" id="twoD" ng-model="appearance" value="2"/>
+                                <label for="twoD" style="min-width: 110px">2D</label>
+                              </div>
+                              </div>
+                              <div class="custom-radio-v1 col-sm-3">
+                                <div class="radio">
+                                  <input type="radio" name="appearance" id="threeD" ng-model="appearance" value="3"/>
+                                  <label for="threeD" style="min-width: 100px">3D</label>
+                                </div>
+                              </div>
+                          </div>
+                        </div>
+                      </div>
+                  </div>
+                  <div>
+                      <a class="btn-cancel pull-right" ng-click="cancelEdit()" ng-show="editMode">Cancel</a>
+                      <input type="submit" class="btn-submit pull-right" ng-click="saveMedia()" ng-show="!editMode" value="Submit">
+                      <input type="submit" class="btn-submit pull-right" ng-click="saveMedia()" ng-show="editMode" value="Update">
+                  </div>
+                </div>
+              </div>
+
+            </form>
+          </div>
+          <div class="block-content col-sm-6">
+            <media-preview media-list="mediaList" item-edit="editMedia(mediaId)" item-delete="deleteMedia(mediaId)" show-edit="true"></media-preview>
+          </div>
+        </media-upload>
+        <div class="footer-popup-stream-video clearfix">
+            <button class="btn-next-step pull-right" ng-click="nextStep()">Save & Continue to Step 3 - Recommend Products</button>
+            <a class="btn-back-to-step pull-right" ng-click="goPrev()">Back to step 1</a>
+        </div>
+    </div>
+</div>

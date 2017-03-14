@@ -1,0 +1,15 @@
+<div class="modal kaching-modal modal-qr-code-preview" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" ng-click="$hide()" ng-disabled="view.sending"><span class="ion-icon ion-close-round"></span></button>
+                <h4 class="modal-title">QR Code Preview</h4>
+            </div>
+            <div class="modal-body">
+                <img src="{{imageUrl}}" alt="Image Preview" width="50%" ng-if="imageUrl !== undefined && imageUrl !== ''"/>
+                <h4 ng-if="imageUrl === undefined || imageUrl === ''" style="text-align: center">{{actionText}}</h4>
+                <a ng-if="imageUrl !== undefined && imageUrl !== ''" download="download.jpg" href="{{imageUrl}}" title="Download this image">{{actionText}}</a>
+            </div>
+        </div>
+    </div>
+</div>

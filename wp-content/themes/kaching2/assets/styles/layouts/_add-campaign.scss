@@ -1,0 +1,251 @@
+.add-campaign-step1 {
+    .form-group {
+        position: relative;
+    }
+    .indicator {
+        position: absolute;
+        top: 16px;
+        right: 10px;
+        font-size: 16px;
+    }
+    .tt-menu {
+      max-height: 300px;
+      overflow-y: auto;
+    }
+    .form-group-client ul {
+        width: 100%;
+        max-height: 260px;
+        overflow-y: scroll;
+    }
+}
+
+.campaign-details-item {
+    margin-bottom: 20px;
+    .item-label {
+        font-weight: 700;
+        color: $gray-semidark;
+    }
+    .item-value {
+        font-size: 18px;
+        font-weight: 700;
+        color: $gray-darkest;
+    }
+}
+
+/////////////////////////
+// Products
+/////////////////////////
+
+.panel-campaign-products-summary {
+    .panel-body {
+        padding: 8px;
+    }
+    .product-container {
+        float: left;
+        width: 25%;
+        padding: 7px;
+    }
+    .image-container {
+        position: relative;
+        margin-bottom: 5px;
+        padding: 10px;
+        border: 1px solid $new-gray-semilight;
+    }
+    .image-holder {
+        height: 0;
+        padding-bottom: 100%;
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: 50% 50%;
+    }
+    .title {
+        position: relative;
+        overflow: hidden;
+        font-size: 13px;
+        font-weight: 600;
+        white-space: nowrap;
+        color: $gray-darkest;
+        &:after {
+            content: " ";
+            width: 30px;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            right: 0;
+            @include gradient-horizontal( rgba(255,255,255,0),  #fff );
+        }
+    }
+}
+
+.panel-add-products {
+    .panel-heading {
+        overflow: hidden;
+    }
+    .panel-title {
+        float: left;
+    }
+    .add-product-toolbar {
+        float: right;
+    }
+}
+
+.campaign-product {
+    .btn-remove {
+        padding: 7px;
+        .icon {
+            font-size: 18px;
+        }
+    }
+    .image-container {
+        position: relative;
+        padding: 10px;
+        border: 1px solid $new-gray-semilight;
+    }
+    .image-holder {
+        height: 0;
+        padding-bottom: 100%;
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: 50% 50%;
+    }
+    .description {
+        height: 152px;
+    }
+}
+
+.panel-recommended-products {
+    position: relative;
+}
+.recommended-products {
+    &.owl-carousel {
+        position: initial;
+    }
+    .owl-nav {
+        position: absolute;
+        top: 15px;
+        right: 25px;
+        .owl-prev,
+        .owl-next {
+            display: inline-block;
+            padding: 10px 15px;
+            background: $gray-light;
+            &:hover{
+                background: $brand-primary;
+            }
+        }
+        .owl-prev {
+            @include border-left-radius( 5px );
+        }
+        .owl-next {
+            @include border-right-radius( 5px );
+        }
+    }
+    .product {
+        padding: 10px;
+        .image-container {
+            position: relative;
+            padding: 10px;
+            border: 1px solid $new-gray-semilight;
+        }
+        .image-holder {
+            height: 0;
+            padding-bottom: 100%;
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: 50% 50%;
+        }
+        &:hover {
+            cursor: pointer;
+            .image-container {
+                @include box-shadow( 0 0 5px 0 rgba(0,0,0,.2) );
+            }
+        }
+        &:active {
+            .image-container {
+                background-color: $brand-primary;
+            }
+            .image-holder {
+                opacity: .33;
+            }
+        }
+    }
+}
+
+///////////////////////////
+// Targeting & Budegting
+///////////////////////////
+
+.campaign-targeting {
+    label {
+        font-size: 16px;
+        color: $colour_gray_dark;
+    }
+}
+
+.est-views,
+.est-daily-views {
+    .heading,
+    .progress {
+        margin-bottom: 0;
+    }
+    .figures {
+        text-align: center;
+        color: $colour_gray_dark;
+    }
+}
+
+.est-daily-views-chart {
+}
+.chart-container {
+    width: 100%;
+}
+
+.est-daily-views-chart,
+.est-total-views-chart {
+    position: relative;
+    .content-overlay {
+        width: 50%;
+        position:absolute;
+        top:50%;
+        left:50%;
+        @include translate3d( -50%, -50%, 0 );
+    }
+    .percent {
+        text-align: center;
+        font-size: 22px;
+        font-weight: 600px;
+    }
+    .caption {
+        margin: 0;
+        padding: 0;
+        text-align: center;
+        font-size: 10px;
+    }
+}
+
+.est-daily-views-chart {
+    .percent {
+        color: $colour_brand_primary;
+    }
+}
+.est-total-views-chart {
+    .percent {
+        color: $colour_gray_dark;
+    }
+}
+
+///////////////////////////
+// Media
+///////////////////////////
+
+.panel-add-media {
+    .panel-heading {
+        overflow: hidden;
+    }
+    .panel-title {
+        float: left;
+    }
+    .add-media-toolbar {
+        float: right;
+    }
+}
